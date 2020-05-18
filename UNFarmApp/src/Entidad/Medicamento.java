@@ -1,14 +1,30 @@
 package Entidad;
 
-public class Medicamento {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "Medicamento")
+public class Medicamento implements Serializable {
+
+    @Id
     private int idMedicamento;
+    @Column(nullable = false)
     private int cantidadMedicamento;
+    @Column(nullable = false, length = 60)
     private String nombreMedicamento;
+    @Column(nullable = false, length = 10)
     private String precioVentaMedicamento;
+    @Column(nullable = false, length = 25)
     private String titularMedicamento;
+    @Column(nullable = false, length = 50)
     private String DescripcionMedicamento;
+    @Column(nullable = false, length = 20)
     private String presentacionMedicamento;
+    @Column(nullable = false, length = 90)
     private String principioActivoMedicamento;
 
     public Medicamento() {
@@ -76,5 +92,5 @@ public class Medicamento {
     public void setPrincipioActivoMedicamento(String principioActivoMedicamento) {
         this.principioActivoMedicamento = principioActivoMedicamento;
     }
-    
+
 }

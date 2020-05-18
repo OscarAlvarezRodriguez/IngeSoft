@@ -1,9 +1,21 @@
 package Entidad;
 
-public class Compra {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "Compra")
+public class Compra implements Serializable{
+
+    @Id
+    @Column(length = 2)
     private long idCompra;
+    @Column(nullable = false, length = 50)
     private String nombreProvedorCompra;
+    @Column(nullable = false, length = 20)
     private String precioTotalCompra;
 
     public Compra() {

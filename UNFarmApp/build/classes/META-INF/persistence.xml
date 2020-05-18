@@ -3,8 +3,16 @@
   <persistence-unit name="UNFarmAppPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>Entidad.Cliente</class>
+    <class>Entidad.Compra</class>
+    <class>Entidad.Domicilio</class>
+    <class>Entidad.Drogueria</class>
+    <class>Entidad.Empleado</class>
+    <class>Entidad.Factura</class>
+    <class>Entidad.Medicamento</class>
+    <class>Entidad.MedicamentoComprado</class>
+    <class>Entidad.MedicamentoVendido</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/unfarmapp?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value=""/>

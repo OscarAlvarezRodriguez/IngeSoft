@@ -1,12 +1,27 @@
 package Entidad;
 
-public class Drogueria {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "Drogueria")
+public class Drogueria implements Serializable{
+
+    @Id
+    @Column(length = 20)
     private String nitDrogueria;
+    @Column(nullable = false, length = 32)
     private String nombreDrogueria;
+    @Column(nullable = false, length = 32)
     private String direccionDrogueria;
+    @Column(nullable = false, length = 15)
     private String telefonoDrogueria;
+    @Column(nullable = false, length = 50)
     private String emailDrogueria;
+    @Column(nullable = false, length = 32)
     private String representanteLegalDrogueria;
 
     public Drogueria() {

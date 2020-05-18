@@ -1,36 +1,30 @@
 package Entidad;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Clientes")
+@Table(name = "Cliente")
 public class Cliente implements Serializable {
 
-    private String nombreCliente;
-    private String telefonoCliente;
-    private String direccionCliente;
-    private String descripcionDireccionCliente;
-    private String apellidoCliente;
     @Id
+    @Column(length = 12)
     private String cedulaCliente;
-
-    public Cliente(String cedulaCliente, String nombreCliente, String telefonoCliente, String direccionCliente, String descripcionDireccionCliente, String apellidoCliente) {
-        this.cedulaCliente = cedulaCliente;
-        this.nombreCliente = nombreCliente;
-        this.telefonoCliente = telefonoCliente;
-        this.direccionCliente = direccionCliente;
-        this.descripcionDireccionCliente = descripcionDireccionCliente;
-        this.apellidoCliente = apellidoCliente;
-
-    }
+    @Column(nullable = false, length = 2)
+    private String nombreCliente;
+    @Column(nullable = false, length = 25)
+    private String telefonoCliente;
+    @Column(nullable = false, length = 15)
+    private String direccionCliente;
+    @Column(nullable = false, length = 32)
+    private String descripcionDireccionCliente;
+    @Column(nullable = false, length = 50)
+    private String apellidoCliente;
 
     public Cliente() {
-        this("q", "w", "e", "r", "t", "y");
     }
 
     public String getCedulaCliente() {
