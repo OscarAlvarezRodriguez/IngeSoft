@@ -22,7 +22,7 @@ public class Domicilio implements Serializable{
         return idDomicilio;
     }
 
-    public void setIdDomicilio() {
+    private void setIdDomicilio() {
     }
 
     public String getEstadoDomicilio() {

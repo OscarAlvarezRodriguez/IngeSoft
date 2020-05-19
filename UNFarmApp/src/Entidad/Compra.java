@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class Compra implements Serializable{
 
     @Id
-    @Column(length = 2)
+    @Column(length = 20)
     private long idCompra;
     @Column(nullable = false, length = 50)
     private String nombreProvedorCompra;

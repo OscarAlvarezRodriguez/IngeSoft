@@ -13,7 +13,7 @@ public class Cliente implements Serializable {
     @Id
     @Column(length = 12)
     private String cedulaCliente;
-    @Column(nullable = false, length = 2)
+    @Column(nullable = false, length = 20)
     private String nombreCliente;
     @Column(nullable = false, length = 25)
     private String telefonoCliente;

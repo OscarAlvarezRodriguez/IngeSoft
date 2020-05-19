@@ -11,7 +11,7 @@ public class Coneccion {
     private final String driver = "com.mysql.jdbc.Driver";
     private final String user = "root";
     private final String pass = "";
-    private final String url = "jdbc:mysql://localhost:3306/mysql";
+    private final String url = "jdbc:mysql://localhost:3306/unfarmapp";
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("UNFarmAppPU");
 
     public void conector() {
@@ -25,5 +25,8 @@ public class Coneccion {
             System.out.println("Error de Conexion: " + e);
         }
     }
-
+    public static void main(String[] args) {
+        Coneccion c = new Coneccion();
+        c.conector();
+    }
 }
