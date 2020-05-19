@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-05-2020 a las 03:39:56
+-- Tiempo de generación: 19-05-2020 a las 04:32:57
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.30
 
@@ -97,6 +97,13 @@ CREATE TABLE `empleado` (
   `NOMBREEMPLEADO` varchar(25) NOT NULL,
   `TELEFONOEMPLEADO` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `empleado`
+--
+
+INSERT INTO `empleado` (`CEDULAEMPLEADO`, `APELLIDOEMPLEADO`, `CONTRESENIAEMPLEADO`, `CORREOEMPLEADO`, `DESCRIPCIONDIRECCIONEMPLEADO`, `DIRECCIONEMPLEADO`, `NOMBREEMPLEADO`, `TELEFONOEMPLEADO`) VALUES
+('1000602028', 'Alvarez R', 'Zekrom13', 'oalvarezr@unal.edu.co', '??', 'Cll 134 #160B - 43', 'Oscar E', '300 206 27 29');
 
 -- --------------------------------------------------------
 
