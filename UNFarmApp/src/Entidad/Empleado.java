@@ -24,7 +24,7 @@ public class Empleado implements Serializable{
     @Column(nullable = false, length = 25)
     private String apellidoEmpleado;
     @Column(nullable = false, length = 20)
-    private String contreseniaEmpleado;
+    private String contraseniaEmpleado;
     @Column(nullable = false, length = 50)
     private String correoEmpleado;
 
@@ -79,12 +79,12 @@ public class Empleado implements Serializable{
         this.apellidoEmpleado = apellidoEmpleado;
     }
 
-    public String getContreseniaEmpleado() {
-        return contreseniaEmpleado;
+    public String getContraseniaEmpleado() {
+        return contraseniaEmpleado;
     }
 
-    public void setContreseniaEmpleado(String contreseniaEmpleado) {
-        this.contreseniaEmpleado = contreseniaEmpleado;
+    public void setContraseniaEmpleado(String contreseniaEmpleado) {
+        this.contraseniaEmpleado = contreseniaEmpleado;
     }
 
     public String getCorreoEmpleado() {
