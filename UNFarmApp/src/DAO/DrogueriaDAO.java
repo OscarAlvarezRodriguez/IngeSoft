@@ -1,22 +1,17 @@
 package DAO;
 
-import Entidad.Empleado;
-import java.io.Serializable;
-import javax.persistence.Entity;
+import Entidad.Drogueria;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-public class EmpleadoDAO {
+public class DrogueriaDAO {
 
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UNFarmAppPU");
 
-    public void crear(Empleado object) {
+    public void crear(Drogueria object) {
 
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -31,7 +26,7 @@ public class EmpleadoDAO {
         }
     }
 
-    public boolean eliminar(Empleado object) {
+    public boolean eliminar(Drogueria object) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         boolean ret = false;
@@ -48,23 +43,22 @@ public class EmpleadoDAO {
         }
     }
 
-    public Empleado leer(Empleado par) {
+    public Drogueria leer(Drogueria par) {
         EntityManager em = emf.createEntityManager();
-        Empleado usuario = null;
+        Drogueria usuario = null;
         Query q = em.createQuery("SELECT e FROM Empleado e "
                 + "WHERE u.cedulaEmpleado LIKE :cedulaempleado"
                 + " AND u.contranseniaEmpleado LIKE :contranseniaempleado")
-                .setParameter("nombreEmpleado", par.getNombreEmpleado())
-                .setParameter("contranseniaEmpleado", par.getContraseniaEmpleado())
-                .setParameter("cedulaEmpledo", par.getCedulaEmpleado())
-                .setParameter("correoEmpledo", par.getCorreoEmpleado())
-                .setParameter("direccionEmpledo", par.getDireccionEmpleado())
-                .setParameter("descripcionDireccionEmpledo", par.getDescripcionDireccionEmpleado())
-                .setParameter("telefonoEmpledo", par.getTelefonoEmpleado());
+                .setParameter("nitDrogueria", par.getNitDrogueria())
+                .setParameter("nombreDrogueria", par.getNombreDrogueria())
+                .setParameter("direccionDrogueria", par.getDireccionDrogueria())
+                .setParameter("telefonoDrogueria", par.getTelefonoDrogueria())
+                .setParameter("emailDrogueria", par.getEmailDrogueria())
+                .setParameter("representanteLegalDrogueria", par.getRepresentanteLegalDrogueria());
         try {
-            usuario = (Empleado) q.getSingleResult();
+            usuario = (Drogueria) q.getSingleResult();
         } catch (NonUniqueResultException e) {
-            usuario = (Empleado) q.getResultList().get(0);
+            usuario = (Drogueria) q.getResultList().get(0);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -73,19 +67,18 @@ public class EmpleadoDAO {
         }
     }
 
-    public boolean actualizar(Empleado object, Empleado nuevoObjeto) {
+    public boolean actualizar(Drogueria object, Drogueria nuevoObjeto) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         boolean ret = false;
         try {
             object = leer(object);
-            object.setCedulaEmpleado(nuevoObjeto.getCedulaEmpleado());
-            object.setApellidoEmpleado(nuevoObjeto.getApellidoEmpleado());
-            object.setContraseniaEmpleado(nuevoObjeto.getContraseniaEmpleado());
-            object.setCorreoEmpleado(nuevoObjeto.getCorreoEmpleado());
-            object.setDescripcionDireccionEmpleado(nuevoObjeto.getDescripcionDireccionEmpleado());
-            object.setNombreEmpleado(nuevoObjeto.getNombreEmpleado());
-            object.setTelefonoEmpleado(nuevoObjeto.getTelefonoEmpleado());
+            object.setNitDrogueria(nuevoObjeto.getNitDrogueria());
+            object.setNombreDrogueria(nuevoObjeto.getNombreDrogueria());
+            object.setDireccionDrogueria(nuevoObjeto.getDireccionDrogueria());
+            object.setTelefonoDrogueria(nuevoObjeto.getTelefonoDrogueria());
+            object.setEmailDrogueria(nuevoObjeto.getEmailDrogueria());
+            object.setRepresentanteLegalDrogueria(nuevoObjeto.getRepresentanteLegalDrogueria());
             em.merge(object);
             em.getTransaction().commit();
             ret = true;
@@ -97,5 +90,4 @@ public class EmpleadoDAO {
             return ret;
         }
     }
-
 }
