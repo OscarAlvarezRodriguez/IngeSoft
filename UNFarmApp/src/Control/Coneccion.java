@@ -25,8 +25,4 @@ public class Coneccion {
             System.out.println("Error de Conexion: " + e);
         }
     }
-    public static void main(String[] args) {
-        Coneccion c = new Coneccion();
-        c.conector();
-    }
 }
