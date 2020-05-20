@@ -9,13 +9,13 @@ public class RegistrarEmpleado {
 
     public String validarDatos(Empleado empleado) {
         if (!validarCedula(empleado.getCedulaEmpleado())) {
-            return ("Número de Cedula no valido");
+            return ("Número de Cedula no válido");
         }
         if (!validarNombre(empleado.getNombreEmpleado())) {
             return ("Longitud nombre incorrecta");
         }
         if (!validarTelefono(empleado.getTelefonoEmpleado())) {
-            return ("Número de telefono no valido");
+            return ("Número de telefono no válido");
         }
         if (!validarDireccion(empleado.getDireccionEmpleado())) {
             return ("Longitud dirección incorrecta");
@@ -27,10 +27,10 @@ public class RegistrarEmpleado {
             return ("Longitud apellido incorrecta");
         }
         if (!validarContrasenia(empleado.getContraseniaEmpleado())) {
-            return ("Contraseña no valida");
+            return ("Contraseña no válida");
         }
         if (!validarCorreo(empleado.getCorreoEmpleado())) {
-            return ("Correo no valido");
+            return ("Correo no válido");
         }
         return ("Registro exitoso");
     }
@@ -52,7 +52,7 @@ public class RegistrarEmpleado {
     }
 
     private boolean validarDescripcionDir(String desdireccion) {
-        return (desdireccion.length() >= 25);
+        return (desdireccion.length() <= 25);
     }
 
     private boolean validarApellido(String apellido) {
