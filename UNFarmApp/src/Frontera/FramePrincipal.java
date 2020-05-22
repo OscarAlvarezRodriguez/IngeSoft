@@ -31,18 +31,24 @@ public class FramePrincipal extends javax.swing.JFrame {
         empleado.setVisible(false);
         drogueria.setVisible(false);
 
-        if (n == INTFronteraEmpleado) {
-            empleado.setVisible(true);
-        } else if (n == INTFronteraRegDrogueria) {
-            drogueria.setVisible(true);
-        } else if (n == INTFronteraSplash) {
-            splash.setVisible(true);
+        switch (n) {
+            case INTFronteraEmpleado:
+                empleado.setVisible(true);
+                break;
+            case INTFronteraRegDrogueria:
+                drogueria.setVisible(true);
+                break;
+            case INTFronteraSplash:
+                splash.setVisible(true);
+                break;
+            default:
+                break;
         }
 
     }
 
     public FramePrincipal() {
-
+        
         initComponents();
         setLocationRelativeTo(null);
         setTitle("UNFarmApp");
@@ -53,7 +59,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         add(splash);
         splash.setBounds(jpPrincipal.getBounds());
-        splash.setVisible(false);
+        splash.setVisible(true);
 
         add(drogueria);
         drogueria.setBounds(jpPrincipal.getBounds());
@@ -63,6 +69,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         empleado.setBounds(jpPrincipal.getBounds());
         empleado.setVisible(false);
 
+        
+        App.getInstance().setFramePrincipal(this);
     }
 
     public ImageIcon setImageBackground(String direccion, Component o) {
@@ -109,6 +117,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     public static void main(String args[]) {
 
         try {

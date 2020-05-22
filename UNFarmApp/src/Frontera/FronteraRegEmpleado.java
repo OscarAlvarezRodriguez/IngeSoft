@@ -421,7 +421,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
     }//GEN-LAST:event_txtDireccionKeyTyped
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
+        App.getInstance().ChangePanel(FramePrincipal.INTFronteraRegDrogueria);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed

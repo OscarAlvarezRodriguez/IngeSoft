@@ -20,7 +20,7 @@ public final class App {
     // este es el constructor es privado
     // aqui se llaman la vista y el modelo
     private App() {
-        framePrincipal = new FramePrincipal();
+           
     }
 
     // este es el contructor del constructor 
@@ -33,13 +33,17 @@ public final class App {
     }
 
     private void run(String[] args) {
+        framePrincipal = new FramePrincipal();
         framePrincipal.main(args);
+        System.out.println("we");
     }
 
     public void ChangePanel(int n){
         framePrincipal.ChangePanel(n);
     }
-    
+    public void setFramePrincipal(FramePrincipal frame){
+        this.framePrincipal = frame;
+    }
     
     public static void main(String[] args) {
         App app = App.getInstance();
