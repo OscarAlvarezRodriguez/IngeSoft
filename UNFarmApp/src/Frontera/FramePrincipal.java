@@ -2,17 +2,47 @@ package Frontera;
 
 import java.awt.Component;
 import java.awt.Image;
+import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class FramePrincipal extends javax.swing.JFrame {
+
+    /*
+    Definition of Jpanel on Numbers 
+    everytime that one add Fronter
+    update  "Void Change Panel"
+    Add     Public Static int INTFronteraXXXXX
+     */
+    public static final int INTFramePrincipal = 0;
+    public static final int INTFronteraRegDrogueria = 1;
+    public static final int INTFronteraEmpleado = 2;
+    public static final int INTFronteraSplash = 3;
 
     FronteraSplash splash = new FronteraSplash();
     FronteraRegEmpleado empleado = new FronteraRegEmpleado();
     FronteraRegDrogueria drogueria = new FronteraRegDrogueria();
     JLabel logo = new JLabel();
 
+    void ChangePanel(int n) {
+        //All Frames are Visible(false)
+        this.setVisible(true);
+        splash.setVisible(false);
+        empleado.setVisible(false);
+        drogueria.setVisible(false);
+
+        if (n == INTFronteraEmpleado) {
+            empleado.setVisible(true);
+        } else if (n == INTFronteraRegDrogueria) {
+            drogueria.setVisible(true);
+        } else if (n == INTFronteraSplash) {
+            splash.setVisible(true);
+        }
+
+    }
+
     public FramePrincipal() {
+
         initComponents();
         setLocationRelativeTo(null);
         setTitle("UNFarmApp");
@@ -23,11 +53,11 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         add(splash);
         splash.setBounds(jpPrincipal.getBounds());
-        splash.setVisible(true);
+        splash.setVisible(false);
 
         add(drogueria);
         drogueria.setBounds(jpPrincipal.getBounds());
-        splash.setVisible(true);
+        drogueria.setVisible(true);
 
         add(empleado);
         empleado.setBounds(jpPrincipal.getBounds());
@@ -105,9 +135,11 @@ public class FramePrincipal extends javax.swing.JFrame {
                 new FramePrincipal().setVisible(true);
             }
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jpPrincipal;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -316,7 +316,7 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-
+        App.getInstance().ChangePanel(FramePrincipal.INTFronteraEmpleado);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
@@ -362,9 +362,7 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
     }//GEN-LAST:event_txtRepresentanteKeyTyped
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        setVisible(false);
-        revalidate();
-        repaint();
+        
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
 
