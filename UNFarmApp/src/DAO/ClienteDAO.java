@@ -1,18 +1,17 @@
 package DAO;
 
-import Entidad.Drogueria;
+import Entidad.Cliente;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-public class DrogueriaDAO {
-
+public class ClienteDAO {
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UNFarmAppPU");
-
-    public void crear(Drogueria object) {
-
+    
+    public void crear(Cliente object){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
@@ -25,8 +24,8 @@ public class DrogueriaDAO {
             em.close();
         }
     }
-
-    public boolean eliminar(Drogueria object) {
+    
+    public boolean eliminar(Cliente object){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         boolean ret = false;
@@ -42,23 +41,22 @@ public class DrogueriaDAO {
             return ret;
         }
     }
-
-    public Drogueria leer(Drogueria par) {
+    
+    public Cliente leer (Cliente par){
         EntityManager em = emf.createEntityManager();
-        Drogueria usuario = null;
-        Query q = em.createQuery("SELECT e FROM Empleado e "
-                + "WHERE u.cedulaEmpleado LIKE :cedulaempleado"
-                + " AND u.contranseniaEmpleado LIKE :contranseniaempleado") //Comprobar este código
-                .setParameter("nitDrogueria", par.getNitDrogueria())
-                .setParameter("nombreDrogueria", par.getNombreDrogueria())
-                .setParameter("direccionDrogueria", par.getDireccionDrogueria())
-                .setParameter("telefonoDrogueria", par.getTelefonoDrogueria())
-                .setParameter("emailDrogueria", par.getEmailDrogueria())
-                .setParameter("representanteLegalDrogueria", par.getRepresentanteLegalDrogueria());
+        Cliente usuario = null;
+        Query q = em.createQuery("SELECT e FROM Cliente e "
+                + "WHERE u.cedulaClienteLIKE :cedulacliente")
+                .setParameter("cedulaCliente", par.getCedulaCliente())
+                .setParameter("nombreCliente", par.getNombreCliente())
+                .setParameter("telefonoCliente", par.getTelefonoCliente())
+                .setParameter("direccionCliente", par.getDireccionCliente())
+                .setParameter("descripcionDireccionCliente", par.getDescripcionDireccionCliente())
+                .setParameter("apellidoCliente", par.getApellidoCliente());
         try {
-            usuario = (Drogueria) q.getSingleResult();
+            usuario = (Cliente) q.getSingleResult();
         } catch (NonUniqueResultException e) {
-            usuario = (Drogueria) q.getResultList().get(0);
+            usuario = (Cliente) q.getResultList().get(0);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -66,19 +64,19 @@ public class DrogueriaDAO {
             return usuario;
         }
     }
-
-    public boolean actualizar(Drogueria object, Drogueria nuevoObjeto) {
+    
+    public boolean actualizar(Cliente object, Cliente nuevoObjeto){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         boolean ret = false;
         try {
             object = leer(object);
-            object.setNitDrogueria(nuevoObjeto.getNitDrogueria());
-            object.setNombreDrogueria(nuevoObjeto.getNombreDrogueria());
-            object.setDireccionDrogueria(nuevoObjeto.getDireccionDrogueria());
-            object.setTelefonoDrogueria(nuevoObjeto.getTelefonoDrogueria());
-            object.setEmailDrogueria(nuevoObjeto.getEmailDrogueria());
-            object.setRepresentanteLegalDrogueria(nuevoObjeto.getRepresentanteLegalDrogueria());
+            object.setCedulaCliente(nuevoObjeto.getCedulaCliente());
+            object.setNombreCliente(nuevoObjeto.getNombreCliente());
+            object.setTelefonoCliente(nuevoObjeto.getTelefonoCliente());
+            object.setDireccionCliente(nuevoObjeto.getDireccionCliente());
+            object.setDescripcionDireccionCliente(nuevoObjeto.getDescripcionDireccionCliente());
+            object.setApellidoCliente(nuevoObjeto.getApellidoCliente());
             em.merge(object);
             em.getTransaction().commit();
             ret = true;

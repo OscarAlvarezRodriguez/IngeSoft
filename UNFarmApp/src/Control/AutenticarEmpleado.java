@@ -34,11 +34,11 @@ public class AutenticarEmpleado {
     }
 
     private boolean verificarLongitudCedula(String cedulaEmpleado) {
-        return (cedulaEmpleado.length() > 6 && cedulaEmpleado.length() <= 11);
+        return (cedulaEmpleado.length() > 6 && cedulaEmpleado.length() <= 11 && !cedulaEmpleado.isEmpty());
     }
 
     private boolean verificarLongitudContrasenia(String contraseniaEmpleado) {
-        return (contraseniaEmpleado.length() >= 5 && contraseniaEmpleado.length() < 13);
+        return (contraseniaEmpleado.length() >= 5 && contraseniaEmpleado.length() < 13 && !contraseniaEmpleado.isEmpty());
     }
 
     private boolean verificarMayuscula(String contraseniaEmpleado) {
