@@ -33,7 +33,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
     private void allSetEmpty() {
         txtApellido.setText("");
         txtCedula.setText("");
-        txtContresenia.setText("");
+        txtContrasenia.setText("");
         txtCorreo.setText("");
         txtDireccion.setText("");
         txtNombre.setText("");
@@ -41,7 +41,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
         txtVerContrasenia.setText("");
         txtApellido.setBackground(Color.white);
         txtCedula.setBackground(Color.white);
-        txtContresenia.setBackground(Color.white);
+        txtContrasenia.setBackground(Color.white);
         txtCorreo.setBackground(Color.white);
         txtDireccion.setBackground(Color.white);
         txtNombre.setBackground(Color.white);
@@ -70,7 +70,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
         txtApellido = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
-        txtContresenia = new javax.swing.JTextField();
+        txtContrasenia = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtVerContrasenia = new javax.swing.JTextField();
@@ -179,24 +179,24 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
             }
         });
 
-        txtContresenia.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
-        txtContresenia.setPreferredSize(new java.awt.Dimension(300, 30));
-        txtContresenia.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtContrasenia.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
+        txtContrasenia.setPreferredSize(new java.awt.Dimension(300, 30));
+        txtContrasenia.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtContreseniaFocusGained(evt);
+                txtContraseniaFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtContreseniaFocusLost(evt);
+                txtContraseniaFocusLost(evt);
             }
         });
-        txtContresenia.addActionListener(new java.awt.event.ActionListener() {
+        txtContrasenia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContreseniaActionPerformed(evt);
+                txtContraseniaActionPerformed(evt);
             }
         });
-        txtContresenia.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtContreseniaKeyTyped(evt);
+                txtContraseniaKeyTyped(evt);
             }
         });
 
@@ -377,7 +377,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(txtVerContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtContresenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
@@ -411,7 +411,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtContresenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtVerContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -477,16 +477,16 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtCedulaKeyTyped
 
-    private void txtContreseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContreseniaActionPerformed
+    private void txtContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseniaActionPerformed
 
-    }//GEN-LAST:event_txtContreseniaActionPerformed
+    }//GEN-LAST:event_txtContraseniaActionPerformed
 
-    private void txtContreseniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContreseniaKeyTyped
+    private void txtContraseniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseniaKeyTyped
         char c = evt.getKeyChar();
         if (!Character.isLetterOrDigit(c) && c != 32) {
             evt.consume();
         }
-    }//GEN-LAST:event_txtContreseniaKeyTyped
+    }//GEN-LAST:event_txtContraseniaKeyTyped
 
     private void txtVerContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVerContraseniaActionPerformed
         // TODO add your handling code here:
@@ -512,14 +512,14 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         allSetEmpty();
-        App.getInstance().ChangePanel(FramePrincipal.INTFronteraRegDrogueria);
+        App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         Empleado e = new Empleado();
         e.setApellidoEmpleado(txtApellido.getText());
         e.setCedulaEmpleado(txtCedula.getText());
-        e.setContraseniaEmpleado(txtContresenia.getText());
+        e.setContraseniaEmpleado(txtContrasenia.getText());
         e.setCorreoEmpleado(txtCorreo.getText());
         e.setDireccionEmpleado(txtDireccion.getText());
         e.setNombreEmpleado(txtNombre.getText());
@@ -535,7 +535,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
                     setImageBackground("/recursos/exito.png", lb)
             );
             allSetEmpty();
-            App.getInstance().ChangePanel(FramePrincipal.INTFronteraEmpleado);
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
 
         } else {
             JOptionPane.showMessageDialog(null,
@@ -630,36 +630,39 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtCedulaFocusGained
 
-    private void txtContreseniaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContreseniaFocusLost
-        if (!txtContresenia.getText().equals("")) {
-            if (empleado.validarContrasenia(txtContresenia.getText())
-                    .equals("Contraseña no válida")) {
-                JOptionPane.showMessageDialog(null,
-                        "La Contraseña Debe Tener Entre 5 y 14 Caracteres,"
-                        + "\n Ademas Debe Tener Una Mayuscula y Un Numero",
-                        "Contraseña No Válida",
-                        JOptionPane.ERROR_MESSAGE);
-                txtContresenia.setBackground(Color.pink);
-
-            }
-        }
-    }//GEN-LAST:event_txtContreseniaFocusLost
-
-    private void txtContreseniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContreseniaFocusGained
-        if (txtContresenia.getBackground().equals(Color.pink)) {
-            txtContresenia.setBackground(Color.white);
-            txtContresenia.setText("");
-        }
-    }//GEN-LAST:event_txtContreseniaFocusGained
-
-    private void txtVerContraseniaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVerContraseniaFocusLost
-        if (!txtVerContrasenia.getText().equals("")) {
-            if (empleado.validarContrasenia(txtVerContrasenia.getText())
-                    .equals("Contraseña no válida")) {
+    private void txtContraseniaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaFocusLost
+        if (!txtContrasenia.getText().equals("")) {
+            if (empleado.validarLongitudContrasenia(txtContrasenia.getText())
+                    .equals("Longitud contraseña incorrecta")
+                    || empleado.validarMayusculaContrasenia(txtContrasenia.getText())
+                            .equals("Mayúscula en contraseña incorrecto")
+                    || empleado.validarNumeroContrasenia(txtContrasenia.getText())
+                            .equals("Número en contraseña incorrecto")) {
                 JOptionPane.showMessageDialog(null,
                         "La Contraseña Debe Tener Entre 5 y 14 Caracteres,"
                         + "\n Ademas Debe Tener Una Mayuscula y Un Numero",
                         "Contraseña no válida",
+                        JOptionPane.ERROR_MESSAGE);
+                txtContrasenia.setBackground(Color.pink);
+
+            }
+        }
+    }//GEN-LAST:event_txtContraseniaFocusLost
+
+    private void txtContraseniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaFocusGained
+        if (txtContrasenia.getBackground().equals(Color.pink)) {
+            txtContrasenia.setBackground(Color.white);
+            txtContrasenia.setText("");
+        }
+    }//GEN-LAST:event_txtContraseniaFocusGained
+
+    private void txtVerContraseniaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVerContraseniaFocusLost
+        if (!txtVerContrasenia.getText().equals("")) {
+            if (!(empleado.compararContrasenia(txtContrasenia.getText(),
+                    txtVerContrasenia.getText()))) {
+                JOptionPane.showMessageDialog(null,
+                        "La Verificación Debe Ser La misma",
+                        "Verificacion no válida",
                         JOptionPane.ERROR_MESSAGE);
                 txtVerContrasenia.setBackground(Color.pink);
 
@@ -755,7 +758,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
     private javax.swing.JLabel jlLogo;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtContresenia;
+    private javax.swing.JTextField txtContrasenia;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre;

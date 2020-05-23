@@ -4,13 +4,13 @@ import Entidad.Cliente;
 import DAO.ClienteDAO;
 
 public class RegistrarCliente {
-    private static String cn ="Número cedula no válido";
-    private static String nn ="Lontigud nombre incorrecta";
-    private static String tn ="Número telefónico no válido";
-    private static String dn ="Longitud dirección incorrecta";
-    private static String ddn = "Longitud descripción dirección incorrecta";
-    private static String an ="Longitud apellido incorrecta";
-    private static String co ="Correcto";
+    private final String cn ="Número cedula no válido";
+    private final String nn ="Lontigud nombre incorrecta";
+    private final String tn ="Número telefónico no válido";
+    private final String dn ="Longitud dirección incorrecta";
+    private final String ddn = "Longitud descripción dirección incorrecta";
+    private final String an ="Longitud apellido incorrecta";
+    private final String co ="Correcto";
 
     public RegistrarCliente() {
 

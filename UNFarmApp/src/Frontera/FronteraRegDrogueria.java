@@ -453,7 +453,7 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
                     setImageBackground("/recursos/exito.png", lb)
             );
             allSetEmpty();
-            App.getInstance().ChangePanel(FramePrincipal.INTFronteraEmpleado);
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
 
         } else {
             JOptionPane.showMessageDialog(null,

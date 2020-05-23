@@ -1,5 +1,6 @@
 package Frontera;
 
+import DAO.DrogueriaDAO;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -10,6 +11,7 @@ import javax.swing.ImageIcon;
 public class FronteraSplash extends javax.swing.JPanel implements Runnable {
 
     Thread tiempo = null;
+    DAO.DrogueriaDAO ddao = new DrogueriaDAO();
 
     public FronteraSplash() {
         initComponents();
@@ -88,10 +90,13 @@ public class FronteraSplash extends javax.swing.JPanel implements Runnable {
     public void run() {
         while (tiempo != null) {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(2000);
+                if (ddao.leer() == null) {
+                    App.getInstance().ChangePanel(FramePrincipal.INTFronteraRegDrogueria);
+                } else {
+                    App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
+                }
                 setVisible(false);
-                App.getInstance().ChangePanel(FramePrincipal.INTFronteraRegDrogueria);
-                App.getInstance().framePrincipal.drogueria.allSetEmpty();
                 revalidate();
                 repaint();
 

@@ -4,13 +4,13 @@ import Entidad.Drogueria;
 import DAO.DrogueriaDAO;
 
 public class RegistrarDrogueria {
-    private static String rpn ="Lontigud represetante legal incorrecta";
-    private static String nn ="Longitud nombre incorrecta";
-    private static String tn ="Número telefónico no válido";
-    private static String dn ="Longitud dirección incorrecta";
-    private static String en ="Correo no válido";
-    private static String co ="Correcto";
-    private static String nitn ="Nit no válido";
+    private final String rpn ="Lontigud represetante legal incorrecta";
+    private final String nn ="Longitud nombre incorrecta";
+    private final String tn ="Número telefónico no válido";
+    private final String dn ="Longitud dirección incorrecta";
+    private final String en ="Correo no válido";
+    private final String co ="Correcto";
+    private final String nitn ="Nit no válido";
 
     public RegistrarDrogueria() {
     }

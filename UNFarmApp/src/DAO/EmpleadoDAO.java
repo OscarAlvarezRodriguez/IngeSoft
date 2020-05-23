@@ -46,15 +46,12 @@ public class EmpleadoDAO {
     public Empleado leer(Empleado par) {
         EntityManager em = emf.createEntityManager();
         Empleado usuario = null;
-        Query q = em.createQuery("SELECT e FROM Empleado e "
-                + "WHERE e.cedulaEmpleado = :cedulaempleado"
-                + " AND e.contranseniaEmpleado = :contranseniaempleado")
-                .setParameter("nombreEmpleado", par.getNombreEmpleado())
-                .setParameter("contranseniaEmpleado", par.getContraseniaEmpleado())
-                .setParameter("cedulaEmpledo", par.getCedulaEmpleado())
-                .setParameter("correoEmpledo", par.getCorreoEmpleado())
-                .setParameter("direccionEmpledo", par.getDireccionEmpleado())
-                .setParameter("telefonoEmpledo", par.getTelefonoEmpleado());
+        Query q = em.createQuery("SELECT e"
+                + " FROM Empleado e "
+                + "WHERE e.cedula_Empleado = :cedula_Empleado"
+                + " AND e.contrasenia = :contrasenia")
+                .setParameter("contrasenia", par.getContraseniaEmpleado())
+                .setParameter("cedula_Empleado", par.getCedulaEmpleado());
         try {
             usuario = (Empleado) q.getSingleResult();
         } catch (NonUniqueResultException e) {

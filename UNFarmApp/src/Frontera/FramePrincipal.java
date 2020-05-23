@@ -18,10 +18,12 @@ public class FramePrincipal extends javax.swing.JFrame {
     public static final int INTFronteraRegDrogueria = 1;
     public static final int INTFronteraEmpleado = 2;
     public static final int INTFronteraSplash = 3;
+    public static final int INTFronteraAutEmpleado = 4;
 
     FronteraSplash splash = new FronteraSplash();
     FronteraRegEmpleado empleado = new FronteraRegEmpleado();
     FronteraRegDrogueria drogueria = new FronteraRegDrogueria();
+    FronteraAutEmpleado autenticar = new FronteraAutEmpleado();
     JLabel logo = new JLabel();
 
     void ChangePanel(int n) {
@@ -30,6 +32,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         splash.setVisible(false);
         empleado.setVisible(false);
         drogueria.setVisible(false);
+        autenticar.setVisible(false);
 
         switch (n) {
             case INTFronteraEmpleado:
@@ -40,6 +43,9 @@ public class FramePrincipal extends javax.swing.JFrame {
                 break;
             case INTFronteraSplash:
                 splash.setVisible(true);
+                break;
+            case INTFronteraAutEmpleado:
+                autenticar.setVisible(true);
                 break;
             default:
                 break;
@@ -67,6 +73,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         add(empleado);
         empleado.setBounds(jpPrincipal.getBounds());
         empleado.setVisible(false);
+        
+        add(autenticar);
+        autenticar.setBounds(jpPrincipal.getBounds());
+        autenticar.setVisible(false);
 
         App.getInstance().setFramePrincipal(this);
     }

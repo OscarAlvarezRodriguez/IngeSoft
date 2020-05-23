@@ -5,14 +5,17 @@ import DAO.EmpleadoDAO;
 
 public class RegistrarEmpleado {
 
-    private static String con = "Contraseña no válida";
-    private static String nn = "Longitud nombre incorrecta";
-    private static String tn = "Número telefónico no válido";
-    private static String dn = "Longitud dirección incorrecta";
-    private static String an = "Longitud apellido incorrecta";
-    private static String en = "Correo no válido";
-    private static String co = "Correcto";
-    private static String cn = "Cédula nó valida";
+    private final String cn = "Cédula nó valida";
+    private final String con = "Longitud contraseña incorrecta";
+    private final String conn = "Número en contraseña incorrecto";
+    private final String comn = "Mayúscula en contraseña incorrecto";
+    private final String nn = "Longitud nombre incorrecta";
+    private final String tn = "Número telefónico no válido";
+    private final String dn = "Longitud dirección incorrecta";
+    private final String an = "Longitud apellido incorrecta";
+    private final String en = "Correo no válido";
+    private final String re = "Registro exitoso";
+    private final String co = "Correcto";
 
     public RegistrarEmpleado() {
     }
@@ -31,63 +34,106 @@ public class RegistrarEmpleado {
         if (!validarApellido(empleado.getApellidoEmpleado()).equals(co)) {
             return (an);
         }
-        if (!validarContrasenia(empleado.getContraseniaEmpleado()).equals(co)) {
+        if (!validarLongitudContrasenia(empleado.getContraseniaEmpleado()).equals(co)) {
             return (con);
+        }
+        if (!validarMayusculaContrasenia(empleado.getContraseniaEmpleado()).equals(co)) {
+            return (comn);
+        }
+        if (!validarNumeroContrasenia(empleado.getContraseniaEmpleado()).equals(co)) {
+            return (conn);
         }
         if (!validarCorreo(empleado.getCorreoEmpleado()).equals(co)) {
             return (en);
         }
         EmpleadoDAO nuevoempleado = new EmpleadoDAO();
         nuevoempleado.crear(empleado);
-        return ("Registro exitoso");
+        return (re);
     }
 
     public String validarCedula(String cedula) {
-        if (cedula.length() > 7 && cedula.length() < 11 && cedula.matches("\\d*") && !cedula.isEmpty()) {
+        if (cedula.length() > 7 && cedula.length() < 11
+                && cedula.matches("\\d*") && !cedula.isEmpty()) {
             return (co);
         }
         return (cn);
     }
 
     public String validarNombre(String nombre) {
-        if (nombre.length() > 4 && nombre.length() < 15 && !nombre.isEmpty()) {
+        if (nombre.length() > 4 && nombre.length() < 15
+                && !nombre.isEmpty()) {
             return (co);
         }
         return (nn);
     }
 
     public String validarTelefono(String telefono) {
-        if (telefono.length() > 6 && telefono.length() < 16 && !telefono.isEmpty()) {
+        if (telefono.length() > 6 && telefono.length() < 16
+                && !telefono.isEmpty()) {
             return (co);
         }
         return (tn);
     }
 
     public String validarDireccion(String direccion) {
-        if (direccion.length() > 11 && direccion.length() < 33 && !direccion.isEmpty()) {
+        if (direccion.length() > 11 && direccion.length() < 33
+                && !direccion.isEmpty()) {
             return (co);
         }
         return (dn);
     }
 
     public String validarApellido(String apellido) {
-        if (apellido.length() > 3 && apellido.length() < 21 && !apellido.isEmpty()) {
+        if (apellido.length() > 3 && apellido.length() < 21
+                && !apellido.isEmpty()) {
             return (co);
         }
         return (an);
     }
 
-    public String validarContrasenia(String contrasenia) {
-        if (contrasenia.length() > 4 && contrasenia.length() < 13 && contrasenia.matches("\\w*") && contrasenia.matches("\\w*") && contrasenia.matches(".*[A-Z].*") && contrasenia.matches(".*[0-9].*") && !contrasenia.isEmpty()) {
+    public String validarCorreo(String correo) {
+        if (correo.length() > 8 && correo.length() < 33
+                && correo.matches(".+@.+")
+                && !correo.isEmpty()) {
+            return (co);
+        }
+        return (en);
+    }
+
+    public String validarLongitudContrasenia(String contraseniaEmpleado) {
+        if (contraseniaEmpleado.length() >= 5
+                && contraseniaEmpleado.length() < 13
+                && !contraseniaEmpleado.isEmpty()) {
             return (co);
         }
         return (con);
     }
 
-    public String validarCorreo(String correo) {
-        if (correo.length() > 8 && correo.length() < 33 && correo.matches(".+@.+") && !correo.isEmpty()) {
+    public String validarMayusculaContrasenia(String contraseniaEmpleado) {
+        if (contraseniaEmpleado.matches("(?s).*[A-Z].*")) {
             return (co);
         }
-        return (en);
+        return (comn);
+    }
+
+    public String validarNumeroContrasenia(String contraseniaEmpleado) {
+        if (contraseniaEmpleado.matches("(?s).*[0-9].*")) {
+            return (co);
+        }
+        return (conn);
+    }
+
+    public boolean compararContrasenia(String s1, String s2) {
+        if (validarLongitudContrasenia(s1).equals(co)
+                && validarMayusculaContrasenia(s1).equals(co)
+                && validarNumeroContrasenia(s1).equals(co)
+                && validarLongitudContrasenia(s2).equals(co)
+                && validarMayusculaContrasenia(s2).equals(co)
+                && validarNumeroContrasenia(s2).equals(co)
+                && s1.equals(s2)) {
+            return true;
+
+        }
+        return false;
     }
 }

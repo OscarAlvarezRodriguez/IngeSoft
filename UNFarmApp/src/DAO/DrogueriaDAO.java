@@ -65,6 +65,22 @@ public class DrogueriaDAO {
             return drogueria;
         }
     }
+    
+    public Drogueria leer() {
+        EntityManager em = emf.createEntityManager();
+        Drogueria drogueria = null;
+        Query q = em.createQuery("SELECT d FROM Drogueria d");
+        try {
+            drogueria = (Drogueria) q.getSingleResult();
+        } catch (NonUniqueResultException e) {
+            drogueria = (Drogueria) q.getResultList().get(0);
+        } catch (Exception e) {
+            //e.printStackTrace();
+        } finally {
+            em.close();
+            return drogueria;
+        }
+    }
 
     public boolean actualizar(Drogueria object, Drogueria nuevoObjeto) {
         EntityManager em = emf.createEntityManager();

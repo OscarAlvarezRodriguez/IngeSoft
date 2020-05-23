@@ -5,28 +5,29 @@ import Entidad.Empleado;
 
 public class AutenticarEmpleado {
 
-    private EmpleadoDAO empleado = new EmpleadoDAO();
-    private static String cn ="Número cedula no válido";
-    private static String co ="Correcto";
+    public final EmpleadoDAO empleado = new EmpleadoDAO();
+    private final String cn = "Número cedula no válido";
+    private final String con = "Longitud contraseña incorrecta";
+    private final String conn = "Número en contraseña incorrecto";
+    private final String comn = "Mayúscula en contraseña incorrecto";
+    private final String co = "Correcto";
 
     public AutenticarEmpleado() {
     }
 
     public String verificarLogin(Empleado emp) {
-        if (!verificarLongitudCedula(emp.getCedulaEmpleado()).equals(co)) {
+        if (!validarLongitudCedula(emp.getCedulaEmpleado()).equals(co)) {
             return (cn);
         }
 
-        if (!verificarLongitudContrasenia(emp.getContraseniaEmpleado()).equals(co)) {
-            return ("Longitud de contraseña incorrecta");
+         if (!validarLongitudContrasenia(emp.getContraseniaEmpleado()).equals(co)) {
+            return (con);
         }
-
-        if (!verificarMayuscula(emp.getContraseniaEmpleado()).equals(co)) {
-            return ("La contraseña debe contener almenos una mayuscula");
+        if (!validarMayusculaContrasenia(emp.getContraseniaEmpleado()).equals(co)) {
+            return (comn);
         }
-
-        if (!verificarNumero(emp.getContraseniaEmpleado()).equals(co)) {
-            return ("La contraseña debe contener al menos un numero");
+        if (!validarNumeroContrasenia(emp.getContraseniaEmpleado()).equals(co)) {
+            return (conn);
         }
         if (empleado.leer(emp) != null) {
             return ("Bienvenido");
@@ -34,32 +35,34 @@ public class AutenticarEmpleado {
         return ("Datos incorrectos");
     }
 
-    public String verificarLongitudCedula(String cedulaEmpleado) {
-        if (cedulaEmpleado.length() > 6 && cedulaEmpleado.length() <= 11 && !cedulaEmpleado.isEmpty()){
+    public String validarLongitudCedula(String cedulaEmpleado) {
+        if (cedulaEmpleado.length() > 6 && cedulaEmpleado.length() <= 11 && !cedulaEmpleado.isEmpty()) {
             return (co);
         }
         return (cn);
     }
 
-    public String verificarLongitudContrasenia(String contraseniaEmpleado) {
-        if (contraseniaEmpleado.length() >= 5 && contraseniaEmpleado.length() < 13 && !contraseniaEmpleado.isEmpty()){
-            return(co);
+    public String validarLongitudContrasenia(String contraseniaEmpleado) {
+        if (contraseniaEmpleado.length() >= 5
+                && contraseniaEmpleado.length() < 13
+                && !contraseniaEmpleado.isEmpty()) {
+            return (co);
         }
-        return("Longitud de contraseña incorrecta");
+        return (con);
     }
 
-    public String verificarMayuscula(String contraseniaEmpleado) {
-        if (contraseniaEmpleado.matches("(?s).*[A-Z].*")){
-            return(co);
+    public String validarMayusculaContrasenia(String contraseniaEmpleado) {
+        if (contraseniaEmpleado.matches("(?s).*[A-Z].*")) {
+            return (co);
         }
-        return("La contraseña debe contener almenos una mayuscula");
+        return (comn);
     }
 
-    public String verificarNumero(String contraseniaEmpleado) {
-        if (contraseniaEmpleado.matches("(?s).*[0-9].*")){
-            return(co);
+    public String validarNumeroContrasenia(String contraseniaEmpleado) {
+        if (contraseniaEmpleado.matches("(?s).*[0-9].*")) {
+            return (co);
         }
-        return("La contraseña debe contener al menos un numero");
+        return (conn);
     }
 
 }
