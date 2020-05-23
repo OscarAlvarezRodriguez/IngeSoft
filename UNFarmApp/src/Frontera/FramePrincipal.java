@@ -48,7 +48,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     }
 
     public FramePrincipal() {
-        
+
         initComponents();
         setLocationRelativeTo(null);
         setTitle("UNFarmApp");
@@ -56,20 +56,18 @@ public class FramePrincipal extends javax.swing.JFrame {
         setIconImage(setImageBackground("/Recursos/logo.png", logo).getImage());
 
         jpPrincipal.setVisible(false);
-
         add(splash);
         splash.setBounds(jpPrincipal.getBounds());
         splash.setVisible(true);
 
         add(drogueria);
         drogueria.setBounds(jpPrincipal.getBounds());
-        drogueria.setVisible(true);
+        drogueria.setVisible(false);
 
         add(empleado);
         empleado.setBounds(jpPrincipal.getBounds());
         empleado.setVisible(false);
 
-        
         App.getInstance().setFramePrincipal(this);
     }
 
@@ -117,7 +115,6 @@ public class FramePrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
     public static void main(String args[]) {
 
         try {

@@ -8,71 +8,71 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Drogueria")
-public class Drogueria implements Serializable{
+public class Drogueria implements Serializable {
 
     @Id
     @Column(length = 20)
-    private String nitDrogueria;
+    private String nit_Drogueria;
     @Column(nullable = false, length = 32)
-    private String nombreDrogueria;
+    private String nombre_Drogueria;
     @Column(nullable = false, length = 32)
-    private String direccionDrogueria;
+    private String direccion__Drogueria;
     @Column(nullable = false, length = 15)
-    private String telefonoDrogueria;
+    private String telefono;
     @Column(nullable = false, length = 50)
-    private String emailDrogueria;
+    private String email;
     @Column(nullable = false, length = 32)
-    private String representanteLegalDrogueria;
+    private String representante_Legal;
 
     public Drogueria() {
     }
 
     public String getNitDrogueria() {
-        return nitDrogueria;
+        return nit_Drogueria;
     }
 
     public void setNitDrogueria(String nitDrogueria) {
-        this.nitDrogueria = nitDrogueria;
+        this.nit_Drogueria = nitDrogueria;
     }
 
     public String getNombreDrogueria() {
-        return nombreDrogueria;
+        return nombre_Drogueria;
     }
 
     public void setNombreDrogueria(String nombreDrogueria) {
-        this.nombreDrogueria = nombreDrogueria;
+        this.nombre_Drogueria = nombreDrogueria;
     }
 
     public String getDireccionDrogueria() {
-        return direccionDrogueria;
+        return direccion__Drogueria;
     }
 
     public void setDireccionDrogueria(String direccionDrogueria) {
-        this.direccionDrogueria = direccionDrogueria;
+        this.direccion__Drogueria = direccionDrogueria;
     }
 
     public String getTelefonoDrogueria() {
-        return telefonoDrogueria;
+        return telefono;
     }
 
     public void setTelefonoDrogueria(String telefonoDrogueria) {
-        this.telefonoDrogueria = telefonoDrogueria;
+        this.telefono = telefonoDrogueria;
     }
 
     public String getEmailDrogueria() {
-        return emailDrogueria;
+        return email;
     }
 
     public void setEmailDrogueria(String emailDrogueria) {
-        this.emailDrogueria = emailDrogueria;
+        this.email = emailDrogueria;
     }
 
     public String getRepresentanteLegalDrogueria() {
-        return representanteLegalDrogueria;
+        return representante_Legal;
     }
 
     public void setRepresentanteLegalDrogueria(String representanteLegalDrogueria) {
-        this.representanteLegalDrogueria = representanteLegalDrogueria;
+        this.representante_Legal = representanteLegalDrogueria;
     }
 
 }

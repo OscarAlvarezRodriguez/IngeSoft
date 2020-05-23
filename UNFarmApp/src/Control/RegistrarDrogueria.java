@@ -75,7 +75,7 @@ public class RegistrarDrogueria {
     }
 
     public String validarRepresentante(String representante) {
-        if (representante.length() > 10 && representante.length() < 33 && representante.isEmpty()){
+        if (representante.length() > 10 && representante.length() < 33 && !representante.isEmpty()){
             return(co);
         }
         return(rpn);

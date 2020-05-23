@@ -15,9 +15,13 @@ public class FronteraSplash extends javax.swing.JPanel implements Runnable {
         initComponents();
         jlLogo.setSize(350, 350);
         jlLogo.setIcon(setImageBackground("/Recursos/logo.png", jlLogo));
+        showAgain();
+
+    }
+
+    public void showAgain() {
         tiempo = new Thread(this);
         tiempo.start();
-
     }
 
     private ImageIcon setImageBackground(String direccion, Component o) {
@@ -84,8 +88,10 @@ public class FronteraSplash extends javax.swing.JPanel implements Runnable {
     public void run() {
         while (tiempo != null) {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(500);
                 setVisible(false);
+                App.getInstance().ChangePanel(FramePrincipal.INTFronteraEmpleado);
+                App.getInstance().framePrincipal.drogueria.allSetEmpty();
                 revalidate();
                 repaint();
 
@@ -93,7 +99,7 @@ public class FronteraSplash extends javax.swing.JPanel implements Runnable {
                 Logger.getLogger(FronteraSplash.class
                         .getName()).log(Level.SEVERE, null, ex);
             }
+            tiempo = null;
         }
-        tiempo = null;
     }
 }

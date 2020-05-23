@@ -45,8 +45,8 @@ public class ClienteDAO {
     public Cliente leer (Cliente par){
         EntityManager em = emf.createEntityManager();
         Cliente usuario = null;
-        Query q = em.createQuery("SELECT e FROM Cliente e "
-                + "WHERE u.cedulaClienteLIKE :cedulacliente")
+        Query q = em.createQuery("SELECT c FROM Cliente c "
+                + "WHERE c.cedulaCliente = :cedulacliente")
                 .setParameter("cedulaCliente", par.getCedulaCliente())
                 .setParameter("nombreCliente", par.getNombreCliente())
                 .setParameter("telefonoCliente", par.getTelefonoCliente())

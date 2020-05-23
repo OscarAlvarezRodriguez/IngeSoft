@@ -1,11 +1,18 @@
 package Frontera;
 
+import Control.RegistrarDrogueria;
+import Entidad.Drogueria;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class FronteraRegDrogueria extends javax.swing.JPanel {
+
+    RegistrarDrogueria drogueria = new RegistrarDrogueria();
 
     public FronteraRegDrogueria() {
         initComponents();
@@ -20,6 +27,22 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
         ImageIcon imagen = new ImageIcon(this.getClass().getResource(direccion));
         imagen = new ImageIcon(imagen.getImage().getScaledInstance(o.getWidth(), o.getHeight(), Image.SCALE_SMOOTH));
         return imagen;
+    }
+
+    public void allSetEmpty() {
+        txtDireccion.setText("");
+        txtEmail.setText("");
+        txtNIT.setText("");
+        txtNombreDrogueria.setText("");
+        txtRepresentante.setText("");
+        txtTelefono.setText("");
+        txtDireccion.setBackground(Color.white);
+        txtEmail.setBackground(Color.white);
+        txtNIT.setBackground(Color.white);
+        txtNombreDrogueria.setBackground(Color.white);
+        txtRepresentante.setBackground(Color.white);
+        txtTelefono.setBackground(Color.white);
+
     }
 
     @Override
@@ -52,7 +75,6 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
         btnSalir = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(0, 0));
 
@@ -68,13 +90,21 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("Nombre Droguería");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel2.setPreferredSize(new java.awt.Dimension(300, 35));
+        jLabel2.setPreferredSize(new java.awt.Dimension(220, 30));
 
         txtNombreDrogueria.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
-        txtNombreDrogueria.setPreferredSize(new java.awt.Dimension(300, 35));
+        txtNombreDrogueria.setPreferredSize(new java.awt.Dimension(300, 30));
+        txtNombreDrogueria.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNombreDrogueriaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombreDrogueriaFocusLost(evt);
+            }
+        });
         txtNombreDrogueria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreDrogueriaActionPerformed(evt);
@@ -88,13 +118,21 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Dirección");
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel3.setPreferredSize(new java.awt.Dimension(300, 35));
+        jLabel3.setPreferredSize(new java.awt.Dimension(220, 30));
 
         txtDireccion.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
-        txtDireccion.setPreferredSize(new java.awt.Dimension(300, 35));
+        txtDireccion.setPreferredSize(new java.awt.Dimension(300, 30));
+        txtDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDireccionFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDireccionFocusLost(evt);
+            }
+        });
         txtDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDireccionActionPerformed(evt);
@@ -108,13 +146,21 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("Teléfono");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel4.setPreferredSize(new java.awt.Dimension(300, 35));
+        jLabel4.setPreferredSize(new java.awt.Dimension(220, 30));
 
         txtTelefono.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
-        txtTelefono.setPreferredSize(new java.awt.Dimension(300, 35));
+        txtTelefono.setPreferredSize(new java.awt.Dimension(300, 30));
+        txtTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTelefonoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelefonoFocusLost(evt);
+            }
+        });
         txtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefonoActionPerformed(evt);
@@ -127,7 +173,15 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
         });
 
         txtNIT.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
-        txtNIT.setPreferredSize(new java.awt.Dimension(300, 35));
+        txtNIT.setPreferredSize(new java.awt.Dimension(300, 30));
+        txtNIT.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNITFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNITFocusLost(evt);
+            }
+        });
         txtNIT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNITActionPerformed(evt);
@@ -141,20 +195,28 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("NIT");
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel5.setPreferredSize(new java.awt.Dimension(300, 35));
+        jLabel5.setPreferredSize(new java.awt.Dimension(220, 30));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Representante Legal");
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel6.setPreferredSize(new java.awt.Dimension(300, 35));
+        jLabel6.setPreferredSize(new java.awt.Dimension(220, 30));
 
         txtRepresentante.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
-        txtRepresentante.setPreferredSize(new java.awt.Dimension(300, 35));
+        txtRepresentante.setPreferredSize(new java.awt.Dimension(300, 30));
+        txtRepresentante.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtRepresentanteFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRepresentanteFocusLost(evt);
+            }
+        });
         txtRepresentante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRepresentanteActionPerformed(evt);
@@ -167,7 +229,15 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
         });
 
         txtEmail.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
-        txtEmail.setPreferredSize(new java.awt.Dimension(300, 35));
+        txtEmail.setPreferredSize(new java.awt.Dimension(300, 30));
+        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEmailFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEmailFocusLost(evt);
+            }
+        });
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
@@ -181,10 +251,10 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("E-mail");
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel7.setPreferredSize(new java.awt.Dimension(300, 35));
+        jLabel7.setPreferredSize(new java.awt.Dimension(220, 30));
 
         btnSalir.setBackground(new java.awt.Color(204, 0, 0));
         btnSalir.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -219,47 +289,48 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jlKit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(255, 255, 255)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(200, 200, 200)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRepresentante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNIT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombreDrogueria, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jlKit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(237, 237, 237)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(212, Short.MAX_VALUE))
+                        .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 242, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtRepresentante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNIT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNombreDrogueria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(240, 240, 240))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jlKit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(62, 62, 62)
+                    .addComponent(jlKit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNombreDrogueria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -283,11 +354,11 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50))
+                    .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -316,7 +387,10 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        App.getInstance().ChangePanel(FramePrincipal.INTFronteraEmpleado);
+        allSetEmpty();
+        App.getInstance().ChangePanel(FramePrincipal.INTFronteraSplash);
+        App.getInstance().framePrincipal.splash.showAgain();
+
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
@@ -362,8 +436,166 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
     }//GEN-LAST:event_txtRepresentanteKeyTyped
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        
+        Drogueria d = new Drogueria();
+        d.setDireccionDrogueria(txtDireccion.getText());
+        d.setEmailDrogueria(txtEmail.getText());
+        d.setNitDrogueria(txtNIT.getText());
+        d.setNombreDrogueria(txtNombreDrogueria.getText());
+        d.setRepresentanteLegalDrogueria(txtRepresentante.getText());
+        d.setTelefonoDrogueria(txtTelefono.getText());
+        if (drogueria.ValidarDatos(d).equals("Registro exitoso")) {
+            JLabel lb = new JLabel();
+            lb.setSize(50, 50);
+            JOptionPane.showMessageDialog(null,
+                    "Drogueria Creada Exitosamente",
+                    "Registro exitoso",
+                    JOptionPane.CANCEL_OPTION,
+                    setImageBackground("/recursos/exito.png", lb)
+            );
+            allSetEmpty();
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraEmpleado);
+
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Algun Campo Esta Mal Diligenciado, Por Favor Verificarlos",
+                    "Comprobar Campos",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    /*
+        en las siguientes funciones de los TextFields (FocusLost y FocusGained)
+        lo que se ate es validar si la longitud es correcta, si no es asi
+        se evia una alerta de dialogo con el error y el campo se pone en rosado
+        una vez perdido el foco, cuando se retoma se borra lo que hay dentro y
+        se devuelve a su color original
+     */
+    private void txtNombreDrogueriaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreDrogueriaFocusLost
+        if (!txtNombreDrogueria.getText().equals("")) {
+            if (drogueria.validarNombre_drogueria(txtNombreDrogueria.getText())
+                    .equals("Longitud nombre incorrecta")) {
+                JOptionPane.showMessageDialog(null,
+                        "El Nombre Debe Tener Entre 4 y 20 Caracteres",
+                        "Longitud Nombre Incorrecta",
+                        JOptionPane.ERROR_MESSAGE);
+                txtNombreDrogueria.setBackground(Color.pink);
+
+            }
+        }
+    }//GEN-LAST:event_txtNombreDrogueriaFocusLost
+
+    private void txtNombreDrogueriaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreDrogueriaFocusGained
+        if (txtNombreDrogueria.getBackground().equals(Color.pink)) {
+            txtNombreDrogueria.setBackground(Color.white);
+            txtNombreDrogueria.setText("");
+        }
+    }//GEN-LAST:event_txtNombreDrogueriaFocusGained
+
+    private void txtDireccionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusGained
+        if (txtDireccion.getBackground().equals(Color.pink)) {
+            txtDireccion.setBackground(Color.white);
+            txtDireccion.setText("");
+        }
+    }//GEN-LAST:event_txtDireccionFocusGained
+
+    private void txtDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusLost
+        if (!txtDireccion.getText().equals("")) {
+            if (drogueria.validarDireccion(
+                    txtDireccion.getText()).equals("Longitud dirección incorrecta")) {
+                JOptionPane.showMessageDialog(null,
+                        "La Direccion Debe Tener Entre 12 y 32 Caracteres",
+                        "Longitud Dirección Incorrecta",
+                        JOptionPane.ERROR_MESSAGE);
+                txtDireccion.setBackground(Color.pink);
+
+            }
+        }
+    }//GEN-LAST:event_txtDireccionFocusLost
+
+    private void txtTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusLost
+        if (!txtTelefono.getText().equals("")) {
+            if (drogueria.validarTelefono_drogueria(
+                    txtTelefono.getText()).equals("Número telefónico no válido")) {
+                JOptionPane.showMessageDialog(null,
+                        " El Número Telefónico Debe Tener Entre 6 y 11 Caracteres",
+                        "Número Telefónico No Válido",
+                        JOptionPane.ERROR_MESSAGE);
+                txtTelefono.setBackground(Color.pink);
+
+            }
+        }
+    }//GEN-LAST:event_txtTelefonoFocusLost
+
+    private void txtTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusGained
+        if (txtTelefono.getBackground().equals(Color.pink)) {
+            txtTelefono.setBackground(Color.white);
+            txtTelefono.setText("");
+        }
+    }//GEN-LAST:event_txtTelefonoFocusGained
+
+    private void txtNITFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNITFocusLost
+        if (!txtNIT.getText().equals("")) {
+            if (drogueria.validarNit(
+                    txtNIT.getText()).equals("Nit no válido")) {
+                JOptionPane.showMessageDialog(null,
+                        " Nit Debe Tener Entre 11 y 20 Caracteres",
+                        "Nit No Válido",
+                        JOptionPane.ERROR_MESSAGE);
+                txtNIT.setBackground(Color.pink);
+
+            }
+        }
+    }//GEN-LAST:event_txtNITFocusLost
+
+    private void txtNITFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNITFocusGained
+        if (txtNIT.getBackground().equals(Color.pink)) {
+            txtNIT.setBackground(Color.white);
+            txtNIT.setText("");
+        }
+    }//GEN-LAST:event_txtNITFocusGained
+
+    private void txtRepresentanteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRepresentanteFocusLost
+        if (!txtRepresentante.getText().equals("")) {
+            if (drogueria.validarRepresentante(
+                    txtRepresentante.getText()).equals("Lontigud represetante legal incorrecta")) {
+                JOptionPane.showMessageDialog(null,
+                        "El Represetante Legal Debe Tener Entre 11 y 32 Caracteres",
+                        "Lontigud Represetante Legal Incorrecta",
+                        JOptionPane.ERROR_MESSAGE);
+                txtRepresentante.setBackground(Color.pink);
+
+            }
+        }
+    }//GEN-LAST:event_txtRepresentanteFocusLost
+
+    private void txtRepresentanteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRepresentanteFocusGained
+        if (txtRepresentante.getBackground().equals(Color.pink)) {
+            txtRepresentante.setBackground(Color.white);
+            txtRepresentante.setText("");
+        }
+    }//GEN-LAST:event_txtRepresentanteFocusGained
+
+    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
+        if (!txtEmail.getText().equals("")) {
+            if (drogueria.validarEmail(
+                    txtEmail.getText()).equals("Correo no válido")) {
+                JOptionPane.showMessageDialog(null,
+                        "El Correo Debe Tener Entre 9 y 25 Caracteres,"
+                        + "\n Ademas Debe Contener Una Arroba y Un Punto",
+                        "Correo No Válido",
+                        JOptionPane.ERROR_MESSAGE);
+                txtEmail.setBackground(Color.pink);
+
+            }
+        }
+    }//GEN-LAST:event_txtEmailFocusLost
+
+    private void txtEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusGained
+        if (txtEmail.getBackground().equals(Color.pink)) {
+            txtEmail.setBackground(Color.white);
+            txtEmail.setText("");
+        }
+    }//GEN-LAST:event_txtEmailFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

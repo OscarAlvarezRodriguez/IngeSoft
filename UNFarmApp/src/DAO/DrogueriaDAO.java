@@ -43,27 +43,26 @@ public class DrogueriaDAO {
         }
     }
 
-    public Drogueria leer(Drogueria par) {
+    public Drogueria leer(Drogueria object) {
         EntityManager em = emf.createEntityManager();
-        Drogueria usuario = null;
-        Query q = em.createQuery("SELECT e FROM Empleado e "
-                + "WHERE u.cedulaEmpleado LIKE :cedulaempleado"
-                + " AND u.contranseniaEmpleado LIKE :contranseniaempleado") //Comprobar este código
-                .setParameter("nitDrogueria", par.getNitDrogueria())
-                .setParameter("nombreDrogueria", par.getNombreDrogueria())
-                .setParameter("direccionDrogueria", par.getDireccionDrogueria())
-                .setParameter("telefonoDrogueria", par.getTelefonoDrogueria())
-                .setParameter("emailDrogueria", par.getEmailDrogueria())
-                .setParameter("representanteLegalDrogueria", par.getRepresentanteLegalDrogueria());
+        Drogueria drogueria = null;
+        Query q = em.createQuery("SELECT d FROM Drogueria d "
+                + "WHERE d.nitDrogueria = :nitDrogueria") 
+                .setParameter("nitDrogueria", object.getNitDrogueria())
+                .setParameter("nombreDrogueria", object.getNombreDrogueria())
+                .setParameter("direccionDrogueria", object.getDireccionDrogueria())
+                .setParameter("telefonoDrogueria", object.getTelefonoDrogueria())
+                .setParameter("emailDrogueria", object.getEmailDrogueria())
+                .setParameter("representanteLegalDrogueria", object.getRepresentanteLegalDrogueria());
         try {
-            usuario = (Drogueria) q.getSingleResult();
+            drogueria = (Drogueria) q.getSingleResult();
         } catch (NonUniqueResultException e) {
-            usuario = (Drogueria) q.getResultList().get(0);
+            drogueria = (Drogueria) q.getResultList().get(0);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             em.close();
-            return usuario;
+            return drogueria;
         }
     }
 

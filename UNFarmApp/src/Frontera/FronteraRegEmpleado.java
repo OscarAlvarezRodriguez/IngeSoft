@@ -1,13 +1,19 @@
 package Frontera;
 
+import Control.RegistrarEmpleado;
+import Entidad.Drogueria;
+import Entidad.Empleado;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class FronteraRegEmpleado extends javax.swing.JPanel {
 
-    
+    RegistrarEmpleado empleado = new RegistrarEmpleado();
 
     public FronteraRegEmpleado() {
         initComponents();
@@ -22,6 +28,25 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
         ImageIcon imagen = new ImageIcon(this.getClass().getResource(direccion));
         imagen = new ImageIcon(imagen.getImage().getScaledInstance(o.getWidth(), o.getHeight(), Image.SCALE_SMOOTH));
         return imagen;
+    }
+
+    private void allSetEmpty() {
+        txtApellido.setText("");
+        txtCedula.setText("");
+        txtContresenia.setText("");
+        txtCorreo.setText("");
+        txtDireccion.setText("");
+        txtNombre.setText("");
+        txtTelefono.setText("");
+        txtVerContrasenia.setText("");
+        txtApellido.setBackground(Color.white);
+        txtCedula.setBackground(Color.white);
+        txtContresenia.setBackground(Color.white);
+        txtCorreo.setBackground(Color.white);
+        txtDireccion.setBackground(Color.white);
+        txtNombre.setBackground(Color.white);
+        txtTelefono.setBackground(Color.white);
+        txtVerContrasenia.setBackground(Color.white);
     }
 
     @Override
@@ -54,7 +79,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
         btnSalir = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        txtCecular = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
 
@@ -79,6 +104,14 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
 
         txtNombre.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
         txtNombre.setPreferredSize(new java.awt.Dimension(300, 30));
+        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNombreFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombreFocusLost(evt);
+            }
+        });
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
@@ -99,6 +132,14 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
 
         txtApellido.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
         txtApellido.setPreferredSize(new java.awt.Dimension(300, 30));
+        txtApellido.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtApellidoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtApellidoFocusLost(evt);
+            }
+        });
         txtApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtApellidoActionPerformed(evt);
@@ -119,6 +160,14 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
 
         txtCedula.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
         txtCedula.setPreferredSize(new java.awt.Dimension(300, 30));
+        txtCedula.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCedulaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCedulaFocusLost(evt);
+            }
+        });
         txtCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCedulaActionPerformed(evt);
@@ -132,6 +181,14 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
 
         txtContresenia.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
         txtContresenia.setPreferredSize(new java.awt.Dimension(300, 30));
+        txtContresenia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtContreseniaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtContreseniaFocusLost(evt);
+            }
+        });
         txtContresenia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtContreseniaActionPerformed(evt);
@@ -159,6 +216,14 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
 
         txtVerContrasenia.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
         txtVerContrasenia.setPreferredSize(new java.awt.Dimension(300, 30));
+        txtVerContrasenia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtVerContraseniaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtVerContraseniaFocusLost(evt);
+            }
+        });
         txtVerContrasenia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtVerContraseniaActionPerformed(evt);
@@ -172,6 +237,14 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
 
         txtDireccion.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
         txtDireccion.setPreferredSize(new java.awt.Dimension(300, 30));
+        txtDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDireccionFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDireccionFocusLost(evt);
+            }
+        });
         txtDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDireccionActionPerformed(evt);
@@ -224,16 +297,24 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
         jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel8.setPreferredSize(new java.awt.Dimension(240, 30));
 
-        txtCecular.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
-        txtCecular.setPreferredSize(new java.awt.Dimension(300, 30));
-        txtCecular.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCecularActionPerformed(evt);
+        txtTelefono.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
+        txtTelefono.setPreferredSize(new java.awt.Dimension(300, 30));
+        txtTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTelefonoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelefonoFocusLost(evt);
             }
         });
-        txtCecular.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefonoActionPerformed(evt);
+            }
+        });
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCecularKeyTyped(evt);
+                txtTelefonoKeyTyped(evt);
             }
         });
 
@@ -246,6 +327,14 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
 
         txtCorreo.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
         txtCorreo.setPreferredSize(new java.awt.Dimension(300, 30));
+        txtCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCorreoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCorreoFocusLost(evt);
+            }
+        });
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCorreoActionPerformed(evt);
@@ -284,7 +373,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtCecular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(txtVerContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -295,12 +384,13 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(250, 250, 250)
-                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 233, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(238, 238, 238)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
-                .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -310,9 +400,9 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jlLogo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jlKit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -327,7 +417,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCecular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -355,7 +445,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        
+
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
@@ -421,23 +511,50 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
     }//GEN-LAST:event_txtDireccionKeyTyped
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        allSetEmpty();
         App.getInstance().ChangePanel(FramePrincipal.INTFronteraRegDrogueria);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+        Empleado e = new Empleado();
+        e.setApellidoEmpleado(txtApellido.getText());
+        e.setCedulaEmpleado(txtCedula.getText());
+        e.setContraseniaEmpleado(txtContresenia.getText());
+        e.setCorreoEmpleado(txtCorreo.getText());
+        e.setDireccionEmpleado(txtDireccion.getText());
+        e.setNombreEmpleado(txtNombre.getText());
+        e.setTelefonoEmpleado(txtTelefono.getText());
+
+        if (empleado.validarDatos(e).equals("Registro exitoso")) {
+            JLabel lb = new JLabel();
+            lb.setSize(50, 50);
+            JOptionPane.showMessageDialog(null,
+                    "Empleado Creado Exitosamente",
+                    "Registro exitoso",
+                    JOptionPane.CANCEL_OPTION,
+                    setImageBackground("/recursos/exito.png", lb)
+            );
+            allSetEmpty();
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraEmpleado);
+
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Algun Campo Esta Mal Diligenciado, Por Favor Verificarlos",
+                    "Comprobar Campos",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    private void txtCecularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCecularActionPerformed
+    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCecularActionPerformed
+    }//GEN-LAST:event_txtTelefonoActionPerformed
 
-    private void txtCecularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCecularKeyTyped
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
         char c = evt.getKeyChar();
         if (!Character.isDigit(c)) {
             evt.consume();
         }
-    }//GEN-LAST:event_txtCecularKeyTyped
+    }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         // TODO add your handling code here:
@@ -449,6 +566,177 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
             evt.consume();
         }
     }//GEN-LAST:event_txtCorreoKeyTyped
+
+    private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
+        if (!txtNombre.getText().equals("")) {
+            if (empleado.validarNombre(txtNombre.getText())
+                    .equals("Longitud nombre incorrecta")) {
+                JOptionPane.showMessageDialog(null,
+                        "El Nombre Debe Tener Entre 5 y 14 Caracteres",
+                        "Longitud Nombre Incorrecta",
+                        JOptionPane.ERROR_MESSAGE);
+                txtNombre.setBackground(Color.pink);
+
+            }
+        }
+    }//GEN-LAST:event_txtNombreFocusLost
+
+    private void txtNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusGained
+        if (txtNombre.getBackground().equals(Color.pink)) {
+            txtNombre.setBackground(Color.white);
+            txtNombre.setText("");
+        }
+    }//GEN-LAST:event_txtNombreFocusGained
+
+    private void txtApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoFocusLost
+        if (!txtApellido.getText().equals("")) {
+            if (empleado.validarApellido(txtApellido.getText())
+                    .equals("Longitud apellido incorrecta")) {
+                JOptionPane.showMessageDialog(null,
+                        "El Apellido Debe Tener Entre 4 y 20 Caracteres",
+                        "Longitud Apellido Incorrecta",
+                        JOptionPane.ERROR_MESSAGE);
+                txtApellido.setBackground(Color.pink);
+
+            }
+        }
+    }//GEN-LAST:event_txtApellidoFocusLost
+
+    private void txtApellidoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoFocusGained
+        if (txtApellido.getBackground().equals(Color.pink)) {
+            txtApellido.setBackground(Color.white);
+            txtApellido.setText("");
+        }
+    }//GEN-LAST:event_txtApellidoFocusGained
+
+    private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
+        if (!txtCedula.getText().equals("")) {
+            if (empleado.validarCedula(txtCedula.getText())
+                    .equals("Cédula nó valida")) {
+                JOptionPane.showMessageDialog(null,
+                        "La Cedula Debe Tener Entre 8 y 10 Caracteres",
+                        "Cédula Nó Valida",
+                        JOptionPane.ERROR_MESSAGE);
+                txtCedula.setBackground(Color.pink);
+
+            }
+        }
+    }//GEN-LAST:event_txtCedulaFocusLost
+
+    private void txtCedulaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusGained
+        if (txtCedula.getBackground().equals(Color.pink)) {
+            txtCedula.setBackground(Color.white);
+            txtCedula.setText("");
+        }
+    }//GEN-LAST:event_txtCedulaFocusGained
+
+    private void txtContreseniaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContreseniaFocusLost
+        if (!txtContresenia.getText().equals("")) {
+            if (empleado.validarContrasenia(txtContresenia.getText())
+                    .equals("Contraseña no válida")) {
+                JOptionPane.showMessageDialog(null,
+                        "La Contraseña Debe Tener Entre 5 y 14 Caracteres,"
+                        + "\n Ademas Debe Tener Una Mayuscula y Un Numero",
+                        "Contraseña No Válida",
+                        JOptionPane.ERROR_MESSAGE);
+                txtContresenia.setBackground(Color.pink);
+
+            }
+        }
+    }//GEN-LAST:event_txtContreseniaFocusLost
+
+    private void txtContreseniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContreseniaFocusGained
+        if (txtContresenia.getBackground().equals(Color.pink)) {
+            txtContresenia.setBackground(Color.white);
+            txtContresenia.setText("");
+        }
+    }//GEN-LAST:event_txtContreseniaFocusGained
+
+    private void txtVerContraseniaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVerContraseniaFocusLost
+        if (!txtVerContrasenia.getText().equals("")) {
+            if (empleado.validarContrasenia(txtVerContrasenia.getText())
+                    .equals("Contraseña no válida")) {
+                JOptionPane.showMessageDialog(null,
+                        "La Contraseña Debe Tener Entre 5 y 14 Caracteres,"
+                        + "\n Ademas Debe Tener Una Mayuscula y Un Numero",
+                        "Contraseña no válida",
+                        JOptionPane.ERROR_MESSAGE);
+                txtVerContrasenia.setBackground(Color.pink);
+
+            }
+        }
+    }//GEN-LAST:event_txtVerContraseniaFocusLost
+
+    private void txtVerContraseniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVerContraseniaFocusGained
+        if (txtVerContrasenia.getBackground().equals(Color.pink)) {
+            txtVerContrasenia.setBackground(Color.white);
+            txtVerContrasenia.setText("");
+        }
+    }//GEN-LAST:event_txtVerContraseniaFocusGained
+
+    private void txtDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusLost
+        if (!txtDireccion.getText().equals("")) {
+            if (empleado.validarDireccion(
+                    txtDireccion.getText()).equals("Longitud dirección incorrecta")) {
+                JOptionPane.showMessageDialog(null,
+                        "La Direccion Debe Tener Entre 12 y 32 Caracteres",
+                        "Longitud Dirección Incorrecta",
+                        JOptionPane.ERROR_MESSAGE);
+                txtDireccion.setBackground(Color.pink);
+
+            }
+        }
+    }//GEN-LAST:event_txtDireccionFocusLost
+
+    private void txtDireccionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusGained
+        if (txtDireccion.getBackground().equals(Color.pink)) {
+            txtDireccion.setBackground(Color.white);
+            txtDireccion.setText("");
+        }
+    }//GEN-LAST:event_txtDireccionFocusGained
+
+    private void txtTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusLost
+        if (!txtTelefono.getText().equals("")) {
+            if (empleado.validarTelefono(
+                    txtTelefono.getText()).equals("Número telefónico no válido")) {
+                JOptionPane.showMessageDialog(null,
+                        " El Número Telefónico Debe Tener Entre 7 y 17 Caracteres",
+                        "Número Telefónico No Válido",
+                        JOptionPane.ERROR_MESSAGE);
+                txtTelefono.setBackground(Color.pink);
+
+            }
+        }
+    }//GEN-LAST:event_txtTelefonoFocusLost
+
+    private void txtTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusGained
+        if (txtTelefono.getBackground().equals(Color.pink)) {
+            txtTelefono.setBackground(Color.white);
+            txtTelefono.setText("");
+        }
+    }//GEN-LAST:event_txtTelefonoFocusGained
+
+    private void txtCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusLost
+        if (!txtCorreo.getText().equals("")) {
+            if (empleado.validarCorreo(
+                    txtCorreo.getText()).equals("Correo no válido")) {
+                JOptionPane.showMessageDialog(null,
+                        "El Correo Debe Tener Entre 9 y 32 Caracteres,"
+                        + "\n Ademas Debe Contener Una Arroba y Un Punto",
+                        "Correo No Válido",
+                        JOptionPane.ERROR_MESSAGE);
+                txtCorreo.setBackground(Color.pink);
+
+            }
+        }
+    }//GEN-LAST:event_txtCorreoFocusLost
+
+    private void txtCorreoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusGained
+        if (txtCorreo.getBackground().equals(Color.pink)) {
+            txtCorreo.setBackground(Color.white);
+            txtCorreo.setText("");
+        }
+    }//GEN-LAST:event_txtCorreoFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -466,12 +754,12 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
     private javax.swing.JLabel jlKit;
     private javax.swing.JLabel jlLogo;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtCecular;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtContresenia;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtVerContrasenia;
     // End of variables declaration//GEN-END:variables
 }

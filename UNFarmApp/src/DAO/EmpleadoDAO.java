@@ -47,8 +47,8 @@ public class EmpleadoDAO {
         EntityManager em = emf.createEntityManager();
         Empleado usuario = null;
         Query q = em.createQuery("SELECT e FROM Empleado e "
-                + "WHERE u.cedulaEmpleado LIKE :cedulaempleado"
-                + " AND u.contranseniaEmpleado LIKE :contranseniaempleado")
+                + "WHERE e.cedulaEmpleado = :cedulaempleado"
+                + " AND e.contranseniaEmpleado = :contranseniaempleado")
                 .setParameter("nombreEmpleado", par.getNombreEmpleado())
                 .setParameter("contranseniaEmpleado", par.getContraseniaEmpleado())
                 .setParameter("cedulaEmpledo", par.getCedulaEmpleado())
