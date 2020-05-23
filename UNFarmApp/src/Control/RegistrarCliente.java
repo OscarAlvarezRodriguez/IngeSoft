@@ -41,7 +41,7 @@ public class RegistrarCliente {
     }
 
     public String validarCedula(String cedula) {
-        if (cedula.length() > 7 && cedula.length() < 11 && cedula.matches("\\d*") && !cedula.isEmpty()){
+        if (cedula.length() > 7 && cedula.length() < 12 && cedula.matches("\\d*") && !cedula.isEmpty()){
             return(co);
         }
         return (cn);

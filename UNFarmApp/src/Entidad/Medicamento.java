@@ -49,9 +49,9 @@ public class Medicamento implements Serializable {
         return nombreMedicamento;
     }
 
-    public void setNombreMedicamento(String nombreMedicamento) {
+    /*public void setNombreMedicamento(String nombreMedicamento) {
         this.nombreMedicamento = nombreMedicamento;
-    }
+    }*/
 
     public String getPrecioVentaMedicamento() {
         return precioVentaMedicamento;
@@ -65,32 +65,32 @@ public class Medicamento implements Serializable {
         return titularMedicamento;
     }
 
-    public void setTitularMedicamento(String titularMedicamento) {
+    /*public void setTitularMedicamento(String titularMedicamento) {
         this.titularMedicamento = titularMedicamento;
-    }
+    }*/
 
     public String getDescripcionMedicamento() {
         return DescripcionMedicamento;
     }
 
-    public void setDescripcionMedicamento(String DescripcionMedicamento) {
+    /*public void setDescripcionMedicamento(String DescripcionMedicamento) {
         this.DescripcionMedicamento = DescripcionMedicamento;
-    }
+    }*/
 
     public String getPresentacionMedicamento() {
         return presentacionMedicamento;
     }
 
-    public void setPresentacionMedicamento(String presentacionMedicamento) {
+    /*public void setPresentacionMedicamento(String presentacionMedicamento) {
         this.presentacionMedicamento = presentacionMedicamento;
-    }
+    }*/
 
     public String getPrincipioActivoMedicamento() {
         return principioActivoMedicamento;
     }
 
-    public void setPrincipioActivoMedicamento(String principioActivoMedicamento) {
+    /*public void setPrincipioActivoMedicamento(String principioActivoMedicamento) {
         this.principioActivoMedicamento = principioActivoMedicamento;
-    }
+    }*/
 
 }
