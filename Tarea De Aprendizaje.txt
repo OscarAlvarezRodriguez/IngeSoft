@@ -1,4 +1,4 @@
-Como unica tarea es modificar este archivo
+﻿Como unica tarea es modificar este archivo
 la idea es que coloquen en este mismo archivo
 
 --> Nombre
@@ -15,6 +15,6 @@ para saber que lo lograron
 ->	Oscar E. Alvarez R.
 ->	Hazael Muñoz Caballero
 ->      Juan Sebastian Montoya
-->
+->	Cristian Mauricio Ramirez Mendoza
 ->
 ->
