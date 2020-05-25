@@ -14,17 +14,17 @@ public class Medicamento implements Serializable {
     private int idMedicamento;
     @Column(nullable = false)
     private int cantidadMedicamento;
-    @Column(nullable = false, length = 60)
+    @Column(nullable = false, length = 300)
     private String nombreMedicamento;
-    @Column(nullable = false, length = 10)
-    private String precioVentaMedicamento;
-    @Column(nullable = false, length = 25)
+    @Column(nullable = false)
+    private int precioVentaMedicamento;
+    @Column(nullable = false, length = 200)
     private String titularMedicamento;
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 200)
     private String DescripcionMedicamento;
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 150)
     private String presentacionMedicamento;
-    @Column(nullable = false, length = 90)
+    @Column(nullable = false, length = 300)
     private String principioActivoMedicamento;
 
     public Medicamento() {
@@ -32,9 +32,6 @@ public class Medicamento implements Serializable {
 
     public int getIdMedicamento() {
         return idMedicamento;
-    }
-
-    public void setIdMedicamento() {
     }
 
     public int getCantidadMedicamento() {
@@ -49,15 +46,11 @@ public class Medicamento implements Serializable {
         return nombreMedicamento;
     }
 
-    /*public void setNombreMedicamento(String nombreMedicamento) {
-        this.nombreMedicamento = nombreMedicamento;
-    }*/
-
-    public String getPrecioVentaMedicamento() {
+    public int getPrecioVentaMedicamento() {
         return precioVentaMedicamento;
     }
 
-    public void setPrecioVentaMedicamento(String precioVentaMedicamento) {
+    public void setPrecioVentaMedicamento(int precioVentaMedicamento) {
         this.precioVentaMedicamento = precioVentaMedicamento;
     }
 
@@ -65,32 +58,15 @@ public class Medicamento implements Serializable {
         return titularMedicamento;
     }
 
-    /*public void setTitularMedicamento(String titularMedicamento) {
-        this.titularMedicamento = titularMedicamento;
-    }*/
-
     public String getDescripcionMedicamento() {
         return DescripcionMedicamento;
     }
-
-    /*public void setDescripcionMedicamento(String DescripcionMedicamento) {
-        this.DescripcionMedicamento = DescripcionMedicamento;
-    }*/
 
     public String getPresentacionMedicamento() {
         return presentacionMedicamento;
     }
 
-    /*public void setPresentacionMedicamento(String presentacionMedicamento) {
-        this.presentacionMedicamento = presentacionMedicamento;
-    }*/
-
     public String getPrincipioActivoMedicamento() {
         return principioActivoMedicamento;
     }
-
-    /*public void setPrincipioActivoMedicamento(String principioActivoMedicamento) {
-        this.principioActivoMedicamento = principioActivoMedicamento;
-    }*/
-
 }

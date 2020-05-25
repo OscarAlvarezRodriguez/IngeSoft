@@ -537,7 +537,16 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
             allSetEmpty();
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
 
-        } else {
+        } else if(empleado.validarDatos(e).equals("El empleado ya está registrado")){
+            JLabel lb = new JLabel();
+            lb.setSize(50, 50);
+            JOptionPane.showMessageDialog(null,
+                    "El empleado ya está registrado",
+                    "Registro Fallido",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        } 
+        else {
             JOptionPane.showMessageDialog(null,
                     "Algun Campo Esta Mal Diligenciado, Por Favor Verificarlos",
                     "Comprobar Campos",
@@ -572,7 +581,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
             if (empleado.validarNombre(txtNombre.getText())
                     .equals("Longitud nombre incorrecta")) {
                 JOptionPane.showMessageDialog(null,
-                        "El Nombre Debe Tener Entre 5 y 14 Caracteres",
+                        "El Nombre Debe Tener Entre 5 y 20 Caracteres",
                         "Longitud Nombre Incorrecta",
                         JOptionPane.ERROR_MESSAGE);
                 txtNombre.setBackground(Color.pink);
@@ -593,7 +602,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
             if (empleado.validarApellido(txtApellido.getText())
                     .equals("Longitud apellido incorrecta")) {
                 JOptionPane.showMessageDialog(null,
-                        "El Apellido Debe Tener Entre 4 y 20 Caracteres",
+                        "El Apellido Debe Tener Entre 5 y 15 Caracteres",
                         "Longitud Apellido Incorrecta",
                         JOptionPane.ERROR_MESSAGE);
                 txtApellido.setBackground(Color.pink);
@@ -639,7 +648,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
                     || empleado.validarNumeroContrasenia(txtContrasenia.getText())
                             .equals("Número en contraseña incorrecto")) {
                 JOptionPane.showMessageDialog(null,
-                        "La Contraseña Debe Tener Entre 5 y 14 Caracteres,"
+                        "La Contraseña Debe Tener Entre 5 y 20 Caracteres,"
                         + "\n Ademas Debe Tener Una Mayuscula y Un Numero",
                         "Contraseña no válida",
                         JOptionPane.ERROR_MESSAGE);
@@ -703,7 +712,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
             if (empleado.validarTelefono(
                     txtTelefono.getText()).equals("Número telefónico no válido")) {
                 JOptionPane.showMessageDialog(null,
-                        " El Número Telefónico Debe Tener Entre 7 y 17 Caracteres",
+                        " El Número Telefónico Debe Tener Entre 7 y 15 Caracteres",
                         "Número Telefónico No Válido",
                         JOptionPane.ERROR_MESSAGE);
                 txtTelefono.setBackground(Color.pink);
@@ -724,7 +733,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
             if (empleado.validarCorreo(
                     txtCorreo.getText()).equals("Correo no válido")) {
                 JOptionPane.showMessageDialog(null,
-                        "El Correo Debe Tener Entre 9 y 32 Caracteres,"
+                        "El Correo Debe Tener Entre 9 y 50 Caracteres,"
                         + "\n Ademas Debe Contener Una Arroba y Un Punto",
                         "Correo No Válido",
                         JOptionPane.ERROR_MESSAGE);

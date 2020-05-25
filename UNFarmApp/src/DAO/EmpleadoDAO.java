@@ -63,6 +63,25 @@ public class EmpleadoDAO {
             return usuario;
         }
     }
+    
+    public Empleado leerex(Empleado par){
+        EntityManager em = emf.createEntityManager();
+        Empleado usuario = null;
+        Query q = em.createQuery("SELECT e"
+                + " FROM Empleado e "
+                + "WHERE e.cedula_Empleado = :cedula_Empleado")
+                .setParameter("cedula_Empleado", par.getCedulaEmpleado());
+        try {
+            usuario = (Empleado) q.getSingleResult();
+        } catch (NonUniqueResultException e) {
+            usuario = (Empleado) q.getResultList().get(0);
+        } catch (Exception e) {
+            //e.printStackTrace();
+        } finally {
+            em.close();
+            return usuario;
+        }
+    }
 
     public boolean actualizar(Empleado object, Empleado nuevoObjeto) {
         EntityManager em = emf.createEntityManager();

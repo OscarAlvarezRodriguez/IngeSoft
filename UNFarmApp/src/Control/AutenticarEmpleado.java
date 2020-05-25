@@ -44,7 +44,7 @@ public class AutenticarEmpleado {
 
     public String validarLongitudContrasenia(String contraseniaEmpleado) {
         if (contraseniaEmpleado.length() >= 5
-                && contraseniaEmpleado.length() < 13
+                && contraseniaEmpleado.length() < 21
                 && !contraseniaEmpleado.isEmpty()) {
             return (co);
         }

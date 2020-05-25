@@ -255,8 +255,8 @@ public class FronteraAutEmpleado extends javax.swing.JPanel {
 
         } else {
             JOptionPane.showMessageDialog(null,
-                    "Algun Campo Esta Mal Diligenciado, Por Favor Verificarlos",
-                    "Comprobar Campos",
+                    "Usuario o constraseña incorrectos",
+                    "Ingreso fallido",
                     JOptionPane.ERROR_MESSAGE);
         }
 
@@ -288,7 +288,7 @@ public class FronteraAutEmpleado extends javax.swing.JPanel {
                     || empleado.validarNumeroContrasenia(txtContrseniaArr)
                             .equals("Número en contraseña incorrecto")) {
                 JOptionPane.showMessageDialog(null,
-                        "La Contraseña Debe Tener Entre 5 y 14 Caracteres,"
+                        "La Contraseña Debe Tener Entre 5 y 20 Caracteres,"
                         + "\n Ademas Debe Tener Una Mayuscula y Un Numero",
                         "Contraseña Incorrecta",
                         JOptionPane.ERROR_MESSAGE);

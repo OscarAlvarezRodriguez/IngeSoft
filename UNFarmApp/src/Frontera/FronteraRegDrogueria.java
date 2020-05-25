@@ -475,7 +475,7 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
             if (drogueria.validarNombre_drogueria(txtNombreDrogueria.getText())
                     .equals("Longitud nombre incorrecta")) {
                 JOptionPane.showMessageDialog(null,
-                        "El Nombre Debe Tener Entre 4 y 20 Caracteres",
+                        "El Nombre Debe Tener Entre 11 y 33 Caracteres",
                         "Longitud Nombre Incorrecta",
                         JOptionPane.ERROR_MESSAGE);
                 txtNombreDrogueria.setBackground(Color.pink);

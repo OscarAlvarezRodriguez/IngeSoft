@@ -16,6 +16,7 @@ public class RegistrarEmpleado {
     private final String en = "Correo no válido";
     private final String re = "Registro exitoso";
     private final String co = "Correcto";
+    public final EmpleadoDAO nuevoempleado = new EmpleadoDAO();
 
     public RegistrarEmpleado() {
     }
@@ -46,7 +47,9 @@ public class RegistrarEmpleado {
         if (!validarCorreo(empleado.getCorreoEmpleado()).equals(co)) {
             return (en);
         }
-        EmpleadoDAO nuevoempleado = new EmpleadoDAO();
+        if(nuevoempleado.leerex(empleado)!= null){
+            return("El empleado ya está registrado");
+        }
         nuevoempleado.crear(empleado);
         return (re);
     }
@@ -60,7 +63,7 @@ public class RegistrarEmpleado {
     }
 
     public String validarNombre(String nombre) {
-        if (nombre.length() > 4 && nombre.length() < 15
+        if (nombre.length() > 4 && nombre.length() < 21
                 && !nombre.isEmpty()) {
             return (co);
         }
@@ -84,7 +87,7 @@ public class RegistrarEmpleado {
     }
 
     public String validarApellido(String apellido) {
-        if (apellido.length() > 3 && apellido.length() < 21
+        if (apellido.length() > 4 && apellido.length() < 21
                 && !apellido.isEmpty()) {
             return (co);
         }
@@ -92,7 +95,7 @@ public class RegistrarEmpleado {
     }
 
     public String validarCorreo(String correo) {
-        if (correo.length() > 8 && correo.length() < 33
+        if (correo.length() > 8 && correo.length() < 50
                 && correo.matches(".+@.+")
                 && !correo.isEmpty()) {
             return (co);
@@ -102,7 +105,7 @@ public class RegistrarEmpleado {
 
     public String validarLongitudContrasenia(String contraseniaEmpleado) {
         if (contraseniaEmpleado.length() >= 5
-                && contraseniaEmpleado.length() < 13
+                && contraseniaEmpleado.length() < 21
                 && !contraseniaEmpleado.isEmpty()) {
             return (co);
         }
