@@ -5,7 +5,7 @@ import DAO.EmpleadoDAO;
 
 public class RegistrarEmpleado {
 
-    private final String cn = "Cédula nó valida";
+    private final String cn = "Cédula no válida";
     private final String con = "Longitud contraseña incorrecta";
     private final String conn = "Número en contraseña incorrecto";
     private final String comn = "Mayúscula en contraseña incorrecto";
@@ -22,7 +22,11 @@ public class RegistrarEmpleado {
     }
 
     public String validarDatos(Empleado empleado) {
-
+        
+        if (!validarCedula(empleado.getCedulaEmpleado()).equals(co)) {
+            return (cn);
+        }
+        
         if (!validarNombre(empleado.getNombreEmpleado()).equals(co)) {
             return (nn);
         }
@@ -55,7 +59,7 @@ public class RegistrarEmpleado {
     }
 
     public String validarCedula(String cedula) {
-        if (cedula.length() > 7 && cedula.length() < 11
+        if (cedula.length() > 6 && cedula.length() < 12
                 && cedula.matches("\\d*") && !cedula.isEmpty()) {
             return (co);
         }
@@ -96,7 +100,7 @@ public class RegistrarEmpleado {
 
     public String validarCorreo(String correo) {
         if (correo.length() > 8 && correo.length() < 50
-                && correo.matches(".+@.+")
+                && correo.matches(".+@.+\\..+")
                 && !correo.isEmpty()) {
             return (co);
         }

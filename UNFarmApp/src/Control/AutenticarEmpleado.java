@@ -11,6 +11,8 @@ public class AutenticarEmpleado {
     private final String conn = "Número en contraseña incorrecto";
     private final String comn = "Mayúscula en contraseña incorrecto";
     private final String co = "Correcto";
+    private final String di = "Datos incorrectos";
+    private final String bi = "Bienvenido";
 
     public AutenticarEmpleado() {
     }
@@ -30,9 +32,9 @@ public class AutenticarEmpleado {
             return (conn);
         }
         if (empleado.leer(emp) != null) {
-            return ("Bienvenido");
+            return (bi);
         }
-        return ("Datos incorrectos");
+        return (di);
     }
 
     public String validarLongitudCedula(String cedulaEmpleado) {

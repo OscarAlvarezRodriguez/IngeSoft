@@ -602,7 +602,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
             if (empleado.validarApellido(txtApellido.getText())
                     .equals("Longitud apellido incorrecta")) {
                 JOptionPane.showMessageDialog(null,
-                        "El Apellido Debe Tener Entre 5 y 15 Caracteres",
+                        "El Apellido Debe Tener Entre 5 y 20 Caracteres",
                         "Longitud Apellido Incorrecta",
                         JOptionPane.ERROR_MESSAGE);
                 txtApellido.setBackground(Color.pink);
@@ -623,7 +623,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
             if (empleado.validarCedula(txtCedula.getText())
                     .equals("Cédula nó valida")) {
                 JOptionPane.showMessageDialog(null,
-                        "La Cedula Debe Tener Entre 8 y 10 Caracteres",
+                        "La Cedula Debe Tener Entre 7 y 11 Caracteres",
                         "Cédula Nó Valida",
                         JOptionPane.ERROR_MESSAGE);
                 txtCedula.setBackground(Color.pink);

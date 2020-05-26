@@ -61,14 +61,17 @@ public class RegistrarDrogueria {
     }
 
     public String validarTelefono_drogueria(String teldro) {
-        if (teldro.length() > 5 && teldro.length() < 12 && !teldro.isEmpty()){
+        if (teldro.length() > 6 && teldro.length() < 16 && !teldro.isEmpty()){
             return(co);
         }
         return(tn);
     }
 
+    
+    //correo.length() > 8 && correo.length() < 50&& correo.matches(".+@.+\\.\\.+")&& !correo.isEmpty())
+    
     public String validarEmail(String email) {
-        if (email.length() > 8 && email.length() < 26 && email.matches(".+@.+") && !email.isEmpty()){
+        if (email.length() > 8 && email.length() < 51 && email.matches(".+@.+\\..+") && !email.isEmpty()){
             return(co);
         }
         return(en);

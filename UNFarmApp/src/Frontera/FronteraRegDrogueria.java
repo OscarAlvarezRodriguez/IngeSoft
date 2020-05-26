@@ -517,7 +517,7 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
             if (drogueria.validarTelefono_drogueria(
                     txtTelefono.getText()).equals("Número telefónico no válido")) {
                 JOptionPane.showMessageDialog(null,
-                        " El Número Telefónico Debe Tener Entre 6 y 11 Caracteres",
+                        " El Número Telefónico Debe Tener Entre 7 y 15 Caracteres",
                         "Número Telefónico No Válido",
                         JOptionPane.ERROR_MESSAGE);
                 txtTelefono.setBackground(Color.pink);
@@ -580,7 +580,7 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
             if (drogueria.validarEmail(
                     txtEmail.getText()).equals("Correo no válido")) {
                 JOptionPane.showMessageDialog(null,
-                        "El Correo Debe Tener Entre 9 y 25 Caracteres,"
+                        "El Correo Debe Tener Entre 9 y 50 Caracteres,"
                         + "\n Ademas Debe Contener Una Arroba y Un Punto",
                         "Correo No Válido",
                         JOptionPane.ERROR_MESSAGE);

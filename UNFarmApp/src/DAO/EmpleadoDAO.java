@@ -26,10 +26,13 @@ public class EmpleadoDAO {
         }
     }
 
+    //Esta funcion no borra, por favor corregir (lo necesitamos para las pruebas, no sean malitos 
     public boolean eliminar(Empleado object) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         boolean ret = false;
+        
+        
         try {
             em.remove(object);
             em.getTransaction().commit();
