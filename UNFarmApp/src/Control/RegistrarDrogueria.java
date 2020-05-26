@@ -5,13 +5,15 @@ import DAO.DrogueriaDAO;
 
 public class RegistrarDrogueria {
 
-    private final String rpn = "Lontigud represetante legal incorrecta";
+    private final DrogueriaDAO farm = new DrogueriaDAO();
+    private final String rpn = "Longitud representante legal incorrecta";
     private final String nn = "Longitud nombre incorrecta";
     private final String tn = "Número telefónico no válido";
     private final String dn = "Longitud dirección incorrecta";
     private final String en = "Correo no válido";
     private final String co = "Correcto";
     private final String nitn = "Nit no válido";
+    private final String dr = "La droguería ya está registrada";
     private final String re = "Registro exitoso";
 
     public RegistrarDrogueria() {
@@ -36,7 +38,9 @@ public class RegistrarDrogueria {
         if (!validarRepresentante(drogapp.getRepresentanteLegalDrogueria()).equals(co)) {
             return (rpn);
         }
-        DrogueriaDAO farm = new DrogueriaDAO();
+        if (farm.leer(drogapp) != null) {
+            return (dr);
+        }
         farm.crear(drogapp);
         return (re);
     }

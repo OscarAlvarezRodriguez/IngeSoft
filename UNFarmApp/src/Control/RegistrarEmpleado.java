@@ -22,11 +22,11 @@ public class RegistrarEmpleado {
     }
 
     public String validarDatos(Empleado empleado) {
-        
+
         if (!validarCedula(empleado.getCedulaEmpleado()).equals(co)) {
             return (cn);
         }
-        
+
         if (!validarNombre(empleado.getNombreEmpleado()).equals(co)) {
             return (nn);
         }
@@ -51,8 +51,8 @@ public class RegistrarEmpleado {
         if (!validarCorreo(empleado.getCorreoEmpleado()).equals(co)) {
             return (en);
         }
-        if(nuevoempleado.leerex(empleado)!= null){
-            return("El empleado ya está registrado");
+        if (nuevoempleado.leerex(empleado) != null) {
+            return ("El empleado ya está registrado");
         }
         nuevoempleado.crear(empleado);
         return (re);

@@ -557,7 +557,7 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
     private void txtRepresentanteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRepresentanteFocusLost
         if (!txtRepresentante.getText().equals("")) {
             if (drogueria.validarRepresentante(
-                    txtRepresentante.getText()).equals("Lontigud represetante legal incorrecta")) {
+                    txtRepresentante.getText()).equals("Longitud representante legal incorrecta")) {
                 JOptionPane.showMessageDialog(null,
                         "El Represetante Legal Debe Tener Entre 11 y 32 Caracteres",
                         "Lontigud Represetante Legal Incorrecta",

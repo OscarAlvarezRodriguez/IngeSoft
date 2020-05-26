@@ -31,6 +31,9 @@ public class DrogueriaDAO {
         em.getTransaction().begin();
         boolean ret = false;
         try {
+            if (!em.contains(object)) {
+                object = em.merge(object);
+            }
             em.remove(object);
             em.getTransaction().commit();
             ret = true;
@@ -47,13 +50,8 @@ public class DrogueriaDAO {
         EntityManager em = emf.createEntityManager();
         Drogueria drogueria = null;
         Query q = em.createQuery("SELECT d FROM Drogueria d "
-                + "WHERE d.nitDrogueria = :nitDrogueria") 
-                .setParameter("nitDrogueria", object.getNitDrogueria())
-                .setParameter("nombreDrogueria", object.getNombreDrogueria())
-                .setParameter("direccionDrogueria", object.getDireccionDrogueria())
-                .setParameter("telefonoDrogueria", object.getTelefonoDrogueria())
-                .setParameter("emailDrogueria", object.getEmailDrogueria())
-                .setParameter("representanteLegalDrogueria", object.getRepresentanteLegalDrogueria());
+                + "WHERE d.nit_Drogueria = :nit_Drogueria")
+                .setParameter("nit_Drogueria", object.getNitDrogueria());
         try {
             drogueria = (Drogueria) q.getSingleResult();
         } catch (NonUniqueResultException e) {
@@ -65,7 +63,7 @@ public class DrogueriaDAO {
             return drogueria;
         }
     }
-    
+
     public Drogueria leer() {
         EntityManager em = emf.createEntityManager();
         Drogueria drogueria = null;
