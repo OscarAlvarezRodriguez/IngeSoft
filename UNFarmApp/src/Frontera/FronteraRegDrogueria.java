@@ -443,7 +443,7 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
         d.setNombreDrogueria(txtNombreDrogueria.getText());
         d.setRepresentanteLegalDrogueria(txtRepresentante.getText());
         d.setTelefonoDrogueria(txtTelefono.getText());
-        if (drogueria.ValidarDatos(d).equals("Registro exitoso")) {
+        if (drogueria.validarDatos(d).equals("Registro exitoso")) {
             JLabel lb = new JLabel();
             lb.setSize(50, 50);
             JOptionPane.showMessageDialog(null,

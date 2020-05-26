@@ -26,15 +26,16 @@ public class EmpleadoDAO {
         }
     }
 
-    //Esta funcion no borra, por favor corregir (lo necesitamos para las pruebas, no sean malitos 
-    public boolean eliminar(Empleado object) {
+    public boolean eliminar(Empleado empleado) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         boolean ret = false;
-        
-        
         try {
-            em.remove(object);
+            //https://www.arquitecturajava.com/jpa-merge-y-el-manejo-del-entitymanager/
+            if (!em.contains(empleado)) {
+                empleado = em.merge(empleado);
+            }
+            em.remove(empleado);
             em.getTransaction().commit();
             ret = true;
         } catch (Exception e) {
@@ -66,8 +67,8 @@ public class EmpleadoDAO {
             return usuario;
         }
     }
-    
-    public Empleado leerex(Empleado par){
+
+    public Empleado leerex(Empleado par) {
         EntityManager em = emf.createEntityManager();
         Empleado usuario = null;
         Query q = em.createQuery("SELECT e"

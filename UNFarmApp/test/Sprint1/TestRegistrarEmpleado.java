@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Sprint1;
 
 import Control.RegistrarEmpleado;
@@ -15,15 +10,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Oracle
- */
 public class TestRegistrarEmpleado {
-    
-    private static RegistrarEmpleado empleado = new RegistrarEmpleado();
-    private static EmpleadoDAO  empleadoDao=new EmpleadoDAO();
-    
+
+    private static final RegistrarEmpleado empleado = new RegistrarEmpleado();
+    private static final EmpleadoDAO empleadoDao = new EmpleadoDAO();
+
     private final String cn = "Cédula no válida";
     private final String con = "Longitud contraseña incorrecta";
     private final String conn = "Número en contraseña incorrecto";
@@ -35,15 +26,12 @@ public class TestRegistrarEmpleado {
     private final String en = "Correo no válido";
     private final String re = "Registro exitoso";
     private final String co = "Correcto";
-    private final String rs="El empleado ya está registrado";
-    
+    private final String rs = "El empleado ya está registrado";
+
     public TestRegistrarEmpleado() {
-        
-        
-        
-        
+
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
         Empleado u = new Empleado();
@@ -56,25 +44,22 @@ public class TestRegistrarEmpleado {
         u.setContraseniaEmpleado("Dan123");
         empleado.validarDatos(u);
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
     @Test
     public void LongitudNombre() {
-        
+
         Empleado u = new Empleado();
         u.setNombreEmpleado("Dan");
         u.setApellidoEmpleado("Corredor");
@@ -83,9 +68,9 @@ public class TestRegistrarEmpleado {
         u.setDireccionEmpleado("Carrera 32 No 78b");
         u.setCorreoEmpleado("adolfo@mymail.com");
         u.setContraseniaEmpleado("Dan123");
-        
+
         assertEquals(empleado.validarDatos(u), nn);
-        
+
         u.setNombreEmpleado("DanielSantiagoCorredor");
         u.setApellidoEmpleado("Corredor");
         u.setCedulaEmpleado("123456789");
@@ -93,13 +78,13 @@ public class TestRegistrarEmpleado {
         u.setDireccionEmpleado("Carrera 32 No 78b");
         u.setCorreoEmpleado("adolfo@mymail.com");
         u.setContraseniaEmpleado("Dan123");
-        
+
         assertEquals(empleado.validarDatos(u), nn);
     }
-    
+
     @Test
     public void LongitudApellido() {
-        
+
         Empleado u = new Empleado();
         u.setNombreEmpleado("Daniel");
         u.setApellidoEmpleado("Roa");
@@ -108,9 +93,9 @@ public class TestRegistrarEmpleado {
         u.setDireccionEmpleado("Carrera 32 No 78b");
         u.setCorreoEmpleado("adolfo@mymail.com");
         u.setContraseniaEmpleado("Dan123");
-        
+
         assertEquals(empleado.validarDatos(u), an);
-        
+
         u.setNombreEmpleado("Daniel");
         u.setApellidoEmpleado("CorredorRuizGaleanoSuarez");
         u.setCedulaEmpleado("123456789");
@@ -120,14 +105,12 @@ public class TestRegistrarEmpleado {
         u.setContraseniaEmpleado("Dan123");
         assertEquals(empleado.validarDatos(u), an);
     }
-    
+
     @Test
     public void LongitudCedula() {
-        
-       
+
         Empleado u = new Empleado();
-        
-        
+
         u.setNombreEmpleado("Daniel");
         u.setApellidoEmpleado("Corredor");
         u.setCedulaEmpleado("123456");
@@ -135,9 +118,9 @@ public class TestRegistrarEmpleado {
         u.setDireccionEmpleado("Carrera 32 No 78b");
         u.setCorreoEmpleado("adolfo@mymail.com");
         u.setContraseniaEmpleado("Dan123");
-        
+
         assertEquals(empleado.validarDatos(u), cn);
-        
+
         u.setNombreEmpleado("Daniel");
         u.setApellidoEmpleado("Corredor");
         u.setCedulaEmpleado("123456567856");
@@ -147,10 +130,10 @@ public class TestRegistrarEmpleado {
         u.setContraseniaEmpleado("Dan123");
         assertEquals(empleado.validarDatos(u), cn);
     }
-    
+
     @Test
     public void LongitudTelefono() {
-        
+
         Empleado u = new Empleado();
         u.setNombreEmpleado("Daniel");
         u.setApellidoEmpleado("Corredor");
@@ -159,9 +142,9 @@ public class TestRegistrarEmpleado {
         u.setDireccionEmpleado("Carrera 32 No 78b");
         u.setCorreoEmpleado("adolfo@mymail.com");
         u.setContraseniaEmpleado("Dan123");
-        
+
         assertEquals(empleado.validarDatos(u), tn);
-        
+
         u.setNombreEmpleado("Daniel");
         u.setApellidoEmpleado("Corredor");
         u.setCedulaEmpleado("123456789");
@@ -171,10 +154,10 @@ public class TestRegistrarEmpleado {
         u.setContraseniaEmpleado("Dan123");
         assertEquals(empleado.validarDatos(u), tn);
     }
-    
+
     @Test
     public void LongitudDireccion() {
-        
+
         Empleado u = new Empleado();
         u.setNombreEmpleado("Daniel");
         u.setApellidoEmpleado("Corredor");
@@ -183,9 +166,9 @@ public class TestRegistrarEmpleado {
         u.setDireccionEmpleado("Carrera 32A");
         u.setCorreoEmpleado("adolfo@mymail.com");
         u.setContraseniaEmpleado("Dan123");
-        
+
         assertEquals(empleado.validarDatos(u), dn);
-        
+
         u.setNombreEmpleado("Daniel");
         u.setApellidoEmpleado("Corredor");
         u.setCedulaEmpleado("123456789");
@@ -195,10 +178,10 @@ public class TestRegistrarEmpleado {
         u.setContraseniaEmpleado("Dan123");
         assertEquals(empleado.validarDatos(u), dn);
     }
-    
+
     @Test
     public void Correo() {
-        
+
         Empleado u = new Empleado();
         u.setNombreEmpleado("Daniel");
         u.setApellidoEmpleado("Corredor");
@@ -207,9 +190,9 @@ public class TestRegistrarEmpleado {
         u.setDireccionEmpleado("Carrera 32 No 78b");
         u.setCorreoEmpleado("a@ml.com");
         u.setContraseniaEmpleado("Dan123");
-        
+
         assertEquals(empleado.validarDatos(u), en);
-        
+
         u.setNombreEmpleado("Daniel");
         u.setApellidoEmpleado("Corredor");
         u.setCedulaEmpleado("123456789");
@@ -218,7 +201,7 @@ public class TestRegistrarEmpleado {
         u.setCorreoEmpleado("adolfoestrella1995eldolfzapateromartinez@mymail.com");
         u.setContraseniaEmpleado("Dan123");
         assertEquals(empleado.validarDatos(u), en);
-        
+
         u.setNombreEmpleado("Daniel");
         u.setApellidoEmpleado("Corredor");
         u.setCedulaEmpleado("123456789");
@@ -227,7 +210,7 @@ public class TestRegistrarEmpleado {
         u.setCorreoEmpleado("adolfo#mymail.com");
         u.setContraseniaEmpleado("Dan123");
         assertEquals(empleado.validarDatos(u), en);
-        
+
         u.setNombreEmpleado("Daniel");
         u.setApellidoEmpleado("Corredor");
         u.setCedulaEmpleado("123456789");
@@ -236,8 +219,7 @@ public class TestRegistrarEmpleado {
         u.setCorreoEmpleado("adolfo@mymailcom");
         u.setContraseniaEmpleado("Dan123");
         assertEquals(empleado.validarDatos(u), en);
-        
-        
+
         u.setNombreEmpleado("Daniel");
         u.setApellidoEmpleado("Corredor");
         u.setCedulaEmpleado("123456789");
@@ -246,15 +228,12 @@ public class TestRegistrarEmpleado {
         u.setCorreoEmpleado("adolfomymailcom");
         u.setContraseniaEmpleado("Dan123");
         assertEquals(empleado.validarDatos(u), en);
-        
-        
-        
-    
+
     }
-    
+
     @Test
     public void Contrasenia() {
-        
+
         Empleado u = new Empleado();
         u.setNombreEmpleado("Daniel");
         u.setApellidoEmpleado("Corredor");
@@ -263,9 +242,9 @@ public class TestRegistrarEmpleado {
         u.setDireccionEmpleado("Carrera 32 No 78b");
         u.setCorreoEmpleado("adolfo@mymail.com");
         u.setContraseniaEmpleado("Dan1");
-        
+
         assertEquals(empleado.validarDatos(u), con);
-        
+
         u.setNombreEmpleado("Daniel");
         u.setApellidoEmpleado("Corredor");
         u.setCedulaEmpleado("123456789");
@@ -274,8 +253,7 @@ public class TestRegistrarEmpleado {
         u.setCorreoEmpleado("adolfo@mymail.com");
         u.setContraseniaEmpleado("Dani12345678901234567");
         assertEquals(empleado.validarDatos(u), con);
-        
-        
+
         u.setNombreEmpleado("Daniel");
         u.setApellidoEmpleado("Corredor");
         u.setCedulaEmpleado("123456789");
@@ -284,7 +262,7 @@ public class TestRegistrarEmpleado {
         u.setCorreoEmpleado("adolfo@mymail.com");
         u.setContraseniaEmpleado("dan123");
         assertEquals(empleado.validarDatos(u), comn);
-        
+
         u.setNombreEmpleado("Daniel");
         u.setApellidoEmpleado("Corredor");
         u.setCedulaEmpleado("123456789");
@@ -294,11 +272,10 @@ public class TestRegistrarEmpleado {
         u.setContraseniaEmpleado("Daniel");
         assertEquals(empleado.validarDatos(u), conn);
     }
-    
-    
+
     @Test
-    public void Reg_Exitoso() {   
-        
+    public void Reg_Exitoso() {
+
         Empleado u = new Empleado();
         u.setNombreEmpleado("Santiago");
         u.setApellidoEmpleado("Galindo");
@@ -308,16 +285,13 @@ public class TestRegistrarEmpleado {
         u.setCorreoEmpleado("santiago@mymail.com");
         u.setContraseniaEmpleado("San123");
         assertEquals(empleado.validarDatos(u), re);
-        
-        //Arreglar para que siempre se pase este test
-        //empleadoDao.eliminar(u);  
-        
+        empleadoDao.eliminar(u);
+
     }
-    
+
     @Test
     public void Ya_Registrado() {
-         
-        
+
         Empleado u = new Empleado();
         u.setNombreEmpleado("Daniel");
         u.setApellidoEmpleado("Corredor");
@@ -327,10 +301,7 @@ public class TestRegistrarEmpleado {
         u.setCorreoEmpleado("adolfo@mymail.com");
         u.setContraseniaEmpleado("Dan123");
         assertEquals(empleado.validarDatos(u), rs);
-         
+
     }
-    
-    
-    
-    
+
 }
