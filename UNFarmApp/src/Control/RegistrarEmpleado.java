@@ -5,6 +5,7 @@ import DAO.EmpleadoDAO;
 
 public class RegistrarEmpleado {
 
+    private final EmpleadoDAO nuevoempleado = new EmpleadoDAO();
     private final String cn = "Cédula no válida";
     private final String con = "Longitud contraseña incorrecta";
     private final String conn = "Número en contraseña incorrecto";
@@ -14,45 +15,16 @@ public class RegistrarEmpleado {
     private final String dn = "Longitud dirección incorrecta";
     private final String an = "Longitud apellido incorrecta";
     private final String en = "Correo no válido";
+    private final String er = "El empleado ya está registrado";
     private final String re = "Registro exitoso";
     private final String co = "Correcto";
-    public final EmpleadoDAO nuevoempleado = new EmpleadoDAO();
 
     public RegistrarEmpleado() {
     }
 
     public String validarDatos(Empleado empleado) {
-
-        if (!validarCedula(empleado.getCedulaEmpleado()).equals(co)) {
-            return (cn);
-        }
-
-        if (!validarNombre(empleado.getNombreEmpleado()).equals(co)) {
-            return (nn);
-        }
-        if (!validarTelefono(empleado.getTelefonoEmpleado()).equals(co)) {
-            return (tn);
-        }
-        if (!validarDireccion(empleado.getDireccionEmpleado()).equals(co)) {
-            return (dn);
-        }
-        if (!validarApellido(empleado.getApellidoEmpleado()).equals(co)) {
-            return (an);
-        }
-        if (!validarLongitudContrasenia(empleado.getContraseniaEmpleado()).equals(co)) {
-            return (con);
-        }
-        if (!validarMayusculaContrasenia(empleado.getContraseniaEmpleado()).equals(co)) {
-            return (comn);
-        }
-        if (!validarNumeroContrasenia(empleado.getContraseniaEmpleado()).equals(co)) {
-            return (conn);
-        }
-        if (!validarCorreo(empleado.getCorreoEmpleado()).equals(co)) {
-            return (en);
-        }
         if (nuevoempleado.leerex(empleado) != null) {
-            return ("El empleado ya está registrado");
+            return (er);
         }
         nuevoempleado.crear(empleado);
         return (re);
@@ -131,15 +103,8 @@ public class RegistrarEmpleado {
     }
 
     public boolean compararContrasenia(String s1, String s2) {
-        if (validarLongitudContrasenia(s1).equals(co)
-                && validarMayusculaContrasenia(s1).equals(co)
-                && validarNumeroContrasenia(s1).equals(co)
-                && validarLongitudContrasenia(s2).equals(co)
-                && validarMayusculaContrasenia(s2).equals(co)
-                && validarNumeroContrasenia(s2).equals(co)
-                && s1.equals(s2)) {
+        if (s1.equals(s2)) {
             return true;
-
         }
         return false;
     }

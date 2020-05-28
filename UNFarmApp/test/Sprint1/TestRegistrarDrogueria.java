@@ -62,7 +62,7 @@ public class TestRegistrarDrogueria {
         d.setNombreDrogueria("Droguería A");
         d.setRepresentanteLegalDrogueria("Andrés Palacio");
         d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarDatos(d), nn);
+        assertEquals(drogueria.validarNombre_drogueria(d.getNombreDrogueria()), nn);
 
         d.setDireccionDrogueria("Carrera 89 No 83a");
         d.setEmailDrogueria("drogueriacr@mymail.com");
@@ -70,7 +70,7 @@ public class TestRegistrarDrogueria {
         d.setNombreDrogueria("Droguería  Roja, Blanca y Naranja");
         d.setRepresentanteLegalDrogueria("Andrés Palacio");
         d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarDatos(d), nn);
+        assertEquals(drogueria.validarNombre_drogueria(d.getNombreDrogueria()), nn);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class TestRegistrarDrogueria {
         d.setNombreDrogueria("Droguería Cruz Roja");
         d.setRepresentanteLegalDrogueria("Andrés Palacio");
         d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarDatos(d), nitn);
+        assertEquals(drogueria.validarNit(d.getNitDrogueria()), nitn);
 
         d.setDireccionDrogueria("Carrera 89 No 83a");
         d.setEmailDrogueria("drogueriacr@mymail.com");
@@ -90,7 +90,7 @@ public class TestRegistrarDrogueria {
         d.setNombreDrogueria("Droguería Cruz Roja");
         d.setRepresentanteLegalDrogueria("Andrés Palacio");
         d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarDatos(d), nitn);
+        assertEquals(drogueria.validarNit(d.getNitDrogueria()), nitn);
     }
 
     @Test
@@ -102,7 +102,7 @@ public class TestRegistrarDrogueria {
         d.setNombreDrogueria("Droguería Cruz Roja");
         d.setRepresentanteLegalDrogueria("Andrés Palacio");
         d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarDatos(d), dn);
+        assertEquals(drogueria.validarDireccion(d.getDireccionDrogueria()), dn);
 
         d.setDireccionDrogueria("Carrera 89b No 83a 24 C.C Mirador");
         d.setEmailDrogueria("drogueriacr@mymail.com");
@@ -110,7 +110,7 @@ public class TestRegistrarDrogueria {
         d.setNombreDrogueria("Droguería Cruz Roja");
         d.setRepresentanteLegalDrogueria("Andrés Palacio");
         d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarDatos(d), dn);
+        assertEquals(drogueria.validarDireccion(d.getDireccionDrogueria()), dn);
     }
 
     @Test
@@ -122,7 +122,7 @@ public class TestRegistrarDrogueria {
         d.setNombreDrogueria("Droguería Cruz Roja");
         d.setRepresentanteLegalDrogueria("Andrés Palacio");
         d.setTelefonoDrogueria("123456");
-        assertEquals(drogueria.validarDatos(d), tn);
+        assertEquals(drogueria.validarTelefono_drogueria(d.getTelefonoDrogueria()), tn);
 
         d.setDireccionDrogueria("Carrera 89 No 83a");
         d.setEmailDrogueria("drogueriacr@mymail.com");
@@ -130,7 +130,7 @@ public class TestRegistrarDrogueria {
         d.setNombreDrogueria("Droguería Cruz Roja");
         d.setRepresentanteLegalDrogueria("Andrés Palacio");
         d.setTelefonoDrogueria("1234567890123456");
-        assertEquals(drogueria.validarDatos(d), tn);
+        assertEquals(drogueria.validarTelefono_drogueria(d.getTelefonoDrogueria()), tn);
     }
 
     @Test
@@ -142,7 +142,7 @@ public class TestRegistrarDrogueria {
         d.setNombreDrogueria("Droguería Cruz Roja");
         d.setRepresentanteLegalDrogueria("Andrés Palacio");
         d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarDatos(d), en);
+        assertEquals(drogueria.validarEmail(d.getEmailDrogueria()), en);
 
         d.setDireccionDrogueria("Carrera 89 No 83a");
         d.setEmailDrogueria("drogueriacruzroja.andrescorredor.mirador@mymail.com");
@@ -150,7 +150,7 @@ public class TestRegistrarDrogueria {
         d.setNombreDrogueria("Droguería Cruz Roja");
         d.setRepresentanteLegalDrogueria("Andrés Palacio");
         d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarDatos(d), en);
+        assertEquals(drogueria.validarEmail(d.getEmailDrogueria()), en);
 
         d.setDireccionDrogueria("Carrera 89 No 83a");
         d.setEmailDrogueria("drogueriacrmymail.com");
@@ -158,7 +158,7 @@ public class TestRegistrarDrogueria {
         d.setNombreDrogueria("Droguería Cruz Roja");
         d.setRepresentanteLegalDrogueria("Andrés Palacio");
         d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarDatos(d), en);
+        assertEquals(drogueria.validarEmail(d.getEmailDrogueria()), en);
 
         d.setDireccionDrogueria("Carrera 89 No 83a");
         d.setEmailDrogueria("drogueriacr@mymailcom");
@@ -166,7 +166,7 @@ public class TestRegistrarDrogueria {
         d.setNombreDrogueria("Droguería Cruz Roja");
         d.setRepresentanteLegalDrogueria("Andrés Palacio");
         d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarDatos(d), en);
+        assertEquals(drogueria.validarEmail(d.getEmailDrogueria()), en);
 
         d.setDireccionDrogueria("Carrera 89 No 83a");
         d.setEmailDrogueria("drogueriacrmymailcom");
@@ -174,7 +174,7 @@ public class TestRegistrarDrogueria {
         d.setNombreDrogueria("Droguería Cruz Roja");
         d.setRepresentanteLegalDrogueria("Andrés Palacio");
         d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarDatos(d), en);
+        assertEquals(drogueria.validarEmail(d.getEmailDrogueria()), en);
     }
 
     @Test
@@ -186,7 +186,7 @@ public class TestRegistrarDrogueria {
         d.setNombreDrogueria("Droguería Cruz Roja");
         d.setRepresentanteLegalDrogueria("Andrés Roa");
         d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarDatos(d), rpn);
+        assertEquals(drogueria.validarRepresentante(d.getRepresentanteLegalDrogueria()), rpn);
 
         d.setDireccionDrogueria("Carrera 89 No 83a");
         d.setEmailDrogueria("drogueriacr@mymail.com");
@@ -194,7 +194,7 @@ public class TestRegistrarDrogueria {
         d.setNombreDrogueria("Droguería Cruz Roja");
         d.setRepresentanteLegalDrogueria("Andrés Palacios Murillo Velasquez");
         d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarDatos(d), rpn);
+        assertEquals(drogueria.validarRepresentante(d.getRepresentanteLegalDrogueria()), rpn);
     }
 
     @Test

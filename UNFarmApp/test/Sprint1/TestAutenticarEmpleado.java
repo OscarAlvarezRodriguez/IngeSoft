@@ -59,12 +59,12 @@ public class TestAutenticarEmpleado {
         u.setCedulaEmpleado("123456");
         u.setContraseniaEmpleado("Dan123");
 
-        assertEquals(usuario.verificarLogin(u), cn);
+        assertEquals(usuario.validarLongitudCedula(u.getCedulaEmpleado()), cn);
 
         u.setCedulaEmpleado("123456567856");
         u.setContraseniaEmpleado("Dan123");
 
-        assertEquals(usuario.verificarLogin(u), cn);
+        assertEquals(usuario.validarLongitudCedula(u.getCedulaEmpleado()), cn);
 
     }
 
@@ -75,20 +75,20 @@ public class TestAutenticarEmpleado {
 
         u.setCedulaEmpleado("123456789");
         u.setContraseniaEmpleado("Dan1");
-        assertEquals(usuario.verificarLogin(u), con);
+        assertEquals(usuario.validarLongitudContrasenia(u.getContraseniaEmpleado()), con);
 
         u.setCedulaEmpleado("123456789");
         u.setContraseniaEmpleado("Dani12345678901234567");
-        assertEquals(usuario.verificarLogin(u), con);
+        assertEquals(usuario.validarLongitudContrasenia(u.getContraseniaEmpleado()), con);
 
         u.setCedulaEmpleado("123456789");
         u.setContraseniaEmpleado("dan123");
-        assertEquals(usuario.verificarLogin(u), comn);
+        assertEquals(usuario.validarMayusculaContrasenia(u.getContraseniaEmpleado()), comn);
 
         u.setCedulaEmpleado("123456789");
         u.setContraseniaEmpleado("Daniel");
 
-        assertEquals(usuario.verificarLogin(u), conn);
+        assertEquals(usuario.validarNumeroContrasenia(u.getContraseniaEmpleado()), conn);
     }
 
     @Test

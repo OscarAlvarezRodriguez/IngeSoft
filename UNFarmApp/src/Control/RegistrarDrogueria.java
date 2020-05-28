@@ -20,24 +20,6 @@ public class RegistrarDrogueria {
     }
 
     public String validarDatos(Drogueria drogapp) {
-        if (!validarNit(drogapp.getNitDrogueria()).equals(co)) {
-            return (nitn);
-        }
-        if (!validarNombre_drogueria(drogapp.getNombreDrogueria()).equals(co)) {
-            return (nn);
-        }
-        if (!validarDireccion(drogapp.getDireccionDrogueria()).equals(co)) {
-            return (dn);
-        }
-        if (!validarTelefono_drogueria(drogapp.getTelefonoDrogueria()).equals(co)) {
-            return (tn);
-        }
-        if (!validarEmail(drogapp.getEmailDrogueria()).equals(co)) {
-            return (en);
-        }
-        if (!validarRepresentante(drogapp.getRepresentanteLegalDrogueria()).equals(co)) {
-            return (rpn);
-        }
         if (farm.leer(drogapp) != null) {
             return (dr);
         }

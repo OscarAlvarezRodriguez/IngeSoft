@@ -57,7 +57,7 @@ public class DrogueriaDAO {
         } catch (NonUniqueResultException e) {
             drogueria = (Drogueria) q.getResultList().get(0);
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             em.close();
             return drogueria;

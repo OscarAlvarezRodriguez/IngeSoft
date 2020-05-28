@@ -9,9 +9,10 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 public class ClienteDAO {
+
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UNFarmAppPU");
-    
-    public void crear(Cliente object){
+
+    public void crear(Cliente object) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
@@ -24,8 +25,8 @@ public class ClienteDAO {
             em.close();
         }
     }
-    
-    public boolean eliminar(Cliente object){
+
+    public boolean eliminar(Cliente object) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         boolean ret = false;
@@ -41,8 +42,8 @@ public class ClienteDAO {
             return ret;
         }
     }
-    
-    public Cliente leer (Cliente par){
+
+    public Cliente leer(Cliente par) {
         EntityManager em = emf.createEntityManager();
         Cliente usuario = null;
         Query q = em.createQuery("SELECT c FROM Cliente c "
@@ -58,14 +59,14 @@ public class ClienteDAO {
         } catch (NonUniqueResultException e) {
             usuario = (Cliente) q.getResultList().get(0);
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             em.close();
             return usuario;
         }
     }
-    
-    public boolean actualizar(Cliente object, Cliente nuevoObjeto){
+
+    public boolean actualizar(Cliente object, Cliente nuevoObjeto) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         boolean ret = false;

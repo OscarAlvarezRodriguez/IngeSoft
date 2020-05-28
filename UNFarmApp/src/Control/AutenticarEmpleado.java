@@ -18,19 +18,6 @@ public class AutenticarEmpleado {
     }
 
     public String verificarLogin(Empleado emp) {
-        if (!validarLongitudCedula(emp.getCedulaEmpleado()).equals(co)) {
-            return (cn);
-        }
-
-         if (!validarLongitudContrasenia(emp.getContraseniaEmpleado()).equals(co)) {
-            return (con);
-        }
-        if (!validarMayusculaContrasenia(emp.getContraseniaEmpleado()).equals(co)) {
-            return (comn);
-        }
-        if (!validarNumeroContrasenia(emp.getContraseniaEmpleado()).equals(co)) {
-            return (conn);
-        }
         if (empleado.leer(emp) != null) {
             return (bi);
         }
