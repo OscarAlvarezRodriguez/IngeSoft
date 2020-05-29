@@ -1,18 +1,8 @@
 package Entidad;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class Factura {
 
-@Entity
-@Table(name = "Factura")
-public class Factura implements Serializable {
-
-    @Id
     private int idFactura;
-    @Column(nullable = false)
     private long precioTotalFactura;
 
     public Factura() {

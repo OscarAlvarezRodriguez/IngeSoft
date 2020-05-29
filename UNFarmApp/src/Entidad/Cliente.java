@@ -1,27 +1,12 @@
 package Entidad;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class Cliente {
 
-@Entity
-@Table(name = "Cliente")
-public class Cliente implements Serializable {
-
-    @Id
-    @Column(length = 12)
     private String cedulaCliente;
-    @Column(nullable = false, length = 20)
     private String nombreCliente;
-    @Column(nullable = false, length = 25)
     private String telefonoCliente;
-    @Column(nullable = false, length = 15)
     private String direccionCliente;
-    @Column(nullable = false, length = 32)
     private String descripcionDireccionCliente;
-    @Column(nullable = false, length = 50)
     private String apellidoCliente;
 
     public Cliente() {

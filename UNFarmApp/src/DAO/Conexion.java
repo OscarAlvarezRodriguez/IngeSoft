@@ -27,14 +27,6 @@ public class Conexion {
             statement = connection.prepareStatement(SQL);
         } catch (SQLException e) {
         }
-        if (connection != null) {
-            try {
-                // se verifica que no sea nulo para luego cerrarlo
-                // y ahorrar espacio de memoria
-                connection.close();
-            } catch (SQLException e) {
-            }
-        }
         //se retorna el PreparedStatement listo para ser ejecutado
         return statement;
     }

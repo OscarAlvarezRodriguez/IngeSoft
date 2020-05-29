@@ -1,88 +1,72 @@
 package Entidad;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class Empleado {
 
-@Entity
-@Table(name = "Empleado")
-public class Empleado implements Serializable {
-
-    @Id
-    @Column(length = 11)
-    private String cedula_Empleado;
-    @Column(nullable = false, length = 25)
-    private String nombre_Empleado;
-    @Column(nullable = false, length = 15)
-    private String telefono;
-    @Column(nullable = false, length = 32)
-    private String direccion_Empleado;
-    @Column(nullable = false, length = 25)
-    private String apellido_Empleado;
-    @Column(nullable = false, length = 20)
-    private String contrasenia;
-    @Column(nullable = false, length = 50)
-    private String correo;
+    private String cedulaEmpleado;
+    private String nombreEmpleado;
+    private String telefonoEmpleado;
+    private String direccionEmpleado;
+    private String apellidoEmpleado;
+    private String contraseniaEmpleado;
+    private String correoEmpleado;
 
     public Empleado() {
     }
 
     public String getCedulaEmpleado() {
-        return cedula_Empleado;
+        return cedulaEmpleado;
     }
 
     public void setCedulaEmpleado(String cedulaEmpleado) {
-        this.cedula_Empleado = cedulaEmpleado;
+        this.cedulaEmpleado = cedulaEmpleado;
     }
 
     public String getNombreEmpleado() {
-        return nombre_Empleado;
+        return nombreEmpleado;
     }
 
     public void setNombreEmpleado(String nombreEmpleado) {
-        this.nombre_Empleado = nombreEmpleado;
+        this.nombreEmpleado = nombreEmpleado;
     }
 
     public String getTelefonoEmpleado() {
-        return telefono;
+        return telefonoEmpleado;
     }
 
     public void setTelefonoEmpleado(String telefonoEmpleado) {
-        this.telefono = telefonoEmpleado;
+        this.telefonoEmpleado = telefonoEmpleado;
     }
 
     public String getDireccionEmpleado() {
-        return direccion_Empleado;
+        return direccionEmpleado;
     }
 
     public void setDireccionEmpleado(String direccionEmpleado) {
-        this.direccion_Empleado = direccionEmpleado;
+        this.direccionEmpleado = direccionEmpleado;
     }
 
     public String getApellidoEmpleado() {
-        return apellido_Empleado;
+        return apellidoEmpleado;
     }
 
     public void setApellidoEmpleado(String apellidoEmpleado) {
-        this.apellido_Empleado = apellidoEmpleado;
+        this.apellidoEmpleado = apellidoEmpleado;
     }
 
     public String getContraseniaEmpleado() {
-        return contrasenia;
+        return contraseniaEmpleado;
     }
 
     public void setContraseniaEmpleado(String contreseniaEmpleado) {
-        this.contrasenia = contreseniaEmpleado;
+        this.contraseniaEmpleado = contreseniaEmpleado;
     }
 
     public String getCorreoEmpleado() {
-        return correo;
+        return correoEmpleado;
     }
 
     public void setCorreoEmpleado(String correoEmpleado) {
-        this.correo = correoEmpleado;
+        this.correoEmpleado = correoEmpleado;
     }
 
 }

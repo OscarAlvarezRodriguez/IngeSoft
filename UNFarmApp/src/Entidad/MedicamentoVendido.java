@@ -1,17 +1,8 @@
 package Entidad;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+public class MedicamentoVendido extends Medicamento {
 
-@Entity
-@Table(name = "MedicamentoVendido")
-public class MedicamentoVendido extends Medicamento implements Serializable {
-
-    @Column(nullable = false)
     private int cantidadVendidaMedicamento;
-    @Column(nullable = false)
     private int idFacturaMedicamento;
 
     public MedicamentoVendido() {

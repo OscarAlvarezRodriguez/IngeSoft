@@ -13,10 +13,10 @@ public class DrogueriaDAO {
     private PreparedStatement statement;
     private final Conexion conexion = new Conexion();
     // se declaran los Sreings con las sentencias SQL que vamos a ejecutar
-    private final String INSERT = "INSERT INTO drogueria( nit_Drogueria, nombre_Drogueria, direccion__Drogueria, telefono, email, representante_Legal) VALUES(?,?,?,?,?,?)";
-    private final String UPDATE = "UPDATE drogueria SET nit_Drogueria = ?, nombre_Drogueria = ?, direccion__Drogueria = ?, telefono = ?, email = ?, representante_Legal = ? WHERE nit_Drogueria = ?";
-    private final String DELETE = "DELETE FROM drogueria WHERE nit_Drogueria = ?";
-    private final String GETONE = "SELECT * FROM drogueria WHERE nit_Drogueria = ?";
+    private final String INSERT = "INSERT INTO drogueria( nitDrogueria, nombreDrogueria, direccionDrogueria, telefono, email, representanteLegal) VALUES(?,?,?,?,?,?)";
+    private final String UPDATE = "UPDATE drogueria SET nitDrogueria = ?, nombreDrogueria = ?, direccionDrogueria = ?, telefono = ?, email = ?, representanteLegal = ? WHERE nit_Drogueria = ?";
+    private final String DELETE = "DELETE FROM drogueria WHERE nitDrogueria = ?";
+    private final String GETONE = "SELECT * FROM drogueria WHERE nitDrogueria = ?";
     private final String GETALL = "SELECT * FROM drogueria";
 
     public boolean crear(Drogueria d) {
