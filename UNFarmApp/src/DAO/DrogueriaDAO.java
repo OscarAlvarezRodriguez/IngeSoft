@@ -4,8 +4,6 @@ import Entidad.Drogueria;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DrogueriaDAO {
 
@@ -201,11 +199,11 @@ public class DrogueriaDAO {
     private Drogueria convertir(ResultSet rs) throws SQLException {
         //convierte el resulset (fila en una base de datos) en un objeto
         Drogueria d = new Drogueria();
-        d.setDireccionDrogueria(rs.getString("direccion__Drogueria"));
+        d.setDireccionDrogueria(rs.getString("direccionDrogueria"));
         d.setEmailDrogueria(rs.getString("email"));
-        d.setNitDrogueria(rs.getString("nit_Drogueria"));
-        d.setNombreDrogueria(rs.getString("nombre_Drogueria"));
-        d.setRepresentanteLegalDrogueria(rs.getString("representante_Legal"));
+        d.setNitDrogueria(rs.getString("nitDrogueria"));
+        d.setNombreDrogueria(rs.getString("nombreDrogueria"));
+        d.setRepresentanteLegalDrogueria(rs.getString("representanteLegal"));
         d.setTelefonoDrogueria(rs.getString("telefono"));
         return d;
     }
