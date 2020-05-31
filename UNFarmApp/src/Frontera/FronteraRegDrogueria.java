@@ -1,11 +1,9 @@
 package Frontera;
 
+import Recursos.Funciones;
 import Control.RegistrarDrogueria;
 import Entidad.Drogueria;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
-import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -13,20 +11,19 @@ import javax.swing.JOptionPane;
 public class FronteraRegDrogueria extends javax.swing.JPanel {
 
     RegistrarDrogueria drogueria = new RegistrarDrogueria();
+    Funciones f = new Funciones();
 
     public FronteraRegDrogueria() {
         initComponents();
+        allSetEmpty();
         jlLogo.setSize(100, 100);
-        jlLogo.setIcon(setImageBackground("/Recursos/logo.png", jlLogo));
+        jlLogo.setIcon(f.setImageBackground("/Recursos/logo.png", jlLogo));
         jlKit.setSize(100, 100);
-        jlKit.setIcon(setImageBackground("/Recursos/medikit.png", jlKit));
+        jlKit.setIcon(f.setImageBackground("/Recursos/medikit.png", jlKit));
+        f.setStyleJButon(btnSalir);
+        f.setStyleJButon(btnRegistrar);
+        
 
-    }
-
-    private ImageIcon setImageBackground(String direccion, Component o) {
-        ImageIcon imagen = new ImageIcon(this.getClass().getResource(direccion));
-        imagen = new ImageIcon(imagen.getImage().getScaledInstance(o.getWidth(), o.getHeight(), Image.SCALE_SMOOTH));
-        return imagen;
     }
 
     public void allSetEmpty() {
@@ -36,12 +33,13 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
         txtNombreDrogueria.setText("");
         txtRepresentante.setText("");
         txtTelefono.setText("");
-        txtDireccion.setBackground(Color.white);
-        txtEmail.setBackground(Color.white);
-        txtNIT.setBackground(Color.white);
-        txtNombreDrogueria.setBackground(Color.white);
-        txtRepresentante.setBackground(Color.white);
-        txtTelefono.setBackground(Color.white);
+        f.setStyleJTextField(txtDireccion);
+        f.setStyleJTextField(txtEmail);
+        f.setStyleJTextField(txtNIT);
+        f.setStyleJTextField(txtNombreDrogueria);
+        f.setStyleJTextField(txtRepresentante);
+        f.setStyleJTextField(txtTelefono);
+       
 
     }
 
@@ -96,6 +94,7 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
         jLabel2.setPreferredSize(new java.awt.Dimension(220, 30));
 
         txtNombreDrogueria.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
+        txtNombreDrogueria.setMargin(new java.awt.Insets(2, 5, 2, 5));
         txtNombreDrogueria.setPreferredSize(new java.awt.Dimension(300, 30));
         txtNombreDrogueria.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -260,6 +259,7 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
         btnSalir.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         btnSalir.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("Salir");
+        btnSalir.setBorder(null);
         btnSalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSalir.setPreferredSize(new java.awt.Dimension(150, 40));
         btnSalir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -298,7 +298,7 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
                         .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 242, Short.MAX_VALUE)
+                        .addGap(0, 227, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -450,7 +450,7 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
                     "Drogueria Creada Exitosamente",
                     "Registro exitoso",
                     JOptionPane.CANCEL_OPTION,
-                    setImageBackground("/recursos/exito.png", lb)
+                    f.setImageBackground("/recursos/exito.png", lb)
             );
             allSetEmpty();
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
@@ -478,22 +478,22 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
                         "El Nombre Debe Tener Entre 11 y 33 Caracteres",
                         "Longitud Nombre Incorrecta",
                         JOptionPane.ERROR_MESSAGE);
-                txtNombreDrogueria.setBackground(Color.pink);
+                txtNombreDrogueria.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtNombreDrogueriaFocusLost
 
     private void txtNombreDrogueriaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreDrogueriaFocusGained
-        if (txtNombreDrogueria.getBackground().equals(Color.pink)) {
-            txtNombreDrogueria.setBackground(Color.white);
+        if (txtNombreDrogueria.getBackground().equals(f.fondoTxtError)) {
+            txtNombreDrogueria.setBackground(f.fondoTxt);
             txtNombreDrogueria.setText("");
         }
     }//GEN-LAST:event_txtNombreDrogueriaFocusGained
 
     private void txtDireccionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusGained
-        if (txtDireccion.getBackground().equals(Color.pink)) {
-            txtDireccion.setBackground(Color.white);
+        if (txtDireccion.getBackground().equals(f.fondoTxtError)) {
+            txtDireccion.setBackground(f.fondoTxt);
             txtDireccion.setText("");
         }
     }//GEN-LAST:event_txtDireccionFocusGained
@@ -506,7 +506,7 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
                         "La Direccion Debe Tener Entre 12 y 32 Caracteres",
                         "Longitud Dirección Incorrecta",
                         JOptionPane.ERROR_MESSAGE);
-                txtDireccion.setBackground(Color.pink);
+                txtDireccion.setBackground(f.fondoTxtError);
 
             }
         }
@@ -520,15 +520,15 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
                         " El Número Telefónico Debe Tener Entre 7 y 15 Caracteres",
                         "Número Telefónico No Válido",
                         JOptionPane.ERROR_MESSAGE);
-                txtTelefono.setBackground(Color.pink);
+                txtTelefono.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtTelefonoFocusLost
 
     private void txtTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusGained
-        if (txtTelefono.getBackground().equals(Color.pink)) {
-            txtTelefono.setBackground(Color.white);
+        if (txtTelefono.getBackground().equals(f.fondoTxtError)) {
+            txtTelefono.setBackground(f.fondoTxt);
             txtTelefono.setText("");
         }
     }//GEN-LAST:event_txtTelefonoFocusGained
@@ -541,15 +541,15 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
                         " Nit Debe Tener Entre 11 y 20 Caracteres",
                         "Nit No Válido",
                         JOptionPane.ERROR_MESSAGE);
-                txtNIT.setBackground(Color.pink);
+                txtNIT.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtNITFocusLost
 
     private void txtNITFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNITFocusGained
-        if (txtNIT.getBackground().equals(Color.pink)) {
-            txtNIT.setBackground(Color.white);
+        if (txtNIT.getBackground().equals(f.fondoTxtError)) {
+            txtNIT.setBackground(f.fondoTxt);
             txtNIT.setText("");
         }
     }//GEN-LAST:event_txtNITFocusGained
@@ -562,15 +562,15 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
                         "El Represetante Legal Debe Tener Entre 11 y 32 Caracteres",
                         "Lontigud Represetante Legal Incorrecta",
                         JOptionPane.ERROR_MESSAGE);
-                txtRepresentante.setBackground(Color.pink);
+                txtRepresentante.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtRepresentanteFocusLost
 
     private void txtRepresentanteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRepresentanteFocusGained
-        if (txtRepresentante.getBackground().equals(Color.pink)) {
-            txtRepresentante.setBackground(Color.white);
+        if (txtRepresentante.getBackground().equals(f.fondoTxtError)) {
+            txtRepresentante.setBackground(f.fondoTxt);
             txtRepresentante.setText("");
         }
     }//GEN-LAST:event_txtRepresentanteFocusGained
@@ -584,15 +584,15 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
                         + "\n Ademas Debe Contener Una Arroba y Un Punto",
                         "Correo No Válido",
                         JOptionPane.ERROR_MESSAGE);
-                txtEmail.setBackground(Color.pink);
+                txtEmail.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtEmailFocusLost
 
     private void txtEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusGained
-        if (txtEmail.getBackground().equals(Color.pink)) {
-            txtEmail.setBackground(Color.white);
+        if (txtEmail.getBackground().equals(f.fondoTxtError)) {
+            txtEmail.setBackground(f.fondoTxt);
             txtEmail.setText("");
         }
     }//GEN-LAST:event_txtEmailFocusGained

@@ -24,6 +24,22 @@ public class RegistrarCliente {
         if (nuevocliente.leer(cliente.getCedulaCliente()) != null) {
             return (cr);
         }
+        if (!validarNombre(cliente.getNombreCliente()).equals(co)) {
+            return (nn);
+        }
+        if (!validarTelefono(cliente.getTelefonoCliente()).equals(co)) {
+            return (tn);
+        }
+        if (!validarDireccion(cliente.getDireccionCliente()).equals(co)) {
+            return (dn);
+        }
+        if (!validarDescripcionDir(cliente.getDescripcionDireccionCliente()).equals(co)) {
+            return (ddn);
+        }
+        if (!validarApellido(cliente.getApellidoCliente()).equals(co)) {
+            return (an);
+        }
+        ClienteDAO nuevocliente = new ClienteDAO();
         nuevocliente.crear(cliente);
         return (re);
     }

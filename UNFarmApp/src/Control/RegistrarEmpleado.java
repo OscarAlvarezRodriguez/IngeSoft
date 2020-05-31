@@ -26,6 +26,34 @@ public class RegistrarEmpleado {
         if (nuevoempleado.leerex(empleado) != null) {
             return (er);
         }
+
+        if (!validarNombre(empleado.getNombreEmpleado()).equals(co)) {
+            return (nn);
+        }
+        if (!validarTelefono(empleado.getTelefonoEmpleado()).equals(co)) {
+            return (tn);
+        }
+        if (!validarDireccion(empleado.getDireccionEmpleado()).equals(co)) {
+            return (dn);
+        }
+        if (!validarApellido(empleado.getApellidoEmpleado()).equals(co)) {
+            return (an);
+        }
+        if (!validarLongitudContrasenia(empleado.getContraseniaEmpleado()).equals(co)) {
+            return (con);
+        }
+        if (!validarMayusculaContrasenia(empleado.getContraseniaEmpleado()).equals(co)) {
+            return (comn);
+        }
+        if (!validarNumeroContrasenia(empleado.getContraseniaEmpleado()).equals(co)) {
+            return (conn);
+        }
+        if (!validarCorreo(empleado.getCorreoEmpleado()).equals(co)) {
+            return (en);
+        }
+        if (nuevoempleado.leerex(empleado) != null) {
+            return ("El empleado ya está registrado");
+        }
         nuevoempleado.crear(empleado);
         return (re);
     }

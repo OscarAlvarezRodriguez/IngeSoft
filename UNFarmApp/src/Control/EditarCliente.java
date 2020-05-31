@@ -26,6 +26,29 @@ public class EditarCliente {
     }
     
     public String ValidarDatos(Cliente clienteAct, String cedulaCliente) {
+        if(!validarCedula(clienteAct.getCedulaCliente()).equals(co)){
+            return(cn);
+        }
+        if(!validarNombre(clienteAct.getNombreCliente()).equals(co)){
+            return(nn);
+        }
+        
+        if(!validarTelefono(clienteAct.getTelefonoCliente()).equals(co)){
+            return(tn);
+        }
+        
+        if(!validarDireccion(clienteAct.getDireccionCliente()).equals(co)){
+            return(dn);
+        }
+        
+        if(!validarDescripcionDir(clienteAct.getDescripcionDireccionCliente()).equals(co)){
+            return(ddn);
+        }
+        
+        if(!validarApellido(clienteAct.getApellidoCliente()).equals(co)){
+            return(an);
+        }
+        
         if (actCliente.leer(cedulaCliente) == null) {
             return (cr);
         }

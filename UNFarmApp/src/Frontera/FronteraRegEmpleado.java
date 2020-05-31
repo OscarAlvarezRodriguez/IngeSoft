@@ -1,33 +1,29 @@
 package Frontera;
 
 import Control.RegistrarEmpleado;
-import Entidad.Drogueria;
 import Entidad.Empleado;
+import Recursos.Funciones;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
-import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class FronteraRegEmpleado extends javax.swing.JPanel {
 
+    Funciones f = new Funciones();
     RegistrarEmpleado empleado = new RegistrarEmpleado();
 
     public FronteraRegEmpleado() {
         initComponents();
+        allSetEmpty();
         jlLogo.setSize(100, 100);
-        jlLogo.setIcon(setImageBackground("/Recursos/logo.png", jlLogo));
+        jlLogo.setIcon(f.setImageBackground("/Recursos/logo.png", jlLogo));
         jlKit.setSize(100, 100);
-        jlKit.setIcon(setImageBackground("/Recursos/addUser.png", jlKit));
+        jlKit.setIcon(f.setImageBackground("/Recursos/addUser.png", jlKit));
+        f.setStyleJButon(btnSalir);
+        f.setStyleJButon(btnRegistrar);
 
-    }
-
-    private ImageIcon setImageBackground(String direccion, Component o) {
-        ImageIcon imagen = new ImageIcon(this.getClass().getResource(direccion));
-        imagen = new ImageIcon(imagen.getImage().getScaledInstance(o.getWidth(), o.getHeight(), Image.SCALE_SMOOTH));
-        return imagen;
     }
 
     private void allSetEmpty() {
@@ -38,15 +34,15 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
         txtDireccion.setText("");
         txtNombre.setText("");
         txtTelefono.setText("");
-        txtVerContrasenia.setText("");
-        txtApellido.setBackground(Color.white);
-        txtCedula.setBackground(Color.white);
-        txtContrasenia.setBackground(Color.white);
-        txtCorreo.setBackground(Color.white);
-        txtDireccion.setBackground(Color.white);
-        txtNombre.setBackground(Color.white);
-        txtTelefono.setBackground(Color.white);
-        txtVerContrasenia.setBackground(Color.white);
+        f.setStyleJTextField(txtVerContrasenia);
+        f.setStyleJTextField(txtApellido);
+        f.setStyleJTextField(txtCedula);
+        f.setStyleJTextField(txtContrasenia);
+        f.setStyleJTextField(txtCorreo);
+        f.setStyleJTextField(txtDireccion);
+        f.setStyleJTextField(txtNombre);
+        f.setStyleJTextField(txtTelefono);
+        f.setStyleJTextField(txtVerContrasenia);
     }
 
     @Override
@@ -532,12 +528,12 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
                     "Empleado Creado Exitosamente",
                     "Registro exitoso",
                     JOptionPane.CANCEL_OPTION,
-                    setImageBackground("/recursos/exito.png", lb)
+                    f.setImageBackground("/recursos/exito.png", lb)
             );
             allSetEmpty();
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
 
-        } else if(empleado.validarDatos(e).equals("El empleado ya está registrado")){
+        } else if (empleado.validarDatos(e).equals("El empleado ya está registrado")) {
             JLabel lb = new JLabel();
             lb.setSize(50, 50);
             JOptionPane.showMessageDialog(null,
@@ -545,8 +541,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
                     "Registro Fallido",
                     JOptionPane.ERROR_MESSAGE
             );
-        } 
-        else {
+        } else {
             JOptionPane.showMessageDialog(null,
                     "Algun Campo Esta Mal Diligenciado, Por Favor Verificarlos",
                     "Comprobar Campos",
@@ -584,15 +579,15 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
                         "El Nombre Debe Tener Entre 5 y 20 Caracteres",
                         "Longitud Nombre Incorrecta",
                         JOptionPane.ERROR_MESSAGE);
-                txtNombre.setBackground(Color.pink);
+                txtNombre.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtNombreFocusLost
 
     private void txtNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusGained
-        if (txtNombre.getBackground().equals(Color.pink)) {
-            txtNombre.setBackground(Color.white);
+        if (txtNombre.getBackground().equals(f.fondoTxtError)) {
+            txtNombre.setBackground(f.fondoTxt);
             txtNombre.setText("");
         }
     }//GEN-LAST:event_txtNombreFocusGained
@@ -605,15 +600,15 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
                         "El Apellido Debe Tener Entre 5 y 20 Caracteres",
                         "Longitud Apellido Incorrecta",
                         JOptionPane.ERROR_MESSAGE);
-                txtApellido.setBackground(Color.pink);
+                txtApellido.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtApellidoFocusLost
 
     private void txtApellidoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoFocusGained
-        if (txtApellido.getBackground().equals(Color.pink)) {
-            txtApellido.setBackground(Color.white);
+        if (txtApellido.getBackground().equals(f.fondoTxtError)) {
+            txtApellido.setBackground(f.fondoTxt);
             txtApellido.setText("");
         }
     }//GEN-LAST:event_txtApellidoFocusGained
@@ -621,20 +616,20 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
     private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
         if (!txtCedula.getText().equals("")) {
             if (empleado.validarCedula(txtCedula.getText())
-                    .equals("Cédula nó valida")) {
+                    .equals("Cédula no válida")) {
                 JOptionPane.showMessageDialog(null,
                         "La Cedula Debe Tener Entre 7 y 11 Caracteres",
                         "Cédula Nó Valida",
                         JOptionPane.ERROR_MESSAGE);
-                txtCedula.setBackground(Color.pink);
+                txtCedula.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtCedulaFocusLost
 
     private void txtCedulaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusGained
-        if (txtCedula.getBackground().equals(Color.pink)) {
-            txtCedula.setBackground(Color.white);
+        if (txtCedula.getBackground().equals(f.fondoTxtError)) {
+            txtCedula.setBackground(f.fondoTxt);
             txtCedula.setText("");
         }
     }//GEN-LAST:event_txtCedulaFocusGained
@@ -652,15 +647,15 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
                         + "\n Ademas Debe Tener Una Mayuscula y Un Numero",
                         "Contraseña no válida",
                         JOptionPane.ERROR_MESSAGE);
-                txtContrasenia.setBackground(Color.pink);
+                txtContrasenia.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtContraseniaFocusLost
 
     private void txtContraseniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaFocusGained
-        if (txtContrasenia.getBackground().equals(Color.pink)) {
-            txtContrasenia.setBackground(Color.white);
+        if (txtContrasenia.getBackground().equals(f.fondoTxtError)) {
+            txtContrasenia.setBackground(f.fondoTxt);
             txtContrasenia.setText("");
         }
     }//GEN-LAST:event_txtContraseniaFocusGained
@@ -673,15 +668,15 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
                         "La Verificación Debe Ser La misma",
                         "Verificacion no válida",
                         JOptionPane.ERROR_MESSAGE);
-                txtVerContrasenia.setBackground(Color.pink);
+                txtVerContrasenia.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtVerContraseniaFocusLost
 
     private void txtVerContraseniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVerContraseniaFocusGained
-        if (txtVerContrasenia.getBackground().equals(Color.pink)) {
-            txtVerContrasenia.setBackground(Color.white);
+        if (txtVerContrasenia.getBackground().equals(f.fondoTxtError)) {
+            txtVerContrasenia.setBackground(f.fondoTxt);
             txtVerContrasenia.setText("");
         }
     }//GEN-LAST:event_txtVerContraseniaFocusGained
@@ -694,15 +689,15 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
                         "La Direccion Debe Tener Entre 12 y 32 Caracteres",
                         "Longitud Dirección Incorrecta",
                         JOptionPane.ERROR_MESSAGE);
-                txtDireccion.setBackground(Color.pink);
+                txtDireccion.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtDireccionFocusLost
 
     private void txtDireccionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusGained
-        if (txtDireccion.getBackground().equals(Color.pink)) {
-            txtDireccion.setBackground(Color.white);
+        if (txtDireccion.getBackground().equals(f.fondoTxtError)) {
+            txtDireccion.setBackground(f.fondoTxt);
             txtDireccion.setText("");
         }
     }//GEN-LAST:event_txtDireccionFocusGained
@@ -715,15 +710,15 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
                         " El Número Telefónico Debe Tener Entre 7 y 15 Caracteres",
                         "Número Telefónico No Válido",
                         JOptionPane.ERROR_MESSAGE);
-                txtTelefono.setBackground(Color.pink);
+                txtTelefono.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtTelefonoFocusLost
 
     private void txtTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusGained
-        if (txtTelefono.getBackground().equals(Color.pink)) {
-            txtTelefono.setBackground(Color.white);
+        if (txtTelefono.getBackground().equals(f.fondoTxtError)) {
+            txtTelefono.setBackground(f.fondoTxt);
             txtTelefono.setText("");
         }
     }//GEN-LAST:event_txtTelefonoFocusGained
@@ -737,15 +732,15 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
                         + "\n Ademas Debe Contener Una Arroba y Un Punto",
                         "Correo No Válido",
                         JOptionPane.ERROR_MESSAGE);
-                txtCorreo.setBackground(Color.pink);
+                txtCorreo.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtCorreoFocusLost
 
     private void txtCorreoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusGained
-        if (txtCorreo.getBackground().equals(Color.pink)) {
-            txtCorreo.setBackground(Color.white);
+        if (txtCorreo.getBackground().equals(f.fondoTxtError)) {
+            txtCorreo.setBackground(f.fondoTxt);
             txtCorreo.setText("");
         }
     }//GEN-LAST:event_txtCorreoFocusGained

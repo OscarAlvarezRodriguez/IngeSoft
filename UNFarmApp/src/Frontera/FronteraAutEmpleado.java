@@ -2,37 +2,31 @@ package Frontera;
 
 import Control.AutenticarEmpleado;
 import Entidad.Empleado;
-import java.awt.Color;
-import java.awt.Component;
+import Recursos.Funciones;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.util.Arrays;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class FronteraAutEmpleado extends javax.swing.JPanel {
 
+    private Funciones f = new Funciones();
     private AutenticarEmpleado empleado = new AutenticarEmpleado();
 
     public FronteraAutEmpleado() {
         initComponents();
+        allSetEmpty();
         jlLogo.setSize(100, 100);
-        jlLogo.setIcon(setImageBackground("/Recursos/logo.png", jlLogo));
-    }
-
-    private ImageIcon setImageBackground(String direccion, Component o) {
-        ImageIcon imagen = new ImageIcon(this.getClass().getResource(direccion));
-        imagen = new ImageIcon(imagen.getImage().getScaledInstance(o.getWidth(), o.getHeight(), Image.SCALE_SMOOTH));
-        return imagen;
+        jlLogo.setIcon(f.setImageBackground("/Recursos/logo.png", jlLogo));
+        f.setStyleJButon(btnRegistrar);
+        f.setStyleJButon(btnIniciarSesion);
     }
 
     public void allSetEmpty() {
         txtContrasenia.setText("");
         txtUsuario.setText("");
-        txtContrasenia.setBackground(Color.white);
-        txtUsuario.setBackground(Color.white);
-
+        f.setStyleJTextField(txtUsuario);
+        f.setStyleJTextField(txtContrasenia);
     }
 
     @Override
@@ -202,6 +196,14 @@ public class FronteraAutEmpleado extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
+        if (txtUsuario.getBackground().equals(f.fondoTxtError)) {
+            txtUsuario.setBackground(f.fondoTxt);
+            txtUsuario.setText("");
+        }
+    }//GEN-LAST:event_txtUsuarioFocusGained
+
+    private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
+
         if (!txtUsuario.getText().equals("")) {
             if (empleado.validarLongitudCedula(txtUsuario.getText())
                     .equals("Número cedula no válido")) {
@@ -209,16 +211,9 @@ public class FronteraAutEmpleado extends javax.swing.JPanel {
                         "La cedula Debe Tener Entre 7 y 11 Caracteres",
                         "Número Cedula No Válido",
                         JOptionPane.ERROR_MESSAGE);
-                txtUsuario.setBackground(Color.pink);
+                txtUsuario.setBackground(f.fondoTxtError);
 
             }
-        }
-    }//GEN-LAST:event_txtUsuarioFocusGained
-
-    private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
-        if (txtUsuario.getBackground().equals(Color.pink)) {
-            txtUsuario.setBackground(Color.white);
-            txtUsuario.setText("");
         }
     }//GEN-LAST:event_txtUsuarioFocusLost
 
@@ -247,7 +242,7 @@ public class FronteraAutEmpleado extends javax.swing.JPanel {
                     + e.getApellidoEmpleado(),
                     "Bienvenido",
                     JOptionPane.CANCEL_OPTION,
-                    setImageBackground("/recursos/exito.png", lb)
+                    f.setImageBackground("/recursos/exito.png", lb)
             );
             allSetEmpty();
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraSplash);
@@ -292,15 +287,15 @@ public class FronteraAutEmpleado extends javax.swing.JPanel {
                         + "\n Ademas Debe Tener Una Mayuscula y Un Numero",
                         "Contraseña Incorrecta",
                         JOptionPane.ERROR_MESSAGE);
-                txtContrasenia.setBackground(Color.pink);
+                txtContrasenia.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtContraseniaFocusLost
 
     private void txtContraseniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaFocusGained
-        if (txtContrasenia.getBackground().equals(Color.pink)) {
-            txtContrasenia.setBackground(Color.white);
+        if (txtContrasenia.getBackground().equals(f.fondoTxtError)) {
+            txtContrasenia.setBackground(f.fondoTxt);
             txtContrasenia.setText("");
         }
     }//GEN-LAST:event_txtContraseniaFocusGained
