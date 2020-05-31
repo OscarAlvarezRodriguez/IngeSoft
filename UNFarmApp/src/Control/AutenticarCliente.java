@@ -16,7 +16,7 @@ public class AutenticarCliente {
 
     public String verificarLogin(Cliente cli) {
 
-        if (cliente.leer(cli) != null) {
+        if (cliente.leer(cli.getCedulaCliente()) != null) {
             return (bi);
         }
         return (cr);
