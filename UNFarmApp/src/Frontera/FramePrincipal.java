@@ -19,11 +19,16 @@ public class FramePrincipal extends javax.swing.JFrame {
     public static final int INTFronteraEmpleado = 2;
     public static final int INTFronteraSplash = 3;
     public static final int INTFronteraAutEmpleado = 4;
+    public static final int INTFronteraRegCliente = 5;
+    public static final int INTFronteraEditCliente = 6;
 
     FronteraSplash splash = new FronteraSplash();
     FronteraRegEmpleado empleado = new FronteraRegEmpleado();
     FronteraRegDrogueria drogueria = new FronteraRegDrogueria();
-    FronteraAutEmpleado autenticar = new FronteraAutEmpleado();
+    FronteraAutEmpleado autenticarEmpleado = new FronteraAutEmpleado();
+    FronteraEditCliente editarCliente = new FronteraEditCliente();
+    //FronteraRegCliente regCliente = new FronteraRegCliente();
+
     JLabel logo = new JLabel();
 
     void ChangePanel(int n) {
@@ -32,7 +37,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         splash.setVisible(false);
         empleado.setVisible(false);
         drogueria.setVisible(false);
-        autenticar.setVisible(false);
+        autenticarEmpleado.setVisible(false);
+        editarCliente.setVisible(false);
+        //regCliente.setVisible(false);
 
         switch (n) {
             case INTFronteraEmpleado:
@@ -45,7 +52,13 @@ public class FramePrincipal extends javax.swing.JFrame {
                 splash.setVisible(true);
                 break;
             case INTFronteraAutEmpleado:
-                autenticar.setVisible(true);
+                autenticarEmpleado.setVisible(true);
+                break;
+            case INTFronteraEditCliente:
+                editarCliente.setVisible(true);
+                break;
+            case INTFronteraRegCliente:
+                //regCliente.setVisible(true);
                 break;
             default:
                 break;
@@ -73,10 +86,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         add(empleado);
         empleado.setBounds(jpPrincipal.getBounds());
         empleado.setVisible(false);
-        
-        add(autenticar);
-        autenticar.setBounds(jpPrincipal.getBounds());
-        autenticar.setVisible(false);
+
+        add(autenticarEmpleado);
+        autenticarEmpleado.setBounds(jpPrincipal.getBounds());
+        autenticarEmpleado.setVisible(false);
 
         App.getInstance().setFramePrincipal(this);
     }

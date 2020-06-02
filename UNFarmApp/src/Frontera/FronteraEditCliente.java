@@ -1,5 +1,5 @@
 package Frontera;
-
+//ERROR
 import Control.RegistrarEmpleado;
 import Entidad.Drogueria;
 import Entidad.Empleado;
@@ -32,21 +32,15 @@ public class FronteraEditCliente extends javax.swing.JPanel {
 
     private void allSetEmpty() {
         txtApellido.setText("");
-        txtCedula.setText("");
-        txtContrasenia.setText("");
-        txtCorreo.setText("");
+        txtDireccion.setText("");
         txtDireccion.setText("");
         txtNombre.setText("");
-        txtTelefono.setText("");
-        txtVerContrasenia.setText("");
+        txtCelular.setText("");
         txtApellido.setBackground(Color.white);
-        txtCedula.setBackground(Color.white);
-        txtContrasenia.setBackground(Color.white);
-        txtCorreo.setBackground(Color.white);
+        txtDireccion.setBackground(Color.white);
         txtDireccion.setBackground(Color.white);
         txtNombre.setBackground(Color.white);
-        txtTelefono.setBackground(Color.white);
-        txtVerContrasenia.setBackground(Color.white);
+        txtCelular.setBackground(Color.white);
     }
 
     @Override
@@ -68,11 +62,10 @@ public class FronteraEditCliente extends javax.swing.JPanel {
         txtNombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtApellido = new javax.swing.JTextField();
-        txtContrasenia = new javax.swing.JTextField();
+        txtDireccion = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtVerContrasenia = new javax.swing.JTextField();
-        txtDireccion = new javax.swing.JTextField();
+        txtCelular = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
@@ -106,11 +99,6 @@ public class FronteraEditCliente extends javax.swing.JPanel {
                 txtNombreFocusLost(evt);
             }
         });
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
-            }
-        });
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
@@ -134,35 +122,25 @@ public class FronteraEditCliente extends javax.swing.JPanel {
                 txtApellidoFocusLost(evt);
             }
         });
-        txtApellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidoActionPerformed(evt);
-            }
-        });
         txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtApellidoKeyTyped(evt);
             }
         });
 
-        txtContrasenia.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
-        txtContrasenia.setPreferredSize(new java.awt.Dimension(300, 30));
-        txtContrasenia.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtDireccion.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
+        txtDireccion.setPreferredSize(new java.awt.Dimension(300, 30));
+        txtDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtContraseniaFocusGained(evt);
+                txtDireccionFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtContraseniaFocusLost(evt);
+                txtDireccionFocusLost(evt);
             }
         });
-        txtContrasenia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContraseniaActionPerformed(evt);
-            }
-        });
-        txtContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtContraseniaKeyTyped(evt);
+                txtDireccionKeyTyped(evt);
             }
         });
 
@@ -180,45 +158,24 @@ public class FronteraEditCliente extends javax.swing.JPanel {
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel6.setPreferredSize(new java.awt.Dimension(240, 30));
 
-        txtVerContrasenia.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
-        txtVerContrasenia.setPreferredSize(new java.awt.Dimension(300, 30));
-        txtVerContrasenia.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtCelular.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
+        txtCelular.setPreferredSize(new java.awt.Dimension(300, 30));
+        txtCelular.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtVerContraseniaFocusGained(evt);
+                txtCelularFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtVerContraseniaFocusLost(evt);
+                txtCelularFocusLost(evt);
             }
         });
-        txtVerContrasenia.addActionListener(new java.awt.event.ActionListener() {
+        txtCelular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtVerContraseniaActionPerformed(evt);
+                txtCelularActionPerformed(evt);
             }
         });
-        txtVerContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCelular.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtVerContraseniaKeyTyped(evt);
-            }
-        });
-
-        txtDireccion.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
-        txtDireccion.setPreferredSize(new java.awt.Dimension(300, 30));
-        txtDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtDireccionFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtDireccionFocusLost(evt);
-            }
-        });
-        txtDireccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDireccionActionPerformed(evt);
-            }
-        });
-        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDireccionKeyTyped(evt);
+                txtCelularKeyTyped(evt);
             }
         });
 
@@ -286,9 +243,8 @@ public class FronteraEditCliente extends javax.swing.JPanel {
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtVerContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 233, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(238, 238, 238)
@@ -325,22 +281,16 @@ public class FronteraEditCliente extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtVerContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(62, 62, 62)
+                        .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(134, 134, 134)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-
-    }//GEN-LAST:event_txtNombreActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
         char c = evt.getKeyChar();
@@ -349,10 +299,6 @@ public class FronteraEditCliente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtNombreKeyTyped
 
-    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidoActionPerformed
-
     private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
         char c = evt.getKeyChar();
         if (!Character.isLetter(c) && c != 32) {
@@ -360,38 +306,23 @@ public class FronteraEditCliente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtApellidoKeyTyped
 
-    private void txtContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseniaActionPerformed
-
-    }//GEN-LAST:event_txtContraseniaActionPerformed
-
-    private void txtContraseniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseniaKeyTyped
-        char c = evt.getKeyChar();
-        if (!Character.isLetterOrDigit(c) && c != 32) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtContraseniaKeyTyped
-
-    private void txtVerContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVerContraseniaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtVerContraseniaActionPerformed
-
-    private void txtVerContraseniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtVerContraseniaKeyTyped
-        char c = evt.getKeyChar();
-        if (!Character.isLetterOrDigit(c) && c != 32) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtVerContraseniaKeyTyped
-
-    private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionActionPerformed
-
     private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
         char c = evt.getKeyChar();
-        if (!Character.isLetterOrDigit(c) && c != '-' && c != '.') {
+        if (!Character.isLetterOrDigit(c) && c != 32) {
             evt.consume();
         }
     }//GEN-LAST:event_txtDireccionKeyTyped
+
+    private void txtCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCelularActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCelularActionPerformed
+
+    private void txtCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isLetterOrDigit(c) && c != 32) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCelularKeyTyped
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         allSetEmpty();
@@ -401,12 +332,9 @@ public class FronteraEditCliente extends javax.swing.JPanel {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         Empleado e = new Empleado();
         e.setApellidoEmpleado(txtApellido.getText());
-        e.setCedulaEmpleado(txtCedula.getText());
-        e.setContraseniaEmpleado(txtContrasenia.getText());
-        e.setCorreoEmpleado(txtCorreo.getText());
+        e.setContraseniaEmpleado(txtDireccion.getText());
         e.setDireccionEmpleado(txtDireccion.getText());
-        e.setNombreEmpleado(txtNombre.getText());
-        e.setTelefonoEmpleado(txtTelefono.getText());
+        e.setNombreEmpleado(txtNombre.getText());    
 
         if (empleado.validarDatos(e).equals("Registro exitoso")) {
             JLabel lb = new JLabel();
@@ -479,60 +407,18 @@ public class FronteraEditCliente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtApellidoFocusGained
 
-    private void txtContraseniaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaFocusLost
-        if (!txtContrasenia.getText().equals("")) {
-            if (empleado.validarLongitudContrasenia(txtContrasenia.getText())
+    private void txtDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusLost
+        if (!txtDireccion.getText().equals("")) {
+            if (empleado.validarLongitudContrasenia(txtDireccion.getText())
                     .equals("Longitud contraseña incorrecta")
-                    || empleado.validarMayusculaContrasenia(txtContrasenia.getText())
+                    || empleado.validarMayusculaContrasenia(txtDireccion.getText())
                             .equals("Mayúscula en contraseña incorrecto")
-                    || empleado.validarNumeroContrasenia(txtContrasenia.getText())
+                    || empleado.validarNumeroContrasenia(txtDireccion.getText())
                             .equals("Número en contraseña incorrecto")) {
                 JOptionPane.showMessageDialog(null,
                         "La Contraseña Debe Tener Entre 5 y 20 Caracteres,"
                         + "\n Ademas Debe Tener Una Mayuscula y Un Numero",
                         "Contraseña no válida",
-                        JOptionPane.ERROR_MESSAGE);
-                txtContrasenia.setBackground(Color.pink);
-
-            }
-        }
-    }//GEN-LAST:event_txtContraseniaFocusLost
-
-    private void txtContraseniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaFocusGained
-        if (txtContrasenia.getBackground().equals(Color.pink)) {
-            txtContrasenia.setBackground(Color.white);
-            txtContrasenia.setText("");
-        }
-    }//GEN-LAST:event_txtContraseniaFocusGained
-
-    private void txtVerContraseniaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVerContraseniaFocusLost
-        if (!txtVerContrasenia.getText().equals("")) {
-            if (!(empleado.compararContrasenia(txtContrasenia.getText(),
-                    txtVerContrasenia.getText()))) {
-                JOptionPane.showMessageDialog(null,
-                        "La Verificación Debe Ser La misma",
-                        "Verificacion no válida",
-                        JOptionPane.ERROR_MESSAGE);
-                txtVerContrasenia.setBackground(Color.pink);
-
-            }
-        }
-    }//GEN-LAST:event_txtVerContraseniaFocusLost
-
-    private void txtVerContraseniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVerContraseniaFocusGained
-        if (txtVerContrasenia.getBackground().equals(Color.pink)) {
-            txtVerContrasenia.setBackground(Color.white);
-            txtVerContrasenia.setText("");
-        }
-    }//GEN-LAST:event_txtVerContraseniaFocusGained
-
-    private void txtDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusLost
-        if (!txtDireccion.getText().equals("")) {
-            if (empleado.validarDireccion(
-                    txtDireccion.getText()).equals("Longitud dirección incorrecta")) {
-                JOptionPane.showMessageDialog(null,
-                        "La Direccion Debe Tener Entre 12 y 32 Caracteres",
-                        "Longitud Dirección Incorrecta",
                         JOptionPane.ERROR_MESSAGE);
                 txtDireccion.setBackground(Color.pink);
 
@@ -547,6 +433,27 @@ public class FronteraEditCliente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtDireccionFocusGained
 
+    private void txtCelularFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCelularFocusLost
+        if (!txtCelular.getText().equals("")) {
+            if (!(empleado.compararContrasenia(txtDireccion.getText(),
+                    txtCelular.getText()))) {
+                JOptionPane.showMessageDialog(null,
+                        "La Verificación Debe Ser La misma",
+                        "Verificacion no válida",
+                        JOptionPane.ERROR_MESSAGE);
+                txtCelular.setBackground(Color.pink);
+
+            }
+        }
+    }//GEN-LAST:event_txtCelularFocusLost
+
+    private void txtCelularFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCelularFocusGained
+        if (txtCelular.getBackground().equals(Color.pink)) {
+            txtCelular.setBackground(Color.white);
+            txtCelular.setText("");
+        }
+    }//GEN-LAST:event_txtCelularFocusGained
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrar;
@@ -560,9 +467,8 @@ public class FronteraEditCliente extends javax.swing.JPanel {
     private javax.swing.JLabel jlKit;
     private javax.swing.JLabel jlLogo;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtContrasenia;
+    private javax.swing.JTextField txtCelular;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtVerContrasenia;
     // End of variables declaration//GEN-END:variables
 }
