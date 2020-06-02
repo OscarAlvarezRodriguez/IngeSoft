@@ -82,7 +82,7 @@ public class RegistrarCliente {
     }
 
     public String validarApellido(String apellido) {
-        if (apellido.length() > 3 && apellido.length() < 21 && !apellido.isEmpty()) {
+        if (apellido.length() > 4 && apellido.length() < 21 && !apellido.isEmpty()) {
             return (co);
         }
         return (an);
