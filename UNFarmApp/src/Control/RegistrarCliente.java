@@ -60,6 +60,13 @@ public class RegistrarCliente {
         return (nn);
     }
 
+    public String validarApellido(String apellido) {
+        if (apellido.length() > 4 && apellido.length() < 21 && !apellido.isEmpty()) {
+            return (co);
+        }
+        return (an);
+    }
+
     public String validarTelefono(String telefono) {
         if (telefono.length() > 6 && telefono.length() < 16 && !telefono.isEmpty()) {
             return (co);
@@ -81,10 +88,4 @@ public class RegistrarCliente {
         return (ddn);
     }
 
-    public String validarApellido(String apellido) {
-        if (apellido.length() > 4 && apellido.length() < 21 && !apellido.isEmpty()) {
-            return (co);
-        }
-        return (an);
-    }
 }

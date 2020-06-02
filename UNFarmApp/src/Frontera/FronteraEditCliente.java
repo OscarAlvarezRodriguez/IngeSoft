@@ -354,7 +354,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
     private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
         if (!txtNombre.getText().equals("")) {
             if (cliente.validarNombre(txtNombre.getText())
-                    .equals("Longitud nombre incorrecta")) {
+                    .equals("Lontigud nombre incorrecta")) {
                 JOptionPane.showMessageDialog(null,
                         "El Nombre Debe Tener Entre 5 y 20 Caracteres",
                         "Longitud Nombre Incorrecta",
@@ -378,7 +378,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
                     .equals("Longitud apellido incorrecta")) {
                 JOptionPane.showMessageDialog(null,
                         "El Apellido Debe Tener Entre 5 y 20 Caracteres",
-                        "Longitud Apellido Incorrecta",
+                        "Longitud apellido incorrecta",
                         JOptionPane.ERROR_MESSAGE);
                 txtApellido.setBackground(Color.pink);
 
@@ -394,7 +394,17 @@ public class FronteraEditCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_txtApellidoFocusGained
 
     private void txtDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusLost
-        
+        if (!txtDireccion.getText().equals("")) {
+            if (cliente.validarDireccion(txtDireccion.getText())
+                    .equals("Longitud dirección incorrecta")) {
+                JOptionPane.showMessageDialog(null,
+                        "La direccion Debe Tener Entre 12 y 32 Caracteres",
+                        "Longitud de Direccion incorrecta",
+                        JOptionPane.ERROR_MESSAGE);
+                txtDireccion.setBackground(Color.pink);
+
+            }
+        }
     }//GEN-LAST:event_txtDireccionFocusLost
 
     private void txtDireccionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusGained
@@ -406,7 +416,14 @@ public class FronteraEditCliente extends javax.swing.JPanel {
 
     private void txtCelularFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCelularFocusLost
         if (!txtCelular.getText().equals("")) {
-            
+            if (cliente.validarTelefono(txtCelular.getText())
+                    .equals("Número telefónico no válido")) {
+                JOptionPane.showMessageDialog(null,
+                        "El telefono Debe Tener Entre 7 y 15 Caracteres",
+                        "Número telefónico no válido",
+                        JOptionPane.ERROR_MESSAGE);
+                txtCelular.setBackground(Color.pink);
+            }
         }
     }//GEN-LAST:event_txtCelularFocusLost
 
@@ -425,7 +442,16 @@ public class FronteraEditCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_txtDescripcionFocusGained
 
     private void txtDescripcionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescripcionFocusLost
-        // TODO add your handling code here:
+        if (!txtDescripcion.getText().equals("")) {
+            if (cliente.validarDescripcionDir(txtDescripcion.getText())
+                    .equals("Longitud descripción dirección incorrecta")) {
+                JOptionPane.showMessageDialog(null,
+                        "La descripcion no posee la longitud.",
+                        "Longitud descripción dirección incorrecta",
+                        JOptionPane.ERROR_MESSAGE);
+                txtDescripcion.setBackground(Color.pink);
+            }
+        }
     }//GEN-LAST:event_txtDescripcionFocusLost
 
 
