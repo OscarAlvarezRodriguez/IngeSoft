@@ -30,6 +30,9 @@ public class ClienteDAO {
         em.getTransaction().begin();
         boolean ret = false;
         try {
+            if (!em.contains(object)) {
+                object = em.merge(object);
+            }
             em.remove(object);
             em.getTransaction().commit();
             ret = true;
@@ -46,13 +49,8 @@ public class ClienteDAO {
         EntityManager em = emf.createEntityManager();
         Cliente usuario = null;
         Query q = em.createQuery("SELECT c FROM Cliente c "
-                + "WHERE c.cedulaCliente = :cedulacliente")
-                .setParameter("cedulaCliente", par.getCedulaCliente())
-                .setParameter("nombreCliente", par.getNombreCliente())
-                .setParameter("telefonoCliente", par.getTelefonoCliente())
-                .setParameter("direccionCliente", par.getDireccionCliente())
-                .setParameter("descripcionDireccionCliente", par.getDescripcionDireccionCliente())
-                .setParameter("apellidoCliente", par.getApellidoCliente());
+                + "WHERE c.cedulaCliente = :cedulaCliente")
+                .setParameter("cedulaCliente", par.getCedulaCliente());
         try {
             usuario = (Cliente) q.getSingleResult();
         } catch (NonUniqueResultException e) {

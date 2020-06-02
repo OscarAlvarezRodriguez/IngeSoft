@@ -26,7 +26,7 @@ public class TestAutenticarCliente {
     @BeforeClass
     public static void setUpClass() {
         
-     /*   Cliente u = new Cliente();
+        Cliente u = new Cliente();
         u.setCedulaCliente("123456789");
         u.setDescripcionDireccionCliente("Conjunto Residencial Mirador II");
         u.setDireccionCliente("Carrera 52 No 33b");
@@ -34,7 +34,7 @@ public class TestAutenticarCliente {
         u.setApellidoCliente("Cardenas");
         u.setTelefonoCliente("12345678"); 
         cliente.ValidarDatos(u);
-       */ }
+       }
     
     @AfterClass
     public static void tearDownClass() {
