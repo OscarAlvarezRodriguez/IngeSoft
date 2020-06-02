@@ -6,6 +6,7 @@ import Control.RegistrarEmpleado;
 import Entidad.Cliente;
 import Entidad.Drogueria;
 import Entidad.Empleado;
+import Recursos.Funciones;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
@@ -17,15 +18,18 @@ import javax.swing.JOptionPane;
 /*
 FOR REPARIR
 btnCancelarActionPerformed --> especificar a donde va al hacer click
+btnRegistrarActionPerformed
 Al momento de INICIAR esta pestaña debe SI o SI actualizarse el atributo cedula
+y los datos del Cliente actual
 */
 
 public class FronteraEditCliente extends javax.swing.JPanel {
 
     EditarCliente Edit = new EditarCliente();
-    String cedula;
     Cliente cliente = new Cliente();
 
+    Funciones f = new Funciones();
+    
     public FronteraEditCliente() {
         initComponents();
         jlLogo.setSize(100, 100);
@@ -345,7 +349,6 @@ public class FronteraEditCliente extends javax.swing.JPanel {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         allSetEmpty();
-        this.cedula = null;
         App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -353,14 +356,28 @@ public class FronteraEditCliente extends javax.swing.JPanel {
         Cliente c = new Cliente();
         c.setNombreCliente(this.txtNombre.getName());
         c.setApellidoCliente(this.txtApellido.getName());
-        c.setCedulaCliente(this.cedula);
+        c.setCedulaCliente(this.cliente.getCedulaCliente());
         c.setTelefonoCliente(this.txtCelular.getName());
         c.setDireccionCliente(this.txtDireccion.getName());
         c.setDescripcionDireccionCliente(this.txtDescripcion.getName());
         
-        //if(Edit.ValidarDatos(c, c)){
-            
-        //}
+        if(Edit.ValidarDatos(cliente, c).equals("Actualización correcta")){
+            JLabel lb = new JLabel();
+            lb.setSize(50, 50);
+            JOptionPane.showMessageDialog(null,
+                    "Cliente Actualizado Exitosamente",
+                    "Actualizacion exitosa",
+                    JOptionPane.CANCEL_OPTION,
+                    f.setImageBackground("/recursos/exito.png", lb)
+            );
+            allSetEmpty();
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
+        }else{
+            JOptionPane.showMessageDialog(null,
+                    "Algun Campo Esta Mal Diligenciado, Por Favor Verificarlos",
+                    "Comprobar Campos",
+                    JOptionPane.ERROR_MESSAGE);
+        }
         
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
