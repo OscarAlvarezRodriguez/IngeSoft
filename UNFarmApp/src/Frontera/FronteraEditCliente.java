@@ -1,7 +1,9 @@
 package Frontera;
 //ERROR
+import Control.EditarCliente;
 import Control.RegistrarCliente;
 import Control.RegistrarEmpleado;
+import Entidad.Cliente;
 import Entidad.Drogueria;
 import Entidad.Empleado;
 import java.awt.Color;
@@ -15,15 +17,14 @@ import javax.swing.JOptionPane;
 /*
 FOR REPARIR
 btnCancelarActionPerformed --> especificar a donde va al hacer click
-btnRegistrarActionPerformed --> especificar a donde va al hacer click
-txtDireccionFocusLost 
-txtCelularFocusLost
-txtDescripcion
+Al momento de INICIAR esta pestaña debe SI o SI actualizarse el atributo cedula
 */
 
 public class FronteraEditCliente extends javax.swing.JPanel {
 
-    RegistrarCliente cliente = new RegistrarCliente();
+    EditarCliente Edit = new EditarCliente();
+    String cedula;
+    Cliente cliente = new Cliente();
 
     public FronteraEditCliente() {
         initComponents();
@@ -258,13 +259,15 @@ public class FronteraEditCliente extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtCelular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1))))
+                                    .addComponent(jScrollPane1)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(txtCelular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(0, 233, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(238, 238, 238)
@@ -282,7 +285,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jlLogo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jlKit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -292,21 +295,19 @@ public class FronteraEditCliente extends javax.swing.JPanel {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68)
+                .addGap(74, 74, 74)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -344,16 +345,28 @@ public class FronteraEditCliente extends javax.swing.JPanel {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         allSetEmpty();
+        this.cedula = null;
         App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        Cliente c = new Cliente();
+        c.setNombreCliente(this.txtNombre.getName());
+        c.setApellidoCliente(this.txtApellido.getName());
+        c.setCedulaCliente(this.cedula);
+        c.setTelefonoCliente(this.txtCelular.getName());
+        c.setDireccionCliente(this.txtDireccion.getName());
+        c.setDescripcionDireccionCliente(this.txtDescripcion.getName());
+        
+        //if(Edit.ValidarDatos(c, c)){
+            
+        //}
         
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
         if (!txtNombre.getText().equals("")) {
-            if (cliente.validarNombre(txtNombre.getText())
+            if (Edit.validarNombre(txtNombre.getText())
                     .equals("Lontigud nombre incorrecta")) {
                 JOptionPane.showMessageDialog(null,
                         "El Nombre Debe Tener Entre 5 y 20 Caracteres",
@@ -374,7 +387,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
 
     private void txtApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoFocusLost
         if (!txtApellido.getText().equals("")) {
-            if (cliente.validarApellido(txtApellido.getText())
+            if (Edit.validarApellido(txtApellido.getText())
                     .equals("Longitud apellido incorrecta")) {
                 JOptionPane.showMessageDialog(null,
                         "El Apellido Debe Tener Entre 5 y 20 Caracteres",
@@ -395,7 +408,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
 
     private void txtDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusLost
         if (!txtDireccion.getText().equals("")) {
-            if (cliente.validarDireccion(txtDireccion.getText())
+            if (Edit.validarDireccion(txtDireccion.getText())
                     .equals("Longitud dirección incorrecta")) {
                 JOptionPane.showMessageDialog(null,
                         "La direccion Debe Tener Entre 12 y 32 Caracteres",
@@ -416,7 +429,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
 
     private void txtCelularFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCelularFocusLost
         if (!txtCelular.getText().equals("")) {
-            if (cliente.validarTelefono(txtCelular.getText())
+            if (Edit.validarTelefono(txtCelular.getText())
                     .equals("Número telefónico no válido")) {
                 JOptionPane.showMessageDialog(null,
                         "El telefono Debe Tener Entre 7 y 15 Caracteres",
@@ -443,7 +456,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
 
     private void txtDescripcionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescripcionFocusLost
         if (!txtDescripcion.getText().equals("")) {
-            if (cliente.validarDescripcionDir(txtDescripcion.getText())
+            if (Edit.validarDescripcionDir(txtDescripcion.getText())
                     .equals("Longitud descripción dirección incorrecta")) {
                 JOptionPane.showMessageDialog(null,
                         "La descripcion no posee la longitud.",
