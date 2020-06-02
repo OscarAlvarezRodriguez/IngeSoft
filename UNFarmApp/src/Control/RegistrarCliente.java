@@ -6,7 +6,7 @@ import DAO.ClienteDAO;
 public class RegistrarCliente {
 
     private final ClienteDAO nuevocliente = new ClienteDAO();
-    private final String cn = "Número cedula no válido";
+    private final String cn = "Número cédula no válido";
     private final String nn = "Lontigud nombre incorrecta";
     private final String tn = "Número telefónico no válido";
     private final String dn = "Longitud dirección incorrecta";
@@ -23,6 +23,9 @@ public class RegistrarCliente {
     public String ValidarDatos(Cliente cliente) {
         if (nuevocliente.leer(cliente) != null) {
             return (cr);
+        }
+        if (!validarCedula(cliente.getCedulaCliente()).equals(co)) {
+            return (cn);
         }
         if (!validarNombre(cliente.getNombreCliente()).equals(co)) {
             return (nn);
@@ -65,7 +68,7 @@ public class RegistrarCliente {
     }
 
     public String validarDireccion(String direccion) {
-        if (direccion.length() > 11 && direccion.length() < 16 && !direccion.isEmpty()) {
+        if (direccion.length() > 11 && direccion.length() < 33 && !direccion.isEmpty()) {
             return (co);
         }
         return (dn);

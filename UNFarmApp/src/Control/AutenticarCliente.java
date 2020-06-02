@@ -6,7 +6,7 @@ import DAO.ClienteDAO;
 public class AutenticarCliente {
 
     private final ClienteDAO cliente = new ClienteDAO();
-    private final String cn = "Número cedula no válido";
+    private final String cn = "Número cédula no válido";
     private final String cr = "Cliente no registrado";
     private final String bi = "Bienvenido";
     private final String co = "Correcto";

@@ -12,14 +12,13 @@ import static org.junit.Assert.*;
 
 public class TestAutenticarEmpleado {
 
-    private static AutenticarEmpleado usuario = new AutenticarEmpleado();
-    private static RegistrarEmpleado empleado = new RegistrarEmpleado();
+    private static final AutenticarEmpleado usuario = new AutenticarEmpleado();
+    private static final RegistrarEmpleado empleado = new RegistrarEmpleado();
 
     private final String cn = "Número cedula no válido";
     private final String con = "Longitud contraseña incorrecta";
     private final String conn = "Número en contraseña incorrecto";
     private final String comn = "Mayúscula en contraseña incorrecto";
-    private final String co = "Correcto";
     private final String di = "Datos incorrectos";
     private final String bi = "Bienvenido";
 

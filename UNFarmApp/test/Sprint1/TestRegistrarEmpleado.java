@@ -25,7 +25,6 @@ public class TestRegistrarEmpleado {
     private final String an = "Longitud apellido incorrecta";
     private final String en = "Correo no válido";
     private final String re = "Registro exitoso";
-    private final String co = "Correcto";
     private final String rs = "El empleado ya está registrado";
 
     public TestRegistrarEmpleado() {

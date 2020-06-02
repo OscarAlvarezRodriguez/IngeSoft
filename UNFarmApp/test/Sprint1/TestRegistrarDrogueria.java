@@ -20,7 +20,6 @@ public class TestRegistrarDrogueria {
     private final String tn = "Número telefónico no válido";
     private final String dn = "Longitud dirección incorrecta";
     private final String en = "Correo no válido";
-    private final String co = "Correcto";
     private final String nitn = "Nit no válido";
     private final String re = "Registro exitoso";
     private final String dr = "La droguería ya está registrada";
