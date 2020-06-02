@@ -5,6 +5,7 @@ import javax.persistence.NonUniqueResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import Entidad.Medicamento;
+import java.util.List;
 public class MedicamentoDAO {
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UNFarmAppPU");
     
@@ -41,8 +42,18 @@ public class MedicamentoDAO {
         }
     }
     
-    public Medicamento leertodo(Medicamento med) {
-        return med;
+    public List<Medicamento> leertodo(Medicamento med) {
+        EntityManager em = emf.createEntityManager();
+        Query q =em.createQuery("SELECT m FROM Medicamento m");
+        List<Medicamento> resultados= null;
+        try {
+            resultados=  q.getResultList();
+        } catch (NonUniqueResultException e){
+        } catch (Exception e){
+        } finally{
+            em.close();
+            return resultados;
+        }
     }
     
     public Medicamento leer(Medicamento par) {
