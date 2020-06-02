@@ -1,14 +1,30 @@
 package Entidad;
 
-public class Empleado {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "Empleado")
+public class Empleado implements Serializable {
+
+    @Id
+    @Column(length = 11)
     private String cedulaEmpleado;
+    @Column(nullable = false, length = 20)
     private String nombreEmpleado;
-    private String telefonoEmpleado;
+    @Column(nullable = false, length = 15)
+    private String telefono;
+    @Column(nullable = false, length = 32)
     private String direccionEmpleado;
+    @Column(nullable = false, length = 20)
     private String apellidoEmpleado;
-    private String contraseniaEmpleado;
-    private String correoEmpleado;
+    @Column(nullable = false, length = 20)
+    private String contrasenia;
+    @Column(nullable = false, length = 50)
+    private String correo;
 
     public Empleado() {
     }
@@ -30,11 +46,11 @@ public class Empleado {
     }
 
     public String getTelefonoEmpleado() {
-        return telefonoEmpleado;
+        return telefono;
     }
 
     public void setTelefonoEmpleado(String telefonoEmpleado) {
-        this.telefonoEmpleado = telefonoEmpleado;
+        this.telefono = telefonoEmpleado;
     }
 
     public String getDireccionEmpleado() {
@@ -54,19 +70,19 @@ public class Empleado {
     }
 
     public String getContraseniaEmpleado() {
-        return contraseniaEmpleado;
+        return contrasenia;
     }
 
     public void setContraseniaEmpleado(String contreseniaEmpleado) {
-        this.contraseniaEmpleado = contreseniaEmpleado;
+        this.contrasenia = contreseniaEmpleado;
     }
 
     public String getCorreoEmpleado() {
-        return correoEmpleado;
+        return correo;
     }
 
     public void setCorreoEmpleado(String correoEmpleado) {
-        this.correoEmpleado = correoEmpleado;
+        this.correo = correoEmpleado;
     }
 
 }

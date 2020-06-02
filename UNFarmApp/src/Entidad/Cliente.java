@@ -1,13 +1,28 @@
 package Entidad;
 
-public class Cliente {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "Cliente")
+public class Cliente implements Serializable {
+
+    @Id
+    @Column(length = 11)
     private String cedulaCliente;
-    private String nombreCliente;
-    private String telefonoCliente;
+    @Column(nullable = false, length = 20)
+    private String nombre;
+    @Column(nullable = false, length = 15)
+    private String telefono;
+    @Column(nullable = false, length = 32)
     private String direccionCliente;
-    private String descripcionDireccionCliente;
-    private String apellidoCliente;
+    @Column(nullable = false, length = 32)
+    private String descripcionDireccion;
+    @Column(nullable = false, length = 20)
+    private String apellido;
 
     public Cliente() {
     }
@@ -21,19 +36,19 @@ public class Cliente {
     }
 
     public String getNombreCliente() {
-        return nombreCliente;
+        return nombre;
     }
 
     public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
+        this.nombre = nombreCliente;
     }
 
     public String getTelefonoCliente() {
-        return telefonoCliente;
+        return telefono;
     }
 
     public void setTelefonoCliente(String telefonoCliente) {
-        this.telefonoCliente = telefonoCliente;
+        this.telefono = telefonoCliente;
     }
 
     public String getDireccionCliente() {
@@ -45,19 +60,19 @@ public class Cliente {
     }
 
     public String getDescripcionDireccionCliente() {
-        return descripcionDireccionCliente;
+        return descripcionDireccion;
     }
 
     public void setDescripcionDireccionCliente(String descripcionDireccionCliente) {
-        this.descripcionDireccionCliente = descripcionDireccionCliente;
+        this.descripcionDireccion = descripcionDireccionCliente;
     }
 
     public String getApellidoCliente() {
-        return apellidoCliente;
+        return apellido;
     }
 
     public void setApellidoCliente(String apellidoCliente) {
-        this.apellidoCliente = apellidoCliente;
+        this.apellido = apellidoCliente;
     }
 
 }

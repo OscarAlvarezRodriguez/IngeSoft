@@ -1,36 +1,46 @@
 package Entidad;
 
-public class MedicamentoComprado extends Medicamento {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-    private int idCompraMedicamento;
-    private int cantidadCompradaMedicamento;
-    private int precioUnitarioMedicamento;
+@Entity
+@Table(name = "CompraMedicamento")
+public class MedicamentoComprado extends Medicamento implements Serializable {
+
+    @Column(nullable = false)
+    private int idCompra;
+    @Column(nullable = false)
+    private int cantidad;
+    @Column(nullable = false)
+    private int precioUnitario;
 
     public MedicamentoComprado() {
     }
 
     public int getCantidadCompradaMedicamento() {
-        return cantidadCompradaMedicamento;
+        return cantidad;
     }
 
     public void setCantidadCompradaMedicamento(int cantidadCompradaMedicamento) {
-        this.cantidadCompradaMedicamento = cantidadCompradaMedicamento;
+        this.cantidad = cantidadCompradaMedicamento;
     }
 
     public int getPrecioUnitarioMedicamento() {
-        return precioUnitarioMedicamento;
+        return precioUnitario;
     }
 
     public void setPrecioUnitarioMedicamento(int precioUnitarioMedicamento) {
-        this.precioUnitarioMedicamento = precioUnitarioMedicamento;
+        this.precioUnitario = precioUnitarioMedicamento;
     }
 
     public int getIdCompraMedicamento() {
-        return idCompraMedicamento;
+        return idCompra;
     }
 
     public void setIdCompraMedicamento(int idCompraMedicamento) {
-        this.idCompraMedicamento = idCompraMedicamento;
+        this.idCompra = idCompraMedicamento;
     }
 
 }

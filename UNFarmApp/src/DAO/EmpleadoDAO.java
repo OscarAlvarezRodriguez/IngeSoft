@@ -1,159 +1,93 @@
 package DAO;
 
 import Entidad.Empleado;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.NonUniqueResultException;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class EmpleadoDAO {
-    private ResultSet resultSet;
-    private PreparedStatement statement;
-    private final Conexion conexion = new Conexion();
-    // se declaran los Sreings con las sentencias SQL que vamos a ejecutar
-    private final String INSERT = "INSERT INTO empleado( cedulaEmpleado, nombreEmpleado, telefono, direccionEmpleado, apellidoEmpleado, contrasenia, correo) VALUES(?,?,?,?,?,?,?)";
-    private final String UPDATE = "UPDATE empleado SET cedulaEmpleado = ?, nombreEmpleado = ?, telefono = ?, telefono = ?, direccionEmpleado = ?, apellidoEmpleado = ? ,contrasenia = ?, correo=? WHERE cedulaEmpleado = ?";
-    private final String DELETE = "DELETE FROM empleado WHERE cedulaEmpleado = ?";
-    private final String GETONE = "SELECT * FROM empleado WHERE cedulaEmpleado = ?";
-    private final String GETALL = "SELECT * FROM empleado";
 
-    public boolean crear(Empleado object) {
+    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UNFarmAppPU");
+
+    public void crear(Empleado object) {
+
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
         try {
-            statement = conexion.prepareScript(INSERT);
-            statement.setString(1, object.getCedulaEmpleado());
-            statement.setString(2, object.getNombreEmpleado());
-            statement.setString(3, object.getTelefonoEmpleado());
-            statement.setString(4, object.getDireccionEmpleado());
-            statement.setString(5, object.getApellidoEmpleado());
-            statement.setString(6, object.getContraseniaEmpleado());
-            statement.setString(7, object.getCorreoEmpleado());
-            if (statement.executeUpdate() == 0) {
-                throw new Exception("No se pudo crear el empleado");
-            }
+            em.persist(object);
+            em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
+            em.getTransaction().rollback();
         } finally {
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                }
-            }
+            em.close();
         }
-        return true;
     }
 
     public boolean eliminar(Empleado empleado) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        boolean ret = false;
         try {
-            statement = conexion.prepareScript(DELETE);
-            statement.setString(1, empleado.getCedulaEmpleado());
-            if (statement.executeUpdate() == 0) {
-                throw new Exception("no se pudo eliminar el empleado");
+            if (!em.contains(empleado)) {
+                empleado = em.merge(empleado);
             }
-
+            em.remove(empleado);
+            em.getTransaction().commit();
+            ret = true;
         } catch (Exception e) {
+            em.getTransaction().rollback();
         } finally {
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                }
-            }
+            em.close();
+            return ret;
         }
-        return true;
     }
 
     public Empleado leer(Empleado par) {
-        Empleado empleado = null;
+        EntityManager em = emf.createEntityManager();
+        Empleado usuario = null;
+        Query q = em.createQuery("SELECT e"
+                + " FROM Empleado e "
+                + "WHERE e.cedulaEmpleado = :cedulaEmpleado"
+                + " AND e.contrasenia = :contrasenia")
+                .setParameter("contrasenia", par.getContraseniaEmpleado())
+                .setParameter("cedulaEmpleado", par.getCedulaEmpleado());
         try {
-            statement = conexion.prepareScript(GETONE);
-            statement.setString(1, par.getCedulaEmpleado());
-            resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                empleado = convertir(resultSet);
-            }
-        } catch (SQLException e) {
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                }
-            }
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                }
-
-            }
-        }
-        return empleado;
-    }
-
-    public boolean leerex(Empleado par) {
-        Boolean b = false;
-        try {
-            statement = conexion.prepareScript(GETONE);
-            statement.setString(1,par.getCedulaEmpleado());
-            resultSet= statement.executeQuery();
-            if (resultSet.next()) {
-                b=true;
-            }
-        } catch (SQLException e) {
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                }
-            }
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                }
-
-            }
-        }
-        return b;
-    }
-    public boolean actualizar(Empleado object, Empleado nuevoObjeto) {
-        try {
-            statement = conexion.prepareScript(UPDATE);
-            statement.setString(1, nuevoObjeto.getCedulaEmpleado());
-            statement.setString(2, nuevoObjeto.getNombreEmpleado());
-            statement.setString(3, nuevoObjeto.getTelefonoEmpleado());
-            statement.setString(4, nuevoObjeto.getDireccionEmpleado());
-            statement.setString(5, nuevoObjeto.getApellidoEmpleado());
-            statement.setString(6, nuevoObjeto.getContraseniaEmpleado());
-            statement.setString(7, nuevoObjeto.getCorreoEmpleado());
-            statement.setString(8, object.getCedulaEmpleado());
-            if (statement.executeUpdate() == 0) {
-                throw new Exception("no se pudo actualizar el empleado");
-            }
-
+            usuario = (Empleado) q.getSingleResult();
+        } catch (NonUniqueResultException e) {
+            usuario = (Empleado) q.getResultList().get(0);
         } catch (Exception e) {
+            //e.printStackTrace();
         } finally {
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                }
-
-            }
+            em.close();
+            return usuario;
         }
-        return true;
+    }
 
+    public boolean actualizar(Empleado object, Empleado nuevoObjeto) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        boolean ret = false;
+        try {
+            object = leer(object);
+            object.setCedulaEmpleado(nuevoObjeto.getCedulaEmpleado());
+            object.setApellidoEmpleado(nuevoObjeto.getApellidoEmpleado());
+            object.setContraseniaEmpleado(nuevoObjeto.getContraseniaEmpleado());
+            object.setCorreoEmpleado(nuevoObjeto.getCorreoEmpleado());
+            object.setNombreEmpleado(nuevoObjeto.getNombreEmpleado());
+            object.setTelefonoEmpleado(nuevoObjeto.getTelefonoEmpleado());
+            em.merge(object);
+            em.getTransaction().commit();
+            ret = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+            return ret;
+        }
     }
-    private Empleado convertir(ResultSet rs) throws SQLException {
-        Empleado empleado = new Empleado();
-        empleado.setApellidoEmpleado(rs.getString("apellidoEmpleado"));
-        empleado.setCedulaEmpleado(rs.getString("cedulaEmpleado"));
-        empleado.setContraseniaEmpleado(rs.getString("contrasenia"));
-        empleado.setCorreoEmpleado(rs.getString("correo"));
-        empleado.setDireccionEmpleado(rs.getString("direccionEmpleado"));
-        empleado.setNombreEmpleado(rs.getString("nombreEmpleado"));
-        empleado.setTelefonoEmpleado(rs.getString("telefono"));
-        return empleado;
-    }
+
 }

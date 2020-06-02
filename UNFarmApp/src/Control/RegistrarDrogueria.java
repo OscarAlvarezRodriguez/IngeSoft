@@ -38,7 +38,6 @@ public class RegistrarDrogueria {
         if (!validarRepresentante(drogapp.getRepresentanteLegalDrogueria()).equals(co)) {
             return (rpn);
         }
-        DrogueriaDAO farm = new DrogueriaDAO();
         farm.crear(drogapp);
         return (re);
     }

@@ -8,8 +8,8 @@ package Control;
 import DAO.ClienteDAO;
 import Entidad.Cliente;
 
-
 public class EditarCliente {
+
     private final ClienteDAO actCliente = new ClienteDAO();
     private final String cn = "Número cedula no válido";
     private final String nn = "Lontigud nombre incorrecta";
@@ -22,40 +22,40 @@ public class EditarCliente {
     private final String co = "Correcto";
 
     public EditarCliente() {
-        
+
     }
-    
-    public String ValidarDatos(Cliente clienteAct, String cedulaCliente) {
-        if(!validarCedula(clienteAct.getCedulaCliente()).equals(co)){
-            return(cn);
+
+    public String ValidarDatos(Cliente clienteAct, Cliente ClienteNuevo) {
+        if (!validarCedula(clienteAct.getCedulaCliente()).equals(co)) {
+            return (cn);
         }
-        if(!validarNombre(clienteAct.getNombreCliente()).equals(co)){
-            return(nn);
+        if (!validarNombre(clienteAct.getNombreCliente()).equals(co)) {
+            return (nn);
         }
-        
-        if(!validarTelefono(clienteAct.getTelefonoCliente()).equals(co)){
-            return(tn);
+
+        if (!validarTelefono(clienteAct.getTelefonoCliente()).equals(co)) {
+            return (tn);
         }
-        
-        if(!validarDireccion(clienteAct.getDireccionCliente()).equals(co)){
-            return(dn);
+
+        if (!validarDireccion(clienteAct.getDireccionCliente()).equals(co)) {
+            return (dn);
         }
-        
-        if(!validarDescripcionDir(clienteAct.getDescripcionDireccionCliente()).equals(co)){
-            return(ddn);
+
+        if (!validarDescripcionDir(clienteAct.getDescripcionDireccionCliente()).equals(co)) {
+            return (ddn);
         }
-        
-        if(!validarApellido(clienteAct.getApellidoCliente()).equals(co)){
-            return(an);
+
+        if (!validarApellido(clienteAct.getApellidoCliente()).equals(co)) {
+            return (an);
         }
-        
-        if (actCliente.leer(cedulaCliente) == null) {
+
+        if (actCliente.leer(clienteAct) == null) {
             return (cr);
         }
-        actCliente.actualizar(clienteAct,cedulaCliente);
+        actCliente.actualizar(clienteAct, ClienteNuevo);
         return (re);
     }
-    
+
     public String validarCedula(String cedula) {
         if (cedula.length() > 7 && cedula.length() < 12 && cedula.matches("\\d*") && !cedula.isEmpty()) {
             return (co);
@@ -97,5 +97,5 @@ public class EditarCliente {
         }
         return (an);
     }
-    
+
 }

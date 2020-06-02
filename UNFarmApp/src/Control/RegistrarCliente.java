@@ -21,7 +21,7 @@ public class RegistrarCliente {
     }
 
     public String ValidarDatos(Cliente cliente) {
-        if (nuevocliente.leer(cliente.getCedulaCliente()) != null) {
+        if (nuevocliente.leer(cliente) != null) {
             return (cr);
         }
         if (!validarNombre(cliente.getNombreCliente()).equals(co)) {
@@ -39,7 +39,6 @@ public class RegistrarCliente {
         if (!validarApellido(cliente.getApellidoCliente()).equals(co)) {
             return (an);
         }
-        ClienteDAO nuevocliente = new ClienteDAO();
         nuevocliente.crear(cliente);
         return (re);
     }

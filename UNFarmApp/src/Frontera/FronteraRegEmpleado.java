@@ -3,7 +3,6 @@ package Frontera;
 import Control.RegistrarEmpleado;
 import Entidad.Empleado;
 import Recursos.Funciones;
-import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -26,7 +25,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
 
     }
 
-    private void allSetEmpty() {
+    public void allSetEmpty() {
         txtApellido.setText("");
         txtCedula.setText("");
         txtContrasenia.setText("");
@@ -34,7 +33,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
         txtDireccion.setText("");
         txtNombre.setText("");
         txtTelefono.setText("");
-        f.setStyleJTextField(txtVerContrasenia);
+        txtVerContrasenia.setText("");
         f.setStyleJTextField(txtApellido);
         f.setStyleJTextField(txtCedula);
         f.setStyleJTextField(txtContrasenia);
@@ -501,7 +500,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
 
     private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
         char c = evt.getKeyChar();
-        if (!Character.isLetterOrDigit(c) && c != '-' && c != '.') {
+        if (!Character.isLetterOrDigit(c) && c != '-' && c != '.' && c != 32) {
             evt.consume();
         }
     }//GEN-LAST:event_txtDireccionKeyTyped

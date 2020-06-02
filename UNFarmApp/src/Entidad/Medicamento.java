@@ -1,17 +1,33 @@
 package Entidad;
 
-public class Medicamento {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "Medicamento")
+public class Medicamento implements Serializable {
+
+    @Id
     private int idMedicamento;
-    private int cantidadMedicamento;
+    @Column(nullable = false)
+    private int cantidad;
+    @Column(nullable = false, length = 300)
     private String nombreMedicamento;
-    private int precioVentaMedicamento;
-    private String titularMedicamento;
-    private String DescripcionMedicamento;
-
-    private String presentacionMedicamento;
-
-    private String principioActivoMedicamento;
+    @Column(nullable = false, length = 300)
+    private String precioVenta;
+    @Column(nullable = false, length = 300)
+    private String titular;
+    @Column(nullable = false, length = 300)
+    private String Descripcion;
+    @Column(nullable = false, length = 300)
+    private String presentacion;
+    @Column(nullable = false, length = 300)
+    private String principioActivo;
+    @Column(nullable = false)
+    private int stock;
 
     public Medicamento() {
     }
@@ -20,39 +36,71 @@ public class Medicamento {
         return idMedicamento;
     }
 
+    public void setIdMedicamento() {
+    }
+
     public int getCantidadMedicamento() {
-        return cantidadMedicamento;
+        return cantidad;
     }
 
     public void setCantidadMedicamento(int cantidadMedicamento) {
-        this.cantidadMedicamento = cantidadMedicamento;
+        this.cantidad = cantidadMedicamento;
     }
 
     public String getNombreMedicamento() {
         return nombreMedicamento;
     }
 
-    public int getPrecioVentaMedicamento() {
-        return precioVentaMedicamento;
+    public void setNombreMedicamento(String nombreMedicamento) {
+        this.nombreMedicamento = nombreMedicamento;
     }
 
-    public void setPrecioVentaMedicamento(int precioVentaMedicamento) {
-        this.precioVentaMedicamento = precioVentaMedicamento;
+    public String getPrecioVentaMedicamento() {
+        return precioVenta;
+    }
+
+    public void setPrecioVentaMedicamento(String precioVentaMedicamento) {
+        this.precioVenta = precioVentaMedicamento;
     }
 
     public String getTitularMedicamento() {
-        return titularMedicamento;
+        return titular;
+    }
+
+    public void setTitularMedicamento(String titularMedicamento) {
+        this.titular = titularMedicamento;
     }
 
     public String getDescripcionMedicamento() {
-        return DescripcionMedicamento;
+        return Descripcion;
+    }
+
+    public void setDescripcionMedicamento(String DescripcionMedicamento) {
+        this.Descripcion = DescripcionMedicamento;
     }
 
     public String getPresentacionMedicamento() {
-        return presentacionMedicamento;
+        return presentacion;
+    }
+
+    public void setPresentacionMedicamento(String presentacionMedicamento) {
+        this.presentacion = presentacionMedicamento;
     }
 
     public String getPrincipioActivoMedicamento() {
-        return principioActivoMedicamento;
+        return principioActivo;
     }
+
+    public void setPrincipioActivoMedicamento(String principioActivoMedicamento) {
+        this.principioActivo = principioActivoMedicamento;
+    }
+
+    public int getStockMedicamento() {
+        return stock;
+    }
+
+    public void setStockMedicamento(int stockMedicamento) {
+        this.stock = stockMedicamento;
+    }
+
 }

@@ -1,15 +1,27 @@
 package Entidad;
 
-public class Compra {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-    private long idCompra;
-    private String nombreProvedorCompra;
-    private String precioTotalCompra;
+@Entity
+@Table(name = "Compra")
+public class Compra implements Serializable {
+
+    @Id
+    @Column(nullable = false)
+    private int idCompra;
+    @Column(nullable = false, length = 32)
+    private String nombreProveedor;
+    @Column(nullable = false)
+    private long precioTotal;
 
     public Compra() {
     }
 
-    public long getIdCompra() {
+    public int getIdCompra() {
         return idCompra;
     }
 
@@ -17,19 +29,19 @@ public class Compra {
     }
 
     public String getNombreProvedorCompra() {
-        return nombreProvedorCompra;
+        return nombreProveedor;
     }
 
     public void setNombreProvedorCompra(String nombreProvedorCompra) {
-        this.nombreProvedorCompra = nombreProvedorCompra;
+        this.nombreProveedor = nombreProvedorCompra;
     }
 
-    public String getPrecioTotalCompra() {
-        return precioTotalCompra;
+    public long getPrecioTotalCompra() {
+        return precioTotal;
     }
 
-    public void setPrecioTotalCompra(String precioTotalCompra) {
-        this.precioTotalCompra = precioTotalCompra;
+    public void setPrecioTotalCompra(long precioTotalCompra) {
+        this.precioTotal = precioTotalCompra;
     }
 
 }

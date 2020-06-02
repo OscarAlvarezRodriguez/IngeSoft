@@ -1,13 +1,28 @@
 package Entidad;
 
-public class Drogueria {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "Drogueria")
+public class Drogueria implements Serializable{
+
+    @Id
+    @Column(length = 20)
     private String nitDrogueria;
+    @Column(nullable = false, length = 32)
     private String nombreDrogueria;
+    @Column(nullable = false, length = 32)
     private String direccionDrogueria;
-    private String telefonoDrogueria;
-    private String emailDrogueria;
-    private String representanteLegalDrogueria;
+    @Column(nullable = false, length = 15)
+    private String telefono;
+    @Column(nullable = false, length = 50)
+    private String email;
+    @Column(nullable = false, length = 32)
+    private String representanteLegal;
 
     public Drogueria() {
     }
@@ -37,27 +52,27 @@ public class Drogueria {
     }
 
     public String getTelefonoDrogueria() {
-        return telefonoDrogueria;
+        return telefono;
     }
 
     public void setTelefonoDrogueria(String telefonoDrogueria) {
-        this.telefonoDrogueria = telefonoDrogueria;
+        this.telefono = telefonoDrogueria;
     }
 
     public String getEmailDrogueria() {
-        return emailDrogueria;
+        return email;
     }
 
     public void setEmailDrogueria(String emailDrogueria) {
-        this.emailDrogueria = emailDrogueria;
+        this.email = emailDrogueria;
     }
 
     public String getRepresentanteLegalDrogueria() {
-        return representanteLegalDrogueria;
+        return representanteLegal;
     }
 
     public void setRepresentanteLegalDrogueria(String representanteLegalDrogueria) {
-        this.representanteLegalDrogueria = representanteLegalDrogueria;
+        this.representanteLegal = representanteLegalDrogueria;
     }
 
 }

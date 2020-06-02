@@ -1,161 +1,91 @@
 package DAO;
 
 import Entidad.Cliente;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Set;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.NonUniqueResultException;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class ClienteDAO {
+    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UNFarmAppPU");
     
-    private ResultSet resultSet;
-    private PreparedStatement statement;
-    private final Conexion conexion =  new Conexion();
-   
-    private final String INSERT = "INSERT INTO cliente( cedulaCliente, nombre, apellido, telefono, direccionCliente, descripcionDireccion) VALUES(?,?,?,?,?,?)";
-    private final String UPDATE = "UPDATE cliente SET cedulaCliente = ?, nombre = ?, apellido= ?, telefono = ?, direccionCliente = ?, descripcionDireccion = ? WHERE cedulaCliente = ?";
-    private final String DELETE = "DELETE FROM cliente WHERE cedulaCliente = ?";
-    private final String GETONE = "SELECT * FROM cliente WHERE cedulaCliente = ?";
-    private final String GETALL = "SELECT * FROM cliente";
-    
-    public boolean crear(Cliente cliente) {
+    public void crear(Cliente object){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
         try {
-            statement = conexion.prepareScript(INSERT);
-            statement.setString(1, cliente.getCedulaCliente());
-            statement.setString(2, cliente.getNombreCliente());
-            statement.setString(3, cliente.getApellidoCliente());
-            statement.setString(4, cliente.getTelefonoCliente());
-            statement.setString(5, cliente.getDireccionCliente());
-            statement.setString(6, cliente.getDescripcionDireccionCliente());
-            if(statement.executeUpdate() == 0){
-                throw new Exception("No se pudo crear el cliente");
-            } 
-            
+            em.persist(object);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+    }
+    
+    public boolean eliminar(Cliente object){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        boolean ret = false;
+        try {
+            em.remove(object);
+            em.getTransaction().commit();
+            ret = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+            return ret;
+        }
+    }
+    
+    public Cliente leer (Cliente par){
+        EntityManager em = emf.createEntityManager();
+        Cliente usuario = null;
+        Query q = em.createQuery("SELECT c FROM Cliente c "
+                + "WHERE c.cedulaCliente = :cedulacliente")
+                .setParameter("cedulaCliente", par.getCedulaCliente())
+                .setParameter("nombreCliente", par.getNombreCliente())
+                .setParameter("telefonoCliente", par.getTelefonoCliente())
+                .setParameter("direccionCliente", par.getDireccionCliente())
+                .setParameter("descripcionDireccionCliente", par.getDescripcionDireccionCliente())
+                .setParameter("apellidoCliente", par.getApellidoCliente());
+        try {
+            usuario = (Cliente) q.getSingleResult();
+        } catch (NonUniqueResultException e) {
+            usuario = (Cliente) q.getResultList().get(0);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-           if (statement != null){
-               try{
-                   statement.close();
-               } catch (SQLException e){
-                   
-               }
-           }
-        }return true;
+            em.close();
+            return usuario;
+        }
     }
-
-    public boolean eliminar(Cliente cliente) {
+    
+    public boolean actualizar(Cliente object, Cliente nuevoObjeto){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        boolean ret = false;
         try {
-            statement = conexion.prepareScript(DELETE);
-            statement.setString(1, cliente.getCedulaCliente());
-            if(statement.executeUpdate() == 0){
-                throw new Exception("no se pudo eliminar al cliente porque no existe");
-            }
-           
+            object = leer(object);
+            object.setCedulaCliente(nuevoObjeto.getCedulaCliente());
+            object.setNombreCliente(nuevoObjeto.getNombreCliente());
+            object.setTelefonoCliente(nuevoObjeto.getTelefonoCliente());
+            object.setDireccionCliente(nuevoObjeto.getDireccionCliente());
+            object.setDescripcionDireccionCliente(nuevoObjeto.getDescripcionDireccionCliente());
+            object.setApellidoCliente(nuevoObjeto.getApellidoCliente());
+            em.merge(object);
+            em.getTransaction().commit();
+            ret = true;
         } catch (Exception e) {
-           
+            e.printStackTrace();
+            em.getTransaction().rollback();
         } finally {
-           if(statement != null){
-               try{
-                   statement.close();
-               }catch (SQLException e){
-                   
-               }
-           }
-        }return true;
+            em.close();
+            return ret;
+        }
     }
-
-    public Cliente leer(String c) {
-        Cliente cliente = null;
-        try{
-            statement = conexion.prepareScript(GETONE);
-            statement.setString(1, c);
-            resultSet = statement.executeQuery();
-            if(resultSet.next()){
-                cliente = convertir(resultSet);
-            }
-        } catch (SQLException e) {
-        }finally {
-            if(resultSet != null){
-                try{
-                    resultSet.close();
-                }catch(SQLException e){
-                    
-                }
-            }
-            if(statement != null){
-                try{
-                    statement.close();
-                }catch (SQLException e){
-                    
-                }
-            }
-        }return cliente;
-    }
-    
-    private Cliente convertir(ResultSet rs) throws SQLException{
-        Cliente c = new Cliente();
-        c.setApellidoCliente(rs.getString("Apellido"));
-        c.setCedulaCliente(rs.getString("cedulaCliente"));
-        c.setDescripcionDireccionCliente(rs.getString("descripcionDireccion"));
-        c.setDireccionCliente(rs.getString("direccionCliente"));
-        c.setNombreCliente(rs.getString("nombre"));
-        c.setTelefonoCliente(rs.getString("telefono"));
-        return c;  
-    }
-    
-    public boolean leer(){
-        boolean r = false;
-        try{
-            statement = conexion.prepareScript(GETALL);
-            resultSet = statement.executeQuery();
-            if(resultSet.next()){
-                r = true;
-            }
-        }catch (SQLException e){
-            
-        }finally{
-            if(resultSet != null){
-                try{
-                    resultSet.close();
-                }catch (SQLException e) {
-                    
-                }
-            }
-            
-            if(statement != null){
-                try {
-                    statement.close();
-                }catch (SQLException e) {
-                    
-                }
-            }
-        }return r;
-    }
-
-    public boolean actualizar(Cliente clin, String cedulaCliente) {
-        try {
-            statement = conexion.prepareScript(UPDATE);
-            statement.setString(1, clin.getCedulaCliente());
-            statement.setString(2, clin.getNombreCliente());
-            statement.setString(3, clin.getApellidoCliente());
-            statement.setString(4, clin.getTelefonoCliente());
-            statement.setString(5, clin.getDireccionCliente());
-            statement.setString(6, clin.getDescripcionDireccionCliente());
-            statement.setString(7, cedulaCliente);
-            if(statement.executeUpdate() == 0){
-                throw new Exception("no se pudo actualizar el cliente");
-            }
-        }catch (Exception e){
-        }finally{
-            if(statement != null){
-                try{
-                    statement.close();
-                }catch (SQLException e){
-                    
-                }
-            }
-        }return true;    
-    }
-    
 }

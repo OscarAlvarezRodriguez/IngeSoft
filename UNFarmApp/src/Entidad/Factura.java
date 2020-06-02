@@ -1,9 +1,19 @@
 package Entidad;
 
-public class Factura {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "Factura")
+public class Factura implements Serializable {
+
+    @Id
     private int idFactura;
-    private long precioTotalFactura;
+    @Column(nullable = false)
+    private long precioTotal;
 
     public Factura() {
     }
@@ -16,11 +26,11 @@ public class Factura {
     }
 
     public long getPrecioTotalFactura() {
-        return precioTotalFactura;
+        return precioTotal;
     }
 
     public void setPrecioTotalFactura(long precioTotalFactura) {
-        this.precioTotalFactura = precioTotalFactura;
+        this.precioTotal = precioTotalFactura;
     }
 
 }

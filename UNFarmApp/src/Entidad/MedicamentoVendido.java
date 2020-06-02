@@ -1,27 +1,36 @@
 package Entidad;
 
-public class MedicamentoVendido extends Medicamento {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-    private int cantidadVendidaMedicamento;
-    private int idFacturaMedicamento;
+@Entity
+@Table(name = "FacturaMedicamentos")
+public class MedicamentoVendido extends Medicamento implements Serializable {
+
+    @Column(nullable = false)
+    private int cantidadVendida;
+    @Column(nullable = false)
+    private int idFactura;
 
     public MedicamentoVendido() {
     }
 
     public int getCantidadVendidaMedicamento() {
-        return cantidadVendidaMedicamento;
+        return cantidadVendida;
     }
 
     public void setCantidadVendidaMedicamento(int cantidadVendidaMedicamento) {
-        this.cantidadVendidaMedicamento = cantidadVendidaMedicamento;
+        this.cantidadVendida = cantidadVendidaMedicamento;
     }
 
     public int getIdFacturaMedicamento() {
-        return idFacturaMedicamento;
+        return idFactura;
     }
 
     public void setIdFacturaMedicamento(int idFacturaMedicamento) {
-        this.idFacturaMedicamento = idFacturaMedicamento;
+        this.idFactura = idFacturaMedicamento;
     }
 
 }
