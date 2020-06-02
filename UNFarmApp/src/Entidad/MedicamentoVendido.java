@@ -10,18 +10,18 @@ import javax.persistence.Table;
 public class MedicamentoVendido extends Medicamento implements Serializable {
 
     @Column(nullable = false)
-    private int cantidadVendida;
+    private short cantidadVendida;
     @Column(nullable = false)
     private int idFactura;
 
     public MedicamentoVendido() {
     }
 
-    public int getCantidadVendidaMedicamento() {
+    public short getCantidadVendidaMedicamento() {
         return cantidadVendida;
     }
 
-    public void setCantidadVendidaMedicamento(int cantidadVendidaMedicamento) {
+    public void setCantidadVendidaMedicamento(short cantidadVendidaMedicamento) {
         this.cantidadVendida = cantidadVendidaMedicamento;
     }
 

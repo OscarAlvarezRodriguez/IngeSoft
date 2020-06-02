@@ -12,18 +12,18 @@ public class MedicamentoComprado extends Medicamento implements Serializable {
     @Column(nullable = false)
     private int idCompra;
     @Column(nullable = false)
-    private int cantidad;
+    private short cantidad;
     @Column(nullable = false)
     private int precioUnitario;
 
     public MedicamentoComprado() {
     }
 
-    public int getCantidadCompradaMedicamento() {
+    public short getCantidadCompradaMedicamento() {
         return cantidad;
     }
 
-    public void setCantidadCompradaMedicamento(int cantidadCompradaMedicamento) {
+    public void setCantidadCompradaMedicamento(short cantidadCompradaMedicamento) {
         this.cantidad = cantidadCompradaMedicamento;
     }
 
