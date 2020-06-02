@@ -58,7 +58,7 @@ public class MedicamentoDAO {
         } catch (NonUniqueResultException e) {
             consulta = (Medicamento) q.getResultList().get(0);
         } catch (Exception e) {
-            //e.printStackTrace();
+            
         } finally {
             em.close();
             return consulta;

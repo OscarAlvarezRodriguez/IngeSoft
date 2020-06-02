@@ -59,7 +59,7 @@ public class EmpleadoDAO {
         } catch (NonUniqueResultException e) {
             usuario = (Empleado) q.getResultList().get(0);
         } catch (Exception e) {
-            //e.printStackTrace();
+     
         } finally {
             em.close();
             return usuario;
