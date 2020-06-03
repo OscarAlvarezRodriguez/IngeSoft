@@ -67,7 +67,7 @@ public class TestAutenticarCliente {
 
         Cliente u = new Cliente();
         u.setCedulaCliente("1032455541");
-        assertEquals(usuario.verificarLogin(u), cr);
+        assertEquals(usuario.verificarLogin(u.getCedulaCliente()), cr);
     }
     
     @Test
@@ -76,7 +76,7 @@ public class TestAutenticarCliente {
         Cliente u = new Cliente();
 
         u.setCedulaCliente("123456789");
-        assertEquals(usuario.verificarLogin(u), bi);
+        assertEquals(usuario.verificarLogin(u.getCedulaCliente()), bi);
 
     }
     

@@ -1,10 +1,8 @@
 package Frontera;
 
-import java.awt.Component;
-import java.awt.Image;
-import java.awt.event.MouseListener;
-import javax.swing.ImageIcon;
+import Recursos.Funciones;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class FramePrincipal extends javax.swing.JFrame {
 
@@ -13,6 +11,11 @@ public class FramePrincipal extends javax.swing.JFrame {
     everytime that one add Fronter
     update  "Void Change Panel"
     Add     Public Static int INTFronteraXXXXX
+    Add in the costructor 
+     add(new Panel);
+        new Panel.setBounds(jpPrincipal.getBounds());
+        new Panel.setVisible(true);
+    
      */
     public static final int INTFramePrincipal = 0;
     public static final int INTFronteraRegDrogueria = 1;
@@ -28,6 +31,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     FronteraAutEmpleado autenticarEmpleado = new FronteraAutEmpleado();
     FronteraEditCliente editarCliente = new FronteraEditCliente();
     FronteraRegCliente regCliente = new FronteraRegCliente();
+    Funciones f = new Funciones();
 
     JLabel logo = new JLabel();
 
@@ -72,32 +76,26 @@ public class FramePrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setTitle("UNFarmApp");
         logo.setSize(1000, 1000);
-        setIconImage(setImageBackground("/Recursos/logo.png", logo).getImage());
+        setIconImage(f.setImageBackground("/Recursos/logo.png", logo).getImage());
+
+        addPanel(jpPrincipal);
+        addPanel(autenticarEmpleado);
+        addPanel(drogueria);
+        addPanel(editarCliente);
+        addPanel(empleado);
+        addPanel(regCliente);
+        addPanel(splash);
 
         jpPrincipal.setVisible(false);
-        add(splash);
-        splash.setBounds(jpPrincipal.getBounds());
         splash.setVisible(true);
-
-        add(drogueria);
-        drogueria.setBounds(jpPrincipal.getBounds());
-        drogueria.setVisible(false);
-
-        add(empleado);
-        empleado.setBounds(jpPrincipal.getBounds());
-        empleado.setVisible(false);
-
-        add(autenticarEmpleado);
-        autenticarEmpleado.setBounds(jpPrincipal.getBounds());
-        autenticarEmpleado.setVisible(false);
 
         App.getInstance().setFramePrincipal(this);
     }
 
-    public ImageIcon setImageBackground(String direccion, Component o) {
-        ImageIcon imagen = new ImageIcon(this.getClass().getResource(direccion));
-        imagen = new ImageIcon(imagen.getImage().getScaledInstance(o.getWidth(), o.getHeight(), Image.SCALE_SMOOTH));
-        return imagen;
+    private void addPanel(JPanel New) {
+        add(New);
+        New.setBounds(jpPrincipal.getBounds());
+        New.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")

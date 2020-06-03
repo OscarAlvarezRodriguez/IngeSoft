@@ -1,6 +1,6 @@
 package Frontera;
 //ERROR
-import Control.EditarCliente;
+
 import Control.RegistrarCliente;
 import Entidad.Cliente;
 import Recursos.Funciones;
@@ -18,21 +18,21 @@ btnCancelarActionPerformed --> especificar a donde va al hacer click
 btnRegistrarActionPerformed
 Al momento de INICIAR esta pestaña debe SI o SI actualizarse el atributo cedula
 y los datos del Cliente actual
-*/
-
+ */
 public class FronteraRegCliente extends javax.swing.JPanel {
 
     RegistrarCliente Reg = new RegistrarCliente();
     Cliente cliente;
 
     Funciones f = new Funciones();
-    
+
     public FronteraRegCliente() {
         initComponents();
         jlLogo.setSize(100, 100);
         jlLogo.setIcon(setImageBackground("/Recursos/logo.png", jlLogo));
         jlKit.setSize(100, 100);
         jlKit.setIcon(setImageBackground("/Recursos/addUser.png", jlKit));
+        txtCedula.setEditable(false);
 
     }
 
@@ -58,17 +58,18 @@ public class FronteraRegCliente extends javax.swing.JPanel {
     }
 
     //Se debe usar esta validacion antes de pasar a este Jpanel
-    public boolean Init(Cliente cliente){
-        if(cliente != null){
+    public boolean Init(Cliente cliente) {
+        if (cliente != null) {
             this.cliente = cliente;
             this.txtCedula.setText(this.cliente.getCedulaCliente());
+            txtCedula.setEditable(false);
             return true;
-        }else{
+        } else {
             return false;
         }
-        
+
     }
-    
+
     @Override
     public void paintComponent(Graphics g) {
         ImageIcon imagen = new ImageIcon(getClass().getResource("/Recursos/fondo.png"));
@@ -397,8 +398,8 @@ public class FronteraRegCliente extends javax.swing.JPanel {
         c.setTelefonoCliente(this.txtCelular.getName());
         c.setDireccionCliente(this.txtDireccion.getName());
         c.setDescripcionDireccionCliente(this.txtDescripcion.getName());
-        
-        if(Reg.ValidarDatos(c).equals("Registro exitoso")){
+
+        if (Reg.ValidarDatos(c).equals("Registro exitoso")) {
             JLabel lb = new JLabel();
             lb.setSize(50, 50);
             JOptionPane.showMessageDialog(null,
@@ -409,13 +410,13 @@ public class FronteraRegCliente extends javax.swing.JPanel {
             );
             allSetEmpty();
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null,
                     "Algun Campo Esta Mal Diligenciado, Por Favor Verificarlos",
                     "Comprobar Campos",
                     JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost

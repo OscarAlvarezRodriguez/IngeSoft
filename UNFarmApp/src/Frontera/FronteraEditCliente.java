@@ -1,12 +1,10 @@
 package Frontera;
 //ERROR
+
 import Control.EditarCliente;
 import Entidad.Cliente;
 import Recursos.Funciones;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
-import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -17,28 +15,24 @@ btnCancelarActionPerformed --> especificar a donde va al hacer click
 btnRegistrarActionPerformed
 Al momento de INICIAR esta pestaña debe SI o SI actualizarse el atributo cedula
 y los datos del Cliente actual
-*/
-
+ */
 public class FronteraEditCliente extends javax.swing.JPanel {
 
     EditarCliente Edit = new EditarCliente();
     Cliente cliente;
 
     Funciones f = new Funciones();
-    
+
     public FronteraEditCliente() {
         initComponents();
+        allSetEmpty();
         jlLogo.setSize(100, 100);
-        jlLogo.setIcon(setImageBackground("/Recursos/logo.png", jlLogo));
+        jlLogo.setIcon(f.setImageBackground("/Recursos/logo.png", jlLogo));
         jlKit.setSize(100, 100);
-        jlKit.setIcon(setImageBackground("/Recursos/addUser.png", jlKit));
+        jlKit.setIcon(f.setImageBackground("/Recursos/addUser.png", jlKit));
+        f.setStyleJButon(btnCancelar);
+        f.setStyleJButon(btnActualizar);
 
-    }
-
-    private ImageIcon setImageBackground(String direccion, Component o) {
-        ImageIcon imagen = new ImageIcon(this.getClass().getResource(direccion));
-        imagen = new ImageIcon(imagen.getImage().getScaledInstance(o.getWidth(), o.getHeight(), Image.SCALE_SMOOTH));
-        return imagen;
     }
 
     private void allSetEmpty() {
@@ -48,26 +42,26 @@ public class FronteraEditCliente extends javax.swing.JPanel {
         txtNombre.setText("");
         txtCelular.setText("");
         txtCedula.setText("");
-        txtApellido.setBackground(Color.white);
-        txtDireccion.setBackground(Color.white);
-        txtDescripcion.setBackground(Color.white);
-        txtNombre.setBackground(Color.white);
-        txtCelular.setBackground(Color.white);
-        txtCedula.setBackground(Color.white);
+        f.setStyleJTextField(txtApellido);
+        f.setStyleJTextField(txtCedula);
+        f.setStyleJTextField(txtCelular);
+        f.setStyleJTextField(txtDireccion);
+        f.setStyleJTextField(txtNombre);
+
     }
 
     //Se debe usar esta validacion antes de pasar a este Jpanel
-    public boolean Init(Cliente cliente){
-        if(cliente != null){
+    public boolean Init(Cliente cliente) {
+        if (cliente != null) {
             this.cliente = cliente;
             this.txtCedula.setText(this.cliente.getCedulaCliente());
             return true;
-        }else{
+        } else {
             return false;
         }
-        
+
     }
-    
+
     @Override
     public void paintComponent(Graphics g) {
         ImageIcon imagen = new ImageIcon(getClass().getResource("/Recursos/fondo.png"));
@@ -396,8 +390,8 @@ public class FronteraEditCliente extends javax.swing.JPanel {
         c.setTelefonoCliente(this.txtCelular.getName());
         c.setDireccionCliente(this.txtDireccion.getName());
         c.setDescripcionDireccionCliente(this.txtDescripcion.getName());
-        
-        if(Edit.ValidarDatos(cliente.getCedulaCliente(), c).equals("Actualización correcta")){
+
+        if (Edit.ValidarDatos(cliente.getCedulaCliente(), c).equals("Actualización correcta")) {
             JLabel lb = new JLabel();
             lb.setSize(50, 50);
             JOptionPane.showMessageDialog(null,
@@ -408,13 +402,13 @@ public class FronteraEditCliente extends javax.swing.JPanel {
             );
             allSetEmpty();
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null,
                     "Algun Campo Esta Mal Diligenciado, Por Favor Verificarlos",
                     "Comprobar Campos",
                     JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
@@ -425,15 +419,15 @@ public class FronteraEditCliente extends javax.swing.JPanel {
                         "El Nombre Debe Tener Entre 5 y 20 Caracteres",
                         "Longitud Nombre Incorrecta",
                         JOptionPane.ERROR_MESSAGE);
-                txtNombre.setBackground(Color.pink);
+                txtNombre.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtNombreFocusLost
 
     private void txtNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusGained
-        if (txtNombre.getBackground().equals(Color.pink)) {
-            txtNombre.setBackground(Color.white);
+        if (txtNombre.getBackground().equals(f.fondoTxtError)) {
+            txtNombre.setBackground(f.fondoTxt);
             txtNombre.setText("");
         }
     }//GEN-LAST:event_txtNombreFocusGained
@@ -446,15 +440,15 @@ public class FronteraEditCliente extends javax.swing.JPanel {
                         "El Apellido Debe Tener Entre 5 y 20 Caracteres",
                         "Longitud apellido incorrecta",
                         JOptionPane.ERROR_MESSAGE);
-                txtApellido.setBackground(Color.pink);
+                txtApellido.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtApellidoFocusLost
 
     private void txtApellidoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoFocusGained
-        if (txtApellido.getBackground().equals(Color.pink)) {
-            txtApellido.setBackground(Color.white);
+        if (txtApellido.getBackground().equals(f.fondoTxtError)) {
+            txtApellido.setBackground(f.fondoTxt);
             txtApellido.setText("");
         }
     }//GEN-LAST:event_txtApellidoFocusGained
@@ -467,15 +461,15 @@ public class FronteraEditCliente extends javax.swing.JPanel {
                         "La direccion Debe Tener Entre 12 y 32 Caracteres",
                         "Longitud de Direccion incorrecta",
                         JOptionPane.ERROR_MESSAGE);
-                txtDireccion.setBackground(Color.pink);
+                txtDireccion.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtDireccionFocusLost
 
     private void txtDireccionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusGained
-        if (txtDireccion.getBackground().equals(Color.pink)) {
-            txtDireccion.setBackground(Color.white);
+        if (txtDireccion.getBackground().equals(f.fondoTxtError)) {
+            txtDireccion.setBackground(f.fondoTxt);
             txtDireccion.setText("");
         }
     }//GEN-LAST:event_txtDireccionFocusGained
@@ -488,22 +482,22 @@ public class FronteraEditCliente extends javax.swing.JPanel {
                         "El telefono Debe Tener Entre 7 y 15 Caracteres",
                         "Número telefónico no válido",
                         JOptionPane.ERROR_MESSAGE);
-                txtCelular.setBackground(Color.pink);
+                txtCelular.setBackground(f.fondoTxtError);
             }
         }
     }//GEN-LAST:event_txtCelularFocusLost
 
     private void txtCelularFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCelularFocusGained
-        if (txtCelular.getBackground().equals(Color.pink)) {
-            txtCelular.setBackground(Color.white);
+        if (txtCelular.getBackground().equals(f.fondoTxtError)) {
+            txtCelular.setBackground(f.fondoTxt);
             txtCelular.setText("");
         }
     }//GEN-LAST:event_txtCelularFocusGained
 
     private void txtDescripcionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescripcionFocusGained
-        if (txtCelular.getBackground().equals(Color.pink)) {
-            txtCelular.setBackground(Color.white);
-            txtCelular.setText("");
+        if (txtDescripcion.getBackground().equals(f.fondoTxtError)) {
+            txtDescripcion.setBackground(f.fondoTxt);
+            txtDescripcion.setText("");
         }
     }//GEN-LAST:event_txtDescripcionFocusGained
 
@@ -515,7 +509,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
                         "La descripcion no posee la longitud.",
                         "Longitud descripción dirección incorrecta",
                         JOptionPane.ERROR_MESSAGE);
-                txtDescripcion.setBackground(Color.pink);
+                txtDescripcion.setBackground(f.fondoTxtError);
             }
         }
     }//GEN-LAST:event_txtDescripcionFocusLost
