@@ -2,6 +2,7 @@ package Frontera;
 //ERROR
 
 import Control.EditarCliente;
+import Control.RegistrarCliente;
 import Entidad.Cliente;
 import Recursos.Funciones;
 import java.awt.Graphics;
@@ -18,7 +19,7 @@ y los datos del Cliente actual
  */
 public class FronteraRegCliente extends javax.swing.JPanel {
 
-    EditarCliente Edit = new EditarCliente();
+    RegistrarCliente Edit = new RegistrarCliente();
     Cliente cliente;
 
     Funciones f = new Funciones();
@@ -392,12 +393,12 @@ public class FronteraRegCliente extends javax.swing.JPanel {
         c.setDireccionCliente(this.txtDireccion.getName());
         c.setDescripcionDireccionCliente(this.txtDescripcion.getName());
 
-        if (Edit.ValidarDatos(cliente.getCedulaCliente(), c).equals("Actualización correcta")) {
+        if (Edit.ValidarDatos(c).equals("Registro exitoso")) {
             JLabel lb = new JLabel();
             lb.setSize(50, 50);
             JOptionPane.showMessageDialog(null,
-                    "Cliente Actualizado Exitosamente",
-                    "Actualizacion exitosa",
+                    "Cliente Registrado Exitosamente",
+                    "Registro exitoso",
                     JOptionPane.CLOSED_OPTION,
                     f.setImageBackground("/recursos/exito.png", lb)
             );
