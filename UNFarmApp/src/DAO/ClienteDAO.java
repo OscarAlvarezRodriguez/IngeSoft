@@ -45,37 +45,38 @@ public class ClienteDAO {
         }
     }
     
-    public Cliente leer (Cliente par){
+    public Cliente leer (String ced){
         EntityManager em = emf.createEntityManager();
-        Cliente usuario = null;
+        Cliente cliente = null;
         Query q = em.createQuery("SELECT c FROM Cliente c "
                 + "WHERE c.cedulaCliente = :cedulaCliente")
-                .setParameter("cedulaCliente", par.getCedulaCliente());
+                .setParameter("cedulaCliente", ced);
         try {
-            usuario = (Cliente) q.getSingleResult();
+            cliente = (Cliente) q.getSingleResult();
         } catch (NonUniqueResultException e) {
-            usuario = (Cliente) q.getResultList().get(0);
+            cliente = (Cliente) q.getResultList().get(0);
         } catch (Exception e) {
             
         } finally {
             em.close();
-            return usuario;
+            return cliente;
         }
     }
     
-    public boolean actualizar(Cliente object, Cliente nuevoObjeto){
+    public boolean actualizar(String ced, Cliente nuevoObjeto){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         boolean ret = false;
+        Cliente antiguo;
         try {
-            object = leer(object);
-            object.setCedulaCliente(nuevoObjeto.getCedulaCliente());
-            object.setNombreCliente(nuevoObjeto.getNombreCliente());
-            object.setTelefonoCliente(nuevoObjeto.getTelefonoCliente());
-            object.setDireccionCliente(nuevoObjeto.getDireccionCliente());
-            object.setDescripcionDireccionCliente(nuevoObjeto.getDescripcionDireccionCliente());
-            object.setApellidoCliente(nuevoObjeto.getApellidoCliente());
-            em.merge(object);
+            antiguo = leer(ced);
+            antiguo.setCedulaCliente(nuevoObjeto.getCedulaCliente());
+            antiguo.setNombreCliente(nuevoObjeto.getNombreCliente());
+            antiguo.setTelefonoCliente(nuevoObjeto.getTelefonoCliente());
+            antiguo.setDireccionCliente(nuevoObjeto.getDireccionCliente());
+            antiguo.setDescripcionDireccionCliente(nuevoObjeto.getDescripcionDireccionCliente());
+            antiguo.setApellidoCliente(nuevoObjeto.getApellidoCliente());
+            em.merge(antiguo);
             em.getTransaction().commit();
             ret = true;
         } catch (Exception e) {

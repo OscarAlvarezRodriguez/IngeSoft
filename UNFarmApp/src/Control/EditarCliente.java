@@ -25,34 +25,34 @@ public class EditarCliente {
 
     }
 
-    public String ValidarDatos(Cliente clienteAct, Cliente ClienteNuevo) {
-        if (!validarCedula(clienteAct.getCedulaCliente()).equals(co)) {
+    public String ValidarDatos(String cedActual, Cliente clienteNuevo) {
+        if (!validarCedula(clienteNuevo.getCedulaCliente()).equals(co)) {
             return (cn);
         }
-        if (!validarNombre(clienteAct.getNombreCliente()).equals(co)) {
+        if (!validarNombre(clienteNuevo.getNombreCliente()).equals(co)) {
             return (nn);
         }
 
-        if (!validarTelefono(clienteAct.getTelefonoCliente()).equals(co)) {
+        if (!validarTelefono(clienteNuevo.getTelefonoCliente()).equals(co)) {
             return (tn);
         }
 
-        if (!validarDireccion(clienteAct.getDireccionCliente()).equals(co)) {
+        if (!validarDireccion(clienteNuevo.getDireccionCliente()).equals(co)) {
             return (dn);
         }
 
-        if (!validarDescripcionDir(clienteAct.getDescripcionDireccionCliente()).equals(co)) {
+        if (!validarDescripcionDir(clienteNuevo.getDescripcionDireccionCliente()).equals(co)) {
             return (ddn);
         }
 
-        if (!validarApellido(clienteAct.getApellidoCliente()).equals(co)) {
+        if (!validarApellido(clienteNuevo.getApellidoCliente()).equals(co)) {
             return (an);
         }
 
-        if (actCliente.leer(clienteAct) == null) {
+        if (actCliente.leer(cedActual) == null) {
             return (cr);
         }
-        actCliente.actualizar(clienteAct, ClienteNuevo);
+        actCliente.actualizar(cedActual, clienteNuevo);
         return (re);
     }
 

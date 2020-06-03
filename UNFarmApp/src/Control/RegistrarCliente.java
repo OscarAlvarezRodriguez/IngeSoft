@@ -21,7 +21,7 @@ public class RegistrarCliente {
     }
 
     public String ValidarDatos(Cliente cliente) {
-        if (nuevocliente.leer(cliente) != null) {
+        if (nuevocliente.leer(cliente.getCedulaCliente()) != null) {
             return (cr);
         }
         if (!validarCedula(cliente.getCedulaCliente()).equals(co)) {

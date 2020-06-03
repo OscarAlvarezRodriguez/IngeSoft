@@ -14,8 +14,8 @@ public class AutenticarCliente {
     public AutenticarCliente() {
     }
 
-    public String verificarLogin(Cliente cli) {
-        if (!validarCedula(cli.getCedulaCliente()).equals(co)) {
+    public String verificarLogin(String cli) {
+        if (!validarCedula(cli).equals(co)) {
             return (cn);
         }
         if (cliente.leer(cli) != null) {
