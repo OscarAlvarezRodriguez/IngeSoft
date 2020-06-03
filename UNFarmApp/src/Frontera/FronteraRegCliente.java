@@ -1,13 +1,10 @@
 package Frontera;
 //ERROR
 
-import Control.RegistrarCliente;
+import Control.EditarCliente;
 import Entidad.Cliente;
 import Recursos.Funciones;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
-import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,25 +18,21 @@ y los datos del Cliente actual
  */
 public class FronteraRegCliente extends javax.swing.JPanel {
 
-    RegistrarCliente Reg = new RegistrarCliente();
+    EditarCliente Edit = new EditarCliente();
     Cliente cliente;
 
     Funciones f = new Funciones();
 
     public FronteraRegCliente() {
         initComponents();
+        allSetEmpty();
         jlLogo.setSize(100, 100);
-        jlLogo.setIcon(setImageBackground("/Recursos/logo.png", jlLogo));
+        jlLogo.setIcon(f.setImageBackground("/Recursos/logo.png", jlLogo));
         jlKit.setSize(100, 100);
-        jlKit.setIcon(setImageBackground("/Recursos/addUser.png", jlKit));
-        txtCedula.setEditable(false);
+        jlKit.setIcon(f.setImageBackground("/Recursos/addUser.png", jlKit));
+        f.setStyleJButon(btnCancelar);
+        f.setStyleJButon(btnRegistrar);
 
-    }
-
-    private ImageIcon setImageBackground(String direccion, Component o) {
-        ImageIcon imagen = new ImageIcon(this.getClass().getResource(direccion));
-        imagen = new ImageIcon(imagen.getImage().getScaledInstance(o.getWidth(), o.getHeight(), Image.SCALE_SMOOTH));
-        return imagen;
     }
 
     private void allSetEmpty() {
@@ -49,12 +42,12 @@ public class FronteraRegCliente extends javax.swing.JPanel {
         txtNombre.setText("");
         txtCelular.setText("");
         txtCedula.setText("");
-        txtApellido.setBackground(Color.white);
-        txtDireccion.setBackground(Color.white);
-        txtDescripcion.setBackground(Color.white);
-        txtNombre.setBackground(Color.white);
-        txtCelular.setBackground(Color.white);
-        txtCedula.setBackground(Color.white);
+        f.setStyleJTextField(txtApellido);
+        f.setStyleJTextField(txtCedula);
+        f.setStyleJTextField(txtCelular);
+        f.setStyleJTextField(txtDireccion);
+        f.setStyleJTextField(txtNombre);
+
     }
 
     //Se debe usar esta validacion antes de pasar a este Jpanel
@@ -399,12 +392,12 @@ public class FronteraRegCliente extends javax.swing.JPanel {
         c.setDireccionCliente(this.txtDireccion.getName());
         c.setDescripcionDireccionCliente(this.txtDescripcion.getName());
 
-        if (Reg.ValidarDatos(c).equals("Registro exitoso")) {
+        if (Edit.ValidarDatos(cliente.getCedulaCliente(), c).equals("Actualización correcta")) {
             JLabel lb = new JLabel();
             lb.setSize(50, 50);
             JOptionPane.showMessageDialog(null,
-                    "Cliente Registrado Exitosamente",
-                    "Registro exitoso",
+                    "Cliente Actualizado Exitosamente",
+                    "Actualizacion exitosa",
                     JOptionPane.CLOSED_OPTION,
                     f.setImageBackground("/recursos/exito.png", lb)
             );
@@ -421,103 +414,103 @@ public class FronteraRegCliente extends javax.swing.JPanel {
 
     private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
         if (!txtNombre.getText().equals("")) {
-            if (Reg.validarNombre(txtNombre.getText())
+            if (Edit.validarNombre(txtNombre.getText())
                     .equals("Lontigud nombre incorrecta")) {
                 JOptionPane.showMessageDialog(null,
                         "El Nombre Debe Tener Entre 5 y 20 Caracteres",
                         "Longitud Nombre Incorrecta",
                         JOptionPane.ERROR_MESSAGE);
-                txtNombre.setBackground(Color.pink);
+                txtNombre.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtNombreFocusLost
 
     private void txtNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusGained
-        if (txtNombre.getBackground().equals(Color.pink)) {
-            txtNombre.setBackground(Color.white);
+        if (txtNombre.getBackground().equals(f.fondoTxtError)) {
+            txtNombre.setBackground(f.fondoTxt);
             txtNombre.setText("");
         }
     }//GEN-LAST:event_txtNombreFocusGained
 
     private void txtApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoFocusLost
         if (!txtApellido.getText().equals("")) {
-            if (Reg.validarApellido(txtApellido.getText())
+            if (Edit.validarApellido(txtApellido.getText())
                     .equals("Longitud apellido incorrecta")) {
                 JOptionPane.showMessageDialog(null,
                         "El Apellido Debe Tener Entre 5 y 20 Caracteres",
                         "Longitud apellido incorrecta",
                         JOptionPane.ERROR_MESSAGE);
-                txtApellido.setBackground(Color.pink);
+                txtApellido.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtApellidoFocusLost
 
     private void txtApellidoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoFocusGained
-        if (txtApellido.getBackground().equals(Color.pink)) {
-            txtApellido.setBackground(Color.white);
+        if (txtApellido.getBackground().equals(f.fondoTxtError)) {
+            txtApellido.setBackground(f.fondoTxt);
             txtApellido.setText("");
         }
     }//GEN-LAST:event_txtApellidoFocusGained
 
     private void txtDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusLost
         if (!txtDireccion.getText().equals("")) {
-            if (Reg.validarDireccion(txtDireccion.getText())
+            if (Edit.validarDireccion(txtDireccion.getText())
                     .equals("Longitud dirección incorrecta")) {
                 JOptionPane.showMessageDialog(null,
                         "La direccion Debe Tener Entre 12 y 32 Caracteres",
                         "Longitud de Direccion incorrecta",
                         JOptionPane.ERROR_MESSAGE);
-                txtDireccion.setBackground(Color.pink);
+                txtDireccion.setBackground(f.fondoTxtError);
 
             }
         }
     }//GEN-LAST:event_txtDireccionFocusLost
 
     private void txtDireccionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusGained
-        if (txtDireccion.getBackground().equals(Color.pink)) {
-            txtDireccion.setBackground(Color.white);
+        if (txtDireccion.getBackground().equals(f.fondoTxtError)) {
+            txtDireccion.setBackground(f.fondoTxt);
             txtDireccion.setText("");
         }
     }//GEN-LAST:event_txtDireccionFocusGained
 
     private void txtCelularFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCelularFocusLost
         if (!txtCelular.getText().equals("")) {
-            if (Reg.validarTelefono(txtCelular.getText())
+            if (Edit.validarTelefono(txtCelular.getText())
                     .equals("Número telefónico no válido")) {
                 JOptionPane.showMessageDialog(null,
                         "El telefono Debe Tener Entre 7 y 15 Caracteres",
                         "Número telefónico no válido",
                         JOptionPane.ERROR_MESSAGE);
-                txtCelular.setBackground(Color.pink);
+                txtCelular.setBackground(f.fondoTxtError);
             }
         }
     }//GEN-LAST:event_txtCelularFocusLost
 
     private void txtCelularFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCelularFocusGained
-        if (txtCelular.getBackground().equals(Color.pink)) {
-            txtCelular.setBackground(Color.white);
+        if (txtCelular.getBackground().equals(f.fondoTxtError)) {
+            txtCelular.setBackground(f.fondoTxt);
             txtCelular.setText("");
         }
     }//GEN-LAST:event_txtCelularFocusGained
 
     private void txtDescripcionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescripcionFocusGained
-        if (txtCelular.getBackground().equals(Color.pink)) {
-            txtCelular.setBackground(Color.white);
-            txtCelular.setText("");
+        if (txtDescripcion.getBackground().equals(f.fondoTxtError)) {
+            txtDescripcion.setBackground(f.fondoTxt);
+            txtDescripcion.setText("");
         }
     }//GEN-LAST:event_txtDescripcionFocusGained
 
     private void txtDescripcionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescripcionFocusLost
         if (!txtDescripcion.getText().equals("")) {
-            if (Reg.validarDescripcionDir(txtDescripcion.getText())
+            if (Edit.validarDescripcionDir(txtDescripcion.getText())
                     .equals("Longitud descripción dirección incorrecta")) {
                 JOptionPane.showMessageDialog(null,
                         "La descripcion no posee la longitud.",
                         "Longitud descripción dirección incorrecta",
                         JOptionPane.ERROR_MESSAGE);
-                txtDescripcion.setBackground(Color.pink);
+                txtDescripcion.setBackground(f.fondoTxtError);
             }
         }
     }//GEN-LAST:event_txtDescripcionFocusLost

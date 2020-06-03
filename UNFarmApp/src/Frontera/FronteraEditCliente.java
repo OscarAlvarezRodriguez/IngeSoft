@@ -55,6 +55,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
         if (cliente != null) {
             this.cliente = cliente;
             this.txtCedula.setText(this.cliente.getCedulaCliente());
+            txtCedula.setEditable(false);
             return true;
         } else {
             return false;
