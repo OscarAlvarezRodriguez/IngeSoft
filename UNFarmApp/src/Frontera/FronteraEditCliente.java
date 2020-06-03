@@ -397,7 +397,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
         c.setDireccionCliente(this.txtDireccion.getName());
         c.setDescripcionDireccionCliente(this.txtDescripcion.getName());
         
-        if(Edit.ValidarDatos(cliente, c).equals("Actualización correcta")){
+        if(Edit.ValidarDatos(cliente.getCedulaCliente(), c).equals("Actualización correcta")){
             JLabel lb = new JLabel();
             lb.setSize(50, 50);
             JOptionPane.showMessageDialog(null,
