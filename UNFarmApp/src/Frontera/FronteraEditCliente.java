@@ -93,7 +93,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
         txtCelular = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
-        btnRegistrar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
         jlabel8 = new javax.swing.JLabel();
@@ -224,16 +224,16 @@ public class FronteraEditCliente extends javax.swing.JPanel {
             }
         });
 
-        btnRegistrar.setBackground(new java.awt.Color(0, 158, 15));
-        btnRegistrar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
-        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistrar.setText("Registrar");
-        btnRegistrar.setPreferredSize(new java.awt.Dimension(150, 40));
-        btnRegistrar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnRegistrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setBackground(new java.awt.Color(0, 158, 15));
+        btnActualizar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setPreferredSize(new java.awt.Dimension(150, 40));
+        btnActualizar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnActualizar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
 
@@ -286,7 +286,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(250, 250, 250)
-                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,7 +349,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33))
         );
@@ -388,7 +388,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
         App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         Cliente c = new Cliente();
         c.setNombreCliente(this.txtNombre.getName());
         c.setApellidoCliente(this.txtApellido.getName());
@@ -403,7 +403,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null,
                     "Cliente Actualizado Exitosamente",
                     "Actualizacion exitosa",
-                    JOptionPane.CANCEL_OPTION,
+                    JOptionPane.CLOSED_OPTION,
                     f.setImageBackground("/recursos/exito.png", lb)
             );
             allSetEmpty();
@@ -415,7 +415,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
                     JOptionPane.ERROR_MESSAGE);
         }
         
-    }//GEN-LAST:event_btnRegistrarActionPerformed
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
         if (!txtNombre.getText().equals("")) {
@@ -526,8 +526,8 @@ public class FronteraEditCliente extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -108,7 +108,7 @@ public class FronteraRegCliente extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Leelawadee", 0, 34)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Editar Cliente");
+        jLabel1.setText("Registrar Cliente");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setPreferredSize(new java.awt.Dimension(300, 50));
 
@@ -398,13 +398,13 @@ public class FronteraRegCliente extends javax.swing.JPanel {
         c.setDireccionCliente(this.txtDireccion.getName());
         c.setDescripcionDireccionCliente(this.txtDescripcion.getName());
         
-        if(Reg.ValidarDatos(cliente, c).equals("Actualización correcta")){
+        if(Reg.ValidarDatos(c).equals("Registro exitoso")){
             JLabel lb = new JLabel();
             lb.setSize(50, 50);
             JOptionPane.showMessageDialog(null,
-                    "Cliente Actualizado Exitosamente",
-                    "Actualizacion exitosa",
-                    JOptionPane.CANCEL_OPTION,
+                    "Cliente Registrado Exitosamente",
+                    "Registro exitoso",
+                    JOptionPane.CLOSED_OPTION,
                     f.setImageBackground("/recursos/exito.png", lb)
             );
             allSetEmpty();
