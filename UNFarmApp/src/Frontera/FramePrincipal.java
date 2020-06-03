@@ -27,7 +27,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     FronteraRegDrogueria drogueria = new FronteraRegDrogueria();
     FronteraAutEmpleado autenticarEmpleado = new FronteraAutEmpleado();
     FronteraEditCliente editarCliente = new FronteraEditCliente();
-    //FronteraRegCliente regCliente = new FronteraRegCliente();
+    FronteraRegCliente regCliente = new FronteraRegCliente();
 
     JLabel logo = new JLabel();
 
@@ -39,7 +39,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         drogueria.setVisible(false);
         autenticarEmpleado.setVisible(false);
         editarCliente.setVisible(false);
-        //regCliente.setVisible(false);
+        regCliente.setVisible(false);
 
         switch (n) {
             case INTFronteraEmpleado:
@@ -58,7 +58,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 editarCliente.setVisible(true);
                 break;
             case INTFronteraRegCliente:
-                //regCliente.setVisible(true);
+                regCliente.setVisible(true);
                 break;
             default:
                 break;

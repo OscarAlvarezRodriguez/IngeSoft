@@ -1,6 +1,7 @@
 package Frontera;
 //ERROR
 import Control.EditarCliente;
+import Control.RegistrarCliente;
 import Entidad.Cliente;
 import Recursos.Funciones;
 import java.awt.Color;
@@ -19,14 +20,14 @@ Al momento de INICIAR esta pestaña debe SI o SI actualizarse el atributo cedula
 y los datos del Cliente actual
 */
 
-public class FronteraEditCliente extends javax.swing.JPanel {
+public class FronteraRegCliente extends javax.swing.JPanel {
 
-    EditarCliente Edit = new EditarCliente();
+    RegistrarCliente Reg = new RegistrarCliente();
     Cliente cliente;
 
     Funciones f = new Funciones();
     
-    public FronteraEditCliente() {
+    public FronteraRegCliente() {
         initComponents();
         jlLogo.setSize(100, 100);
         jlLogo.setIcon(setImageBackground("/Recursos/logo.png", jlLogo));
@@ -397,7 +398,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
         c.setDireccionCliente(this.txtDireccion.getName());
         c.setDescripcionDireccionCliente(this.txtDescripcion.getName());
         
-        if(Edit.ValidarDatos(cliente, c).equals("Actualización correcta")){
+        if(Reg.ValidarDatos(cliente, c).equals("Actualización correcta")){
             JLabel lb = new JLabel();
             lb.setSize(50, 50);
             JOptionPane.showMessageDialog(null,
@@ -419,7 +420,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
 
     private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
         if (!txtNombre.getText().equals("")) {
-            if (Edit.validarNombre(txtNombre.getText())
+            if (Reg.validarNombre(txtNombre.getText())
                     .equals("Lontigud nombre incorrecta")) {
                 JOptionPane.showMessageDialog(null,
                         "El Nombre Debe Tener Entre 5 y 20 Caracteres",
@@ -440,7 +441,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
 
     private void txtApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoFocusLost
         if (!txtApellido.getText().equals("")) {
-            if (Edit.validarApellido(txtApellido.getText())
+            if (Reg.validarApellido(txtApellido.getText())
                     .equals("Longitud apellido incorrecta")) {
                 JOptionPane.showMessageDialog(null,
                         "El Apellido Debe Tener Entre 5 y 20 Caracteres",
@@ -461,7 +462,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
 
     private void txtDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusLost
         if (!txtDireccion.getText().equals("")) {
-            if (Edit.validarDireccion(txtDireccion.getText())
+            if (Reg.validarDireccion(txtDireccion.getText())
                     .equals("Longitud dirección incorrecta")) {
                 JOptionPane.showMessageDialog(null,
                         "La direccion Debe Tener Entre 12 y 32 Caracteres",
@@ -482,7 +483,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
 
     private void txtCelularFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCelularFocusLost
         if (!txtCelular.getText().equals("")) {
-            if (Edit.validarTelefono(txtCelular.getText())
+            if (Reg.validarTelefono(txtCelular.getText())
                     .equals("Número telefónico no válido")) {
                 JOptionPane.showMessageDialog(null,
                         "El telefono Debe Tener Entre 7 y 15 Caracteres",
@@ -509,7 +510,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
 
     private void txtDescripcionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescripcionFocusLost
         if (!txtDescripcion.getText().equals("")) {
-            if (Edit.validarDescripcionDir(txtDescripcion.getText())
+            if (Reg.validarDescripcionDir(txtDescripcion.getText())
                     .equals("Longitud descripción dirección incorrecta")) {
                 JOptionPane.showMessageDialog(null,
                         "La descripcion no posee la longitud.",
