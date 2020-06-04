@@ -212,7 +212,8 @@ public class TestRegistrarCliente {
         u.setNombreCliente("Jessica");
         u.setApellidoCliente("Cardenas");
         u.setTelefonoCliente("12345678"); 
-        assertEquals(cliente.ValidarDatos(u), cr);    
+        assertEquals(cliente.ValidarDatos(u), cr);
+        clienteDao.eliminar(u);
     }
 
 

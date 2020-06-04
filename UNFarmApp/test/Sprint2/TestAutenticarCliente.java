@@ -2,6 +2,7 @@ package Sprint2;
 
 import Control.AutenticarCliente;
 import Control.RegistrarCliente;
+import DAO.ClienteDAO;
 import Entidad.Cliente;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -15,6 +16,7 @@ public class TestAutenticarCliente {
     
     private static final AutenticarCliente usuario = new AutenticarCliente();
     private static final RegistrarCliente cliente = new RegistrarCliente();
+    private static final ClienteDAO clienteDao = new ClienteDAO();
     
     private final String cn = "Número cédula no válido";
     private final String cr = "Cliente no registrado";
@@ -74,10 +76,15 @@ public class TestAutenticarCliente {
     public void UsuarioRegistrado() {
 
         Cliente u = new Cliente();
-
+        
         u.setCedulaCliente("123456789");
+        u.setDescripcionDireccionCliente("Conjunto Residencial Mirador II");
+        u.setDireccionCliente("Carrera 52 No 33b");
+        u.setNombreCliente("Paula");
+        u.setApellidoCliente("Cardenas");
+        u.setTelefonoCliente("12345678"); 
         assertEquals(usuario.verificarLogin(u.getCedulaCliente()), bi);
-
+        clienteDao.eliminar(u);
     }
     
     

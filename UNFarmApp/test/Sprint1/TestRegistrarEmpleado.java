@@ -300,7 +300,7 @@ public class TestRegistrarEmpleado {
         u.setCorreoEmpleado("adolfo@mymail.com");
         u.setContraseniaEmpleado("Dan123");
         assertEquals(empleado.validarDatos(u), rs);
-
+        empleadoDao.eliminar(u);
     }
 
 }

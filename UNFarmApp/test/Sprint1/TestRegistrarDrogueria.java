@@ -206,6 +206,7 @@ public class TestRegistrarDrogueria {
         d.setRepresentanteLegalDrogueria("Andrés Palacio");
         d.setTelefonoDrogueria("123456789");
         assertEquals(drogueria.validarDatos(d), dr);
+        drogueriaDAOs.eliminar(d);
     }
 
     @Test
