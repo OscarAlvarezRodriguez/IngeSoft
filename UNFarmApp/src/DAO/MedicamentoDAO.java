@@ -7,8 +7,8 @@ import javax.persistence.Query;
 import Entidad.Medicamento;
 import java.util.List;
 public class MedicamentoDAO {
-    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UNFarmAppPU");
-    
+   private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UNFarmAppPU");
+
     public void crear(Medicamento object) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -22,7 +22,7 @@ public class MedicamentoDAO {
             em.close();
         }
     }
-    
+
     public boolean eliminar(Medicamento med) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -41,7 +41,7 @@ public class MedicamentoDAO {
             return ret;
         }
     }
-    
+
     public List<Medicamento> leertodo(Medicamento med) {
         EntityManager em = emf.createEntityManager();
         Query q =em.createQuery("SELECT m FROM Medicamento m");
@@ -55,21 +55,21 @@ public class MedicamentoDAO {
             return resultados;
         }
     }
-    
+
     public Medicamento leer(Medicamento par) {
         EntityManager em = emf.createEntityManager();
         Medicamento consulta = null;
         Query q = em.createQuery("SELECT m"
                 + " FROM Medicamento e "
                 + "WHERE m.idMedicamento = :idMedicamento"
-                )
+        )
                 .setParameter("idMedicamento", par.getIdMedicamento());
         try {
             consulta= (Medicamento) q.getSingleResult();
         } catch (NonUniqueResultException e) {
             consulta = (Medicamento) q.getResultList().get(0);
         } catch (Exception e) {
-            
+
         } finally {
             em.close();
             return consulta;

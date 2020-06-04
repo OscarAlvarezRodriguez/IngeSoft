@@ -1,6 +1,7 @@
 package DAO;
 
 import Entidad.Cliente;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -45,23 +46,50 @@ public class ClienteDAO {
         }
     }
     
-    public Cliente leer (String ced){
+    public List<Cliente> leerLista(String par){
+        EntityManager em = emf.createEntityManager();
+        List<Cliente> clientes = null;
+        Query q = em.createQuery("SELECT c FROM Cliente c "
+                + "WHERE c.cedulaCliente LIKE CONCAT(:parameter,'%')")
+                .setParameter("parameter", par);
+                
+        try {
+            clientes =  q.getResultList();
+        } catch (NonUniqueResultException e) {
+            clientes = q.getResultList();
+        } catch (Exception e) {
+            
+        } finally {
+            em.close();
+            return clientes;
+        }
+    }
+    
+    public Cliente leer(String par) {
         EntityManager em = emf.createEntityManager();
         Cliente cliente = null;
         Query q = em.createQuery("SELECT c FROM Cliente c "
                 + "WHERE c.cedulaCliente = :parameter")
-                .setParameter("parameter", ced);
+                .setParameter("parameter", par);
         try {
             cliente = (Cliente) q.getSingleResult();
         } catch (NonUniqueResultException e) {
             cliente = (Cliente) q.getResultList().get(0);
         } catch (Exception e) {
-            
         } finally {
             em.close();
             return cliente;
         }
     }
+    
+    public List<Cliente> todos(){
+        EntityManager em = emf.createEntityManager();
+        List<Cliente> clientes = null;
+        Query q = em.createQuery("SELECT c FROM Cliente c");
+        clientes = q.getResultList();
+        return clientes;
+    }
+    
     
     public boolean actualizar(String ced, Cliente nuevoObjeto){
         EntityManager em = emf.createEntityManager();

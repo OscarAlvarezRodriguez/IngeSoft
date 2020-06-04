@@ -10,12 +10,15 @@ import javax.swing.JOptionPane;
 
 public class FronteraAutEmpleado extends javax.swing.JPanel {
 
+    public Empleado e = new Empleado();
     private Funciones f = new Funciones();
     private AutenticarEmpleado empleado = new AutenticarEmpleado();
 
     public FronteraAutEmpleado() {
         initComponents();
         allSetEmpty();
+        e.setApellidoEmpleado("1");
+        e.setNombreEmpleado("1");
         jlLogo.setSize(100, 100);
         jlLogo.setIcon(f.setImageBackground("/Recursos/logo.png", jlLogo));
         f.setStyleJButon(btnRegistrar);
@@ -230,7 +233,6 @@ public class FronteraAutEmpleado extends javax.swing.JPanel {
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         String txtContrseniaArr = new String(txtContrasenia.getPassword());
-        Empleado e = new Empleado();
         e.setCedulaEmpleado(txtUsuario.getText());
         e.setContraseniaEmpleado(txtContrseniaArr);
         if (empleado.verificarLogin(e).equals("Bienvenido")) {
@@ -245,8 +247,9 @@ public class FronteraAutEmpleado extends javax.swing.JPanel {
                     f.setImageBackground("/recursos/exito.png", lb)
             );
             allSetEmpty();
-            App.getInstance().ChangePanel(FramePrincipal.INTFronteraSplash);
-            App.getInstance().framePrincipal.splash.showAgain();
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenu);
+            App.getInstance().framePrincipal.menuEmpleado.setNombreUsuario(e);
+            
 
         } else {
             JOptionPane.showMessageDialog(null,

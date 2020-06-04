@@ -24,6 +24,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     public static final int INTFronteraAutEmpleado = 4;
     public static final int INTFronteraRegCliente = 5;
     public static final int INTFronteraEditCliente = 6;
+    public static final int INTFronteraMenu = 7;
 
     FronteraSplash splash = new FronteraSplash();
     FronteraRegEmpleado empleado = new FronteraRegEmpleado();
@@ -31,6 +32,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     FronteraAutEmpleado autenticarEmpleado = new FronteraAutEmpleado();
     FronteraEditCliente editarCliente = new FronteraEditCliente();
     FronteraRegCliente regCliente = new FronteraRegCliente();
+    FronteraMenuEmpleado menuEmpleado =  new FronteraMenuEmpleado();
     Funciones f = new Funciones();
 
     JLabel logo = new JLabel();
@@ -44,6 +46,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         autenticarEmpleado.setVisible(false);
         editarCliente.setVisible(false);
         regCliente.setVisible(false);
+        menuEmpleado.setVisible(false);
 
         switch (n) {
             case INTFronteraEmpleado:
@@ -63,6 +66,9 @@ public class FramePrincipal extends javax.swing.JFrame {
                 break;
             case INTFronteraRegCliente:
                 regCliente.setVisible(true);
+                break;
+            case INTFronteraMenu:
+                menuEmpleado.setVisible(true);
                 break;
             default:
                 break;
@@ -85,6 +91,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         addPanel(empleado);
         addPanel(regCliente);
         addPanel(splash);
+        addPanel(menuEmpleado);
 
         jpPrincipal.setVisible(false);
         splash.setVisible(true);
