@@ -49,8 +49,8 @@ public class ClienteDAO {
         EntityManager em = emf.createEntityManager();
         Cliente cliente = null;
         Query q = em.createQuery("SELECT c FROM Cliente c "
-                + "WHERE c.cedulaCliente = :cedulaCliente")
-                .setParameter("cedulaCliente", ced);
+                + "WHERE c.cedulaCliente = :parameter")
+                .setParameter("parameter", ced);
         try {
             cliente = (Cliente) q.getSingleResult();
         } catch (NonUniqueResultException e) {

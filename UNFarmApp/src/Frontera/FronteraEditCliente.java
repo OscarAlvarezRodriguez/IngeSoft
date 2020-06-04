@@ -47,6 +47,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
         f.setStyleJTextField(txtCelular);
         f.setStyleJTextField(txtDireccion);
         f.setStyleJTextField(txtNombre);
+        f.setStyleJTextArea(txtDescripcion, jScrollPane1);
 
     }
 

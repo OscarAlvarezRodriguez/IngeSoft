@@ -8,6 +8,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 
@@ -20,8 +22,18 @@ public class Funciones {
     public void setStyleJTextField(JTextField tf) {
         tf.setBackground(fondoTxt);
         tf.setFont(new Font("Leelawadee", 0, 20));
-        tf.setBorder(new MatteBorder(0, 0, 3, 0, colorPrincipal));
+        tf.setBorder(new MatteBorder(3, 3, 3, 3, colorPrincipal));
 
+    }
+
+    public void setStyleJTextArea(JTextArea jta,  JScrollPane scrollPane) {
+        scrollPane.getViewport().setOpaque(false);
+        jta.setLineWrap(true);
+        jta.setWrapStyleWord(true);
+        jta.setOpaque(false);
+        jta.setBackground(fondoTxt);
+        jta.setFont(new Font("Leelawadee", 0, 20));
+        jta.setBorder(new MatteBorder(3, 3, 3, 3, colorPrincipal));
     }
 
     public ImageIcon setImageBackground(String direccion, Component o) {
