@@ -23,6 +23,8 @@ public class Cliente implements Serializable {
     private String descripcionDireccion;
     @Column(nullable = false, length = 20)
     private String apellido;
+    @Column(nullable = false)
+    private boolean eliminado;
 
     public Cliente() {
     }
@@ -73,6 +75,14 @@ public class Cliente implements Serializable {
 
     public void setApellidoCliente(String apellidoCliente) {
         this.apellido = apellidoCliente;
+    }
+    
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
     }
 
 }

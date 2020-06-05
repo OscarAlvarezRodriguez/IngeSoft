@@ -17,6 +17,7 @@
     <class>Pruebas.Domicilio</class>
     <class>Pruebas.Factura</class>
     <class>Recursos.Medicamentoinvima</class>
+    <class>Entidad.MedicamentoInvima</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/unfarmapp?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

@@ -25,6 +25,8 @@ public class Empleado implements Serializable {
     private String contrasenia;
     @Column(nullable = false, length = 50)
     private String correo;
+    @Column(nullable =false)
+    private boolean estado;
 
     public Empleado() {
     }
@@ -84,5 +86,11 @@ public class Empleado implements Serializable {
     public void setCorreoEmpleado(String correoEmpleado) {
         this.correo = correoEmpleado;
     }
+    public boolean isEstado() {
+        return estado;
+    }
 
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
 }

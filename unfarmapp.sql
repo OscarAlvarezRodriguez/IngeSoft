@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-06-2020 a las 02:32:47
+-- Tiempo de generación: 05-06-2020 a las 05:46:00
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.30
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `unfarmapppu`
+-- Base de datos: `unfarmapp`
 --
 
 -- --------------------------------------------------------
@@ -33,8 +33,16 @@ CREATE TABLE `cliente` (
   `APELLIDO` varchar(20) NOT NULL,
   `TELEFONO` varchar(15) NOT NULL,
   `DIRECCIONCLIENTE` varchar(32) NOT NULL,
-  `DESCRIPCIONDIRECCION` varchar(32) DEFAULT NULL
+  `DESCRIPCIONDIRECCION` varchar(32) DEFAULT NULL,
+  `ELIMINADO` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`CEDULACLIENTE`, `NOMBRE`, `APELLIDO`, `TELEFONO`, `DIRECCIONCLIENTE`, `DESCRIPCIONDIRECCION`, `ELIMINADO`) VALUES
+('9876543', 'Daniel', 'Valencia', '4121189', 'Av Boyaca - 58 25', 'Conjunto Normandia apartamento 2', 0);
 
 -- --------------------------------------------------------
 
@@ -45,8 +53,16 @@ CREATE TABLE `cliente` (
 CREATE TABLE `compra` (
   `IDCOMPRA` int(11) NOT NULL,
   `NOMBREPROVEEDOR` varchar(32) NOT NULL,
-  `PRECIOTOTAL` bigint(20) NOT NULL
+  `PRECIOTOTAL` bigint(20) NOT NULL,
+  `FECHA` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `compra`
+--
+
+INSERT INTO `compra` (`IDCOMPRA`, `NOMBREPROVEEDOR`, `PRECIOTOTAL`, `FECHA`) VALUES
+(2100, 'Tecnoquímicas C.O', 215000, '2020-06-02');
 
 -- --------------------------------------------------------
 
@@ -61,6 +77,13 @@ CREATE TABLE `compramedicamento` (
   `CANTIDAD` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `compramedicamento`
+--
+
+INSERT INTO `compramedicamento` (`IDMEDICAMENTO`, `IDCOMPRA`, `PRECIOUNITARIO`, `CANTIDAD`) VALUES
+(2, 2100, 4300, 50);
+
 -- --------------------------------------------------------
 
 --
@@ -72,6 +95,13 @@ CREATE TABLE `domicilio` (
   `IDFACTURA` int(11) DEFAULT NULL,
   `ESTADO` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `domicilio`
+--
+
+INSERT INTO `domicilio` (`IDDOMICILIO`, `IDFACTURA`, `ESTADO`) VALUES
+(1, 1500, 1);
 
 -- --------------------------------------------------------
 
@@ -88,6 +118,13 @@ CREATE TABLE `drogueria` (
   `REPRESENTANTELEGAL` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `drogueria`
+--
+
+INSERT INTO `drogueria` (`NITDROGUERIA`, `NOMBREDROGUERIA`, `DIRECCIONDROGUERIA`, `TELEFONO`, `EMAIL`, `REPRESENTANTELEGAL`) VALUES
+('48949818949', 'Droguería ProFarm SA', 'Calle 166 - 6 08 Sur', '362589471', 'amendozae@profarm.com', 'Armando Mendoza');
+
 -- --------------------------------------------------------
 
 --
@@ -101,8 +138,16 @@ CREATE TABLE `empleado` (
   `DIRECCIONEMPLEADO` varchar(32) NOT NULL,
   `APELLIDOEMPLEADO` varchar(20) NOT NULL,
   `CONTRASENIA` varchar(20) NOT NULL,
-  `CORREO` varchar(50) NOT NULL
+  `CORREO` varchar(50) NOT NULL,
+  `ESTADO` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `empleado`
+--
+
+INSERT INTO `empleado` (`CEDULAEMPLEADO`, `NOMBREEMPLEADO`, `TELEFONO`, `DIRECCIONEMPLEADO`, `APELLIDOEMPLEADO`, `CONTRASENIA`, `CORREO`, `ESTADO`) VALUES
+('1234567', 'usuario', '7550822', 'Calle siempre viva 123', 'prueba', 'Profarm1', 'usuariprueba@profarm.com', 'ACTIVO');
 
 -- --------------------------------------------------------
 
@@ -112,11 +157,19 @@ CREATE TABLE `empleado` (
 
 CREATE TABLE `factura` (
   `IDFACTURA` int(11) NOT NULL,
-  `NITDROGUERIA` varchar(20) DEFAULT NULL,
-  `CEDULACLIENTE` varchar(11) DEFAULT NULL,
-  `CEDULAEMPLEADO` varchar(11) DEFAULT NULL,
-  `PRECIOTOTAL` bigint(20) NOT NULL
+  `NITDROGUERIA` varchar(20) NOT NULL,
+  `CEDULACLIENTE` varchar(11) NOT NULL,
+  `CEDULAEMPLEADO` varchar(11) NOT NULL,
+  `PRECIOTOTAL` bigint(20) NOT NULL,
+  `FECHA` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `factura`
+--
+
+INSERT INTO `factura` (`IDFACTURA`, `NITDROGUERIA`, `CEDULACLIENTE`, `CEDULAEMPLEADO`, `PRECIOTOTAL`, `FECHA`) VALUES
+(1500, '48949818949', '9876543', '1234567', 60500, '2020-06-04');
 
 -- --------------------------------------------------------
 
@@ -130,6 +183,14 @@ CREATE TABLE `facturamedicamentos` (
   `CANTIDADVENDIDA` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `facturamedicamentos`
+--
+
+INSERT INTO `facturamedicamentos` (`IDMEDICAMENTO`, `IDFACTURA`, `CANTIDADVENDIDA`) VALUES
+(1, 1500, 3),
+(3, 1500, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -142,6 +203,15 @@ CREATE TABLE `medicamento` (
   `PRECIOVENTA` int(11) NOT NULL,
   `STOCK` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `medicamento`
+--
+
+INSERT INTO `medicamento` (`IDMEDICAMENTO`, `IDMEDICAMENTOINVIMA`, `PRECIOVENTA`, `STOCK`) VALUES
+(1, 1, 12500, 23),
+(2, 750, 5800, 85),
+(3, 123, 23000, 5);
 
 -- --------------------------------------------------------
 
@@ -1393,31 +1463,31 @@ ALTER TABLE `medicamentoinvima`
 -- AUTO_INCREMENT de la tabla `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `IDCOMPRA` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDCOMPRA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2101;
 
 --
 -- AUTO_INCREMENT de la tabla `domicilio`
 --
 ALTER TABLE `domicilio`
-  MODIFY `IDDOMICILIO` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDDOMICILIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `factura`
 --
 ALTER TABLE `factura`
-  MODIFY `IDFACTURA` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDFACTURA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1501;
 
 --
 -- AUTO_INCREMENT de la tabla `medicamento`
 --
 ALTER TABLE `medicamento`
-  MODIFY `IDMEDICAMENTO` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDMEDICAMENTO` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `medicamentoinvima`
 --
 ALTER TABLE `medicamentoinvima`
-  MODIFY `IDMEDICAMENTOINVIMA` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1457;
+  MODIFY `IDMEDICAMENTOINVIMA` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1146;
 
 --
 -- Restricciones para tablas volcadas

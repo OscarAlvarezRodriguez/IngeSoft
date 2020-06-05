@@ -5,6 +5,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "Compra")
@@ -17,6 +20,8 @@ public class Compra implements Serializable {
     private String nombreProveedor;
     @Column(nullable = false)
     private long precioTotal;
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
 
     public Compra() {
     }
@@ -43,5 +48,13 @@ public class Compra implements Serializable {
     public void setPrecioTotalCompra(long precioTotalCompra) {
         this.precioTotal = precioTotalCompra;
     }
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
 
 }
