@@ -251,9 +251,15 @@ public class FronteraAutEmpleado extends javax.swing.JPanel {
             App.getInstance().framePrincipal.menuEmpleado.setNombreUsuario(e);
             
 
-        } else {
+        } else if(empleado.verificarLogin(e).equals("Datos incorrectos")) {
             JOptionPane.showMessageDialog(null,
                     "Usuario o constraseña incorrectos",
+                    "Ingreso fallido",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(null,
+                    "El usuario se encuentra suspendido o inactivo",
                     "Ingreso fallido",
                     JOptionPane.ERROR_MESSAGE);
         }

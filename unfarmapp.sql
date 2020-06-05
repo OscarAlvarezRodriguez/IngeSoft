@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-06-2020 a las 05:46:00
+-- Tiempo de generación: 05-06-2020 a las 22:35:21
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.30
 
@@ -147,7 +147,9 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`CEDULAEMPLEADO`, `NOMBREEMPLEADO`, `TELEFONO`, `DIRECCIONEMPLEADO`, `APELLIDOEMPLEADO`, `CONTRASENIA`, `CORREO`, `ESTADO`) VALUES
-('1234567', 'usuario', '7550822', 'Calle siempre viva 123', 'prueba', 'Profarm1', 'usuariprueba@profarm.com', 'ACTIVO');
+('1234567', 'usuario', '7550822', 'Calle siempre viva 123', 'prueba', 'Profarm1', 'usuariprueba@profarm.com', 'ACTIVO'),
+('12345678', 'usuario', '9110203', 'Cra 23 88 C 13 sur', 'inactivo', 'Profarm1', 'usuarinactivo@profarm.com', 'INACTIVO'),
+('12345679', 'usuario', '301456974', 'Cra 13 Este 23 84', 'suspendido', 'Profarm1', 'usuarisuspendido@gmail.com', 'SUSPENDIDO');
 
 -- --------------------------------------------------------
 
