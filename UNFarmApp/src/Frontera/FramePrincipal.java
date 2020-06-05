@@ -25,6 +25,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     public static final int INTFronteraRegCliente = 5;
     public static final int INTFronteraEditCliente = 6;
     public static final int INTFronteraMenu = 7;
+    public static final int INTFronteraGestionMed = 8;
 
     FronteraSplash splash = new FronteraSplash();
     FronteraRegEmpleado empleado = new FronteraRegEmpleado();
@@ -32,7 +33,8 @@ public class FramePrincipal extends javax.swing.JFrame {
     FronteraAutEmpleado autenticarEmpleado = new FronteraAutEmpleado();
     FronteraEditCliente editarCliente = new FronteraEditCliente();
     FronteraRegCliente regCliente = new FronteraRegCliente();
-    FronteraMenuEmpleado menuEmpleado =  new FronteraMenuEmpleado();
+    FronteraMenuEmpleado menuEmpleado = new FronteraMenuEmpleado();
+    FronteraGestionMed gestionMed = new FronteraGestionMed();
     Funciones f = new Funciones();
 
     JLabel logo = new JLabel();
@@ -47,6 +49,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         editarCliente.setVisible(false);
         regCliente.setVisible(false);
         menuEmpleado.setVisible(false);
+        gestionMed.setVisible(false);
 
         switch (n) {
             case INTFronteraEmpleado:
@@ -70,9 +73,14 @@ public class FramePrincipal extends javax.swing.JFrame {
             case INTFronteraMenu:
                 menuEmpleado.setVisible(true);
                 break;
+            case INTFronteraGestionMed:
+                gestionMed.setVisible(true);
+                break;
             default:
                 break;
         }
+        revalidate();
+        repaint();
 
     }
 
@@ -92,6 +100,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         addPanel(regCliente);
         addPanel(splash);
         addPanel(menuEmpleado);
+        addPanel(gestionMed);
 
         jpPrincipal.setVisible(false);
         splash.setVisible(true);
@@ -161,6 +170,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

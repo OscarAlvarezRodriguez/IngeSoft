@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 public class FronteraMenuEmpleado extends javax.swing.JPanel {
 
     Funciones f = new Funciones();
+    Empleado e;
 
     public FronteraMenuEmpleado() {
         initComponents();
@@ -21,6 +22,7 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
     }
 
     public void setNombreUsuario(Empleado em) {
+        e = em;
         jlNombre.setText(em.getNombreEmpleado() + " " + em.getApellidoEmpleado());
     }
 
@@ -116,6 +118,11 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
         btnMedicamentos.setPreferredSize(new java.awt.Dimension(300, 40));
         btnMedicamentos.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnMedicamentos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnMedicamentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMedicamentosActionPerformed(evt);
+            }
+        });
 
         btnDomicilios.setBackground(new java.awt.Color(204, 0, 0));
         btnDomicilios.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -274,11 +281,16 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-       int i = JOptionPane.showConfirmDialog(this,"¿Seguro Desea Salir?", "Cerrar Sesion", JOptionPane.YES_NO_OPTION);
-       if(i == JOptionPane.YES_OPTION){
-        App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
-       }
+        int i = JOptionPane.showConfirmDialog(this, "¿Seguro Desea Salir?", "Cerrar Sesion", JOptionPane.YES_NO_OPTION);
+        if (i == JOptionPane.YES_OPTION) {
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
+        }
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    private void btnMedicamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedicamentosActionPerformed
+         App.getInstance().framePrincipal.gestionMed.setNombreUsuario(e);
+        App.getInstance().ChangePanel(FramePrincipal.INTFronteraGestionMed);
+    }//GEN-LAST:event_btnMedicamentosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

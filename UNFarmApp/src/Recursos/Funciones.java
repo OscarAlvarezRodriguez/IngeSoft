@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -26,7 +27,7 @@ public class Funciones {
 
     }
 
-    public void setStyleJTextArea(JTextArea jta,  JScrollPane scrollPane) {
+    public void setStyleJTextArea(JTextArea jta, JScrollPane scrollPane) {
         scrollPane.getViewport().setOpaque(false);
         jta.setLineWrap(true);
         jta.setWrapStyleWord(true);
@@ -60,9 +61,9 @@ public class Funciones {
         jb.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                jb.setForeground(fondoNormal);
+                jb.setForeground(fondoClaro);
                 jb.setBackground(sinFondo);
-                jb.setBorder(new MatteBorder(4, 4, 4, 4, fondoNormal));
+                jb.setBorder(new MatteBorder(4, 4, 4, 4, fondoClaro));
 
             }
 
@@ -76,9 +77,9 @@ public class Funciones {
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                jb.setForeground(fondoNormal);
+                jb.setForeground(fondoClaro);
                 jb.setBackground(sinFondo);
-                jb.setBorder(new MatteBorder(4, 4, 4, 4, fondoNormal));
+                jb.setBorder(new MatteBorder(4, 4, 4, 4, fondoClaro));
 
             }
 
@@ -95,6 +96,43 @@ public class Funciones {
                 jb.setBackground(sinFondo);
                 jb.setForeground(fondoNormal);
                 jb.setBorder(new MatteBorder(4, 4, 4, 4, fondoNormal));
+            }
+        });
+
+    }
+
+    public void setStyleJButonBack(JLabel jl) {
+
+        jl.setIcon(setImageBackground("/Recursos/botonSalir/salir.png", jl));
+
+        jl.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                jl.setIcon(setImageBackground("/Recursos/botonSalir/salirClaro.png", jl));
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+                jl.setIcon(setImageBackground("/Recursos/botonSalir/salirPresionado.png", jl));
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                jl.setIcon(setImageBackground("/Recursos/botonSalir/salirClaro.png", jl));
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                jl.setIcon(setImageBackground("/Recursos/botonSalir/salirClaro.png", jl));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                jl.setIcon(setImageBackground("/Recursos/botonSalir/salir.png", jl));
             }
         });
 
