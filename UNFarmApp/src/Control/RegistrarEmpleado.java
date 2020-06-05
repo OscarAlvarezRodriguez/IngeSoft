@@ -50,9 +50,6 @@ public class RegistrarEmpleado {
         if (!validarCorreo(empleado.getCorreoEmpleado()).equals(co)) {
             return (en);
         }
-        /*if (nuevoempleado.leerex(empleado) == true) {
-            return ("El empleado ya está registrado");
-        }*/
         nuevoempleado.crear(empleado);
         return (re);
     }

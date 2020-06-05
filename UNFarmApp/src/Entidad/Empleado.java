@@ -26,7 +26,8 @@ public class Empleado implements Serializable {
     @Column(nullable = false, length = 50)
     private String correo;
     @Column(nullable =false)
-    private boolean estado;
+    private String estado= "ACTIVO"; // por defecto cada empleado registrado automáticamente está en estado activo 
+    //NOMENCALTURA, 3 estados definidos y escritos en mayusculas ACTIVO, SUSPENDIDO, INACTIVO
 
     public Empleado() {
     }
@@ -86,11 +87,11 @@ public class Empleado implements Serializable {
     public void setCorreoEmpleado(String correoEmpleado) {
         this.correo = correoEmpleado;
     }
-    public boolean isEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 }

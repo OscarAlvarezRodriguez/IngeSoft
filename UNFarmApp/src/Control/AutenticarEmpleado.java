@@ -13,7 +13,7 @@ public class AutenticarEmpleado {
     private final String co = "Correcto";
     private final String di = "Datos incorrectos";
     private final String bi = "Bienvenido";
-
+    private final String el = "Empleado Inactivo o Suspendido";
     public AutenticarEmpleado() {
     }
 
@@ -21,7 +21,6 @@ public class AutenticarEmpleado {
         if (!validarLongitudCedula(emp.getCedulaEmpleado()).equals(co)) {
             return (cn);
         }
-
         if (!validarLongitudContrasenia(emp.getContraseniaEmpleado()).equals(co)) {
             return (con);
         }
@@ -32,6 +31,10 @@ public class AutenticarEmpleado {
             return (conn);
         }
         if (empleado.leer(emp) != null) {
+            Empleado veresempleado = empleado.leer(emp);
+            if(veresempleado.getEstado().equals("SUSPENDIDO") || veresempleado.getEstado().equals("INACTIVO")){
+                return(el);
+            }
             return (bi);
         }
         return (di);

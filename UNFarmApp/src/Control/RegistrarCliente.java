@@ -12,17 +12,31 @@ public class RegistrarCliente {
     private final String dn = "Longitud dirección incorrecta";
     private final String ddn = "Longitud descripción dirección incorrecta";
     private final String an = "Longitud apellido incorrecta";
+    private final String ca = "Cliente Reactivado";
     private final String cr = "Cliente ya registrado";
     private final String re = "Registro exitoso";
     private final String co = "Correcto";
+    private final String ec = "Estado de cliente incorrecto";
+    private final String cnr = "Error, el cliente no pudo ser reactivado";
 
     public RegistrarCliente() {
 
     }
 
     public String ValidarDatos(Cliente cliente) {
-        if (nuevocliente.leer(cliente.getCedulaCliente()) != null) {
-            return (cr);
+        //Tenemos dos casos en caso de estar registrado el cliente, el primero es que esté registrado y activo, el segundo que esté registrado e inactivo
+        //Creamos la clase cliente existente para verificar si esta registrado y en caso afirmativo, tener los datos del Cliente de manera temporal
+        Cliente clienteexistente=nuevocliente.leer(cliente.getCedulaCliente());
+        if (clienteexistente!= null) {
+            if(clienteexistente.isEliminado()==true){ //ya que comprobamos que el cliente existe, procedemos a verificar si se encuentra o no activo
+                boolean verificacion = nuevocliente.editarestado(cliente, false);//en caso afirmativo cambiará el estado del cliente a activo
+                if(verificacion==true) //verifica si la reactivación fue exitosa o no
+                {
+                    return(ca);
+                }
+                return(cnr); 
+            }
+            return(cr); //en caso negativo, simplemente muestra que el cliente se encuentra registrado
         }
         if (!validarCedula(cliente.getCedulaCliente()).equals(co)) {
             return (cn);
@@ -41,6 +55,9 @@ public class RegistrarCliente {
         }
         if (!validarApellido(cliente.getApellidoCliente()).equals(co)) {
             return (an);
+        }
+        if (!validarEstado(cliente.isEliminado()).equals(co)){
+            return (ec);
         }
         nuevocliente.crear(cliente);
         return (re);
@@ -87,5 +104,11 @@ public class RegistrarCliente {
         }
         return (ddn);
     }
-
+    
+    public String validarEstado(Boolean estado){
+        if (estado == false){
+            return (co);
+        }
+        return (ec);
+    }
 }

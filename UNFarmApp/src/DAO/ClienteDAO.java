@@ -26,19 +26,16 @@ public class ClienteDAO {
         }
     }
     
-    public boolean eliminar(Cliente object){
+    public boolean editarestado(Cliente cliente, Boolean estado) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         boolean ret = false;
         try {
-            if (!em.contains(object)) {
-                object = em.merge(object);
-            }
-            em.remove(object);
+            cliente.setEliminado(estado);
+            em.merge(cliente);
             em.getTransaction().commit();
             ret = true;
         } catch (Exception e) {
-            e.printStackTrace();
             em.getTransaction().rollback();
         } finally {
             em.close();

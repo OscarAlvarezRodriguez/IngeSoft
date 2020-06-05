@@ -24,7 +24,8 @@ public class Cliente implements Serializable {
     @Column(nullable = false, length = 20)
     private String apellido;
     @Column(nullable = false)
-    private boolean eliminado;
+    private boolean eliminado=false; // por defecto cada cliente registrado automáticamente está en estado activo 
+    //recordar que false= cliente activo y true= cliente inactivo
 
     public Cliente() {
     }
