@@ -54,27 +54,35 @@ public class FramePrincipal extends javax.swing.JFrame {
         switch (n) {
             case INTFronteraEmpleado:
                 empleado.setVisible(true);
+                scroll.setViewportView(empleado);
                 break;
             case INTFronteraRegDrogueria:
                 drogueria.setVisible(true);
+                scroll.setViewportView(drogueria);
                 break;
             case INTFronteraSplash:
                 splash.setVisible(true);
+                scroll.setViewportView(splash);
                 break;
             case INTFronteraAutEmpleado:
                 autenticarEmpleado.setVisible(true);
+                scroll.setViewportView(autenticarEmpleado);
                 break;
             case INTFronteraEditCliente:
                 editarCliente.setVisible(true);
+                scroll.setViewportView(editarCliente);
                 break;
             case INTFronteraRegCliente:
                 regCliente.setVisible(true);
+                scroll.setViewportView(regCliente);
                 break;
             case INTFronteraMenu:
                 menuEmpleado.setVisible(true);
+                scroll.setViewportView(menuEmpleado);
                 break;
             case INTFronteraGestionMed:
                 gestionMed.setVisible(true);
+                scroll.setViewportView(gestionMed);
                 break;
             default:
                 break;
@@ -87,9 +95,12 @@ public class FramePrincipal extends javax.swing.JFrame {
     public FramePrincipal() {
 
         initComponents();
+        App.getInstance().setFramePrincipal(this);
+
         setLocationRelativeTo(null);
         setTitle("UNFarmApp");
         logo.setSize(1000, 1000);
+        jpPrincipal.setSize(1030, 550);
         setIconImage(f.setImageBackground("/Recursos/logo.png", logo).getImage());
 
         addPanel(jpPrincipal);
@@ -101,52 +112,61 @@ public class FramePrincipal extends javax.swing.JFrame {
         addPanel(splash);
         addPanel(menuEmpleado);
         addPanel(gestionMed);
-
         jpPrincipal.setVisible(false);
         splash.setVisible(true);
-
-        App.getInstance().setFramePrincipal(this);
+        scroll.setViewportView(splash);
     }
 
     private void addPanel(JPanel New) {
-        add(New);
-        New.setBounds(jpPrincipal.getBounds());
+        scroll.setViewportView(New);
         New.setVisible(false);
+
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        scroll = new javax.swing.JScrollPane();
         jpPrincipal = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(8, 83, 148));
         setFocusable(false);
+        setPreferredSize(new java.awt.Dimension(1080, 600));
         setResizable(false);
 
+        scroll.setPreferredSize(new java.awt.Dimension(1080, 600));
+
         jpPrincipal.setBackground(new java.awt.Color(255, 255, 255));
+        jpPrincipal.setPreferredSize(new java.awt.Dimension(1030, 550));
 
         javax.swing.GroupLayout jpPrincipalLayout = new javax.swing.GroupLayout(jpPrincipal);
         jpPrincipal.setLayout(jpPrincipalLayout);
         jpPrincipalLayout.setHorizontalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1030, Short.MAX_VALUE)
+            .addGap(0, 1078, Short.MAX_VALUE)
         );
         jpPrincipalLayout.setVerticalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGap(0, 598, Short.MAX_VALUE)
         );
+
+        scroll.setViewportView(jpPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -186,6 +206,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jpPrincipal;
+    private javax.swing.JScrollPane scroll;
     // End of variables declaration//GEN-END:variables
 
 }

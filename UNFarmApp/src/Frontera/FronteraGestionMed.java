@@ -1,14 +1,10 @@
 package Frontera;
 
 import DAO.MedicamentoDAO;
-import Entidad.Cliente;
-
 import Entidad.Empleado;
-import Entidad.Medicamento;
-import Entidad.MedicamentoInvima;
 import Recursos.Funciones;
 import java.awt.Graphics;
-import java.util.List;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -18,12 +14,14 @@ public class FronteraGestionMed extends javax.swing.JPanel {
     Funciones f = new Funciones();
     DefaultTableModel modelo;
     MedicamentoDAO medicamentoDAO = new MedicamentoDAO();
+    MedicamentoDAO.CombinacionMed concat = new MedicamentoDAO.CombinacionMed();
 
     public FronteraGestionMed() {
         initComponents();
         allSetEmpty();
         CrearModelo();
         cargar();
+        f.setStyleJTable(tablaMed,jScrollPane2);
         jlLogo.setSize(100, 100);
         jlLogo.setIcon(f.setImageBackground("/Recursos/logo.png", jlLogo));
         jlSalir.setSize(60, 60);
@@ -75,8 +73,8 @@ public class FronteraGestionMed extends javax.swing.JPanel {
                     java.lang.String.class,
                     java.lang.String.class,
                     java.lang.String.class,
-                    java.lang.Integer.class,
-                    java.lang.Integer.class
+                    java.lang.String.class,
+                    java.lang.String.class
                 };
                 boolean[] canEdit = new boolean[]{
                     false,
@@ -109,15 +107,15 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-        MedicamentoInvima mi = new MedicamentoInvima(
-                txtMed.getText(),
+        concat = new MedicamentoDAO.CombinacionMed(txtMed.getText(),
                 txtTitular.getText(),
                 txtDescripcion.getText(),
                 txtPresentacion.getText(),
-                txtPrinAct.getText()
-        );
-        List<MedicamentoInvima> listaClientes = medicamentoDAO.leertodo(mi);
-        Object[] object = null;
+                txtPrinAct.getText(),
+                Short.parseShort(String.valueOf(0)),
+                0);
+          ArrayList<MedicamentoDAO.CombinacionMed> listaClientes = new MedicamentoDAO.CombinacionMed().selectAll(concat);
+        Object object[] = null;
         for (int i = 0; i < listaClientes.size(); i++) {
             modelo.addRow(object);
             modelo.setValueAt(listaClientes.get(i).getNombreMedicamento(), i, 0);
@@ -125,25 +123,23 @@ public class FronteraGestionMed extends javax.swing.JPanel {
             modelo.setValueAt(listaClientes.get(i).getDescripcion(), i, 2);
             modelo.setValueAt(listaClientes.get(i).getPrincipioActivo(), i, 3);
             modelo.setValueAt(listaClientes.get(i).getPresentacion(), i, 4);
-
+            modelo.setValueAt(listaClientes.get(i).getStock(), i, 5);
+            modelo.setValueAt(listaClientes.get(i).getPrecioVenta(), i, 6);
         }
     }
 
     private void cargar() {
-        try {
-            Object object[] = null;
-            List<MedicamentoInvima> listaClientes = medicamentoDAO.leertodo();
-            for (int i = 0; i < listaClientes.size(); i++) {
-                modelo.addRow(object);
-                modelo.setValueAt(listaClientes.get(i).getNombreMedicamento(), i, 0);
-                modelo.setValueAt(listaClientes.get(i).getTitular(), i, 1);
-                modelo.setValueAt(listaClientes.get(i).getDescripcion(), i, 2);
-                modelo.setValueAt(listaClientes.get(i).getPrincipioActivo(), i, 3);
-                modelo.setValueAt(listaClientes.get(i).getPresentacion(), i, 4);
-
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+        ArrayList<MedicamentoDAO.CombinacionMed> listaClientes = new MedicamentoDAO.CombinacionMed().selectAll();
+        Object object[] = null;
+        for (int i = 0; i < listaClientes.size(); i++) {
+            modelo.addRow(object);
+            modelo.setValueAt(listaClientes.get(i).getNombreMedicamento(), i, 0);
+            modelo.setValueAt(listaClientes.get(i).getTitular(), i, 1);
+            modelo.setValueAt(listaClientes.get(i).getDescripcion(), i, 2);
+            modelo.setValueAt(listaClientes.get(i).getPrincipioActivo(), i, 3);
+            modelo.setValueAt(listaClientes.get(i).getPresentacion(), i, 4);
+            modelo.setValueAt(listaClientes.get(i).getStock(), i, 5);
+            modelo.setValueAt(listaClientes.get(i).getPrecioVenta(), i, 6);
         }
     }
 
@@ -180,9 +176,12 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
 
+        setMinimumSize(new java.awt.Dimension(0, 0));
         setPreferredSize(new java.awt.Dimension(1030, 550));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jlLogo.setPreferredSize(new java.awt.Dimension(100, 100));
+        add(jlLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 11, -1, -1));
 
         jlSalir.setPreferredSize(new java.awt.Dimension(60, 60));
         jlSalir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,14 +189,17 @@ public class FronteraGestionMed extends javax.swing.JPanel {
                 jlSalirMousePressed(evt);
             }
         });
+        add(jlSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         jlNombre.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         jlNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlNombre.setText("\"Nombre de Usuario Actual\"");
         jlNombre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlNombre.setPreferredSize(new java.awt.Dimension(300, 50));
+        add(jlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, 271, 20));
 
         jlUsuario.setPreferredSize(new java.awt.Dimension(100, 100));
+        add(jlUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -205,6 +207,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         jLabel2.setText("Tipo de Presentacion");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel2.setPreferredSize(new java.awt.Dimension(170, 30));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 323, -1, -1));
 
         txtPresentacion.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtPresentacion.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -227,6 +230,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
                 txtPresentacionKeyTyped(evt);
             }
         });
+        add(txtPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 323, -1, -1));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -234,6 +238,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         jLabel7.setText("Descripción");
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel7.setPreferredSize(new java.awt.Dimension(170, 30));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 238, -1, -1));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -241,6 +246,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         jLabel3.setText("Cliente");
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel3.setPreferredSize(new java.awt.Dimension(170, 30));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 202, -1, -1));
 
         txtCliente.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtCliente.setPreferredSize(new java.awt.Dimension(300, 30));
@@ -257,6 +263,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
                 txtClienteKeyTyped(evt);
             }
         });
+        add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(701, 202, 250, -1));
 
         btnActualizar1.setBackground(new java.awt.Color(0, 158, 15));
         btnActualizar1.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -270,6 +277,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
                 btnActualizar1ActionPerformed(evt);
             }
         });
+        add(btnActualizar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, 160, 29));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -277,6 +285,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         jLabel4.setText("Medicamento");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel4.setPreferredSize(new java.awt.Dimension(170, 30));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 202, -1, -1));
 
         txtMed.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtMed.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -296,6 +305,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
                 txtMedKeyTyped(evt);
             }
         });
+        add(txtMed, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 202, -1, -1));
 
         txtPrinAct.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtPrinAct.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -315,6 +325,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
                 txtPrinActKeyTyped(evt);
             }
         });
+        add(txtPrinAct, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 283, -1, -1));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -322,6 +333,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         jLabel5.setText("Principio Activo");
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel5.setPreferredSize(new java.awt.Dimension(170, 30));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 283, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -329,6 +341,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         jLabel6.setText("TItular");
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel6.setPreferredSize(new java.awt.Dimension(170, 30));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 243, -1, -1));
 
         txtTitular.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtTitular.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -348,6 +361,9 @@ public class FronteraGestionMed extends javax.swing.JPanel {
                 txtTitularKeyTyped(evt);
             }
         });
+        add(txtTitular, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 243, -1, -1));
+
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(880, 150));
 
         tablaMed.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -360,7 +376,13 @@ public class FronteraGestionMed extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaMed.setGridColor(new java.awt.Color(0, 0, 0));
+        tablaMed.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        tablaMed.setMinimumSize(new java.awt.Dimension(0, 0));
+        tablaMed.setPreferredSize(new java.awt.Dimension(880, 120));
         jScrollPane2.setViewportView(tablaMed);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 371, -1, -1));
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setPreferredSize(new java.awt.Dimension(250, 114));
@@ -375,104 +397,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(txtDescripcion);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(387, 387, 387)
-                        .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(363, 363, 363)
-                        .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(354, 354, 354)
-                        .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(438, 438, 438)
-                        .addComponent(btnActualizar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(10, 10, 10)
-                                        .addComponent(txtMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(10, 10, 10)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtPrinAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addGap(10, 10, 10))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(btnActualizar1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(txtPrinAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(txtPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(701, 238, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPresentacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPresentacionFocusGained

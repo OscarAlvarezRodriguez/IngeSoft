@@ -10,9 +10,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 
 public class Funciones {
 
@@ -138,4 +143,57 @@ public class Funciones {
 
     }
 
+    public void setStyleJTable(JTable jt,JScrollPane jsp) {
+        jsp.getViewport().setOpaque(false);
+        jt.setOpaque(false);
+        JTableHeader jtableHeader = jt.getTableHeader();
+        jtableHeader.setDefaultRenderer(new HeaderTable());
+        jt.setTableHeader(jtableHeader);
+        jt.setDefaultRenderer(Object.class, new allTable());
+
+    }
+
+    public static class HeaderTable implements TableCellRenderer {
+
+        public static final DefaultTableCellRenderer DEFAULT_RENDERER = new DefaultTableCellRenderer();
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            Component c = DEFAULT_RENDERER.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+            ((JLabel) c).setHorizontalAlignment(SwingConstants.CENTER);
+            ((JLabel) c).setSize(20, c.getWidth());
+            ((JLabel) c).setFont(new Font("Leelawadee", 0, 18));
+            ((JLabel) c).setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, Color.WHITE));
+            ((JLabel) c).setOpaque(true);
+            c.setBackground(new Color(8, 83, 148));
+            c.setForeground(Color.white);
+
+            return c;
+        }
+
+    }
+
+    public static class allTable implements TableCellRenderer {
+
+        public static final DefaultTableCellRenderer DEFAULT_RENDERER = new DefaultTableCellRenderer();
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            Component c = DEFAULT_RENDERER.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            c.setFont(new Font("Leelawadee", 0, 14));
+            c.setForeground(Color.BLACK);
+
+            if (row % 2 == 0) {
+                c.setBackground(new Color(111, 168, 220));
+            } else {
+                c.setBackground(Color.WHITE);
+            }
+            if (isSelected) {
+                c.setBackground(new Color(111, 111, 220));
+                c.setForeground(Color.WHITE);
+            }
+            return c;
+        }
+    }
 }
