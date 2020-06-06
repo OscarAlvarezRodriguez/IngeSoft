@@ -45,7 +45,7 @@ public class ComprarMedicamento {
     }    
     
     public boolean comprar(short cantidad, int idMedicamento){
-        Medicamento medicamentoAntiguo = medicamentoDao.leer(cantidad);
+        Medicamento medicamentoAntiguo = medicamentoDao.leer(idMedicamento);
         Medicamento medicamentoNuevo = medicamentoAntiguo;
         medicamentoNuevo.setStockMedicamento(cantidad);
         return medicamentoDao.actualizar(medicamentoAntiguo, medicamentoNuevo);
