@@ -2,7 +2,6 @@ package Sprint1;
 
 import Control.AutenticarEmpleado;
 import Control.RegistrarEmpleado;
-import DAO.EmpleadoDAO;
 import Entidad.Empleado;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -15,7 +14,7 @@ public class TestAutenticarEmpleado {
 
     private static final AutenticarEmpleado usuario = new AutenticarEmpleado();
     private static final RegistrarEmpleado empleado = new RegistrarEmpleado();
-    private static final EmpleadoDAO empleadoDao = new EmpleadoDAO();
+
     private final String cn = "Número cedula no válido";
     private final String con = "Longitud contraseña incorrecta";
     private final String conn = "Número en contraseña incorrecto";
@@ -115,9 +114,7 @@ public class TestAutenticarEmpleado {
         u.setDireccionEmpleado("Carrera 32 No 78b");
         u.setCorreoEmpleado("adolfo@mymail.com");
         u.setContraseniaEmpleado("Dan123");
-
         assertEquals(usuario.verificarLogin(u), bi);
-        empleadoDao.eliminar(u);
     }
 
 }

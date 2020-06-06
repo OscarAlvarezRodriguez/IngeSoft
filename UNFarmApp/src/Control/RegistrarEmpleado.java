@@ -23,7 +23,7 @@ public class RegistrarEmpleado {
     }
 
     public String validarDatos(Empleado empleado) {
-        if (nuevoempleado.leer(empleado) == null) {
+        if (nuevoempleado.leer(empleado) != null) {
             return (er);
         }
         if (!validarNombre(empleado.getNombreEmpleado()).equals(co)) {

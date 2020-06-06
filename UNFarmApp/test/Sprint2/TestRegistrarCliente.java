@@ -14,7 +14,6 @@ import static org.junit.Assert.*;
 public class TestRegistrarCliente {
     
     private static final RegistrarCliente cliente = new RegistrarCliente();
-    private static final ClienteDAO clienteDao = new ClienteDAO();
     private final String cn = "Número cédula no válido";
     private final String nn = "Lontigud nombre incorrecta";
     private final String tn = "Número telefónico no válido";
@@ -198,7 +197,6 @@ public class TestRegistrarCliente {
         u.setApellidoCliente("Sanchez");
         u.setTelefonoCliente("46816746"); 
         assertEquals(cliente.ValidarDatos(u), re);
-        clienteDao.eliminar(u);
 
     }
 
@@ -213,8 +211,6 @@ public class TestRegistrarCliente {
         u.setApellidoCliente("Cardenas");
         u.setTelefonoCliente("12345678"); 
         assertEquals(cliente.ValidarDatos(u), cr);
-        clienteDao.eliminar(u);
+   
     }
-
-
 }

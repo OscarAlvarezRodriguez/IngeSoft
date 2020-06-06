@@ -1,7 +1,6 @@
 package Sprint1;
 
 import Control.RegistrarEmpleado;
-import DAO.EmpleadoDAO;
 import Entidad.Empleado;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,7 +12,6 @@ import static org.junit.Assert.*;
 public class TestRegistrarEmpleado {
 
     private static final RegistrarEmpleado empleado = new RegistrarEmpleado();
-    private static final EmpleadoDAO empleadoDao = new EmpleadoDAO();
 
     private final String cn = "Cédula no válida";
     private final String con = "Longitud contraseña incorrecta";
@@ -284,7 +282,6 @@ public class TestRegistrarEmpleado {
         u.setCorreoEmpleado("santiago@mymail.com");
         u.setContraseniaEmpleado("San123");
         assertEquals(empleado.validarDatos(u), re);
-        empleadoDao.eliminar(u);
 
     }
 
@@ -300,7 +297,6 @@ public class TestRegistrarEmpleado {
         u.setCorreoEmpleado("adolfo@mymail.com");
         u.setContraseniaEmpleado("Dan123");
         assertEquals(empleado.validarDatos(u), rs);
-        empleadoDao.eliminar(u);
     }
 
 }
