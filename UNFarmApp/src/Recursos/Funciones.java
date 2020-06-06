@@ -24,6 +24,7 @@ public class Funciones {
     public final Color fondoTxt = new Color(0, 0, 0, 15);
     public final Color fondoTxtError = new Color(255, 0, 0, 63);
     public final Color colorPrincipal = new Color(12, 183, 242, 255);
+    public static final Color azulApp = new Color(8, 83, 148, 255);
 
     public void setStyleJTextField(JTextField tf) {
         tf.setBackground(fondoTxt);
@@ -34,10 +35,10 @@ public class Funciones {
 
     public void setStyleJTextArea(JTextArea jta, JScrollPane scrollPane) {
         scrollPane.getViewport().setOpaque(false);
+        jta.setBackground(fondoTxt);
         jta.setLineWrap(true);
         jta.setWrapStyleWord(true);
         jta.setOpaque(false);
-        jta.setBackground(fondoTxt);
         jta.setFont(new Font("Leelawadee", 0, 20));
         jta.setBorder(new MatteBorder(3, 3, 3, 3, colorPrincipal));
     }
@@ -143,13 +144,26 @@ public class Funciones {
 
     }
 
-    public void setStyleJTable(JTable jt,JScrollPane jsp) {
+    public void setStyleJLabel(JLabel jl) {
+        jl.setOpaque(true);
+        jl.setBackground(azulApp);
+        jl.setForeground(Color.WHITE);
+        jl.setVerticalAlignment(JLabel.CENTER);
+        jl.setHorizontalAlignment(JLabel.CENTER);
+        jl.setVerticalTextPosition(JLabel.CENTER);
+        jl.setHorizontalTextPosition(JLabel.CENTER);
+        jl.setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
+        jl.setFont(new Font("Leelawadee", 1, 20));
+    }
+
+    public void setStyleJTable(JTable jt, JScrollPane jsp) {
         jsp.getViewport().setOpaque(false);
         jt.setOpaque(false);
         JTableHeader jtableHeader = jt.getTableHeader();
         jtableHeader.setDefaultRenderer(new HeaderTable());
         jt.setTableHeader(jtableHeader);
         jt.setDefaultRenderer(Object.class, new allTable());
+        jsp.setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
 
     }
 
@@ -163,12 +177,11 @@ public class Funciones {
 
             ((JLabel) c).setHorizontalAlignment(SwingConstants.CENTER);
             ((JLabel) c).setSize(20, c.getWidth());
-            ((JLabel) c).setFont(new Font("Leelawadee", 0, 18));
-            ((JLabel) c).setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, Color.WHITE));
+            ((JLabel) c).setFont(new Font("Leelawadee", 0, 14));
+            ((JLabel) c).setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 1, Color.BLACK));
             ((JLabel) c).setOpaque(true);
-            c.setBackground(new Color(8, 83, 148));
-            c.setForeground(Color.white);
-
+            c.setBackground(new Color(200, 200, 200));
+            c.setForeground(Color.BLACK);
             return c;
         }
 
@@ -181,17 +194,19 @@ public class Funciones {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             Component c = DEFAULT_RENDERER.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-            c.setFont(new Font("Leelawadee", 0, 14));
+            c.setFont(new Font("Leelawadee", 0, 12));
             c.setForeground(Color.BLACK);
 
-            if (row % 2 == 0) {
-                c.setBackground(new Color(111, 168, 220));
-            } else {
-                c.setBackground(Color.WHITE);
-            }
             if (isSelected) {
                 c.setBackground(new Color(111, 111, 220));
                 c.setForeground(Color.WHITE);
+            } else {
+
+                if (row % 2 == 0) {
+                    c.setBackground(new Color(111, 168, 220));
+                } else {
+                    c.setBackground(Color.WHITE);
+                }
             }
             return c;
         }

@@ -21,13 +21,10 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         allSetEmpty();
         CrearModelo();
         cargar();
-        f.setStyleJTable(tablaMed,jScrollPane2);
         jlLogo.setSize(100, 100);
         jlLogo.setIcon(f.setImageBackground("/Recursos/logo.png", jlLogo));
-        jlSalir.setSize(60, 60);
-        f.setStyleJButonBack(jlSalir);
-        f.setStyleJButon(btnActualizar1);
-        jlUsuario.setSize(100, 100);
+
+        jlUsuario.setSize(150, 150);
         jlUsuario.setIcon(f.setImageBackground("/Recursos/usuario.png", jlUsuario));
 
     }
@@ -52,6 +49,14 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         f.setStyleJTextField(txtPrinAct);
         f.setStyleJTextField(txtTitular);
         f.setStyleJTextArea(txtDescripcion, jScrollPane1);
+        f.setStyleJTable(tablaMed, jScrollPane2);
+        f.setStyleJLabel(jlTitulo1);
+        f.setStyleJButon(btnEliminar);
+        f.setStyleJButon(btnAgregar);
+        f.setStyleJButon(btnEditar);
+        f.setStyleJButon(btnCerrarSesion);
+        jlSalir.setSize(60, 60);
+        f.setStyleJButonBack(jlSalir);
 
     }
 
@@ -114,7 +119,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
                 txtPrinAct.getText(),
                 Short.parseShort(String.valueOf(0)),
                 0);
-          ArrayList<MedicamentoDAO.CombinacionMed> listaClientes = new MedicamentoDAO.CombinacionMed().selectAll(concat);
+        ArrayList<MedicamentoDAO.CombinacionMed> listaClientes = new MedicamentoDAO.CombinacionMed().selectAll(concat);
         Object object[] = null;
         for (int i = 0; i < listaClientes.size(); i++) {
             modelo.addRow(object);
@@ -157,14 +162,14 @@ public class FronteraGestionMed extends javax.swing.JPanel {
 
         jlLogo = new javax.swing.JLabel();
         jlSalir = new javax.swing.JLabel();
-        jlNombre = new javax.swing.JLabel();
+        jlTitulo1 = new javax.swing.JLabel();
         jlUsuario = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtPresentacion = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtCliente = new javax.swing.JTextField();
-        btnActualizar1 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtMed = new javax.swing.JTextField();
         txtPrinAct = new javax.swing.JTextField();
@@ -175,9 +180,14 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         tablaMed = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
+        jlNombre = new javax.swing.JLabel();
+        btnCerrarSesion = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(0, 0));
-        setPreferredSize(new java.awt.Dimension(1030, 550));
+        setPreferredSize(new java.awt.Dimension(1030, 750));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jlLogo.setPreferredSize(new java.awt.Dimension(100, 100));
@@ -191,15 +201,15 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         });
         add(jlSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
-        jlNombre.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
-        jlNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlNombre.setText("\"Nombre de Usuario Actual\"");
-        jlNombre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jlNombre.setPreferredSize(new java.awt.Dimension(300, 50));
-        add(jlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, 271, 20));
+        jlTitulo1.setFont(new java.awt.Font("Leelawadee", 0, 28)); // NOI18N
+        jlTitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlTitulo1.setText("Listado de Medicamentos Registrados");
+        jlTitulo1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jlTitulo1.setPreferredSize(new java.awt.Dimension(300, 50));
+        add(jlTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, 880, 30));
 
-        jlUsuario.setPreferredSize(new java.awt.Dimension(100, 100));
-        add(jlUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, -1, -1));
+        jlUsuario.setPreferredSize(new java.awt.Dimension(150, 150));
+        add(jlUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -207,7 +217,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         jLabel2.setText("Tipo de Presentacion");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel2.setPreferredSize(new java.awt.Dimension(170, 30));
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 323, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, -1, -1));
 
         txtPresentacion.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtPresentacion.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -230,7 +240,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
                 txtPresentacionKeyTyped(evt);
             }
         });
-        add(txtPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 323, -1, -1));
+        add(txtPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 430, -1, -1));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -238,7 +248,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         jLabel7.setText("Descripción");
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel7.setPreferredSize(new java.awt.Dimension(170, 30));
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 238, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, -1, -1));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -246,7 +256,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         jLabel3.setText("Cliente");
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel3.setPreferredSize(new java.awt.Dimension(170, 30));
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 202, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 310, -1, -1));
 
         txtCliente.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtCliente.setPreferredSize(new java.awt.Dimension(300, 30));
@@ -263,21 +273,21 @@ public class FronteraGestionMed extends javax.swing.JPanel {
                 txtClienteKeyTyped(evt);
             }
         });
-        add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(701, 202, 250, -1));
+        add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 310, 250, -1));
 
-        btnActualizar1.setBackground(new java.awt.Color(0, 158, 15));
-        btnActualizar1.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
-        btnActualizar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnActualizar1.setText("Cerrar Sesion");
-        btnActualizar1.setPreferredSize(new java.awt.Dimension(150, 30));
-        btnActualizar1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnActualizar1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnActualizar1.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(0, 158, 15));
+        btnEliminar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnEliminar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizar1ActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
-        add(btnActualizar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, 160, 29));
+        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 690, 160, 29));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -285,7 +295,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         jLabel4.setText("Medicamento");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel4.setPreferredSize(new java.awt.Dimension(170, 30));
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 202, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, -1, -1));
 
         txtMed.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtMed.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -305,7 +315,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
                 txtMedKeyTyped(evt);
             }
         });
-        add(txtMed, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 202, -1, -1));
+        add(txtMed, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, -1, -1));
 
         txtPrinAct.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtPrinAct.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -325,7 +335,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
                 txtPrinActKeyTyped(evt);
             }
         });
-        add(txtPrinAct, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 283, -1, -1));
+        add(txtPrinAct, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, -1, -1));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -333,7 +343,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         jLabel5.setText("Principio Activo");
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel5.setPreferredSize(new java.awt.Dimension(170, 30));
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 283, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -341,7 +351,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         jLabel6.setText("TItular");
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel6.setPreferredSize(new java.awt.Dimension(170, 30));
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 243, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, -1, -1));
 
         txtTitular.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtTitular.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -361,7 +371,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
                 txtTitularKeyTyped(evt);
             }
         });
-        add(txtTitular, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 243, -1, -1));
+        add(txtTitular, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, -1, -1));
 
         jScrollPane2.setPreferredSize(new java.awt.Dimension(880, 150));
 
@@ -382,7 +392,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         tablaMed.setPreferredSize(new java.awt.Dimension(880, 120));
         jScrollPane2.setViewportView(tablaMed);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 371, -1, -1));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, -1, -1));
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setPreferredSize(new java.awt.Dimension(250, 114));
@@ -397,7 +407,63 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(txtDescripcion);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(701, 238, -1, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 350, -1, -1));
+
+        jlNombre.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
+        jlNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlNombre.setText("\"Nombre de Usuario Actual\"");
+        jlNombre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jlNombre.setPreferredSize(new java.awt.Dimension(300, 50));
+        add(jlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 320, 20));
+
+        btnCerrarSesion.setBackground(new java.awt.Color(0, 158, 15));
+        btnCerrarSesion.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
+        btnCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        btnCerrarSesion.setText("Cerrar Sesion");
+        btnCerrarSesion.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnCerrarSesion.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnCerrarSesion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
+        add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 160, 29));
+
+        btnEditar.setBackground(new java.awt.Color(0, 158, 15));
+        btnEditar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
+        btnEditar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditar.setText("Editar");
+        btnEditar.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnEditar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnEditar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+        add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 690, 160, 29));
+
+        btnAgregar.setBackground(new java.awt.Color(0, 158, 15));
+        btnAgregar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setText("Agregar");
+        btnAgregar.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnAgregar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnAgregar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+        add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 690, 160, 29));
+
+        jLabel1.setFont(new java.awt.Font("Leelawadee", 0, 28)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Gestion de Medicamentos");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel1.setPreferredSize(new java.awt.Dimension(300, 50));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 330, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPresentacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPresentacionFocusGained
@@ -432,11 +498,9 @@ public class FronteraGestionMed extends javax.swing.JPanel {
 
     }//GEN-LAST:event_txtClienteKeyTyped
 
-    private void btnActualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizar1ActionPerformed
-        App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
-        allSetEmpty();
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
-    }//GEN-LAST:event_btnActualizar1ActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtMedFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMedFocusGained
         // TODO add your handling code here:
@@ -502,9 +566,27 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenu);
     }//GEN-LAST:event_jlSalirMousePressed
 
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
+        allSetEmpty();
+
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualizar1;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnCerrarSesion;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -516,6 +598,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
     private javax.swing.JLabel jlLogo;
     private javax.swing.JLabel jlNombre;
     private javax.swing.JLabel jlSalir;
+    private javax.swing.JLabel jlTitulo1;
     private javax.swing.JLabel jlUsuario;
     private javax.swing.JTable tablaMed;
     private javax.swing.JTextField txtCliente;
