@@ -103,6 +103,25 @@ public class MedicamentoDAO {
             return consulta;
         }
     }
+    
+    public Medicamento leer(int idLibro) {
+        EntityManager em = emf.createEntityManager();
+        Medicamento consulta = null;
+        Query q = em.createQuery("SELECT m"
+                + " FROM Medicamento e "
+                + "WHERE m.idMedicamento = :idMedicamento")
+                .setParameter("idMedicamento", idLibro);
+        try {
+            consulta = (Medicamento) q.getSingleResult();
+        } catch (NonUniqueResultException e) {
+            consulta = (Medicamento) q.getResultList().get(0);
+        } catch (Exception e) {
+
+        } finally {
+            em.close();
+            return consulta;
+        }
+    }
 
     public boolean actualizar(Medicamento med, Medicamento nuevomed) {
         EntityManager em = emf.createEntityManager();
