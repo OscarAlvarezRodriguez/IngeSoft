@@ -1,9 +1,8 @@
-
 package Entidad;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,11 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-
 
 @Entity
 @Table(name = "medicamentoinvima")
@@ -51,8 +48,8 @@ public class Medicamentoinvima implements Serializable {
     @Basic(optional = false)
     @Column(name = "PRINCIPIOACTIVO")
     private String principioactivo;
-    @OneToMany(mappedBy = "idmedicamentoinvima")
-    private List<Medicamento> medicamentoList;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idmedicamentoinvima")
+    private Medicamento medicamento;
 
     public Medicamentoinvima() {
     }
@@ -118,13 +115,12 @@ public class Medicamentoinvima implements Serializable {
         this.principioactivo = principioactivo;
     }
 
-    @XmlTransient
-    public List<Medicamento> getMedicamentoList() {
-        return medicamentoList;
+    public Medicamento getMedicamento() {
+        return medicamento;
     }
 
-    public void setMedicamentoList(List<Medicamento> medicamentoList) {
-        this.medicamentoList = medicamentoList;
+    public void setMedicamento(Medicamento medicamento) {
+        this.medicamento = medicamento;
     }
 
     @Override
@@ -151,5 +147,5 @@ public class Medicamentoinvima implements Serializable {
     public String toString() {
         return "Entidad.Medicamentoinvima[ idmedicamentoinvima=" + idmedicamentoinvima + " ]";
     }
-    
+
 }

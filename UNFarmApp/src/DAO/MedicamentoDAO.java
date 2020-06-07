@@ -49,7 +49,7 @@ public class MedicamentoDAO {
 
     public List<Medicamentoinvima> leertodo() {
         EntityManager em = emf.createEntityManager();
-        Query q = em.createQuery("SELECT m FROM Medicamentoinvima m");
+        Query q = em.createQuery("Medicamentoinvima.findAll");
         List<Medicamentoinvima> resultados = null;
         try {
             resultados = q.getResultList();

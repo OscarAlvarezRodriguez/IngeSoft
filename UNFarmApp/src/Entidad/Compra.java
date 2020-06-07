@@ -1,4 +1,3 @@
-
 package Entidad;
 
 import java.io.Serializable;
@@ -19,7 +18,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
 
 @Entity
 @Table(name = "compra")
@@ -130,5 +128,5 @@ public class Compra implements Serializable {
     public String toString() {
         return "Entidad.Compra[ idcompra=" + idcompra + " ]";
     }
-    
+
 }

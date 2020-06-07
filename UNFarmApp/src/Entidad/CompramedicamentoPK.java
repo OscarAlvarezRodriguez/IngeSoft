@@ -1,4 +1,3 @@
-
 package Entidad;
 
 import java.io.Serializable;
@@ -68,5 +67,5 @@ public class CompramedicamentoPK implements Serializable {
     public String toString() {
         return "Entidad.CompramedicamentoPK[ idmedicamento=" + idmedicamento + ", idcompra=" + idcompra + " ]";
     }
-    
+
 }

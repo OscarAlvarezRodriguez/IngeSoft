@@ -1,4 +1,3 @@
-
 package Entidad;
 
 import java.io.Serializable;
@@ -9,12 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-
 
 @Entity
 @Table(name = "domicilio")
@@ -35,7 +33,7 @@ public class Domicilio implements Serializable {
     @Column(name = "ESTADO")
     private short estado;
     @JoinColumn(name = "IDFACTURA", referencedColumnName = "IDFACTURA")
-    @ManyToOne
+    @OneToOne(optional = false)
     private Factura idfactura;
 
     public Domicilio() {
@@ -98,5 +96,5 @@ public class Domicilio implements Serializable {
     public String toString() {
         return "Entidad.Domicilio[ iddomicilio=" + iddomicilio + " ]";
     }
-    
+
 }

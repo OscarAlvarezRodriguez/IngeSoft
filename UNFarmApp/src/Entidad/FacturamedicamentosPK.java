@@ -1,11 +1,9 @@
-
 package Entidad;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-
 
 @Embeddable
 public class FacturamedicamentosPK implements Serializable {
@@ -69,5 +67,5 @@ public class FacturamedicamentosPK implements Serializable {
     public String toString() {
         return "Entidad.FacturamedicamentosPK[ idmedicamento=" + idmedicamento + ", idfactura=" + idfactura + " ]";
     }
-    
+
 }

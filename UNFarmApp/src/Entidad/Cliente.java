@@ -1,4 +1,3 @@
-
 package Entidad;
 
 import java.io.Serializable;
@@ -14,7 +13,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
 
 @Entity
 @Table(name = "cliente")
@@ -160,5 +158,5 @@ public class Cliente implements Serializable {
     public String toString() {
         return "Entidad.Cliente[ cedulacliente=" + cedulacliente + " ]";
     }
-    
+
 }

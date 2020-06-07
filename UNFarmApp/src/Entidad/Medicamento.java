@@ -1,4 +1,3 @@
-
 package Entidad;
 
 import java.io.Serializable;
@@ -11,14 +10,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
 
 @Entity
 @Table(name = "medicamento")
@@ -47,7 +45,7 @@ public class Medicamento implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "medicamento")
     private List<Compramedicamento> compramedicamentoList;
     @JoinColumn(name = "IDMEDICAMENTOINVIMA", referencedColumnName = "IDMEDICAMENTOINVIMA")
-    @ManyToOne
+    @OneToOne(optional = false)
     private Medicamentoinvima idmedicamentoinvima;
 
     public Medicamento() {
@@ -137,5 +135,5 @@ public class Medicamento implements Serializable {
     public String toString() {
         return "Entidad.Medicamento[ idmedicamento=" + idmedicamento + " ]";
     }
-    
+
 }

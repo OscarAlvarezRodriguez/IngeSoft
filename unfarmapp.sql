@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-06-2020 a las 22:35:21
+-- Tiempo de generación: 07-06-2020 a las 06:21:34
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.30
 
@@ -92,7 +92,7 @@ INSERT INTO `compramedicamento` (`IDMEDICAMENTO`, `IDCOMPRA`, `PRECIOUNITARIO`, 
 
 CREATE TABLE `domicilio` (
   `IDDOMICILIO` int(11) NOT NULL,
-  `IDFACTURA` int(11) DEFAULT NULL,
+  `IDFACTURA` int(11) NOT NULL,
   `ESTADO` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -201,7 +201,7 @@ INSERT INTO `facturamedicamentos` (`IDMEDICAMENTO`, `IDFACTURA`, `CANTIDADVENDID
 
 CREATE TABLE `medicamento` (
   `IDMEDICAMENTO` smallint(6) NOT NULL,
-  `IDMEDICAMENTOINVIMA` smallint(6) DEFAULT NULL,
+  `IDMEDICAMENTOINVIMA` smallint(6) NOT NULL,
   `PRECIOVENTA` int(11) NOT NULL,
   `STOCK` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -1414,7 +1414,7 @@ ALTER TABLE `compramedicamento`
 --
 ALTER TABLE `domicilio`
   ADD PRIMARY KEY (`IDDOMICILIO`),
-  ADD KEY `FK_REFERENCE_12` (`IDFACTURA`);
+  ADD UNIQUE KEY `FK_REFERENCE_12` (`IDFACTURA`) USING BTREE;
 
 --
 -- Indices de la tabla `drogueria`
@@ -1449,7 +1449,7 @@ ALTER TABLE `facturamedicamentos`
 --
 ALTER TABLE `medicamento`
   ADD PRIMARY KEY (`IDMEDICAMENTO`),
-  ADD KEY `FK_REFERENCE_13` (`IDMEDICAMENTOINVIMA`);
+  ADD UNIQUE KEY `FK_REFERENCE_13` (`IDMEDICAMENTOINVIMA`) USING BTREE;
 
 --
 -- Indices de la tabla `medicamentoinvima`

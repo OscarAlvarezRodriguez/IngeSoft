@@ -1,4 +1,3 @@
-
 package Entidad;
 
 import java.io.Serializable;
@@ -12,7 +11,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-
 
 @Entity
 @Table(name = "compramedicamento")
@@ -122,5 +120,5 @@ public class Compramedicamento implements Serializable {
     public String toString() {
         return "Entidad.Compramedicamento[ compramedicamentoPK=" + compramedicamentoPK + " ]";
     }
-    
+
 }

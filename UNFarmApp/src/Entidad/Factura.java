@@ -1,4 +1,3 @@
-
 package Entidad;
 
 import java.io.Serializable;
@@ -16,12 +15,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
 
 @Entity
 @Table(name = "factura")
@@ -48,8 +47,8 @@ public class Factura implements Serializable {
     private Date fecha;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "factura")
     private List<Facturamedicamentos> facturamedicamentosList;
-    @OneToMany(mappedBy = "idfactura")
-    private List<Domicilio> domicilioList;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idfactura")
+    private Domicilio domicilio;
     @JoinColumn(name = "CEDULACLIENTE", referencedColumnName = "CEDULACLIENTE")
     @ManyToOne(optional = false)
     private Cliente cedulacliente;
@@ -106,13 +105,12 @@ public class Factura implements Serializable {
         this.facturamedicamentosList = facturamedicamentosList;
     }
 
-    @XmlTransient
-    public List<Domicilio> getDomicilioList() {
-        return domicilioList;
+    public Domicilio getDomicilio() {
+        return domicilio;
     }
 
-    public void setDomicilioList(List<Domicilio> domicilioList) {
-        this.domicilioList = domicilioList;
+    public void setDomicilio(Domicilio domicilio) {
+        this.domicilio = domicilio;
     }
 
     public Cliente getCedulacliente() {
@@ -163,5 +161,5 @@ public class Factura implements Serializable {
     public String toString() {
         return "Entidad.Factura[ idfactura=" + idfactura + " ]";
     }
-    
+
 }

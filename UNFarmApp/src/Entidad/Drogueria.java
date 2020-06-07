@@ -1,4 +1,3 @@
-
 package Entidad;
 
 import java.io.Serializable;
@@ -148,5 +147,5 @@ public class Drogueria implements Serializable {
     public String toString() {
         return "Entidad.Drogueria[ nitdrogueria=" + nitdrogueria + " ]";
     }
-    
+
 }
