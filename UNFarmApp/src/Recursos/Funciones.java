@@ -198,7 +198,7 @@ public class Funciones {
             c.setForeground(Color.BLACK);
 
             if (isSelected) {
-                c.setBackground(new Color(111, 111, 220));
+                c.setBackground(Color.BLACK);
                 c.setForeground(Color.WHITE);
             } else {
 

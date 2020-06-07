@@ -2,9 +2,11 @@ package Frontera;
 
 import DAO.MedicamentoDAO;
 import Entidad.Empleado;
+import Entidad.Medicamento;
+import Entidad.Medicamentoinvima;
 import Recursos.Funciones;
 import java.awt.Graphics;
-import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -29,7 +31,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
     }
 
     public void setNombreUsuario(Empleado em) {
-        jlNombre.setText(em.getNombreempleado()+ " " + em.getApellidoempleado());
+        jlNombre.setText(em.getNombreempleado() + " " + em.getApellidoempleado());
     }
 
     public void allSetEmpty() {
@@ -111,33 +113,41 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-       
-        ArrayList<MedicamentoDAO> listaClientes = new ArrayList<>();
+        Medicamentoinvima mi = new Medicamentoinvima(
+                Short.parseShort("0"),
+                txtMed.getText(),
+                txtTitular.getText(),
+                txtDescripcion.getText(),
+                txtPresentacion.getText(), txtPrinAct.getText());
+        Medicamento m = new Medicamento();
+        m.setIdmedicamentoinvima(mi);
+        List<Medicamento> listaClientes = medicamentoDAO.leertodo(m);
         Object object[] = null;
         for (int i = 0; i < listaClientes.size(); i++) {
             modelo.addRow(object);
-            modelo.setValueAt(listaClientes.get(i).getNombreMedicamento(), i, 0);
-            modelo.setValueAt(listaClientes.get(i).getTitular(), i, 1);
-            modelo.setValueAt(listaClientes.get(i).getDescripcion(), i, 2);
-            modelo.setValueAt(listaClientes.get(i).getPrincipioActivo(), i, 3);
-            modelo.setValueAt(listaClientes.get(i).getPresentacion(), i, 4);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getNombremedicamento(), i, 0);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getTitular(), i, 1);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getDescripcion(), i, 2);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPrincipioactivo(), i, 3);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPresentacion(), i, 4);
             modelo.setValueAt(listaClientes.get(i).getStock(), i, 5);
-            modelo.setValueAt(listaClientes.get(i).getPrecioVenta(), i, 6);
+            modelo.setValueAt(listaClientes.get(i).getPrecioventa(), i, 6);
         }
     }
 
     private void cargar() {
-        ArrayList<MedicamentoDAO> listaClientes = new ArrayList<>();
+
+        List<Medicamento> listaClientes = medicamentoDAO.leertodo();
         Object object[] = null;
         for (int i = 0; i < listaClientes.size(); i++) {
             modelo.addRow(object);
-            modelo.setValueAt(listaClientes.get(i).getNombreMedicamento(), i, 0);
-            modelo.setValueAt(listaClientes.get(i).getTitular(), i, 1);
-            modelo.setValueAt(listaClientes.get(i).getDescripcion(), i, 2);
-            modelo.setValueAt(listaClientes.get(i).getPrincipioActivo(), i, 3);
-            modelo.setValueAt(listaClientes.get(i).getPresentacion(), i, 4);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getNombremedicamento(), i, 0);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getTitular(), i, 1);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getDescripcion(), i, 2);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPrincipioactivo(), i, 3);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPresentacion(), i, 4);
             modelo.setValueAt(listaClientes.get(i).getStock(), i, 5);
-            modelo.setValueAt(listaClientes.get(i).getPrecioVenta(), i, 6);
+            modelo.setValueAt(listaClientes.get(i).getPrecioventa(), i, 6);
         }
     }
 

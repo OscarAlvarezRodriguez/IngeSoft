@@ -47,10 +47,10 @@ public class MedicamentoDAO {
         }
     }
 
-    public List<Medicamentoinvima> leertodo() {
+    public List<Medicamento> leertodo() {
         EntityManager em = emf.createEntityManager();
-        Query q = em.createQuery("Medicamentoinvima.findAll");
-        List<Medicamentoinvima> resultados = null;
+        Query q = em.createQuery("SELECT m FROM Medicamento m");
+        List<Medicamento> resultados = null;
         try {
             resultados = q.getResultList();
         } catch (Exception e) {
@@ -60,23 +60,23 @@ public class MedicamentoDAO {
         }
     }
 
-    public List<Medicamentoinvima> leertodo(Medicamentoinvima mi) {
+    public List<Medicamento> leertodo(Medicamento m) {
         EntityManager em = emf.createEntityManager();
-        Query q = em.createQuery("SELECT m FROM Medicamentoinvima m "
+        Query q = em.createQuery("SELECT m FROM Medicamento m "
                 + "WHERE"
-                + " m.nombreMedicamento LIKE CONCAT(:nombreMedicamento,'%') AND "
-                + " m.titular LIKE CONCAT(:titular,'%') AND "
-                + " m.Descripcion LIKE CONCAT(:descripcion,'%') AND "
-                + " m.presentacion LIKE CONCAT(:presentacion,'%') AND "
-                + " m.principioActivo LIKE CONCAT(:principioActivo,'%')")
-                .setParameter("nombreMedicamento", mi.getNombremedicamento())
-                .setParameter("titular", mi.getTitular())
-                .setParameter("descripcion", mi.getDescripcion())
-                .setParameter("presentacion", mi.getPresentacion())
-                .setParameter("principioActivo", mi.getPrincipioactivo());
-        List<Medicamentoinvima> resultados = null;
+                + " m.idmedicamentoinvima.nombremedicamento LIKE CONCAT('%',:nombreMedicamento,'%')"
+                + " AND  m.idmedicamentoinvima.titular LIKE CONCAT('%',:titular,'%')"
+                + " AND  m.idmedicamentoinvima.descripcion LIKE CONCAT('%',:descripcion,'%')"
+                + " AND m.idmedicamentoinvima.presentacion LIKE CONCAT('%',:presentacion,'%')"
+                + " AND m.idmedicamentoinvima.principioactivo LIKE CONCAT('%',:principioActivo,'%')")
+                .setParameter("nombreMedicamento", m.getIdmedicamentoinvima().getNombremedicamento())
+                .setParameter("titular", m.getIdmedicamentoinvima().getTitular())
+                .setParameter("descripcion", m.getIdmedicamentoinvima().getDescripcion())
+                .setParameter("presentacion", m.getIdmedicamentoinvima().getPresentacion())
+                .setParameter("principioActivo", m.getIdmedicamentoinvima().getPrincipioactivo());
+        List<Medicamento> resultados = null;
         try {
-            resultados = (List<Medicamentoinvima>) q.getResultList();
+            resultados = (List<Medicamento>) q.getResultList();
         } catch (Exception e) {
         } finally {
             em.close();
