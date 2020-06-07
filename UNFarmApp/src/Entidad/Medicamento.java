@@ -39,7 +39,7 @@ public class Medicamento implements Serializable {
     private int precioventa;
     @Basic(optional = false)
     @Column(name = "STOCK")
-    private short stock;
+    private Short stock;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "medicamento")
     private List<Facturamedicamentos> facturamedicamentosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "medicamento")
@@ -77,11 +77,11 @@ public class Medicamento implements Serializable {
         this.precioventa = precioventa;
     }
 
-    public short getStock() {
+    public Short getStock() {
         return stock;
     }
 
-    public void setStock(short stock) {
+    public void setStock(Short stock) {
         this.stock = stock;
     }
 

@@ -6,8 +6,6 @@ import javax.persistence.NonUniqueResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import Entidad.Medicamento;
-import Entidad.Medicamentoinvima;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MedicamentoDAO {
@@ -88,10 +86,9 @@ public class MedicamentoDAO {
         EntityManager em = emf.createEntityManager();
         Medicamento consulta = null;
         Query q = em.createQuery("SELECT m"
-                + " FROM Medicamento e "
-                + "WHERE m.idMedicamento = :idMedicamento"
-        )
-                .setParameter("idMedicamento", par.getIdmedicamento());
+                + " FROM Medicamento m "
+                + "WHERE m.idmedicamento = :idmedicamento"
+        ).setParameter("idmedicamento", par.getIdmedicamento());
         try {
             consulta = (Medicamento) q.getSingleResult();
         } catch (NonUniqueResultException e) {
@@ -104,12 +101,10 @@ public class MedicamentoDAO {
         }
     }
 
-    public Medicamento leer(int idLibro) {
+    public Medicamento leer(Short idLibro) {
         EntityManager em = emf.createEntityManager();
         Medicamento consulta = null;
-        Query q = em.createQuery("SELECT m"
-                + " FROM Medicamento e "
-                + "WHERE m.idMedicamento = :idMedicamento")
+        Query q = em.createQuery("SELECT m FROM Medicamento m WHERE m.idmedicamento = :idMedicamento")
                 .setParameter("idMedicamento", idLibro);
         try {
             consulta = (Medicamento) q.getSingleResult();
@@ -119,6 +114,7 @@ public class MedicamentoDAO {
 
         } finally {
             em.close();
+           
             return consulta;
         }
     }

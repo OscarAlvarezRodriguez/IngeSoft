@@ -1,10 +1,13 @@
 package Frontera;
 
-import DAO.MedicamentoDAO;
+import Control.ComprarMedicamento;
 import Entidad.Empleado;
+import Entidad.Medicamento;
+import Entidad.Medicamentoinvima;
 import Recursos.Funciones;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -13,27 +16,24 @@ public class FronteraComprarMed extends javax.swing.JPanel {
 
     Funciones f = new Funciones();
     DefaultTableModel modelo, modelo1;
-    MedicamentoDAO medicamentoDAO = new MedicamentoDAO();
-   
+    ComprarMedicamento comprarMedicamento = new ComprarMedicamento();
 
     public FronteraComprarMed() {
         initComponents();
         allSetEmpty();
         CrearModelo();
         cargar();
-        f.setStyleJTable(tablaMed,jScrollPane2);
+
         jlLogo.setSize(100, 100);
         jlLogo.setIcon(f.setImageBackground("/Recursos/logo.png", jlLogo));
-        jlSalir.setSize(60, 60);
-        f.setStyleJButonBack(jlSalir);
-        f.setStyleJButon(btnActualizar1);
+
         jlUsuario.setSize(100, 100);
         jlUsuario.setIcon(f.setImageBackground("/Recursos/usuario.png", jlUsuario));
 
     }
 
     public void setNombreUsuario(Empleado em) {
-        jlNombre.setText(em.getNombreempleado()+ " " + em.getApellidoempleado());
+        jlNombre.setText(em.getNombreempleado() + " " + em.getApellidoempleado());
     }
 
     public void allSetEmpty() {
@@ -52,6 +52,11 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         f.setStyleJTextField(txtPrinAct);
         f.setStyleJTextField(txtTitular);
         f.setStyleJTextArea(txtDescripcion, jScrollPane1);
+        jlSalir.setSize(60, 60);
+        f.setStyleJButonBack(jlSalir);
+        f.setStyleJButon(btnActualizar1);
+        f.setStyleJTable(tablaMed, jScrollPane2);
+        f.setStyleJTable(TablaMedComprado, jScrollPane4);
 
     }
 
@@ -60,16 +65,15 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         try {
             modelo = (new DefaultTableModel(
                     null, new String[]{
+                        "ID",
                         "Medicamento",
                         "Titular",
                         "Descripcion",
                         "Principio Activo",
-                        "Presentacion",
-                        "Unidades Disponibles",
-                        "Precio Unitario + IVA"}) {
+                        "Presentacion"}) {
+                            
                 Class[] types = new Class[]{
-                    java.lang.String.class,
-                    java.lang.String.class,
+                    java.lang.Short.class,
                     java.lang.String.class,
                     java.lang.String.class,
                     java.lang.String.class,
@@ -82,8 +86,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                     false,
                     false,
                     false,
-                    true,
-                    true
+                    false
                 };
 
                 @Override
@@ -97,18 +100,21 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                 }
 
             });
-            
-             modelo1 = (new DefaultTableModel(
+
+            modelo1 = (new DefaultTableModel(
                     null, new String[]{
+                        "ID",
                         "Medicamento",
-                        "Unidades Disponibles",
+                        "Cantidad Comprada",
                         "Precio Unitario + IVA"}) {
                 Class[] types = new Class[]{
+                    java.lang.Short.class,
                     java.lang.String.class,
                     java.lang.Short.class,
                     java.lang.Integer.class
                 };
                 boolean[] canEdit = new boolean[]{
+                    false,
                     false,
                     true,
                     true
@@ -125,7 +131,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                 }
 
             });
-            
+
             tablaMed.setModel(modelo);
             TablaMedComprado.setModel(modelo1);
         } catch (Exception e) {
@@ -137,33 +143,39 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-       
-          ArrayList<MedicamentoDAO> listaClientes = new ArrayList<>();
+        Medicamentoinvima mi = new Medicamentoinvima(
+                Short.parseShort("0"),
+                txtMed.getText(),
+                txtTitular.getText(),
+                txtDescripcion.getText(),
+                txtPresentacion.getText(), txtPrinAct.getText());
+        Medicamento m = new Medicamento();
+        m.setIdmedicamentoinvima(mi);
+        List<Medicamento> listaClientes = comprarMedicamento.filtrarMedicamentos(m);
         Object object[] = null;
         for (int i = 0; i < listaClientes.size(); i++) {
             modelo.addRow(object);
-            modelo.setValueAt(listaClientes.get(i).getNombreMedicamento(), i, 0);
-            modelo.setValueAt(listaClientes.get(i).getTitular(), i, 1);
-            modelo.setValueAt(listaClientes.get(i).getDescripcion(), i, 2);
-            modelo.setValueAt(listaClientes.get(i).getPrincipioActivo(), i, 3);
-            modelo.setValueAt(listaClientes.get(i).getPresentacion(), i, 4);
-            modelo.setValueAt(listaClientes.get(i).getStock(), i, 5);
-            modelo.setValueAt(listaClientes.get(i).getPrecioVenta(), i, 6);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamento(), i, 0);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getNombremedicamento(), i, 1);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getTitular(), i, 2);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getDescripcion(), i, 3);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPrincipioactivo(), i, 4);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPresentacion(), i, 5);
         }
     }
 
     private void cargar() {
-        ArrayList<MedicamentoDAO> listaClientes = new  ArrayList<>();
+
+        List<Medicamento> listaClientes = comprarMedicamento.obtenerTodosMedicamentos();
         Object object[] = null;
         for (int i = 0; i < listaClientes.size(); i++) {
             modelo.addRow(object);
-            modelo.setValueAt(listaClientes.get(i).getNombreMedicamento(), i, 0);
-            modelo.setValueAt(listaClientes.get(i).getTitular(), i, 1);
-            modelo.setValueAt(listaClientes.get(i).getDescripcion(), i, 2);
-            modelo.setValueAt(listaClientes.get(i).getPrincipioActivo(), i, 3);
-            modelo.setValueAt(listaClientes.get(i).getPresentacion(), i, 4);
-            modelo.setValueAt(listaClientes.get(i).getStock(), i, 5);
-            modelo.setValueAt(listaClientes.get(i).getPrecioVenta(), i, 6);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamento(), i, 0);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getNombremedicamento(), i, 1);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getTitular(), i, 2);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getDescripcion(), i, 3);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPrincipioactivo(), i, 4);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPresentacion(), i, 5);
         }
     }
 
@@ -179,8 +191,6 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jlLogo = new javax.swing.JLabel();
         jlSalir = new javax.swing.JLabel();
         jlNombre = new javax.swing.JLabel();
@@ -204,19 +214,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         TablaMedComprado = new javax.swing.JTable();
         Agregar = new javax.swing.JButton();
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(jTable1);
+        jButton1 = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(0, 0));
         setPreferredSize(new java.awt.Dimension(1030, 1000));
@@ -468,6 +466,14 @@ public class FronteraComprarMed extends javax.swing.JPanel {
             }
         });
         add(Agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 550, -1, -1));
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 770, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jlSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMousePressed
@@ -569,49 +575,53 @@ public class FronteraComprarMed extends javax.swing.JPanel {
             txtPresentacion.setText("");
         }
     }//GEN-LAST:event_txtPresentacionFocusGained
-    
-    int[] seleccionar;
-    
+
+
     private void tablaMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMedMouseClicked
-        
-         seleccionar= tablaMed.getSelectedRows();
+
     }//GEN-LAST:event_tablaMedMouseClicked
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        
-        
-        ArrayList<MedicamentoDAO> Agregar = new ArrayList<>();
-        
-        for( int j = 0; j<seleccionar.length; j++){
-            
-            MedicamentoDAO concat = new MedicamentoDAO(
-            
-                    (String)tablaMed.getValueAt(seleccionar[j],0),
-                    null,
-                    null,
-                    null,
-                    null,
-                    (Short)tablaMed.getValueAt(seleccionar[j],5),
-                    (Integer)tablaMed.getValueAt(seleccionar[j],6)
-            
-            );
-                Agregar.add(concat);      
-        }
-        
+
+        int[] seleccionar = tablaMed.getSelectedRows();
+        int rows = TablaMedComprado.getRowCount();
         Object object[] = null;
-        for (int i = 0; i < Agregar.size(); i++) {
+
+        for (int i = 0; i < seleccionar.length; i++) {
             modelo1.addRow(object);
-            modelo1.setValueAt(Agregar.get(i).getNombreMedicamento(), i, 0);
-            modelo1.setValueAt(Agregar.get(i).getStock(), i, 1);
-            modelo1.setValueAt(Agregar.get(i).getPrecioVenta(), i, 2);
+            modelo1.setValueAt(tablaMed.getValueAt(seleccionar[i], 0), i + rows, 0);
+            modelo1.setValueAt(tablaMed.getValueAt(seleccionar[i], 1), i + rows, 1);
+            modelo1.setValueAt(Short.valueOf("0"), i + rows, 2);
+            modelo1.setValueAt(0, i + rows, 3);
+
         }
     }//GEN-LAST:event_AgregarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ArrayList<Short> cantidad = new ArrayList<>();
+        ArrayList<Short> ID = new ArrayList<>();
+        TablaMedComprado.editCellAt(-1, -1);
+        for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
+            for (int j = 0; j < TablaMedComprado.getColumnCount(); j++) {
+                if (j == 0) {
+                    ID.add((Short) TablaMedComprado.getValueAt(i, j));
+                }
+                if (j == 2) {
+                    cantidad.add((Short) TablaMedComprado.getValueAt(i, j));
+                }
+            }
+
+        }
+        comprarMedicamento.comprar(cantidad, ID);
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;
     private javax.swing.JTable TablaMedComprado;
     private javax.swing.JButton btnActualizar1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -620,9 +630,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel jlLogo;
     private javax.swing.JLabel jlNombre;
     private javax.swing.JLabel jlSalir;
