@@ -49,8 +49,8 @@ public class DrogueriaDAO {
         EntityManager em = emf.createEntityManager();
         Drogueria drogueria = null;
         Query q = em.createQuery("SELECT d FROM Drogueria d "
-                + "WHERE d.nitDrogueria = :nitDrogueria")
-                .setParameter("nitDrogueria", object.getNitDrogueria());
+                + "WHERE d.nitdrogueria = :nitdrogueria")
+                .setParameter("nitdrogueria", object.getNitdrogueria());
         try {
             drogueria = (Drogueria) q.getSingleResult();
         } catch (NonUniqueResultException e) {
@@ -84,12 +84,12 @@ public class DrogueriaDAO {
         boolean ret = false;
         try {
             object = leer(object);
-            object.setNitDrogueria(nuevoObjeto.getNitDrogueria());
-            object.setNombreDrogueria(nuevoObjeto.getNombreDrogueria());
-            object.setDireccionDrogueria(nuevoObjeto.getDireccionDrogueria());
-            object.setTelefonoDrogueria(nuevoObjeto.getTelefonoDrogueria());
-            object.setEmailDrogueria(nuevoObjeto.getEmailDrogueria());
-            object.setRepresentanteLegalDrogueria(nuevoObjeto.getRepresentanteLegalDrogueria());
+            object.setNitdrogueria(nuevoObjeto.getNitdrogueria());
+            object.setNombredrogueria(nuevoObjeto.getNombredrogueria());
+            object.setDirecciondrogueria(nuevoObjeto.getDirecciondrogueria());
+            object.setTelefono(nuevoObjeto.getTelefono());
+            object.setEmail(nuevoObjeto.getEmail());
+            object.setRepresentantelegal(nuevoObjeto.getRepresentantelegal());
             em.merge(object);
             em.getTransaction().commit();
             ret = true;

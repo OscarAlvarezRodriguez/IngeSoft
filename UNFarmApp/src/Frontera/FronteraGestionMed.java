@@ -14,7 +14,6 @@ public class FronteraGestionMed extends javax.swing.JPanel {
     Funciones f = new Funciones();
     DefaultTableModel modelo;
     MedicamentoDAO medicamentoDAO = new MedicamentoDAO();
-    MedicamentoDAO.CombinacionMed concat = new MedicamentoDAO.CombinacionMed();
 
     public FronteraGestionMed() {
         initComponents();
@@ -30,7 +29,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
     }
 
     public void setNombreUsuario(Empleado em) {
-        jlNombre.setText(em.getNombreEmpleado() + " " + em.getApellidoEmpleado());
+        jlNombre.setText(em.getNombreempleado()+ " " + em.getApellidoempleado());
     }
 
     public void allSetEmpty() {
@@ -112,14 +111,8 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-        concat = new MedicamentoDAO.CombinacionMed(txtMed.getText(),
-                txtTitular.getText(),
-                txtDescripcion.getText(),
-                txtPresentacion.getText(),
-                txtPrinAct.getText(),
-                Short.parseShort(String.valueOf(0)),
-                0);
-        ArrayList<MedicamentoDAO.CombinacionMed> listaClientes = new MedicamentoDAO.CombinacionMed().selectAll(concat);
+       
+        ArrayList<MedicamentoDAO> listaClientes = new ArrayList<>();
         Object object[] = null;
         for (int i = 0; i < listaClientes.size(); i++) {
             modelo.addRow(object);
@@ -134,7 +127,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
     }
 
     private void cargar() {
-        ArrayList<MedicamentoDAO.CombinacionMed> listaClientes = new MedicamentoDAO.CombinacionMed().selectAll();
+        ArrayList<MedicamentoDAO> listaClientes = new ArrayList<>();
         Object object[] = null;
         for (int i = 0; i < listaClientes.size(); i++) {
             modelo.addRow(object);

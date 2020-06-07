@@ -23,7 +23,7 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
 
     public void setNombreUsuario(Empleado em) {
         e = em;
-        jlNombre.setText(em.getNombreEmpleado() + " " + em.getApellidoEmpleado());
+        jlNombre.setText(em.getNombreempleado()+ " " + em.getApellidoempleado());
     }
 
     @Override

@@ -56,7 +56,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
     public boolean Init(Cliente cliente) {
         if (cliente != null) {
             this.cliente = cliente;
-            this.txtCedula.setText(this.cliente.getCedulaCliente());
+            this.txtCedula.setText(this.cliente.getCedulacliente());
             txtCedula.setEditable(false);
             return true;
         } else {
@@ -398,14 +398,14 @@ public class FronteraEditCliente extends javax.swing.JPanel {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         Cliente c = new Cliente();
-        c.setNombreCliente(this.txtNombre.getName());
-        c.setApellidoCliente(this.txtApellido.getName());
-        c.setCedulaCliente(this.cliente.getCedulaCliente());
-        c.setTelefonoCliente(this.txtCelular.getName());
-        c.setDireccionCliente(this.txtDireccion.getName());
-        c.setDescripcionDireccionCliente(this.txtDescripcion.getName());
+        c.setNombre(this.txtNombre.getText());
+        c.setApellido(this.txtApellido.getText());
+        c.setCedulacliente(this.cliente.getCedulacliente());
+        c.setTelefono(this.txtCelular.getText());
+        c.setDireccioncliente(this.txtDireccion.getText());
+        c.setDescripciondireccion(this.txtDescripcion.getText());
 
-        if (Edit.ValidarDatos(cliente.getCedulaCliente(), c).equals("Actualización correcta")) {
+        if (Edit.ValidarDatos(cliente.getCedulacliente(), c).equals("Actualización correcta")) {
             JLabel lb = new JLabel();
             lb.setSize(50, 50);
             JOptionPane.showMessageDialog(null,

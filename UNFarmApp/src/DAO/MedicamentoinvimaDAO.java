@@ -4,15 +4,15 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import Entidad.MedicamentoInvima;
+import Entidad.Medicamentoinvima;
 import java.util.List;
 
-public class MedicamentoInvimaDAO {
+public class MedicamentoinvimaDAO {
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UNFarmAppPU");
-    public List<MedicamentoInvima> leertodo(MedicamentoInvima med) {
+    public List<Medicamentoinvima> leertodo(Medicamentoinvima med) {
         EntityManager em = emf.createEntityManager();
-        Query q =em.createQuery("SELECT m FROM MedicamentoInvima m");
-        List<MedicamentoInvima> resultados= null;
+        Query q =em.createQuery("SELECT m FROM Medicamentoinvima m");
+        List<Medicamentoinvima> resultados= null;
         try {
             resultados=  q.getResultList();
         } catch (NonUniqueResultException e){
@@ -22,18 +22,18 @@ public class MedicamentoInvimaDAO {
             return resultados;
         }
     }
-    public MedicamentoInvima leer(MedicamentoInvima par) {
+    public Medicamentoinvima leer(Medicamentoinvima par) {
         EntityManager em = emf.createEntityManager();
-        MedicamentoInvima consulta = null;
+        Medicamentoinvima consulta = null;
         Query q = em.createQuery("SELECT m"
-                + " FROM MedicamentoInvima e "
-                + "WHERE m.idMedicamentoInvima = :idMedicamentoInvima"
+                + " FROM Medicamentoinvima e "
+                + "WHERE m.idMedicamentoinvima = :idMedicamentoinvima"
         )
-                .setParameter("idMedicamento", par.getIdMedicamentoInvima());
+                .setParameter("idMedicamento", par.getIdmedicamentoinvima());
         try {
-            consulta= (MedicamentoInvima) q.getSingleResult();
+            consulta= (Medicamentoinvima) q.getSingleResult();
         } catch (NonUniqueResultException e) {
-            consulta = (MedicamentoInvima) q.getResultList().get(0);
+            consulta = (Medicamentoinvima) q.getResultList().get(0);
         } catch (Exception e) {
 
         } finally {

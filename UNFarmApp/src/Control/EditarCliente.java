@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Control;
 
 import DAO.ClienteDAO;
@@ -26,26 +22,26 @@ public class EditarCliente {
     }
 
     public String ValidarDatos(String cedActual, Cliente clienteNuevo) {
-        if (!validarCedula(clienteNuevo.getCedulaCliente()).equals(co)) {
+        if (!validarCedula(clienteNuevo.getCedulacliente()).equals(co)) {
             return (cn);
         }
-        if (!validarNombre(clienteNuevo.getNombreCliente()).equals(co)) {
+        if (!validarNombre(clienteNuevo.getNombre()).equals(co)) {
             return (nn);
         }
 
-        if (!validarTelefono(clienteNuevo.getTelefonoCliente()).equals(co)) {
+        if (!validarTelefono(clienteNuevo.getTelefono()).equals(co)) {
             return (tn);
         }
 
-        if (!validarDireccion(clienteNuevo.getDireccionCliente()).equals(co)) {
+        if (!validarDireccion(clienteNuevo.getDireccioncliente()).equals(co)) {
             return (dn);
         }
 
-        if (!validarDescripcionDir(clienteNuevo.getDescripcionDireccionCliente()).equals(co)) {
+        if (!validarDescripcionDir(clienteNuevo.getDescripciondireccion()).equals(co)) {
             return (ddn);
         }
 
-        if (!validarApellido(clienteNuevo.getApellidoCliente()).equals(co)) {
+        if (!validarApellido(clienteNuevo.getApellido()).equals(co)) {
             return (an);
         }
 

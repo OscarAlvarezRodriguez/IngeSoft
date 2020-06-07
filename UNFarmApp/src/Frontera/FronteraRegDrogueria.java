@@ -438,12 +438,12 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         Drogueria d = new Drogueria();
-        d.setDireccionDrogueria(txtDireccion.getText());
-        d.setEmailDrogueria(txtEmail.getText());
-        d.setNitDrogueria(txtNIT.getText());
-        d.setNombreDrogueria(txtNombreDrogueria.getText());
-        d.setRepresentanteLegalDrogueria(txtRepresentante.getText());
-        d.setTelefonoDrogueria(txtTelefono.getText());
+        d.setDirecciondrogueria(txtDireccion.getText());
+        d.setEmail(txtEmail.getText());
+        d.setNitdrogueria(txtNIT.getText());
+        d.setNombredrogueria(txtNombreDrogueria.getText());
+        d.setRepresentantelegal(txtRepresentante.getText());
+        d.setTelefono(txtTelefono.getText());
         if (drogueria.validarDatos(d).equals("Registro exitoso")) {
             JLabel lb = new JLabel();
             lb.setSize(50, 50);

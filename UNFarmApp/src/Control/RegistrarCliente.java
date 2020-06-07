@@ -26,37 +26,37 @@ public class RegistrarCliente {
     public String ValidarDatos(Cliente cliente) {
         //Tenemos dos casos en caso de estar registrado el cliente, el primero es que esté registrado y activo, el segundo que esté registrado e inactivo
         //Creamos la clase cliente existente para verificar si esta registrado y en caso afirmativo, tener los datos del Cliente de manera temporal
-        Cliente clienteexistente=nuevocliente.leer(cliente.getCedulaCliente());
-        if (clienteexistente!= null) {
-            if(clienteexistente.isEliminado()==true){ //ya que comprobamos que el cliente existe, procedemos a verificar si se encuentra o no activo
+        Cliente clienteexistente = nuevocliente.leer(cliente.getCedulacliente());
+        if (clienteexistente != null) {
+            if (clienteexistente.getEliminado()) { //ya que comprobamos que el cliente existe, procedemos a verificar si se encuentra o no activo
                 boolean verificacion = nuevocliente.editarestado(cliente, false);//en caso afirmativo cambiará el estado del cliente a activo
-                if(verificacion==true) //verifica si la reactivación fue exitosa o no
+                if (verificacion == true) //verifica si la reactivación fue exitosa o no
                 {
-                    return(ca);
+                    return (ca);
                 }
-                return(cnr); 
+                return (cnr);
             }
-            return(cr); //en caso negativo, simplemente muestra que el cliente se encuentra registrado
+            return (cr); //en caso negativo, simplemente muestra que el cliente se encuentra registrado
         }
-        if (!validarCedula(cliente.getCedulaCliente()).equals(co)) {
+        if (!validarCedula(cliente.getCedulacliente()).equals(co)) {
             return (cn);
         }
-        if (!validarNombre(cliente.getNombreCliente()).equals(co)) {
+        if (!validarNombre(cliente.getNombre()).equals(co)) {
             return (nn);
         }
-        if (!validarTelefono(cliente.getTelefonoCliente()).equals(co)) {
+        if (!validarTelefono(cliente.getTelefono()).equals(co)) {
             return (tn);
         }
-        if (!validarDireccion(cliente.getDireccionCliente()).equals(co)) {
+        if (!validarDireccion(cliente.getDireccioncliente()).equals(co)) {
             return (dn);
         }
-        if (!validarDescripcionDir(cliente.getDescripcionDireccionCliente()).equals(co)) {
+        if (!validarDescripcionDir(cliente.getDescripciondireccion()).equals(co)) {
             return (ddn);
         }
-        if (!validarApellido(cliente.getApellidoCliente()).equals(co)) {
+        if (!validarApellido(cliente.getApellido()).equals(co)) {
             return (an);
         }
-        if (!validarEstado(cliente.isEliminado()).equals(co)){
+        if (!validarEstado(cliente.getEliminado()).equals(co)) {
             return (ec);
         }
         nuevocliente.crear(cliente);
@@ -104,9 +104,9 @@ public class RegistrarCliente {
         }
         return (ddn);
     }
-    
-    public String validarEstado(Boolean estado){
-        if (estado == false){
+
+    public String validarEstado(Boolean estado) {
+        if (estado == false) {
             return (co);
         }
         return (ec);

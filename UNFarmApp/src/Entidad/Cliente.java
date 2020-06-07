@@ -1,84 +1,125 @@
+
 package Entidad;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 
 @Entity
-@Table(name = "Cliente")
+@Table(name = "cliente")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
+    , @NamedQuery(name = "Cliente.findByCedulacliente", query = "SELECT c FROM Cliente c WHERE c.cedulacliente = :cedulacliente")
+    , @NamedQuery(name = "Cliente.findByNombre", query = "SELECT c FROM Cliente c WHERE c.nombre = :nombre")
+    , @NamedQuery(name = "Cliente.findByApellido", query = "SELECT c FROM Cliente c WHERE c.apellido = :apellido")
+    , @NamedQuery(name = "Cliente.findByTelefono", query = "SELECT c FROM Cliente c WHERE c.telefono = :telefono")
+    , @NamedQuery(name = "Cliente.findByDireccioncliente", query = "SELECT c FROM Cliente c WHERE c.direccioncliente = :direccioncliente")
+    , @NamedQuery(name = "Cliente.findByDescripciondireccion", query = "SELECT c FROM Cliente c WHERE c.descripciondireccion = :descripciondireccion")
+    , @NamedQuery(name = "Cliente.findByEliminado", query = "SELECT c FROM Cliente c WHERE c.eliminado = :eliminado")})
 public class Cliente implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
-    @Column(length = 11)
-    private String cedulaCliente;
-    @Column(nullable = false, length = 20)
+    @Basic(optional = false)
+    @Column(name = "CEDULACLIENTE")
+    private String cedulacliente;
+    @Basic(optional = false)
+    @Column(name = "NOMBRE")
     private String nombre;
-    @Column(nullable = false, length = 15)
-    private String telefono;
-    @Column(nullable = false, length = 32)
-    private String direccionCliente;
-    @Column(nullable = false, length = 32)
-    private String descripcionDireccion;
-    @Column(nullable = false, length = 20)
+    @Basic(optional = false)
+    @Column(name = "APELLIDO")
     private String apellido;
-    @Column(nullable = false)
-    private boolean eliminado=false; // por defecto cada cliente registrado automáticamente está en estado activo 
-    //recordar que false= cliente activo y true= cliente inactivo
+    @Basic(optional = false)
+    @Column(name = "TELEFONO")
+    private String telefono;
+    @Basic(optional = false)
+    @Column(name = "DIRECCIONCLIENTE")
+    private String direccioncliente;
+    @Column(name = "DESCRIPCIONDIRECCION")
+    private String descripciondireccion;
+    @Basic(optional = false)
+    @Column(name = "ELIMINADO")
+    private boolean eliminado;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cedulacliente")
+    private List<Factura> facturaList;
 
     public Cliente() {
     }
 
-    public String getCedulaCliente() {
-        return cedulaCliente;
+    public Cliente(String cedulacliente) {
+        this.cedulacliente = cedulacliente;
     }
 
-    public void setCedulaCliente(String cedulaCliente) {
-        this.cedulaCliente = cedulaCliente;
+    public Cliente(String cedulacliente, String nombre, String apellido, String telefono, String direccioncliente, boolean eliminado) {
+        this.cedulacliente = cedulacliente;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+        this.direccioncliente = direccioncliente;
+        this.eliminado = eliminado;
     }
 
-    public String getNombreCliente() {
+    public String getCedulacliente() {
+        return cedulacliente;
+    }
+
+    public void setCedulacliente(String cedulacliente) {
+        this.cedulacliente = cedulacliente;
+    }
+
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombreCliente(String nombreCliente) {
-        this.nombre = nombreCliente;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getTelefonoCliente() {
-        return telefono;
-    }
-
-    public void setTelefonoCliente(String telefonoCliente) {
-        this.telefono = telefonoCliente;
-    }
-
-    public String getDireccionCliente() {
-        return direccionCliente;
-    }
-
-    public void setDireccionCliente(String direccionCliente) {
-        this.direccionCliente = direccionCliente;
-    }
-
-    public String getDescripcionDireccionCliente() {
-        return descripcionDireccion;
-    }
-
-    public void setDescripcionDireccionCliente(String descripcionDireccionCliente) {
-        this.descripcionDireccion = descripcionDireccionCliente;
-    }
-
-    public String getApellidoCliente() {
+    public String getApellido() {
         return apellido;
     }
 
-    public void setApellidoCliente(String apellidoCliente) {
-        this.apellido = apellidoCliente;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
-    
-    public boolean isEliminado() {
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getDireccioncliente() {
+        return direccioncliente;
+    }
+
+    public void setDireccioncliente(String direccioncliente) {
+        this.direccioncliente = direccioncliente;
+    }
+
+    public String getDescripciondireccion() {
+        return descripciondireccion;
+    }
+
+    public void setDescripciondireccion(String descripciondireccion) {
+        this.descripciondireccion = descripciondireccion;
+    }
+
+    public boolean getEliminado() {
         return eliminado;
     }
 
@@ -86,4 +127,38 @@ public class Cliente implements Serializable {
         this.eliminado = eliminado;
     }
 
+    @XmlTransient
+    public List<Factura> getFacturaList() {
+        return facturaList;
+    }
+
+    public void setFacturaList(List<Factura> facturaList) {
+        this.facturaList = facturaList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (cedulacliente != null ? cedulacliente.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Cliente)) {
+            return false;
+        }
+        Cliente other = (Cliente) object;
+        if ((this.cedulacliente == null && other.cedulacliente != null) || (this.cedulacliente != null && !this.cedulacliente.equals(other.cedulacliente))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Entidad.Cliente[ cedulacliente=" + cedulacliente + " ]";
+    }
+    
 }

@@ -1,6 +1,6 @@
 package Frontera;
 
-import Control.AutenticarEmpleado;
+import Control.Autenticarempleado;
 import Entidad.Empleado;
 import Recursos.Funciones;
 import java.awt.Graphics;
@@ -12,13 +12,13 @@ public class FronteraAutEmpleado extends javax.swing.JPanel {
 
     public Empleado e = new Empleado();
     private Funciones f = new Funciones();
-    private AutenticarEmpleado empleado = new AutenticarEmpleado();
+    private Autenticarempleado empleado = new Autenticarempleado();
 
     public FronteraAutEmpleado() {
         initComponents();
         allSetEmpty();
-        e.setApellidoEmpleado("1");
-        e.setNombreEmpleado("1");
+        e.setApellidoempleado("1");
+        e.setNombreempleado("1");
         jlLogo.setSize(100, 100);
         jlLogo.setIcon(f.setImageBackground("/Recursos/logo.png", jlLogo));
         f.setStyleJButon(btnRegistrar);
@@ -233,15 +233,15 @@ public class FronteraAutEmpleado extends javax.swing.JPanel {
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         String txtContrseniaArr = new String(txtContrasenia.getPassword());
-        e.setCedulaEmpleado(txtUsuario.getText());
-        e.setContraseniaEmpleado(txtContrseniaArr);
+        e.setCedulaempleado(txtUsuario.getText());
+        e.setContrasenia(txtContrseniaArr);
         if (empleado.verificarLogin(e).equals("Bienvenido")) {
             e = empleado.empleado.leer(e);
             JLabel lb = new JLabel();
             lb.setSize(50, 50);
             JOptionPane.showMessageDialog(null,
-                    "Bienvenido " + e.getNombreEmpleado() + " "
-                    + e.getApellidoEmpleado(),
+                    "Bienvenido " + e.getNombreempleado()+ " "
+                    + e.getApellidoempleado(),
                     "Bienvenido",
                     JOptionPane.CANCEL_OPTION,
                     f.setImageBackground("/recursos/exito.png", lb)

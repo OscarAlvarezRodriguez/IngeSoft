@@ -1,6 +1,5 @@
 package Control;
 
-import Entidad.Cliente;
 import DAO.ClienteDAO;
 
 public class AutenticarCliente {

@@ -23,19 +23,19 @@ public class RegistrarDrogueria {
         if (farm.leer(drogapp) != null) {
             return (dr);
         }
-        if (!validarNombre_drogueria(drogapp.getNombreDrogueria()).equals(co)) {
+        if (!validarNombre_drogueria(drogapp.getNombredrogueria()).equals(co)) {
             return (nn);
         }
-        if (!validarDireccion(drogapp.getDireccionDrogueria()).equals(co)) {
+        if (!validarDireccion(drogapp.getDirecciondrogueria()).equals(co)) {
             return (dn);
         }
-        if (!validarTelefono_drogueria(drogapp.getTelefonoDrogueria()).equals(co)) {
+        if (!validarTelefono_drogueria(drogapp.getTelefono()).equals(co)) {
             return (tn);
         }
-        if (!validarEmail(drogapp.getEmailDrogueria()).equals(co)) {
+        if (!validarEmail(drogapp.getEmail()).equals(co)) {
             return (en);
         }
-        if (!validarRepresentante(drogapp.getRepresentanteLegalDrogueria()).equals(co)) {
+        if (!validarRepresentante(drogapp.getRepresentantelegal()).equals(co)) {
             return (rpn);
         }
         farm.crear(drogapp);

@@ -512,13 +512,13 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         Empleado e = new Empleado();
-        e.setApellidoEmpleado(txtApellido.getText());
-        e.setCedulaEmpleado(txtCedula.getText());
-        e.setContraseniaEmpleado(txtContrasenia.getText());
-        e.setCorreoEmpleado(txtCorreo.getText());
-        e.setDireccionEmpleado(txtDireccion.getText());
-        e.setNombreEmpleado(txtNombre.getText());
-        e.setTelefonoEmpleado(txtTelefono.getText());
+        e.setApellidoempleado(txtApellido.getText());
+        e.setCedulaempleado(txtCedula.getText());
+        e.setContrasenia(txtContrasenia.getText());
+        e.setCorreo(txtCorreo.getText());
+        e.setDireccionempleado(txtDireccion.getText());
+        e.setNombreempleado(txtNombre.getText());
+        e.setTelefono(txtTelefono.getText());
 
         if (empleado.validarDatos(e).equals("Registro exitoso")) {
             JLabel lb = new JLabel();

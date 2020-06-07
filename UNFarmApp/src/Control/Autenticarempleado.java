@@ -3,7 +3,7 @@ package Control;
 import DAO.EmpleadoDAO;
 import Entidad.Empleado;
 
-public class AutenticarEmpleado {
+public class Autenticarempleado {
 
     public final EmpleadoDAO empleado = new EmpleadoDAO();
     private final String cn = "Número cedula no válido";
@@ -13,21 +13,21 @@ public class AutenticarEmpleado {
     private final String co = "Correcto";
     private final String di = "Datos incorrectos";
     private final String bi = "Bienvenido";
-    private final String el = "Empleado Inactivo o Suspendido";
-    public AutenticarEmpleado() {
+    private final String el = "empleado Inactivo o Suspendido";
+    public Autenticarempleado() {
     }
 
     public String verificarLogin(Empleado emp) {
-        if (!validarLongitudCedula(emp.getCedulaEmpleado()).equals(co)) {
+        if (!validarLongitudCedula(emp.getCedulaempleado()).equals(co)) {
             return (cn);
         }
-        if (!validarLongitudContrasenia(emp.getContraseniaEmpleado()).equals(co)) {
+        if (!validarLongitudContrasenia(emp.getContrasenia()).equals(co)) {
             return (con);
         }
-        if (!validarMayusculaContrasenia(emp.getContraseniaEmpleado()).equals(co)) {
+        if (!validarMayusculaContrasenia(emp.getContrasenia()).equals(co)) {
             return (comn);
         }
-        if (!validarNumeroContrasenia(emp.getContraseniaEmpleado()).equals(co)) {
+        if (!validarNumeroContrasenia(emp.getContrasenia()).equals(co)) {
             return (conn);
         }
         if (empleado.leer(emp) != null) {
@@ -40,31 +40,31 @@ public class AutenticarEmpleado {
         return (di);
     }
 
-    public String validarLongitudCedula(String cedulaEmpleado) {
-        if (cedulaEmpleado.length() > 6 && cedulaEmpleado.length() <= 11 && !cedulaEmpleado.isEmpty()) {
+    public String validarLongitudCedula(String cedulaempleado) {
+        if (cedulaempleado.length() > 6 && cedulaempleado.length() <= 11 && !cedulaempleado.isEmpty()) {
             return (co);
         }
         return (cn);
     }
 
-    public String validarLongitudContrasenia(String contraseniaEmpleado) {
-        if (contraseniaEmpleado.length() >= 5
-                && contraseniaEmpleado.length() < 21
-                && !contraseniaEmpleado.isEmpty()) {
+    public String validarLongitudContrasenia(String contraseniaempleado) {
+        if (contraseniaempleado.length() >= 5
+                && contraseniaempleado.length() < 21
+                && !contraseniaempleado.isEmpty()) {
             return (co);
         }
         return (con);
     }
 
-    public String validarMayusculaContrasenia(String contraseniaEmpleado) {
-        if (contraseniaEmpleado.matches("(?s).*[A-Z].*")) {
+    public String validarMayusculaContrasenia(String contraseniaempleado) {
+        if (contraseniaempleado.matches("(?s).*[A-Z].*")) {
             return (co);
         }
         return (comn);
     }
 
-    public String validarNumeroContrasenia(String contraseniaEmpleado) {
-        if (contraseniaEmpleado.matches("(?s).*[0-9].*")) {
+    public String validarNumeroContrasenia(String contraseniaempleado) {
+        if (contraseniaempleado.matches("(?s).*[0-9].*")) {
             return (co);
         }
         return (conn);

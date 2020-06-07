@@ -12,6 +12,19 @@
     <class>Entidad.MedicamentoComprado</class>
     <class>Entidad.MedicamentoInvima</class>
     <class>Entidad.MedicamentoVendido</class>
+    <class>EntidadEstesies.Empleado</class>
+    <class>EntidadEstesies.Factura</class>
+    <class>EntidadEstesies.Medicamentoinvima</class>
+    <class>EntidadEstesies.Compra</class>
+    <class>EntidadEstesies.Compramedicamento</class>
+    <class>EntidadEstesies.Cliente</class>
+    <class>EntidadEstesies.Facturamedicamentos</class>
+    <class>EntidadEstesies.Drogueria</class>
+    <class>EntidadEstesies.Domicilio</class>
+    <class>EntidadEstesies.Medicamento</class>
+    <class>Entidad.Medicamentoinvima</class>
+    <class>Entidad.Facturamedicamentos</class>
+    <class>Entidad.Compramedicamento</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/unfarmapp?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

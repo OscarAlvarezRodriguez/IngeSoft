@@ -10,10 +10,7 @@ import Entidad.Medicamento;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Alejandro
- */
+
 public class ComprarMedicamento {
     
     MedicamentoDAO medicamentoDao = new MedicamentoDAO();

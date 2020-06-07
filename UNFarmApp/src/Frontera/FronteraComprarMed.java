@@ -5,7 +5,6 @@ import Entidad.Empleado;
 import Recursos.Funciones;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -15,7 +14,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     Funciones f = new Funciones();
     DefaultTableModel modelo, modelo1;
     MedicamentoDAO medicamentoDAO = new MedicamentoDAO();
-    MedicamentoDAO.CombinacionMed concat = new MedicamentoDAO.CombinacionMed();
+   
 
     public FronteraComprarMed() {
         initComponents();
@@ -34,7 +33,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     }
 
     public void setNombreUsuario(Empleado em) {
-        jlNombre.setText(em.getNombreEmpleado() + " " + em.getApellidoEmpleado());
+        jlNombre.setText(em.getNombreempleado()+ " " + em.getApellidoempleado());
     }
 
     public void allSetEmpty() {
@@ -138,14 +137,8 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-        concat = new MedicamentoDAO.CombinacionMed(txtMed.getText(),
-                txtTitular.getText(),
-                txtDescripcion.getText(),
-                txtPresentacion.getText(),
-                txtPrinAct.getText(),
-                Short.parseShort(String.valueOf(0)),
-                0);
-          ArrayList<MedicamentoDAO.CombinacionMed> listaClientes = new MedicamentoDAO.CombinacionMed().selectAll(concat);
+       
+          ArrayList<MedicamentoDAO> listaClientes = new ArrayList<>();
         Object object[] = null;
         for (int i = 0; i < listaClientes.size(); i++) {
             modelo.addRow(object);
@@ -160,7 +153,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     }
 
     private void cargar() {
-        ArrayList<MedicamentoDAO.CombinacionMed> listaClientes = new MedicamentoDAO.CombinacionMed().selectAll();
+        ArrayList<MedicamentoDAO> listaClientes = new  ArrayList<>();
         Object object[] = null;
         for (int i = 0; i < listaClientes.size(); i++) {
             modelo.addRow(object);
@@ -587,11 +580,11 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         
         
-        ArrayList<MedicamentoDAO.CombinacionMed> Agregar = new ArrayList<>();
+        ArrayList<MedicamentoDAO> Agregar = new ArrayList<>();
         
         for( int j = 0; j<seleccionar.length; j++){
             
-            MedicamentoDAO.CombinacionMed concat = new MedicamentoDAO.CombinacionMed(
+            MedicamentoDAO concat = new MedicamentoDAO(
             
                     (String)tablaMed.getValueAt(seleccionar[j],0),
                     null,

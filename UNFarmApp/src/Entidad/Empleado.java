@@ -1,92 +1,139 @@
+
 package Entidad;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 
 @Entity
-@Table(name = "Empleado")
+@Table(name = "empleado")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Empleado.findAll", query = "SELECT e FROM Empleado e")
+    , @NamedQuery(name = "Empleado.findByCedulaempleado", query = "SELECT e FROM Empleado e WHERE e.cedulaempleado = :cedulaempleado")
+    , @NamedQuery(name = "Empleado.findByNombreempleado", query = "SELECT e FROM Empleado e WHERE e.nombreempleado = :nombreempleado")
+    , @NamedQuery(name = "Empleado.findByTelefono", query = "SELECT e FROM Empleado e WHERE e.telefono = :telefono")
+    , @NamedQuery(name = "Empleado.findByDireccionempleado", query = "SELECT e FROM Empleado e WHERE e.direccionempleado = :direccionempleado")
+    , @NamedQuery(name = "Empleado.findByApellidoempleado", query = "SELECT e FROM Empleado e WHERE e.apellidoempleado = :apellidoempleado")
+    , @NamedQuery(name = "Empleado.findByContrasenia", query = "SELECT e FROM Empleado e WHERE e.contrasenia = :contrasenia")
+    , @NamedQuery(name = "Empleado.findByCorreo", query = "SELECT e FROM Empleado e WHERE e.correo = :correo")
+    , @NamedQuery(name = "Empleado.findByEstado", query = "SELECT e FROM Empleado e WHERE e.estado = :estado")})
 public class Empleado implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
-    @Column(length = 11)
-    private String cedulaEmpleado;
-    @Column(nullable = false, length = 20)
-    private String nombreEmpleado;
-    @Column(nullable = false, length = 15)
+    @Basic(optional = false)
+    @Column(name = "CEDULAEMPLEADO")
+    private String cedulaempleado;
+    @Basic(optional = false)
+    @Column(name = "NOMBREEMPLEADO")
+    private String nombreempleado;
+    @Basic(optional = false)
+    @Column(name = "TELEFONO")
     private String telefono;
-    @Column(nullable = false, length = 32)
-    private String direccionEmpleado;
-    @Column(nullable = false, length = 20)
-    private String apellidoEmpleado;
-    @Column(nullable = false, length = 20)
+    @Basic(optional = false)
+    @Column(name = "DIRECCIONEMPLEADO")
+    private String direccionempleado;
+    @Basic(optional = false)
+    @Column(name = "APELLIDOEMPLEADO")
+    private String apellidoempleado;
+    @Basic(optional = false)
+    @Column(name = "CONTRASENIA")
     private String contrasenia;
-    @Column(nullable = false, length = 50)
+    @Basic(optional = false)
+    @Column(name = "CORREO")
     private String correo;
-    @Column(nullable =false)
-    private String estado= "ACTIVO"; // por defecto cada empleado registrado automáticamente está en estado activo 
-    //NOMENCALTURA, 3 estados definidos y escritos en mayusculas ACTIVO, SUSPENDIDO, INACTIVO
+    @Basic(optional = false)
+    @Column(name = "ESTADO")
+    private String estado;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cedulaempleado")
+    private List<Factura> facturaList;
 
     public Empleado() {
     }
 
-    public String getCedulaEmpleado() {
-        return cedulaEmpleado;
+    public Empleado(String cedulaempleado) {
+        this.cedulaempleado = cedulaempleado;
     }
 
-    public void setCedulaEmpleado(String cedulaEmpleado) {
-        this.cedulaEmpleado = cedulaEmpleado;
+    public Empleado(String cedulaempleado, String nombreempleado, String telefono, String direccionempleado, String apellidoempleado, String contrasenia, String correo, String estado) {
+        this.cedulaempleado = cedulaempleado;
+        this.nombreempleado = nombreempleado;
+        this.telefono = telefono;
+        this.direccionempleado = direccionempleado;
+        this.apellidoempleado = apellidoempleado;
+        this.contrasenia = contrasenia;
+        this.correo = correo;
+        this.estado = estado;
     }
 
-    public String getNombreEmpleado() {
-        return nombreEmpleado;
+    public String getCedulaempleado() {
+        return cedulaempleado;
     }
 
-    public void setNombreEmpleado(String nombreEmpleado) {
-        this.nombreEmpleado = nombreEmpleado;
+    public void setCedulaempleado(String cedulaempleado) {
+        this.cedulaempleado = cedulaempleado;
     }
 
-    public String getTelefonoEmpleado() {
+    public String getNombreempleado() {
+        return nombreempleado;
+    }
+
+    public void setNombreempleado(String nombreempleado) {
+        this.nombreempleado = nombreempleado;
+    }
+
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefonoEmpleado(String telefonoEmpleado) {
-        this.telefono = telefonoEmpleado;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
-    public String getDireccionEmpleado() {
-        return direccionEmpleado;
+    public String getDireccionempleado() {
+        return direccionempleado;
     }
 
-    public void setDireccionEmpleado(String direccionEmpleado) {
-        this.direccionEmpleado = direccionEmpleado;
+    public void setDireccionempleado(String direccionempleado) {
+        this.direccionempleado = direccionempleado;
     }
 
-    public String getApellidoEmpleado() {
-        return apellidoEmpleado;
+    public String getApellidoempleado() {
+        return apellidoempleado;
     }
 
-    public void setApellidoEmpleado(String apellidoEmpleado) {
-        this.apellidoEmpleado = apellidoEmpleado;
+    public void setApellidoempleado(String apellidoempleado) {
+        this.apellidoempleado = apellidoempleado;
     }
 
-    public String getContraseniaEmpleado() {
+    public String getContrasenia() {
         return contrasenia;
     }
 
-    public void setContraseniaEmpleado(String contreseniaEmpleado) {
-        this.contrasenia = contreseniaEmpleado;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
-    public String getCorreoEmpleado() {
+    public String getCorreo() {
         return correo;
     }
 
-    public void setCorreoEmpleado(String correoEmpleado) {
-        this.correo = correoEmpleado;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
+
     public String getEstado() {
         return estado;
     }
@@ -94,4 +141,39 @@ public class Empleado implements Serializable {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    @XmlTransient
+    public List<Factura> getFacturaList() {
+        return facturaList;
+    }
+
+    public void setFacturaList(List<Factura> facturaList) {
+        this.facturaList = facturaList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (cedulaempleado != null ? cedulaempleado.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Empleado)) {
+            return false;
+        }
+        Empleado other = (Empleado) object;
+        if ((this.cedulaempleado == null && other.cedulaempleado != null) || (this.cedulaempleado != null && !this.cedulaempleado.equals(other.cedulaempleado))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Entidad.Empleado[ cedulaempleado=" + cedulaempleado + " ]";
+    }
+    
 }

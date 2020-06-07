@@ -10,9 +10,10 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 public class ClienteDAO {
+
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UNFarmAppPU");
-    
-    public void crear(Cliente object){
+
+    public void crear(Cliente object) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
@@ -25,7 +26,7 @@ public class ClienteDAO {
             em.close();
         }
     }
-    
+
     public boolean editarestado(Cliente cliente, Boolean estado) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -42,31 +43,31 @@ public class ClienteDAO {
             return ret;
         }
     }
-    
-    public List<Cliente> leerLista(String par){
+
+    public List<Cliente> leerLista(String par) {
         EntityManager em = emf.createEntityManager();
         List<Cliente> clientes = null;
         Query q = em.createQuery("SELECT c FROM Cliente c "
-                + "WHERE c.cedulaCliente LIKE CONCAT(:parameter,'%')")
+                + "WHERE c.cedulacliente LIKE CONCAT(:parameter,'%')")
                 .setParameter("parameter", par);
-                
+
         try {
-            clientes =  q.getResultList();
+            clientes = q.getResultList();
         } catch (NonUniqueResultException e) {
             clientes = q.getResultList();
         } catch (Exception e) {
-            
+
         } finally {
             em.close();
             return clientes;
         }
     }
-    
+
     public Cliente leer(String par) {
         EntityManager em = emf.createEntityManager();
         Cliente cliente = null;
         Query q = em.createQuery("SELECT c FROM Cliente c "
-                + "WHERE c.cedulaCliente = :parameter")
+                + "WHERE c.cedulacliente = :parameter")
                 .setParameter("parameter", par);
         try {
             cliente = (Cliente) q.getSingleResult();
@@ -78,29 +79,28 @@ public class ClienteDAO {
             return cliente;
         }
     }
-    
-    public List<Cliente> todos(){
+
+    public List<Cliente> todos() {
         EntityManager em = emf.createEntityManager();
         List<Cliente> clientes = null;
         Query q = em.createQuery("SELECT c FROM Cliente c");
         clientes = q.getResultList();
         return clientes;
     }
-    
-    
-    public boolean actualizar(String ced, Cliente nuevoObjeto){
+
+    public boolean actualizar(String ced, Cliente nuevoObjeto) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         boolean ret = false;
         Cliente antiguo;
         try {
             antiguo = leer(ced);
-            antiguo.setCedulaCliente(nuevoObjeto.getCedulaCliente());
-            antiguo.setNombreCliente(nuevoObjeto.getNombreCliente());
-            antiguo.setTelefonoCliente(nuevoObjeto.getTelefonoCliente());
-            antiguo.setDireccionCliente(nuevoObjeto.getDireccionCliente());
-            antiguo.setDescripcionDireccionCliente(nuevoObjeto.getDescripcionDireccionCliente());
-            antiguo.setApellidoCliente(nuevoObjeto.getApellidoCliente());
+            antiguo.setCedulacliente(nuevoObjeto.getCedulacliente());
+            antiguo.setNombre(nuevoObjeto.getNombre());
+            antiguo.setTelefono(nuevoObjeto.getTelefono());
+            antiguo.setDireccioncliente(nuevoObjeto.getDireccioncliente());
+            antiguo.setDescripciondireccion(nuevoObjeto.getDescripciondireccion());
+            antiguo.setApellido(nuevoObjeto.getApellido());
             em.merge(antiguo);
             em.getTransaction().commit();
             ret = true;

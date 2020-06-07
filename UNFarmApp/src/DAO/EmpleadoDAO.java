@@ -58,10 +58,10 @@ public class EmpleadoDAO {
         Empleado usuario = null;
         Query q = em.createQuery("SELECT e"
                 + " FROM Empleado e "
-                + "WHERE e.cedulaEmpleado = :cedulaEmpleado"
+                + "WHERE e.cedulaempleado = :cedulaempleado"
                 + " AND e.contrasenia = :contrasenia")
-                .setParameter("contrasenia", par.getContraseniaEmpleado())
-                .setParameter("cedulaEmpleado", par.getCedulaEmpleado());
+                .setParameter("contrasenia", par.getContrasenia())
+                .setParameter("cedulaempleado", par.getCedulaempleado());
         try {
             usuario = (Empleado) q.getSingleResult();
         } catch (NonUniqueResultException e) {
@@ -80,12 +80,12 @@ public class EmpleadoDAO {
         boolean ret = false;
         try {
             object = leer(object);
-            object.setCedulaEmpleado(nuevoObjeto.getCedulaEmpleado());
-            object.setApellidoEmpleado(nuevoObjeto.getApellidoEmpleado());
-            object.setContraseniaEmpleado(nuevoObjeto.getContraseniaEmpleado());
-            object.setCorreoEmpleado(nuevoObjeto.getCorreoEmpleado());
-            object.setNombreEmpleado(nuevoObjeto.getNombreEmpleado());
-            object.setTelefonoEmpleado(nuevoObjeto.getTelefonoEmpleado());
+            object.setCedulaempleado(nuevoObjeto.getCedulaempleado());
+            object.setApellidoempleado(nuevoObjeto.getApellidoempleado());
+            object.setContrasenia(nuevoObjeto.getContrasenia());
+            object.setCorreo(nuevoObjeto.getCorreo());
+            object.setNombreempleado(nuevoObjeto.getNombreempleado());
+            object.setTelefono(nuevoObjeto.getTelefono());
             em.merge(object);
             em.getTransaction().commit();
             ret = true;

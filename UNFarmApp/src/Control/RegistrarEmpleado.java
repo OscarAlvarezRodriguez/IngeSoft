@@ -26,28 +26,28 @@ public class RegistrarEmpleado {
         if (nuevoempleado.leer(empleado) != null) {
             return (er);
         }
-        if (!validarNombre(empleado.getNombreEmpleado()).equals(co)) {
+        if (!validarNombre(empleado.getNombreempleado()).equals(co)) {
             return (nn);
         }
-        if (!validarTelefono(empleado.getTelefonoEmpleado()).equals(co)) {
+        if (!validarTelefono(empleado.getTelefono()).equals(co)) {
             return (tn);
         }
-        if (!validarDireccion(empleado.getDireccionEmpleado()).equals(co)) {
+        if (!validarDireccion(empleado.getDireccionempleado()).equals(co)) {
             return (dn);
         }
-        if (!validarApellido(empleado.getApellidoEmpleado()).equals(co)) {
+        if (!validarApellido(empleado.getApellidoempleado()).equals(co)) {
             return (an);
         }
-        if (!validarLongitudContrasenia(empleado.getContraseniaEmpleado()).equals(co)) {
+        if (!validarLongitudContrasenia(empleado.getContrasenia()).equals(co)) {
             return (con);
         }
-        if (!validarMayusculaContrasenia(empleado.getContraseniaEmpleado()).equals(co)) {
+        if (!validarMayusculaContrasenia(empleado.getContrasenia()).equals(co)) {
             return (comn);
         }
-        if (!validarNumeroContrasenia(empleado.getContraseniaEmpleado()).equals(co)) {
+        if (!validarNumeroContrasenia(empleado.getContrasenia()).equals(co)) {
             return (conn);
         }
-        if (!validarCorreo(empleado.getCorreoEmpleado()).equals(co)) {
+        if (!validarCorreo(empleado.getCorreo()).equals(co)) {
             return (en);
         }
         nuevoempleado.crear(empleado);
