@@ -1,20 +1,29 @@
 package Frontera;
 
 import Control.ComprarMedicamento;
+import DAO.CompraDAO;
+import Entidad.Compra;
+import Entidad.Compramedicamento;
+import Entidad.CompramedicamentoPK;
 import Entidad.Empleado;
 import Entidad.Medicamento;
 import Entidad.Medicamentoinvima;
 import Recursos.Funciones;
 import java.awt.Graphics;
+import java.sql.Date;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class FronteraComprarMed extends javax.swing.JPanel {
 
     Funciones f = new Funciones();
+    ArrayList<Compramedicamento> compras = new ArrayList<>();
+    Long PrecioTotal = Long.valueOf("0");
     DefaultTableModel modelo, modelo1;
     ComprarMedicamento comprarMedicamento = new ComprarMedicamento();
 
@@ -38,14 +47,14 @@ public class FronteraComprarMed extends javax.swing.JPanel {
 
     public void allSetEmpty() {
 
-        txtCliente.setText("");
+        txtProv.setText("");
         txtDescripcion.setText("");
         txtTitular.setText("");
         txtMed.setText("");
         txtPresentacion.setText("");
         txtPrinAct.setText("");
         txtTitular.setText("");
-        f.setStyleJTextField(txtCliente);
+        f.setStyleJTextField(txtProv);
         f.setStyleJTextField(txtTitular);
         f.setStyleJTextField(txtMed);
         f.setStyleJTextField(txtPresentacion);
@@ -71,7 +80,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                         "Descripcion",
                         "Principio Activo",
                         "Presentacion"}) {
-                            
+
                 Class[] types = new Class[]{
                     java.lang.Short.class,
                     java.lang.String.class,
@@ -199,7 +208,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         txtPresentacion = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtCliente = new javax.swing.JTextField();
+        txtProv = new javax.swing.JTextField();
         btnActualizar1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtMed = new javax.swing.JTextField();
@@ -214,7 +223,8 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         TablaMedComprado = new javax.swing.JTable();
         Agregar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnComprar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(0, 0));
         setPreferredSize(new java.awt.Dimension(1030, 1000));
@@ -283,27 +293,27 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("Cliente");
+        jLabel3.setText("Proveedor");
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel3.setPreferredSize(new java.awt.Dimension(170, 30));
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 202, -1, -1));
 
-        txtCliente.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
-        txtCliente.setPreferredSize(new java.awt.Dimension(300, 30));
-        txtCliente.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtProv.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
+        txtProv.setPreferredSize(new java.awt.Dimension(300, 30));
+        txtProv.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtClienteFocusGained(evt);
+                txtProvFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtClienteFocusLost(evt);
+                txtProvFocusLost(evt);
             }
         });
-        txtCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtProv.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtClienteKeyTyped(evt);
+                txtProvKeyTyped(evt);
             }
         });
-        add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(701, 202, 250, -1));
+        add(txtProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(701, 202, 250, -1));
 
         btnActualizar1.setBackground(new java.awt.Color(0, 158, 15));
         btnActualizar1.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -420,6 +430,14 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         tablaMed.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         tablaMed.setMinimumSize(new java.awt.Dimension(0, 0));
         tablaMed.setPreferredSize(new java.awt.Dimension(880, 120));
+        tablaMed.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tablaMedFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tablaMedFocusLost(evt);
+            }
+        });
         tablaMed.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaMedMouseClicked(evt);
@@ -455,6 +473,19 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TablaMedComprado.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                TablaMedCompradoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TablaMedCompradoFocusLost(evt);
+            }
+        });
+        TablaMedComprado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaMedCompradoMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(TablaMedComprado);
 
         add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 620, 800, 130));
@@ -467,13 +498,22 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         });
         add(Agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 550, -1, -1));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnComprar.setText("jButton1");
+        btnComprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnComprarActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 770, -1, -1));
+        add(btnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(753, 770, 150, 30));
+
+        btnEliminar.setBackground(new java.awt.Color(255, 0, 0));
+        btnEliminar.setText("jButton2");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 770, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jlSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMousePressed
@@ -537,17 +577,29 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         allSetEmpty();
     }//GEN-LAST:event_btnActualizar1ActionPerformed
 
-    private void txtClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClienteKeyTyped
+    private void txtProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProvKeyTyped
 
-    }//GEN-LAST:event_txtClienteKeyTyped
+    }//GEN-LAST:event_txtProvKeyTyped
 
-    private void txtClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtClienteFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtClienteFocusLost
+    private void txtProvFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProvFocusLost
+        if (!txtProv.getText().equals("")) {
+            if (!comprarMedicamento.validarProveedor(txtProv.getText())) {
+                JOptionPane.showMessageDialog(null,
+                        "El Proveedor Debe Tener Entre 5 y 32 Caracteres",
+                        "Longitud Proveedor No Válido",
+                        JOptionPane.ERROR_MESSAGE);
+                txtProv.setBackground(f.fondoTxtError);
 
-    private void txtClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtClienteFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtClienteFocusGained
+            }
+        }
+    }//GEN-LAST:event_txtProvFocusLost
+
+    private void txtProvFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProvFocusGained
+        if (txtProv.getBackground().equals(f.fondoTxtError)) {
+            txtProv.setBackground(f.fondoTxt);
+            txtProv.setText("");
+        }
+    }//GEN-LAST:event_txtProvFocusGained
 
     private void txtPresentacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPresentacionKeyTyped
         char c = evt.getKeyChar();
@@ -584,44 +636,186 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
 
         int[] seleccionar = tablaMed.getSelectedRows();
-        int rows = TablaMedComprado.getRowCount();
         Object object[] = null;
-
-        for (int i = 0; i < seleccionar.length; i++) {
-            modelo1.addRow(object);
-            modelo1.setValueAt(tablaMed.getValueAt(seleccionar[i], 0), i + rows, 0);
-            modelo1.setValueAt(tablaMed.getValueAt(seleccionar[i], 1), i + rows, 1);
-            modelo1.setValueAt(Short.valueOf("0"), i + rows, 2);
-            modelo1.setValueAt(0, i + rows, 3);
-
-        }
-    }//GEN-LAST:event_AgregarActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ArrayList<Short> cantidad = new ArrayList<>();
-        ArrayList<Short> ID = new ArrayList<>();
-        TablaMedComprado.editCellAt(-1, -1);
-        for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
-            for (int j = 0; j < TablaMedComprado.getColumnCount(); j++) {
-                if (j == 0) {
-                    ID.add((Short) TablaMedComprado.getValueAt(i, j));
+        if (seleccionar.length == 0) {
+            JOptionPane.showMessageDialog(null,
+                    "No Hay nungun Medicamento Seleccionado\n Por Favor Seleccione Un Medicamento",
+                    "Ninguna Seleccion",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+            for (int i = 0; i < seleccionar.length; i++) {
+                boolean esta = false;
+                for (int j = 0; j < TablaMedComprado.getRowCount(); j++) {
+                    if (tablaMed.getValueAt(seleccionar[i], 0) == TablaMedComprado.getValueAt(j, 0)) {
+                        esta = true;
+                        JOptionPane.showMessageDialog(null, tablaMed.getValueAt(seleccionar[i], 1) + " Ya Esta Agregado",
+                                "Medicamento Ya Agregado",
+                                JOptionPane.ERROR_MESSAGE);
+                        break;
+                    }
                 }
-                if (j == 2) {
-                    cantidad.add((Short) TablaMedComprado.getValueAt(i, j));
+                if (!esta) {
+                    int rows = TablaMedComprado.getRowCount();
+                    modelo1.addRow(object);
+                    modelo1.setValueAt(tablaMed.getValueAt(seleccionar[i], 0), rows, 0);
+                    modelo1.setValueAt(tablaMed.getValueAt(seleccionar[i], 1), rows, 1);
+                    modelo1.setValueAt(Short.valueOf("0"), rows, 2);
+                    modelo1.setValueAt(0, rows, 3);
                 }
             }
-
         }
-        comprarMedicamento.comprar(cantidad, ID);
+        tablaMed.clearSelection();
+    }//GEN-LAST:event_AgregarActionPerformed
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
+
+        TablaMedComprado.editCellAt(-1, -1);
+        boolean hacer = true;
+
+        for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
+            for (int j = 0; j < TablaMedComprado.getColumnCount(); j++) {
+                if (((Short) TablaMedComprado.getValueAt(i, 2) <= 0
+                        || (int) TablaMedComprado.getValueAt(i, 3) <= 0)
+                        || txtProv.getText().length() == 0) {
+                    JOptionPane.showMessageDialog(null,
+                            "El Precio Y La Cantidad No Pueden Ser Menores O Iguales A Cero "
+                            + "\n El Provedor Debe Estar Diligenciado",
+                            "Datos Incorrectos",
+                            JOptionPane.ERROR_MESSAGE);
+                    hacer = false;
+                    break;
+                }
+            }
+            if (!hacer) {
+                break;
+            }
+        }
+        if (hacer) {
+            ArrayList<Short> cantidad = new ArrayList<>();
+            ArrayList<Short> ID = new ArrayList<>();
+            ArrayList<Integer> precioUnit = new ArrayList<>();
+            for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
+                for (int j = 0; j < TablaMedComprado.getColumnCount(); j++) {
+                    if (j == 0) {
+                        ID.add((Short) TablaMedComprado.getValueAt(i, j));
+                    }
+                    if (j == 2) {
+                        cantidad.add((Short) TablaMedComprado.getValueAt(i, j));
+                    }
+                    if (j == 3) {
+                        Long aux = Long.parseLong(String.valueOf((Integer) TablaMedComprado.getValueAt(i, j)));
+                        precioUnit.add((Integer) TablaMedComprado.getValueAt(i, j));
+                        PrecioTotal = PrecioTotal + aux;
+                    }
+                    Compramedicamento c = new Compramedicamento(
+                            (Integer) TablaMedComprado.getValueAt(i, 3),
+                            (Short) TablaMedComprado.getValueAt(i, 2));
+                    compras.add(c);
+                }
+
+            }
+            if (comprarMedicamento.comprar(cantidad, ID)) {
+                Date date = new Date(System.currentTimeMillis());
+                Compra c = new Compra(txtProv.getText(), PrecioTotal, date);
+                int IDCompra = comprarMedicamento.registroCompra(c);
+                for (int i = 0; i < ID.size(); i++) {
+                    CompramedicamentoPK PK = new CompramedicamentoPK(ID.get(i), IDCompra);
+                    Compramedicamento cm = new Compramedicamento(PK);
+                    cm.setCantidad(cantidad.get(i));
+                    cm.setPreciounitario(precioUnit.get(i));
+                    comprarMedicamento.registroCompraMed(cm);
+                }
+                JLabel lb = new JLabel();
+                lb.setSize(50, 50);
+                JOptionPane.showMessageDialog(null,
+                        "La Compra Se Ha Registrado Satisfactoriamente",
+                        "Compra Exitosa",
+                        JOptionPane.OK_OPTION,
+                        f.setImageBackground("/recursos/exito.png", lb)
+                );
+                TablaMedComprado.clearSelection();
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "La Lista Esta Vacia, Por Favor Agregue Algun Medicamento",
+                        "Lista Vacia",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnComprarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int[] eliminar = TablaMedComprado.getSelectedRows();
+        int cofirmacion;
+        TablaMedComprado.editCellAt(-1, -1);
+        if (TablaMedComprado.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null,
+                    "No Hay Medicamentos En La Tabla\n Por Favor Agregue Un Medicamento",
+                    "Ninguna Seleccion",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (eliminar.length == 0) {
+                cofirmacion = JOptionPane.showConfirmDialog(null,
+                        "¿Desea Borrar Todos Los Elementos?",
+                        "Borrar Lista",
+                        JOptionPane.YES_NO_OPTION);
+                if (cofirmacion == JOptionPane.YES_OPTION) {
+                    while (modelo1.getRowCount() > 0) {
+                        modelo1.removeRow(0);
+                    }
+                }
+            } else {
+                cofirmacion = JOptionPane.showConfirmDialog(null,
+                        "¿Desea Borrar Los Elementos Seleccionados?",
+                        "Borrar Lista Seleccionada",
+                        JOptionPane.YES_NO_OPTION);
+                if (cofirmacion == JOptionPane.YES_OPTION) {
+                    for (int i = eliminar.length - 1; i >= 0; i--) {
+                        modelo1.removeRow(eliminar[i]);
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tablaMedFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tablaMedFocusLost
+
+
+    }//GEN-LAST:event_tablaMedFocusLost
+
+    private void TablaMedCompradoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TablaMedCompradoFocusLost
+
+
+    }//GEN-LAST:event_TablaMedCompradoFocusLost
+
+    private void tablaMedFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tablaMedFocusGained
+
+
+    }//GEN-LAST:event_tablaMedFocusGained
+
+    private void TablaMedCompradoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TablaMedCompradoFocusGained
+
+    }//GEN-LAST:event_TablaMedCompradoFocusGained
+
+    private void TablaMedCompradoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedCompradoMouseClicked
+        if (evt.getClickCount() == 1) {
+            int valor = 0;
+            for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
+                Object f = TablaMedComprado.getValueAt(i, 1);
+                if ((Integer) TablaMedComprado.getValueAt(i, 3) != null) {
+                    valor = valor + (Integer) TablaMedComprado.getValueAt(i, 3);
+                }
+            }
+            btnComprar.setText(String.valueOf(valor) + " $$$");
+        }
+    }//GEN-LAST:event_TablaMedCompradoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;
     private javax.swing.JTable TablaMedComprado;
     private javax.swing.JButton btnActualizar1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnComprar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -636,11 +830,11 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     private javax.swing.JLabel jlSalir;
     private javax.swing.JLabel jlUsuario;
     private javax.swing.JTable tablaMed;
-    private javax.swing.JTextField txtCliente;
     private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextField txtMed;
     private javax.swing.JTextField txtPresentacion;
     private javax.swing.JTextField txtPrinAct;
+    private javax.swing.JTextField txtProv;
     private javax.swing.JTextField txtTitular;
     // End of variables declaration//GEN-END:variables
 }

@@ -56,8 +56,7 @@ public class Compra implements Serializable {
         this.idcompra = idcompra;
     }
 
-    public Compra(Integer idcompra, String nombreproveedor, long preciototal, Date fecha) {
-        this.idcompra = idcompra;
+    public Compra(String nombreproveedor, long preciototal, Date fecha) {
         this.nombreproveedor = nombreproveedor;
         this.preciototal = preciototal;
         this.fecha = fecha;
