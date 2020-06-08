@@ -11,7 +11,7 @@ public class MedicamentoinvimaDAO {
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UNFarmAppPU");
     public List<Medicamentoinvima> leertodo(Medicamentoinvima med) {
         EntityManager em = emf.createEntityManager();
-        Query q =em.createQuery("SELECT m FROM Medicamentoinvima m");
+        Query q =em.createQuery("SELECT m FROM Medicamentoinvima m, Medicamento mi WHERE m.idmedicamentoinvima != mi.idmedicamentoinvima.idmedicamentoinvima");
         List<Medicamentoinvima> resultados= null;
         try {
             resultados=  q.getResultList();

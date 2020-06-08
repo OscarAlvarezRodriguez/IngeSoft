@@ -20,7 +20,7 @@ public class EditarMedicamento {
         if(!validarStock(nuevadroga.getStock()).equals(co)){
             return(se);
         }
-        if(medicamentoDAO.actualizar(droga, nuevadroga)){
+        if(medicamentoDAO.actualizar(droga, nuevadroga)==true){
             return(ae);
         }
         return(ai);

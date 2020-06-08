@@ -47,7 +47,7 @@ public class MedicamentoDAO {
 
     public List<Medicamento> leertodo() {
         EntityManager em = emf.createEntityManager();
-        Query q = em.createQuery("SELECT m FROM Medicamento m");
+        Query q = em.createQuery("SELECT m FROM Medicamento m WHERE m.stock>-1");
         List<Medicamento> resultados = null;
         try {
             resultados = q.getResultList();

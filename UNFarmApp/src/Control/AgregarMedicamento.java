@@ -8,14 +8,26 @@ public class AgregarMedicamento {
     private final String me = "Medicamento agregado exitosamente";
     private final String pi = "Precio fuera de rango";
     private final String co = "correcto";
+    private final String mr = "Medicamento restaurado";
+    private final String mre = "Error al restaurar medicamento";
     
     public AgregarMedicamento(){
     }
     
     public String validarDatos(Medicamento droga){
         if(medicamentoDAO.existencia(droga.getIdmedicamentoinvima().getIdmedicamentoinvima())!= null){
+            if(droga.getStock()==-1){
+                short nuevostock = 0;
+                Medicamento nuevadroga = droga;
+                nuevadroga.setStock(nuevostock);
+                if(medicamentoDAO.actualizar(droga, nuevadroga)==true){
+                    return(mr);
+                }
+                return(mre);
+            }
             return(ma);
         }
+        
         if(!validarPrecioventa(droga.getPrecioventa()).equals(co)){
             return(pi);
         }
