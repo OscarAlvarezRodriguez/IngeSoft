@@ -27,6 +27,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     public static final int INTFronteraMenu = 7;
     public static final int INTFronteraGestionMed = 8;
     public static final int INTFronteraComprarMed = 9;
+    public static final int INTFronteraGestionarCliente = 10;
 
     FronteraSplash splash = new FronteraSplash();
     FronteraRegEmpleado empleado = new FronteraRegEmpleado();
@@ -37,6 +38,9 @@ public class FramePrincipal extends javax.swing.JFrame {
     FronteraMenuEmpleado menuEmpleado = new FronteraMenuEmpleado();
     FronteraGestionMed gestionMed = new FronteraGestionMed();
     FronteraComprarMed ComprarMed = new FronteraComprarMed();
+    FronteraGestionarClientes gestionClientes = new FronteraGestionarClientes();
+    
+    
     Funciones f = new Funciones();
 
     JLabel logo = new JLabel();
@@ -53,6 +57,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         menuEmpleado.setVisible(false);
         gestionMed.setVisible(false);
         ComprarMed.setVisible(false);
+        gestionClientes.setVisible(false);
 
         switch (n) {
             case INTFronteraEmpleado:
@@ -91,6 +96,10 @@ public class FramePrincipal extends javax.swing.JFrame {
                 ComprarMed.setVisible(true);
                 //Mete el JPanel dentro del scroll panel
                 scroll.setViewportView(ComprarMed);
+                break;
+            case INTFronteraGestionarCliente:
+                gestionClientes.setVisible(true);
+                scroll.setViewportView(gestionClientes);
                 break;
             default:
                 break;

@@ -138,4 +138,21 @@ public class MedicamentoDAO {
             return ret;
         }
     }
+    public Medicamento existencia(short idInvima){
+        EntityManager em = emf.createEntityManager();
+        Medicamento med =  null;
+        Query q =  em.createQuery("SELECT m FROM Medicamento m WHERE m.idmedicamentoinvima= :idmedicamentoinvima")
+                .setParameter("idmedicamentoinvima", idInvima);
+        try{
+            med= (Medicamento) q.getSingleResult();
+        } catch(NonUniqueResultException e){
+            med = (Medicamento) q.getResultList().get(0);
+        } catch(Exception e){
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return med;
+    }
+    
 }
