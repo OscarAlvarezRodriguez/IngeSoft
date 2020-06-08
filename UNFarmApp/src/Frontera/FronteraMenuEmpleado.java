@@ -2,7 +2,6 @@ package Frontera;
 
 import Entidad.Empleado;
 import Recursos.Funciones;
-import com.sun.prism.j2d.J2DPipeline;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -23,7 +22,9 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
 
     public void setNombreUsuario(Empleado em) {
         e = em;
-        jlNombre.setText(em.getNombreempleado()+ " " + em.getApellidoempleado());
+        if (em != null) {
+            jlNombre.setText(em.getNombreempleado() + " " + em.getApellidoempleado());
+        }
     }
 
     @Override
@@ -229,13 +230,11 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnReportDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(356, 356, 356)
-                                .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(318, 318, 318)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 229, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addComponent(jlNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,7 +272,9 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
-        // TODO add your handling code here:
+        App.getInstance().framePrincipal.ComprarMed.setNombreUsuario(e);
+        App.getInstance().framePrincipal.ComprarMed.allSetEmpty();
+        App.getInstance().ChangePanel(FramePrincipal.INTFronteraComprarMed);
     }//GEN-LAST:event_btnComprarActionPerformed
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
@@ -281,14 +282,15 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        int i = JOptionPane.showConfirmDialog(this, "¿Seguro Desea Salir?", "Cerrar Sesion", JOptionPane.YES_NO_OPTION);
+        int i = JOptionPane.showConfirmDialog(null, "¿Seguro Desea Salir?", "Cerrar Sesion", JOptionPane.YES_NO_OPTION);
         if (i == JOptionPane.YES_OPTION) {
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
         }
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnMedicamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedicamentosActionPerformed
-         App.getInstance().framePrincipal.gestionMed.setNombreUsuario(e);
+        App.getInstance().framePrincipal.gestionMed.setNombreUsuario(e);
+        App.getInstance().framePrincipal.gestionMed.allSetEmpty();;
         App.getInstance().ChangePanel(FramePrincipal.INTFronteraGestionMed);
     }//GEN-LAST:event_btnMedicamentosActionPerformed
 

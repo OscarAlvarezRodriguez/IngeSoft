@@ -519,6 +519,7 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
         e.setDireccionempleado(txtDireccion.getText());
         e.setNombreempleado(txtNombre.getText());
         e.setTelefono(txtTelefono.getText());
+        e.setEstado("ACTIVO");
 
         if (empleado.validarDatos(e).equals("Registro exitoso")) {
             JLabel lb = new JLabel();

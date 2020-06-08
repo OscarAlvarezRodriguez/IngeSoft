@@ -2,11 +2,8 @@ package Frontera;
 
 import DAO.MedicamentoDAO;
 import Entidad.Empleado;
-import Entidad.Medicamento;
-import Entidad.Medicamentoinvima;
 import Recursos.Funciones;
 import java.awt.Graphics;
-import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

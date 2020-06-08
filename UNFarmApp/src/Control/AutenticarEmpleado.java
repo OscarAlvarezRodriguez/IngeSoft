@@ -3,7 +3,7 @@ package Control;
 import DAO.EmpleadoDAO;
 import Entidad.Empleado;
 
-public class Autenticarempleado {
+public class AutenticarEmpleado {
 
     public final EmpleadoDAO empleado = new EmpleadoDAO();
     private final String cn = "Número cedula no válido";
@@ -14,7 +14,7 @@ public class Autenticarempleado {
     private final String di = "Datos incorrectos";
     private final String bi = "Bienvenido";
     private final String el = "empleado Inactivo o Suspendido";
-    public Autenticarempleado() {
+    public AutenticarEmpleado() {
     }
 
     public String verificarLogin(Empleado emp) {

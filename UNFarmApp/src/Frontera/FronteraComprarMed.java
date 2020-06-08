@@ -1,7 +1,6 @@
 package Frontera;
 
 import Control.ComprarMedicamento;
-import DAO.CompraDAO;
 import Entidad.Compra;
 import Entidad.Compramedicamento;
 import Entidad.CompramedicamentoPK;
@@ -36,13 +35,15 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         jlLogo.setSize(100, 100);
         jlLogo.setIcon(f.setImageBackground("/Recursos/logo.png", jlLogo));
 
-        jlUsuario.setSize(100, 100);
+        jlUsuario.setSize(150, 150);
         jlUsuario.setIcon(f.setImageBackground("/Recursos/usuario.png", jlUsuario));
 
     }
 
     public void setNombreUsuario(Empleado em) {
-        jlNombre.setText(em.getNombreempleado() + " " + em.getApellidoempleado());
+        if (em != null) {
+            jlNombre.setText(em.getNombreempleado() + " " + em.getApellidoempleado());
+        }
     }
 
     public void allSetEmpty() {
@@ -60,12 +61,17 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         f.setStyleJTextField(txtPresentacion);
         f.setStyleJTextField(txtPrinAct);
         f.setStyleJTextField(txtTitular);
-        f.setStyleJTextArea(txtDescripcion, jScrollPane1);
+        f.setStyleJTextArea(txtDescripcion, ScrollDes);
         jlSalir.setSize(60, 60);
         f.setStyleJButonBack(jlSalir);
-        f.setStyleJButon(btnActualizar1);
-        f.setStyleJTable(tablaMed, jScrollPane2);
-        f.setStyleJTable(TablaMedComprado, jScrollPane4);
+        f.setStyleJButon(btnCerrarSesion);
+        f.setStyleJButon(btnBorrar);
+        f.setStyleJButon(btnComprar);
+        f.setStyleJButon(btnAgregar);
+        f.setStyleJTable(tablaMed, ScrollTablaMed);
+        f.setStyleJTable(TablaMedComprado, ScrollMedComprado);
+        f.setStyleJLabel(jlMed);
+        f.setStyleJLabel(jlMedSel);
 
     }
 
@@ -209,47 +215,45 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtProv = new javax.swing.JTextField();
-        btnActualizar1 = new javax.swing.JButton();
+        btnCerrarSesion = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtMed = new javax.swing.JTextField();
         txtPrinAct = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtTitular = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        ScrollTablaMed = new javax.swing.JScrollPane();
         tablaMed = new javax.swing.JTable();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        ScrollDes = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
-        jScrollPane4 = new javax.swing.JScrollPane();
+        ScrollMedComprado = new javax.swing.JScrollPane();
         TablaMedComprado = new javax.swing.JTable();
-        Agregar = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
         btnComprar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jlMedSel = new javax.swing.JLabel();
+        jlMed = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(0, 0));
         setPreferredSize(new java.awt.Dimension(1030, 1000));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jlLogo.setPreferredSize(new java.awt.Dimension(100, 100));
-        add(jlLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 11, -1, -1));
 
         jlSalir.setPreferredSize(new java.awt.Dimension(60, 60));
         jlSalir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jlSalirMousePressed(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jlSalirMouseReleased(evt);
             }
         });
-        add(jlSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
-        jlNombre.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
+        jlNombre.setFont(new java.awt.Font("Leelawadee", 0, 22)); // NOI18N
         jlNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlNombre.setText("\"Nombre de Usuario Actual\"");
         jlNombre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlNombre.setPreferredSize(new java.awt.Dimension(300, 50));
-        add(jlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, 271, 20));
 
-        jlUsuario.setPreferredSize(new java.awt.Dimension(100, 100));
-        add(jlUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, -1, -1));
+        jlUsuario.setPreferredSize(new java.awt.Dimension(150, 150));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -257,7 +261,6 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         jLabel2.setText("Tipo de Presentacion");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel2.setPreferredSize(new java.awt.Dimension(170, 30));
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 323, -1, -1));
 
         txtPresentacion.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtPresentacion.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -280,7 +283,6 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                 txtPresentacionKeyTyped(evt);
             }
         });
-        add(txtPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 323, -1, -1));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -288,7 +290,6 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         jLabel7.setText("Descripción");
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel7.setPreferredSize(new java.awt.Dimension(170, 30));
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 238, -1, -1));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -296,7 +297,6 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         jLabel3.setText("Proveedor");
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel3.setPreferredSize(new java.awt.Dimension(170, 30));
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 202, -1, -1));
 
         txtProv.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtProv.setPreferredSize(new java.awt.Dimension(300, 30));
@@ -313,21 +313,19 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                 txtProvKeyTyped(evt);
             }
         });
-        add(txtProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(701, 202, 250, -1));
 
-        btnActualizar1.setBackground(new java.awt.Color(0, 158, 15));
-        btnActualizar1.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
-        btnActualizar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnActualizar1.setText("Cerrar Sesion");
-        btnActualizar1.setPreferredSize(new java.awt.Dimension(150, 30));
-        btnActualizar1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnActualizar1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnActualizar1.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrarSesion.setBackground(new java.awt.Color(0, 158, 15));
+        btnCerrarSesion.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
+        btnCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        btnCerrarSesion.setText("Cerrar Sesion");
+        btnCerrarSesion.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnCerrarSesion.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnCerrarSesion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizar1ActionPerformed(evt);
+                btnCerrarSesionActionPerformed(evt);
             }
         });
-        add(btnActualizar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, 160, 29));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -335,7 +333,6 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         jLabel4.setText("Medicamento");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel4.setPreferredSize(new java.awt.Dimension(170, 30));
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 202, -1, -1));
 
         txtMed.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtMed.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -355,7 +352,6 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                 txtMedKeyTyped(evt);
             }
         });
-        add(txtMed, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 202, -1, -1));
 
         txtPrinAct.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtPrinAct.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -375,7 +371,6 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                 txtPrinActKeyTyped(evt);
             }
         });
-        add(txtPrinAct, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 283, -1, -1));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -383,7 +378,6 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         jLabel5.setText("Principio Activo");
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel5.setPreferredSize(new java.awt.Dimension(170, 30));
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 283, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -391,7 +385,6 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         jLabel6.setText("TItular");
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel6.setPreferredSize(new java.awt.Dimension(170, 30));
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 243, -1, -1));
 
         txtTitular.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtTitular.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -411,9 +404,8 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                 txtTitularKeyTyped(evt);
             }
         });
-        add(txtTitular, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 243, -1, -1));
 
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(880, 150));
+        ScrollTablaMed.setPreferredSize(new java.awt.Dimension(880, 150));
 
         tablaMed.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -429,7 +421,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         tablaMed.setGridColor(new java.awt.Color(0, 0, 0));
         tablaMed.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         tablaMed.setMinimumSize(new java.awt.Dimension(0, 0));
-        tablaMed.setPreferredSize(new java.awt.Dimension(880, 120));
+        tablaMed.setPreferredSize(new java.awt.Dimension(800, 100));
         tablaMed.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 tablaMedFocusGained(evt);
@@ -443,12 +435,10 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                 tablaMedMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tablaMed);
+        ScrollTablaMed.setViewportView(tablaMed);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 371, -1, -1));
-
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(250, 114));
+        ScrollDes.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        ScrollDes.setPreferredSize(new java.awt.Dimension(250, 114));
 
         txtDescripcion.setColumns(1);
         txtDescripcion.setRows(1);
@@ -458,9 +448,19 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                 txtDescripcionKeyReleased(evt);
             }
         });
-        jScrollPane1.setViewportView(txtDescripcion);
+        ScrollDes.setViewportView(txtDescripcion);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(701, 238, -1, -1));
+        ScrollMedComprado.setPreferredSize(new java.awt.Dimension(780, 150));
+        ScrollMedComprado.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ScrollMedCompradoFocusLost(evt);
+            }
+        });
+        ScrollMedComprado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ScrollMedCompradoMouseExited(evt);
+            }
+        });
 
         TablaMedComprado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -473,6 +473,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TablaMedComprado.setPreferredSize(new java.awt.Dimension(780, 100));
         TablaMedComprado.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 TablaMedCompradoFocusGained(evt);
@@ -485,40 +486,187 @@ public class FronteraComprarMed extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TablaMedCompradoMouseClicked(evt);
             }
-        });
-        jScrollPane4.setViewportView(TablaMedComprado);
-
-        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 620, 800, 130));
-
-        Agregar.setText("Agregar");
-        Agregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AgregarActionPerformed(evt);
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                TablaMedCompradoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                TablaMedCompradoMouseExited(evt);
             }
         });
-        add(Agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 550, -1, -1));
+        ScrollMedComprado.setViewportView(TablaMedComprado);
 
-        btnComprar.setText("jButton1");
+        btnAgregar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setText("Agregar");
+        btnAgregar.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+
+        btnComprar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
+        btnComprar.setForeground(new java.awt.Color(255, 255, 255));
+        btnComprar.setText("$ Comprar ");
+        btnComprar.setPreferredSize(new java.awt.Dimension(150, 30));
         btnComprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnComprarActionPerformed(evt);
             }
         });
-        add(btnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(753, 770, 150, 30));
 
-        btnEliminar.setBackground(new java.awt.Color(255, 0, 0));
-        btnEliminar.setText("jButton2");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnBorrar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
+        btnBorrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBorrar.setText("Borrar");
+        btnBorrar.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
+                btnBorrarActionPerformed(evt);
             }
         });
-        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 770, -1, -1));
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void jlSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMousePressed
-        App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenu);
-    }//GEN-LAST:event_jlSalirMousePressed
+        jLabel1.setFont(new java.awt.Font("Leelawadee", 0, 28)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Comprar Medicamentos");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel1.setPreferredSize(new java.awt.Dimension(300, 50));
+
+        jlMedSel.setFont(new java.awt.Font("Leelawadee", 0, 28)); // NOI18N
+        jlMedSel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlMedSel.setText("Listado de Medicamentos Seleccionados");
+        jlMedSel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jlMedSel.setPreferredSize(new java.awt.Dimension(300, 50));
+
+        jlMed.setFont(new java.awt.Font("Leelawadee", 0, 28)); // NOI18N
+        jlMed.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlMed.setText("Listado de Medicamentos ");
+        jlMed.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jlMed.setPreferredSize(new java.awt.Dimension(300, 50));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(292, 292, 292)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(228, 228, 228)
+                .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 1020, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(441, 441, 441)
+                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(txtMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(txtProv, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrinAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(ScrollDes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(jlMed, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(ScrollTablaMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(429, 429, 429)
+                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addComponent(jlMedSel, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addComponent(ScrollMedComprado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(480, 480, 480)
+                .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtProv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(txtPrinAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(txtPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ScrollDes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addComponent(jlMed, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(ScrollTablaMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jlMedSel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(ScrollMedComprado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+    }// </editor-fold>//GEN-END:initComponents
 
     private void txtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyReleased
         search();
@@ -572,10 +720,13 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMedFocusGained
 
-    private void btnActualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizar1ActionPerformed
-        App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
-        allSetEmpty();
-    }//GEN-LAST:event_btnActualizar1ActionPerformed
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        int i = JOptionPane.showConfirmDialog(null, "¿Seguro Desea Salir?", "Cerrar Sesion", JOptionPane.YES_NO_OPTION);
+        if (i == JOptionPane.YES_OPTION) {
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
+            allSetEmpty();
+        }
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void txtProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProvKeyTyped
 
@@ -633,7 +784,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
 
     }//GEN-LAST:event_tablaMedMouseClicked
 
-    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
 
         int[] seleccionar = tablaMed.getSelectedRows();
         Object object[] = null;
@@ -665,17 +816,25 @@ public class FronteraComprarMed extends javax.swing.JPanel {
             }
         }
         tablaMed.clearSelection();
-    }//GEN-LAST:event_AgregarActionPerformed
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
-
         TablaMedComprado.editCellAt(-1, -1);
         boolean hacer = true;
 
         for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
             for (int j = 0; j < TablaMedComprado.getColumnCount(); j++) {
-                if (((Short) TablaMedComprado.getValueAt(i, 2) <= 0
-                        || (int) TablaMedComprado.getValueAt(i, 3) <= 0)
+                if (TablaMedComprado.getValueAt(i, 2) == null
+                        || TablaMedComprado.getValueAt(i, 3) == null) {
+                    JOptionPane.showMessageDialog(null,
+                            "Algun Espacio Esta Vacio, Por Favor Diligrncie Todos Los Campos",
+                            "Campos Vacios",
+                            JOptionPane.ERROR_MESSAGE);
+                    hacer = false;
+                    break;
+                }
+                if ((Short) TablaMedComprado.getValueAt(i, 2) <= 0
+                        || (int) TablaMedComprado.getValueAt(i, 3) <= 0
                         || txtProv.getText().length() == 0) {
                     JOptionPane.showMessageDialog(null,
                             "El Precio Y La Cantidad No Pueden Ser Menores O Iguales A Cero "
@@ -743,7 +902,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnComprarActionPerformed
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         int[] eliminar = TablaMedComprado.getSelectedRows();
         int cofirmacion;
         TablaMedComprado.editCellAt(-1, -1);
@@ -769,13 +928,15 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                         "Borrar Lista Seleccionada",
                         JOptionPane.YES_NO_OPTION);
                 if (cofirmacion == JOptionPane.YES_OPTION) {
+
                     for (int i = eliminar.length - 1; i >= 0; i--) {
                         modelo1.removeRow(eliminar[i]);
                     }
                 }
             }
+            btnComprar.setText("$ Comprar");
         }
-    }//GEN-LAST:event_btnEliminarActionPerformed
+    }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void tablaMedFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tablaMedFocusLost
 
@@ -805,27 +966,50 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                     valor = valor + (Integer) TablaMedComprado.getValueAt(i, 3);
                 }
             }
-            btnComprar.setText(String.valueOf(valor) + " $$$");
+            btnComprar.setText("$ " + new DecimalFormat("#,###,###").format(valor));
         }
     }//GEN-LAST:event_TablaMedCompradoMouseClicked
 
+    private void TablaMedCompradoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedCompradoMouseEntered
+
+    }//GEN-LAST:event_TablaMedCompradoMouseEntered
+
+    private void TablaMedCompradoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedCompradoMouseExited
+
+    }//GEN-LAST:event_TablaMedCompradoMouseExited
+
+    private void ScrollMedCompradoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ScrollMedCompradoFocusLost
+
+    }//GEN-LAST:event_ScrollMedCompradoFocusLost
+
+    private void ScrollMedCompradoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ScrollMedCompradoMouseExited
+
+    }//GEN-LAST:event_ScrollMedCompradoMouseExited
+
+    private void jlSalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseReleased
+         App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenu);
+    }//GEN-LAST:event_jlSalirMouseReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Agregar;
+    private javax.swing.JScrollPane ScrollDes;
+    private javax.swing.JScrollPane ScrollMedComprado;
+    private javax.swing.JScrollPane ScrollTablaMed;
     private javax.swing.JTable TablaMedComprado;
-    private javax.swing.JButton btnActualizar1;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnComprar;
-    private javax.swing.JButton btnEliminar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel jlLogo;
+    private javax.swing.JLabel jlMed;
+    private javax.swing.JLabel jlMedSel;
     private javax.swing.JLabel jlNombre;
     private javax.swing.JLabel jlSalir;
     private javax.swing.JLabel jlUsuario;

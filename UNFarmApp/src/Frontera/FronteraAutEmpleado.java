@@ -1,6 +1,6 @@
 package Frontera;
 
-import Control.Autenticarempleado;
+import Control.AutenticarEmpleado;
 import Entidad.Empleado;
 import Recursos.Funciones;
 import java.awt.Graphics;
@@ -12,7 +12,7 @@ public class FronteraAutEmpleado extends javax.swing.JPanel {
 
     public Empleado e = new Empleado();
     private Funciones f = new Funciones();
-    private Autenticarempleado empleado = new Autenticarempleado();
+    private AutenticarEmpleado empleado = new AutenticarEmpleado();
 
     public FronteraAutEmpleado() {
         initComponents();

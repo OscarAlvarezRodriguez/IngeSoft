@@ -1,7 +1,6 @@
 package Frontera;
 //ERROR
 
-import Control.EditarCliente;
 import Control.RegistrarCliente;
 import Entidad.Cliente;
 import Recursos.Funciones;

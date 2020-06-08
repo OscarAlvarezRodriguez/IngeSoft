@@ -29,7 +29,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     public static final int INTFronteraComprarMed = 9;
     public static final int INTFronteraGestionarCliente = 10;
 
-    FronteraSplash splash = new FronteraSplash();
+    FronteraSplash splash;
     FronteraRegEmpleado empleado = new FronteraRegEmpleado();
     FronteraRegDrogueria drogueria = new FronteraRegDrogueria();
     FronteraAutEmpleado autenticarEmpleado = new FronteraAutEmpleado();
@@ -39,8 +39,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     FronteraGestionMed gestionMed = new FronteraGestionMed();
     FronteraComprarMed ComprarMed = new FronteraComprarMed();
     FronteraGestionarClientes gestionClientes = new FronteraGestionarClientes();
-    
-    
+
     Funciones f = new Funciones();
 
     JLabel logo = new JLabel();
@@ -106,7 +105,6 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
         revalidate();
         repaint();
-
     }
 
     public FramePrincipal() {
@@ -120,26 +118,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         jpPrincipal.setSize(1030, 550);
         setIconImage(f.setImageBackground("/Recursos/logo.png", logo).getImage());
 
-        addPanel(jpPrincipal);
-        addPanel(autenticarEmpleado);
-        addPanel(drogueria);
-        addPanel(editarCliente);
-        addPanel(empleado);
-        addPanel(regCliente);
-        addPanel(splash);
-        addPanel(menuEmpleado);
-        addPanel(gestionMed);
-        addPanel(ComprarMed);
         jpPrincipal.setVisible(false);
+        splash = new FronteraSplash();
         splash.setVisible(true);
         scroll.setViewportView(splash);
-    }
-    
-    
-    private void addPanel(JPanel New) {
-        scroll.setViewportView(New);
-        New.setVisible(false);
-
     }
 
     @SuppressWarnings("unchecked")
