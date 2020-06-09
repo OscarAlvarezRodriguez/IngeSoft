@@ -968,6 +968,8 @@ public class FronteraComprarMed extends javax.swing.JPanel {
             }
             btnComprar.setText("$ " + new DecimalFormat("#,###,###").format(valor));
         }
+        
+        
     }//GEN-LAST:event_TablaMedCompradoMouseClicked
 
     private void TablaMedCompradoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedCompradoMouseEntered
@@ -975,7 +977,15 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     }//GEN-LAST:event_TablaMedCompradoMouseEntered
 
     private void TablaMedCompradoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedCompradoMouseExited
-
+            if (evt.getClickCount() == 1) {
+            long valor = 0;
+            for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
+                if ((Integer) TablaMedComprado.getValueAt(i, 3) != null) {
+                    valor = valor + ((Integer) TablaMedComprado.getValueAt(i, 3)*(Short) TablaMedComprado.getValueAt(i, 2));
+                }
+            }
+            btnComprar.setText("$ " + new DecimalFormat("##,###,###").format(valor));
+        }
     }//GEN-LAST:event_TablaMedCompradoMouseExited
 
     private void ScrollMedCompradoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ScrollMedCompradoFocusLost
