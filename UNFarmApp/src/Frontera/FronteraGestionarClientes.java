@@ -59,6 +59,7 @@ public class FronteraGestionarClientes extends javax.swing.JPanel {
         f.setStyleJButon(btnCerrarSesion);
         jlSalir.setSize(60, 60);
         f.setStyleJButonBack(jlSalir);
+        f.setStyleJComboBox(cbEstado);
         cbEstado.setSelectedIndex(0);
 
     }
@@ -687,8 +688,11 @@ public class FronteraGestionarClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jlSalirMousePressed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
-        allSetEmpty();
+        int i = JOptionPane.showConfirmDialog(null, "¿Seguro Desea Salir?", "Cerrar Sesion", JOptionPane.YES_NO_OPTION);
+        if (i == JOptionPane.YES_OPTION) {
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
+            allSetEmpty();
+        }
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -717,7 +721,7 @@ public class FronteraGestionarClientes extends javax.swing.JPanel {
                     eliminado);
 
             App.getInstance().framePrincipal.editarCliente.Init(c);
-            
+
             allSetEmpty();
         }
     }//GEN-LAST:event_btnEditarActionPerformed

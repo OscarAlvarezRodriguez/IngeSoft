@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -23,8 +24,8 @@ public class Funciones {
 
     public final Color fondoTxt = new Color(0, 0, 0, 15);
     public final Color fondoTxtError = new Color(255, 0, 0, 63);
-    public final Color colorPrincipal = new Color(12, 183, 242, 255);
-    public static final Color azulApp = new Color(8, 83, 148, 255);
+    public final Color colorPrincipal = new Color(12, 183, 242);
+    public static final Color azulApp = new Color(8, 83, 148);
 
     public void setStyleJTextField(JTextField tf) {
         tf.setBackground(fondoTxt);
@@ -41,6 +42,14 @@ public class Funciones {
         jta.setOpaque(false);
         jta.setFont(new Font("Leelawadee", 0, 20));
         jta.setBorder(new MatteBorder(3, 3, 3, 3, colorPrincipal));
+    }
+
+    public void setStyleJComboBox(JComboBox box) {
+        box.setBackground(new Color(0, 0, 0, 0));
+        box.setBorder(new MatteBorder(3, 3, 3, 3, colorPrincipal));
+        box.setFont(new Font("Leelawadee", 0, 18));
+        box.setForeground(Color.BLACK);
+
     }
 
     public ImageIcon setImageBackground(String direccion, Component o) {
@@ -211,4 +220,5 @@ public class Funciones {
             return c;
         }
     }
+
 }

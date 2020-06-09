@@ -1,11 +1,8 @@
 package Frontera;
 
-import Control.ComprarMedicamento;
 import Control.VenderMed;
 import Entidad.Cliente;
-import Entidad.Compra;
 import Entidad.Compramedicamento;
-import Entidad.CompramedicamentoPK;
 import Entidad.Empleado;
 import Entidad.Factura;
 import Entidad.Facturamedicamentos;
@@ -44,16 +41,17 @@ public class FronteraVentaMed extends javax.swing.JPanel {
 
         jlUsuario.setSize(150, 150);
         jlUsuario.setIcon(f.setImageBackground("/Recursos/usuario.png", jlUsuario));
-        
 
     }
 
     public void setNombreUsuario(Empleado em, Cliente client) {
-        if (em != null && client!=null) {
-            
+        if (em != null && client != null) {
+
             jlNombre.setText(em.getNombreempleado() + " " + em.getApellidoempleado());
-            empleado=em;
-            globClient=client;
+            txtProv.setText(client.getNombre() + " " + client.getApellido());
+            txtProv.setEditable(false);
+            empleado = em;
+            globClient = client;
         }
     }
 
@@ -985,7 +983,6 @@ public class FronteraVentaMed extends javax.swing.JPanel {
             }
             btnComprar.setText("$ " + new DecimalFormat("#,###,###").format(valor));
         }
-
 
     }//GEN-LAST:event_TablaMedCompradoMouseClicked
 

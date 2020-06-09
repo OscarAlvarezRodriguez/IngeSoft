@@ -48,6 +48,7 @@ public class FronteraEditCliente extends javax.swing.JPanel {
         f.setStyleJTextField(txtDireccion);
         f.setStyleJTextField(txtNombre);
         f.setStyleJTextArea(txtDescripcion, jScrollPane1);
+        f.setStyleJComboBox(cbEstado);
         txtCedula.setEditable(false);
 
     }
