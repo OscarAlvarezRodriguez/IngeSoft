@@ -22,6 +22,16 @@ public class GestionarCliente {
         clientes = clienteDAO.todos();
         return clientes;
     }
+    public List<Cliente> listaDeClientesActivos(){
+        List<Cliente> clientes = null;
+        clientes = clienteDAO.todoActivos();
+        return clientes;
+    }
+    public List<Cliente> listaDeClientesActivos(Cliente c){
+        List<Cliente> clientes = null;
+        clientes = clienteDAO.leer(c);
+        return clientes;
+    }
     
     
     

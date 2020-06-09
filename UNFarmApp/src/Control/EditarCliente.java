@@ -53,7 +53,7 @@ public class EditarCliente {
     }
 
     public String validarCedula(String cedula) {
-        if (cedula.length() > 7 && cedula.length() < 12 && cedula.matches("\\d*") && !cedula.isEmpty()) {
+        if (cedula.length() > 6 && cedula.length() < 12 && cedula.matches("\\d*") && !cedula.isEmpty()) {
             return (co);
         }
         return (cn);
@@ -74,7 +74,7 @@ public class EditarCliente {
     }
 
     public String validarDireccion(String direccion) {
-        if (direccion.length() > 11 && direccion.length() < 16 && !direccion.isEmpty()) {
+        if (direccion.length() > 11 && direccion.length() < 33 && !direccion.isEmpty()) {
             return (co);
         }
         return (dn);

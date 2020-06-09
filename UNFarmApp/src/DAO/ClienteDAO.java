@@ -44,12 +44,24 @@ public class ClienteDAO {
         }
     }
 
-    public List<Cliente> leerLista(String par) {
+    public List<Cliente> leer(Cliente cliente) {
         EntityManager em = emf.createEntityManager();
         List<Cliente> clientes = null;
-        Query q = em.createQuery("SELECT c FROM Cliente c "
-                + "WHERE c.cedulacliente LIKE CONCAT(:parameter,'%')")
-                .setParameter("parameter", par);
+        Query q = em.createQuery("SELECT c FROM Cliente c WHERE"
+                + " c.cedulacliente LIKE CONCAT('%',:cedulacliente,'%') AND"
+                + " c.nombre LIKE CONCAT('%',:nombre,'%') AND"
+                + " c.apellido LIKE CONCAT('%',:apellido,'%') AND"
+                + " c.telefono LIKE CONCAT('%',:telefono,'%') AND"
+                + " c.direccioncliente LIKE CONCAT('%',:direccioncliente,'%') AND"
+                + " c.descripciondireccion LIKE CONCAT('%',:descripciondireccion,'%') AND"
+                + " c.eliminado = :eliminado")
+                .setParameter("cedulacliente", cliente.getCedulacliente())
+                .setParameter("nombre", cliente.getNombre())
+                .setParameter("apellido", cliente.getApellido())
+                .setParameter("telefono", cliente.getTelefono())
+                .setParameter("direccioncliente", cliente.getDireccioncliente())
+                .setParameter("descripciondireccion", cliente.getDescripciondireccion())
+                .setParameter("eliminado", cliente.getEliminado());
 
         try {
             clientes = q.getResultList();
@@ -80,6 +92,14 @@ public class ClienteDAO {
         }
     }
 
+    public List<Cliente> todoActivos() {
+        EntityManager em = emf.createEntityManager();
+        List<Cliente> clientes = null;
+        Query q = em.createQuery("SELECT c FROM Cliente c WHERE c.eliminado = FALSE");
+        clientes = q.getResultList();
+        return clientes;
+    }
+
     public List<Cliente> todos() {
         EntityManager em = emf.createEntityManager();
         List<Cliente> clientes = null;
@@ -101,6 +121,7 @@ public class ClienteDAO {
             antiguo.setDireccioncliente(nuevoObjeto.getDireccioncliente());
             antiguo.setDescripciondireccion(nuevoObjeto.getDescripciondireccion());
             antiguo.setApellido(nuevoObjeto.getApellido());
+            antiguo.setEliminado(nuevoObjeto.getEliminado());
             em.merge(antiguo);
             em.getTransaction().commit();
             ret = true;

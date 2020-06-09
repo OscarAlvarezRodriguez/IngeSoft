@@ -47,21 +47,6 @@ public class FronteraRegCliente extends javax.swing.JPanel {
         f.setStyleJTextField(txtDireccion);
         f.setStyleJTextField(txtNombre);
         f.setStyleJTextArea(txtDescripcion, jScrollPane1);
-        txtCedula.setEditable(false);
-
-    }
-
-    //Se debe usar esta validacion antes de pasar a este Jpanel
-    public boolean Init(Cliente cliente) {
-        if (cliente != null) {
-            this.cliente = cliente;
-            this.txtCedula.setText(this.cliente.getCedulacliente());
-            txtCedula.setEditable(false);
-            return true;
-        } else {
-            return false;
-        }
-
     }
 
     @Override
@@ -387,17 +372,18 @@ public class FronteraRegCliente extends javax.swing.JPanel {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         allSetEmpty();
-        App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
+        App.getInstance().ChangePanel(FramePrincipal.INTFronteraGestionarCliente);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         Cliente c = new Cliente();
         c.setNombre(this.txtNombre.getText());
         c.setApellido(this.txtApellido.getText());
-        c.setCedulacliente(this.cliente.getCedulacliente());
+        c.setCedulacliente(this.txtCedula.getText());
         c.setTelefono(this.txtCelular.getText());
         c.setDireccioncliente(this.txtDireccion.getText());
         c.setDescripciondireccion(this.txtDescripcion.getText());
+        c.setEliminado(false);
 
         if (Edit.ValidarDatos(c).equals("Registro exitoso")) {
             JLabel lb = new JLabel();
@@ -409,7 +395,8 @@ public class FronteraRegCliente extends javax.swing.JPanel {
                     f.setImageBackground("/recursos/exito.png", lb)
             );
             allSetEmpty();
-            App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraGestionarCliente);
+            App.getInstance().framePrincipal.gestionClientes.search();
         } else {
             JOptionPane.showMessageDialog(null,
                     "Algun Campo Esta Mal Diligenciado, Por Favor Verificarlos",
