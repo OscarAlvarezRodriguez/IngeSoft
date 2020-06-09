@@ -58,8 +58,7 @@ public class Medicamentoinvima implements Serializable {
         this.idmedicamentoinvima = idmedicamentoinvima;
     }
 
-    public Medicamentoinvima(Short idmedicamentoinvima, String nombremedicamento, String titular, String descripcion, String presentacion, String principioactivo) {
-        this.idmedicamentoinvima = idmedicamentoinvima;
+    public Medicamentoinvima(String nombremedicamento, String titular, String descripcion, String presentacion, String principioactivo) {
         this.nombremedicamento = nombremedicamento;
         this.titular = titular;
         this.descripcion = descripcion;

@@ -168,7 +168,6 @@ public class FronteraVentaMed extends javax.swing.JPanel {
             modelo.removeRow(0);
         }
         Medicamentoinvima mi = new Medicamentoinvima(
-                Short.parseShort("0"),
                 txtMed.getText(),
                 txtTitular.getText(),
                 txtDescripcion.getText(),
