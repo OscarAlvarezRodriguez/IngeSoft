@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-06-2020 a las 06:21:34
+-- Tiempo de generación: 09-06-2020 a las 02:21:21
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.30
 
@@ -213,7 +213,8 @@ CREATE TABLE `medicamento` (
 INSERT INTO `medicamento` (`IDMEDICAMENTO`, `IDMEDICAMENTOINVIMA`, `PRECIOVENTA`, `STOCK`) VALUES
 (1, 1, 12500, 23),
 (2, 750, 5800, 85),
-(3, 123, 23000, 5);
+(3, 123, 23000, 5),
+(4, 5, 6850, -1);
 
 -- --------------------------------------------------------
 
@@ -1483,7 +1484,7 @@ ALTER TABLE `factura`
 -- AUTO_INCREMENT de la tabla `medicamento`
 --
 ALTER TABLE `medicamento`
-  MODIFY `IDMEDICAMENTO` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IDMEDICAMENTO` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `medicamentoinvima`
