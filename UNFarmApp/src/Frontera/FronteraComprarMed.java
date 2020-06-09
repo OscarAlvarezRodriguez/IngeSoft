@@ -959,17 +959,15 @@ public class FronteraComprarMed extends javax.swing.JPanel {
 
     private void TablaMedCompradoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedCompradoMouseClicked
         if (evt.getClickCount() == 1) {
-            int valor = 0;
+            long valor = 0;
             for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
-                Object f = TablaMedComprado.getValueAt(i, 1);
-                if ((Integer) TablaMedComprado.getValueAt(i, 3) != null) {
-                    valor = valor + (Integer) TablaMedComprado.getValueAt(i, 3);
+                if ( TablaMedComprado.getValueAt(i, 3) != null && TablaMedComprado.getValueAt(i, 2) != null) {
+                    valor = valor + ((Integer) TablaMedComprado.getValueAt(i, 3) * (Short) TablaMedComprado.getValueAt(i, 2));
                 }
             }
-            btnComprar.setText("$ " + new DecimalFormat("#,###,###").format(valor));
+            btnComprar.setText("$ " + new DecimalFormat("##,###,###").format(valor));
+
         }
-        
-        
     }//GEN-LAST:event_TablaMedCompradoMouseClicked
 
     private void TablaMedCompradoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedCompradoMouseEntered
@@ -977,11 +975,11 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     }//GEN-LAST:event_TablaMedCompradoMouseEntered
 
     private void TablaMedCompradoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedCompradoMouseExited
-            if (evt.getClickCount() == 1) {
+        if (evt.getClickCount() == 1) {
             long valor = 0;
             for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
-                if ((Integer) TablaMedComprado.getValueAt(i, 3) != null) {
-                    valor = valor + ((Integer) TablaMedComprado.getValueAt(i, 3)*(Short) TablaMedComprado.getValueAt(i, 2));
+                if ( TablaMedComprado.getValueAt(i, 3) != null && TablaMedComprado.getValueAt(i, 2) != null) {
+                    valor = valor + ((Integer) TablaMedComprado.getValueAt(i, 3) * (Short) TablaMedComprado.getValueAt(i, 2));
                 }
             }
             btnComprar.setText("$ " + new DecimalFormat("##,###,###").format(valor));
@@ -997,7 +995,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     }//GEN-LAST:event_ScrollMedCompradoMouseExited
 
     private void jlSalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseReleased
-         App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenu);
+        App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenu);
     }//GEN-LAST:event_jlSalirMouseReleased
 
 
