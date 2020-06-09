@@ -1,5 +1,7 @@
 package Sprint2;
 
+import Control.ComprarMedicamento;
+import Entidad.Compra;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -8,6 +10,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TestComprarMedicamento {
+    
+    private final Compra compra = new Compra();
+    private final ComprarMedicamento comprar = new ComprarMedicamento();
     
     public TestComprarMedicamento() {
     }
@@ -28,9 +33,15 @@ public class TestComprarMedicamento {
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+     @Test
+     public void validarProveedor() {
+     
+         Compra c = new Compra();
+         c.setNombreproveedor("Drog");
+         assertEquals(comprar.validarProveedor(c.getNombreproveedor()), false);
+         c.setNombreproveedor("Drogas Calidad Maxima Garantizado");         
+         assertEquals(comprar.validarProveedor(c.getNombreproveedor()), false);
+         c.setNombreproveedor("Drogas Calidad Maxima");
+         assertEquals(comprar.validarProveedor(c.getNombreproveedor()), true);
+     }
 }

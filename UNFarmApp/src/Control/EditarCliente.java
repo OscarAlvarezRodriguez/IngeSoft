@@ -7,7 +7,7 @@ import Entidad.Cliente;
 public class EditarCliente {
 
     private final ClienteDAO actCliente = new ClienteDAO();
-    private final String cn = "Número cedula no válido";
+    private final String cn = "Número cédula no válido";
     private final String nn = "Lontigud nombre incorrecta";
     private final String tn = "Número telefónico no válido";
     private final String dn = "Longitud dirección incorrecta";
@@ -88,7 +88,7 @@ public class EditarCliente {
     }
 
     public String validarApellido(String apellido) {
-        if (apellido.length() > 3 && apellido.length() < 21 && !apellido.isEmpty()) {
+        if (apellido.length() > 4 && apellido.length() < 21 && !apellido.isEmpty()) {
             return (co);
         }
         return (an);
