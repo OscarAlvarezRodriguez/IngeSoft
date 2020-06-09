@@ -64,6 +64,7 @@ public class MedicamentoDAO {
                 + "WHERE"
                 + " m.idmedicamentoinvima.nombremedicamento LIKE CONCAT('%',:nombreMedicamento,'%')"
                 + " AND  m.idmedicamentoinvima.titular LIKE CONCAT('%',:titular,'%')"
+                + " AND  m.stock > -1"
                 + " AND  m.idmedicamentoinvima.descripcion LIKE CONCAT('%',:descripcion,'%')"
                 + " AND m.idmedicamentoinvima.presentacion LIKE CONCAT('%',:presentacion,'%')"
                 + " AND m.idmedicamentoinvima.principioactivo LIKE CONCAT('%',:principioActivo,'%')")
@@ -114,7 +115,7 @@ public class MedicamentoDAO {
 
         } finally {
             em.close();
-           
+
             return consulta;
         }
     }
@@ -138,21 +139,22 @@ public class MedicamentoDAO {
             return ret;
         }
     }
-    public Medicamento existencia(short idInvima){
+
+    public Medicamento existencia(short idInvima) {
         EntityManager em = emf.createEntityManager();
-        Medicamento med =  null;
-        Query q =  em.createQuery("SELECT m FROM Medicamento m WHERE m.idmedicamentoinvima= :idmedicamentoinvima")
+        Medicamento med = null;
+        Query q = em.createQuery("SELECT m FROM Medicamento m WHERE m.idmedicamentoinvima= :idmedicamentoinvima")
                 .setParameter("idmedicamentoinvima", idInvima);
-        try{
-            med= (Medicamento) q.getSingleResult();
-        } catch(NonUniqueResultException e){
+        try {
+            med = (Medicamento) q.getSingleResult();
+        } catch (NonUniqueResultException e) {
             med = (Medicamento) q.getResultList().get(0);
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             em.close();
         }
         return med;
     }
-    
+
 }

@@ -29,7 +29,7 @@ public class Funciones {
 
     public void setStyleJTextField(JTextField tf) {
         tf.setBackground(fondoTxt);
-        tf.setFont(new Font("Leelawadee", 0, 20));
+        tf.setFont(new Font("Leelawadee", 0, 18));
         tf.setBorder(new MatteBorder(3, 3, 3, 3, colorPrincipal));
 
     }
@@ -40,7 +40,7 @@ public class Funciones {
         jta.setLineWrap(true);
         jta.setWrapStyleWord(true);
         jta.setOpaque(false);
-        jta.setFont(new Font("Leelawadee", 0, 20));
+        jta.setFont(new Font("Leelawadee", 0, 18));
         jta.setBorder(new MatteBorder(3, 3, 3, 3, colorPrincipal));
     }
 

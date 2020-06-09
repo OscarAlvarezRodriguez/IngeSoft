@@ -68,6 +68,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         try {
             modelo = (new DefaultTableModel(
                     null, new String[]{
+                        "ID",
                         "Medicamento",
                         "Titular",
                         "Descripcion",
@@ -76,6 +77,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
                         "Unidades Disponibles",
                         "Precio Unitario + IVA"}) {
                 Class[] types = new Class[]{
+                    java.lang.Short.class,
                     java.lang.String.class,
                     java.lang.String.class,
                     java.lang.String.class,
@@ -90,8 +92,10 @@ public class FronteraGestionMed extends javax.swing.JPanel {
                     false,
                     false,
                     false,
-                    true,
-                    true
+                    false,
+                    false,
+                    false
+
                 };
 
                 @Override
@@ -111,12 +115,11 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         }
     }
 
-    private void search() {
+    public void search() {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
         Medicamentoinvima mi = new Medicamentoinvima(
-                Short.parseShort("0"),
                 txtMed.getText(),
                 txtTitular.getText(),
                 txtDescripcion.getText(),
@@ -127,13 +130,14 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         Object object[] = null;
         for (int i = 0; i < listaClientes.size(); i++) {
             modelo.addRow(object);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getNombremedicamento(), i, 0);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getTitular(), i, 1);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getDescripcion(), i, 2);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPrincipioactivo(), i, 3);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPresentacion(), i, 4);
-            modelo.setValueAt(listaClientes.get(i).getStock(), i, 5);
-            modelo.setValueAt(listaClientes.get(i).getPrecioventa(), i, 6);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamento(), i, 0);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getNombremedicamento(), i, 1);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getTitular(), i, 2);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getDescripcion(), i, 3);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPrincipioactivo(), i, 4);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPresentacion(), i, 5);
+            modelo.setValueAt(listaClientes.get(i).getStock(), i, 6);
+            modelo.setValueAt(listaClientes.get(i).getPrecioventa(), i, 7);
         }
     }
 
@@ -143,13 +147,14 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         Object object[] = null;
         for (int i = 0; i < listaClientes.size(); i++) {
             modelo.addRow(object);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getNombremedicamento(), i, 0);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getTitular(), i, 1);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getDescripcion(), i, 2);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPrincipioactivo(), i, 3);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPresentacion(), i, 4);
-            modelo.setValueAt(listaClientes.get(i).getStock(), i, 5);
-            modelo.setValueAt(listaClientes.get(i).getPrecioventa(), i, 6);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamento(), i, 0);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getNombremedicamento(), i, 1);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getTitular(), i, 2);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getDescripcion(), i, 3);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPrincipioactivo(), i, 4);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPresentacion(), i, 5);
+            modelo.setValueAt(listaClientes.get(i).getStock(), i, 6);
+            modelo.setValueAt(listaClientes.get(i).getPrecioventa(), i, 7);
         }
     }
 
@@ -378,6 +383,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         tablaMed.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         tablaMed.setMinimumSize(new java.awt.Dimension(0, 0));
         tablaMed.setPreferredSize(new java.awt.Dimension(880, 120));
+        tablaMed.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(tablaMed);
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -663,7 +669,29 @@ public class FronteraGestionMed extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        int[] i = tablaMed.getSelectedRows();
+        if (i.length == 0) {
+            JOptionPane.showMessageDialog(null,
+                    "Ningun Elemento Seleccionado\n"
+                    + " Por Favor Selecione Algun Cliente Todos Los Campos",
+                    "Selccion Vacia",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+            Medicamentoinvima medicamentoinvima = new Medicamentoinvima(
+                    (String) tablaMed.getValueAt(i[0], 1),
+                    (String) tablaMed.getValueAt(i[0], 2),
+                    (String) tablaMed.getValueAt(i[0], 3),
+                    (String) tablaMed.getValueAt(i[0], 5),
+                    (String) tablaMed.getValueAt(i[0], 4));
+            Medicamento m = new Medicamento(
+                    (Integer) tablaMed.getValueAt(i[0], 7),
+                    (Short) tablaMed.getValueAt(i[0], 6));
+            m.setIdmedicamentoinvima(medicamentoinvima);
+            m.setIdmedicamento((Short) tablaMed.getValueAt(i[0], 0));
+            App.getInstance().framePrincipal.editMeidcamento.Init(m);
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraEditMedicamento);
+            allSetEmpty();
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
@@ -671,7 +699,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void jlSalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseReleased
-         App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenu);
+        App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenu);
     }//GEN-LAST:event_jlSalirMouseReleased
 
 

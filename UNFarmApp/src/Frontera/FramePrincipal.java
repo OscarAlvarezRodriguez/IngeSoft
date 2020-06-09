@@ -29,6 +29,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     public static final int INTFronteraComprarMed = 9;
     public static final int INTFronteraGestionarCliente = 10;
     public static final int INTFronteraVenderMed = 11;
+    public static final int INTFronteraEditMedicamento = 12;
 
     FronteraSplash splash;
     FronteraRegEmpleado empleado = new FronteraRegEmpleado();
@@ -41,7 +42,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     FronteraComprarMed ComprarMed = new FronteraComprarMed();
     FronteraGestionarClientes gestionClientes = new FronteraGestionarClientes();
     FronteraVentaMed venderMed = new FronteraVentaMed();
-
+    FronteraEditMeicamento editMeidcamento = new FronteraEditMeicamento();
     Funciones f = new Funciones();
 
     JLabel logo = new JLabel();
@@ -60,6 +61,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         ComprarMed.setVisible(false);
         gestionClientes.setVisible(false);
         venderMed.setVisible(false);
+        editMeidcamento.setVisible(false);
 
         switch (n) {
             case INTFronteraEmpleado:
@@ -106,6 +108,10 @@ public class FramePrincipal extends javax.swing.JFrame {
             case INTFronteraVenderMed:
                 venderMed.setVisible(true);
                 scroll.setViewportView(venderMed);
+                break;
+            case INTFronteraEditMedicamento:
+                editMeidcamento.setVisible(true);
+                scroll.setViewportView(editMeidcamento);
                 break;
             default:
                 break;
