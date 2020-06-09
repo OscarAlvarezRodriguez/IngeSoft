@@ -30,12 +30,12 @@ public class TestRegistrarDrogueria {
     @BeforeClass
     public static void setUpClass() {
         Drogueria d = new Drogueria();
-        d.setDireccionDrogueria("Carrera 89 No 83a");
-        d.setEmailDrogueria("drogueriacr@mymail.com");
-        d.setNitDrogueria("1234567890123");
-        d.setNombreDrogueria("Droguería Cruz Roja");
-        d.setRepresentanteLegalDrogueria("Andrés Palacio");
-        d.setTelefonoDrogueria("123456789");
+        d.setDirecciondrogueria("Carrera 89 No 83a");
+        d.setEmail("drogueriacr@mymail.com");
+        d.setNitdrogueria("1234567890123");
+        d.setNombredrogueria("Droguería Cruz Roja");
+        d.setRepresentantelegal("Andrés Palacio");
+        d.setTelefono("123456789");
         drogueria.validarDatos(d);
 
     }
@@ -55,156 +55,156 @@ public class TestRegistrarDrogueria {
     @Test
     public void LongitudNombre() {
         Drogueria d = new Drogueria();
-        d.setDireccionDrogueria("Carrera 89 No 83a");
-        d.setEmailDrogueria("drogueriacr@mymail.com");
-        d.setNitDrogueria("1234567890123");
-        d.setNombreDrogueria("Droguería A");
-        d.setRepresentanteLegalDrogueria("Andrés Palacio");
-        d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarNombre_drogueria(d.getNombreDrogueria()), nn);
+        d.setDirecciondrogueria("Carrera 89 No 83a");
+        d.setEmail("drogueriacr@mymail.com");
+        d.setNitdrogueria("1234567890123");
+        d.setNombredrogueria("Droguería A");
+        d.setRepresentantelegal("Andrés Palacio");
+        d.setTelefono("123456789");
+        assertEquals(drogueria.validarNombre_drogueria(d.getNombredrogueria()), nn);
 
-        d.setDireccionDrogueria("Carrera 89 No 83a");
-        d.setEmailDrogueria("drogueriacr@mymail.com");
-        d.setNitDrogueria("1234567890123");
-        d.setNombreDrogueria("Droguería  Roja, Blanca y Naranja");
-        d.setRepresentanteLegalDrogueria("Andrés Palacio");
-        d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarNombre_drogueria(d.getNombreDrogueria()), nn);
+        d.setDirecciondrogueria("Carrera 89 No 83a");
+        d.setEmail("drogueriacr@mymail.com");
+        d.setNitdrogueria("1234567890123");
+        d.setNombredrogueria("Droguería  Roja, Blanca y Naranja");
+        d.setRepresentantelegal("Andrés Palacio");
+        d.setTelefono("123456789");
+        assertEquals(drogueria.validarNombre_drogueria(d.getNombredrogueria()), nn);
     }
 
     @Test
     public void LongitudNit() {
         Drogueria d = new Drogueria();
-        d.setDireccionDrogueria("Carrera 89 No 83a");
-        d.setEmailDrogueria("drogueriacr@mymail.com");
-        d.setNitDrogueria("1234567890");
-        d.setNombreDrogueria("Droguería Cruz Roja");
-        d.setRepresentanteLegalDrogueria("Andrés Palacio");
-        d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarNit(d.getNitDrogueria()), nitn);
+        d.setDirecciondrogueria("Carrera 89 No 83a");
+        d.setEmail("drogueriacr@mymail.com");
+        d.setNitdrogueria("1234567890");
+        d.setNombredrogueria("Droguería Cruz Roja");
+        d.setRepresentantelegal("Andrés Palacio");
+        d.setTelefono("123456789");
+        assertEquals(drogueria.validarNit(d.getNitdrogueria()), nitn);
 
-        d.setDireccionDrogueria("Carrera 89 No 83a");
-        d.setEmailDrogueria("drogueriacr@mymail.com");
-        d.setNitDrogueria("123456789012345678901");
-        d.setNombreDrogueria("Droguería Cruz Roja");
-        d.setRepresentanteLegalDrogueria("Andrés Palacio");
-        d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarNit(d.getNitDrogueria()), nitn);
+        d.setDirecciondrogueria("Carrera 89 No 83a");
+        d.setEmail("drogueriacr@mymail.com");
+        d.setNitdrogueria("123456789012345678901");
+        d.setNombredrogueria("Droguería Cruz Roja");
+        d.setRepresentantelegal("Andrés Palacio");
+        d.setTelefono("123456789");
+        assertEquals(drogueria.validarNit(d.getNitdrogueria()), nitn);
     }
 
     @Test
     public void LongitudDireccion() {
         Drogueria d = new Drogueria();
-        d.setDireccionDrogueria("Carrera 89a");
-        d.setEmailDrogueria("drogueriacr@mymail.com");
-        d.setNitDrogueria("1234567890123");
-        d.setNombreDrogueria("Droguería Cruz Roja");
-        d.setRepresentanteLegalDrogueria("Andrés Palacio");
-        d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarDireccion(d.getDireccionDrogueria()), dn);
+        d.setDirecciondrogueria("Carrera 89a");
+        d.setEmail("drogueriacr@mymail.com");
+        d.setNitdrogueria("1234567890123");
+        d.setNombredrogueria("Droguería Cruz Roja");
+        d.setRepresentantelegal("Andrés Palacio");
+        d.setTelefono("123456789");
+        assertEquals(drogueria.validarDireccion(d.getDirecciondrogueria()), dn);
 
-        d.setDireccionDrogueria("Carrera 89b No 83a 24 C.C Mirador");
-        d.setEmailDrogueria("drogueriacr@mymail.com");
-        d.setNitDrogueria("1234567890123");
-        d.setNombreDrogueria("Droguería Cruz Roja");
-        d.setRepresentanteLegalDrogueria("Andrés Palacio");
-        d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarDireccion(d.getDireccionDrogueria()), dn);
+        d.setDirecciondrogueria("Carrera 89b No 83a 24 C.C Mirador");
+        d.setEmail("drogueriacr@mymail.com");
+        d.setNitdrogueria("1234567890123");
+        d.setNombredrogueria("Droguería Cruz Roja");
+        d.setRepresentantelegal("Andrés Palacio");
+        d.setTelefono("123456789");
+        assertEquals(drogueria.validarDireccion(d.getDirecciondrogueria()), dn);
     }
 
     @Test
     public void LongitudTelefono() {
         Drogueria d = new Drogueria();
-        d.setDireccionDrogueria("Carrera 89 No 83a");
-        d.setEmailDrogueria("drogueriacr@mymail.com");
-        d.setNitDrogueria("1234567890123");
-        d.setNombreDrogueria("Droguería Cruz Roja");
-        d.setRepresentanteLegalDrogueria("Andrés Palacio");
-        d.setTelefonoDrogueria("123456");
-        assertEquals(drogueria.validarTelefono_drogueria(d.getTelefonoDrogueria()), tn);
+        d.setDirecciondrogueria("Carrera 89 No 83a");
+        d.setEmail("drogueriacr@mymail.com");
+        d.setNitdrogueria("1234567890");
+        d.setNombredrogueria("Droguería Cruz Roja");
+        d.setRepresentantelegal("Andrés Palacio");
+        d.setTelefono("123456");
+        assertEquals(drogueria.validarTelefono_drogueria(d.getTelefono()), tn);
 
-        d.setDireccionDrogueria("Carrera 89 No 83a");
-        d.setEmailDrogueria("drogueriacr@mymail.com");
-        d.setNitDrogueria("1234567890123");
-        d.setNombreDrogueria("Droguería Cruz Roja");
-        d.setRepresentanteLegalDrogueria("Andrés Palacio");
-        d.setTelefonoDrogueria("1234567890123456");
-        assertEquals(drogueria.validarTelefono_drogueria(d.getTelefonoDrogueria()), tn);
+        d.setDirecciondrogueria("Carrera 89 No 83a");
+        d.setEmail("drogueriacr@mymail.com");
+        d.setNitdrogueria("1234567890");
+        d.setNombredrogueria("Droguería Cruz Roja");
+        d.setRepresentantelegal("Andrés Palacio");
+        d.setTelefono("1234567890123456");
+        assertEquals(drogueria.validarTelefono_drogueria(d.getTelefono()), tn);
     }
 
     @Test
     public void ValidarCorreo() {
         Drogueria d = new Drogueria();
-        d.setDireccionDrogueria("Carrera 89 No 83a");
-        d.setEmailDrogueria("d@ml.com");
-        d.setNitDrogueria("1234567890123");
-        d.setNombreDrogueria("Droguería Cruz Roja");
-        d.setRepresentanteLegalDrogueria("Andrés Palacio");
-        d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarEmail(d.getEmailDrogueria()), en);
+        d.setDirecciondrogueria("Carrera 89 No 83a");
+        d.setEmail("d@ml.com");
+        d.setNitdrogueria("1234567890123");
+        d.setNombredrogueria("Droguería Cruz Roja");
+        d.setRepresentantelegal("Andrés Palacio");
+        d.setTelefono("123456789");
+        assertEquals(drogueria.validarEmail(d.getEmail()), en);
 
-        d.setDireccionDrogueria("Carrera 89 No 83a");
-        d.setEmailDrogueria("drogueriacruzroja.andrescorredor.mirador@mymail.com");
-        d.setNitDrogueria("1234567890123");
-        d.setNombreDrogueria("Droguería Cruz Roja");
-        d.setRepresentanteLegalDrogueria("Andrés Palacio");
-        d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarEmail(d.getEmailDrogueria()), en);
+        d.setDirecciondrogueria("Carrera 89 No 83a");
+        d.setEmail("drogueriacruzroja.andrescorredor.mirador@mymail.com");
+        d.setNitdrogueria("1234567890123");
+        d.setNombredrogueria("Droguería Cruz Roja");
+        d.setRepresentantelegal("Andrés Palacio");
+        d.setTelefono("123456789");
+        assertEquals(drogueria.validarEmail(d.getEmail()), en);
 
-        d.setDireccionDrogueria("Carrera 89 No 83a");
-        d.setEmailDrogueria("drogueriacrmymail.com");
-        d.setNitDrogueria("1234567890123");
-        d.setNombreDrogueria("Droguería Cruz Roja");
-        d.setRepresentanteLegalDrogueria("Andrés Palacio");
-        d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarEmail(d.getEmailDrogueria()), en);
-
-        d.setDireccionDrogueria("Carrera 89 No 83a");
-        d.setEmailDrogueria("drogueriacr@mymailcom");
-        d.setNitDrogueria("1234567890123");
-        d.setNombreDrogueria("Droguería Cruz Roja");
-        d.setRepresentanteLegalDrogueria("Andrés Palacio");
-        d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarEmail(d.getEmailDrogueria()), en);
-
-        d.setDireccionDrogueria("Carrera 89 No 83a");
-        d.setEmailDrogueria("drogueriacrmymailcom");
-        d.setNitDrogueria("1234567890123");
-        d.setNombreDrogueria("Droguería Cruz Roja");
-        d.setRepresentanteLegalDrogueria("Andrés Palacio");
-        d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarEmail(d.getEmailDrogueria()), en);
+        d.setDirecciondrogueria("Carrera 89 No 83a");
+        d.setEmail("drogueriacrmymail.com");
+        d.setNitdrogueria("1234567890123");
+        d.setNombredrogueria("Droguería Cruz Roja");
+        d.setRepresentantelegal("Andrés Palacio");
+        d.setTelefono("123456789");
+        assertEquals(drogueria.validarEmail(d.getEmail()), en);
+        
+        d.setDirecciondrogueria("Carrera 89 No 83a");
+        d.setEmail("drogueriacr@mymailcom");
+        d.setNitdrogueria("1234567890123");
+        d.setNombredrogueria("Droguería Cruz Roja");
+        d.setRepresentantelegal("Andrés Palacio");
+        d.setTelefono("123456789");
+        assertEquals(drogueria.validarEmail(d.getEmail()), en);
+       
+        d.setDirecciondrogueria("Carrera 89 No 83a");
+        d.setEmail("drogueriacrmymailcom");
+        d.setNitdrogueria("1234567890123");
+        d.setNombredrogueria("Droguería Cruz Roja");
+        d.setRepresentantelegal("Andrés Palacio");
+        d.setTelefono("123456789");
+        assertEquals(drogueria.validarEmail(d.getEmail()), en);
     }
 
     @Test
     public void LongitudRepresentante() {
         Drogueria d = new Drogueria();
-        d.setDireccionDrogueria("Carrera 89 No 83a");
-        d.setEmailDrogueria("drogueriacr@mymail.com");
-        d.setNitDrogueria("1234567890123");
-        d.setNombreDrogueria("Droguería Cruz Roja");
-        d.setRepresentanteLegalDrogueria("Andrés Roa");
-        d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarRepresentante(d.getRepresentanteLegalDrogueria()), rpn);
+        d.setDirecciondrogueria("Carrera 89 No 83a");
+        d.setEmail("drogueriacr@mymail.com");
+        d.setNitdrogueria("1234567890");
+        d.setNombredrogueria("Droguería Cruz Roja");
+        d.setRepresentantelegal("Andrés Roa");
+        d.setTelefono("123456789");
+        assertEquals(drogueria.validarRepresentante(d.getRepresentantelegal()), rpn);
 
-        d.setDireccionDrogueria("Carrera 89 No 83a");
-        d.setEmailDrogueria("drogueriacr@mymail.com");
-        d.setNitDrogueria("1234567890123");
-        d.setNombreDrogueria("Droguería Cruz Roja");
-        d.setRepresentanteLegalDrogueria("Andrés Palacios Murillo Velasquez");
-        d.setTelefonoDrogueria("123456789");
-        assertEquals(drogueria.validarRepresentante(d.getRepresentanteLegalDrogueria()), rpn);
+        d.setDirecciondrogueria("Carrera 89 No 83a");
+        d.setEmail("drogueriacr@mymail.com");
+        d.setNitdrogueria("1234567890");
+        d.setNombredrogueria("Droguería Cruz Roja");
+        d.setRepresentantelegal("Andrés Palacios Murillo Velasquez");
+        d.setTelefono("123456789");
+        assertEquals(drogueria.validarRepresentante(d.getRepresentantelegal()), rpn);
     }
 
     @Test
     public void YaRegistrado() {
         Drogueria d = new Drogueria();
-        d.setDireccionDrogueria("Carrera 89 No 83a");
-        d.setEmailDrogueria("drogueriacr@mymail.com");
-        d.setNitDrogueria("1234567890123");
-        d.setNombreDrogueria("Droguería Cruz Roja");
-        d.setRepresentanteLegalDrogueria("Andrés Palacio");
-        d.setTelefonoDrogueria("123456789");
+        d.setDirecciondrogueria("Carrera 89 No 83a");
+        d.setEmail("drogueriacr@mymail.com");
+        d.setNitdrogueria("1234567890123");
+        d.setNombredrogueria("Droguería Cruz Roja");
+        d.setRepresentantelegal("Andrés Palacio");
+        d.setTelefono("123456789");
         assertEquals(drogueria.validarDatos(d), dr);
         drogueriaDAOs.eliminar(d);
     }
@@ -212,12 +212,12 @@ public class TestRegistrarDrogueria {
     @Test
     public void RegistroExistoso() {
         Drogueria d = new Drogueria();
-        d.setDireccionDrogueria("Carrera 32 No 24a");
-        d.setEmailDrogueria("drogueriacb@mymail.com");
-        d.setNitDrogueria("1234567890124");
-        d.setNombreDrogueria("Droguería Cruz Blanca");
-        d.setRepresentanteLegalDrogueria("Felipe Chaparro");
-        d.setTelefonoDrogueria("12345678902");
+        d.setDirecciondrogueria("Carrera 32 No 24a");
+        d.setEmail("drogueriacb@mymail.com");
+        d.setNitdrogueria("1234567890124");
+        d.setNombredrogueria("Droguería Cruz Blanca");
+        d.setRepresentantelegal("Felipe Chaparro");
+        d.setTelefono("12345678902");
         assertEquals(drogueria.validarDatos(d), re);
         drogueriaDAOs.eliminar(d);
     }

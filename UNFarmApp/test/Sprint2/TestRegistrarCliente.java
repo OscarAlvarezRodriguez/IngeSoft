@@ -1,7 +1,6 @@
 package Sprint2;
 
 import Control.RegistrarCliente;
-import DAO.ClienteDAO;
 import Entidad.Cliente;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -32,12 +31,12 @@ public class TestRegistrarCliente {
     public static void setUpClass() {
     
         Cliente u = new Cliente();
-        u.setCedulaCliente("123456789");
-        u.setDescripcionDireccionCliente("Conjunto Residencial Mirador II");
-        u.setDireccionCliente("Carrera 52 No 33b");
-        u.setNombreCliente("Paula");
-        u.setApellidoCliente("Cardenas");
-        u.setTelefonoCliente("12345678"); 
+        u.setCedulacliente("123456789");
+        u.setDescripciondireccion("Conjunto Residencial Mirador II");
+        u.setDireccioncliente("Carrera 52 No 33b");
+        u.setNombre("Paula");
+        u.setApellido("Cardenas");
+        u.setTelefono("12345678"); 
         cliente.ValidarDatos(u);
        
     }
@@ -58,92 +57,92 @@ public class TestRegistrarCliente {
     public void LongitudNombre() {
 
         Cliente u = new Cliente();
-        u.setCedulaCliente("123456789");
-        u.setDescripcionDireccionCliente("Conjunto Residencial Mirador II");
-        u.setDireccionCliente("Carrera 52 No 33b");
-        u.setNombreCliente("Paul");
-        u.setApellidoCliente("Cardenas");
-        u.setTelefonoCliente("12345678"); 
+        u.setCedulacliente("123456789");
+        u.setDescripciondireccion("Conjunto Residencial Mirador II");
+        u.setDireccioncliente("Carrera 52 No 33b");
+        u.setNombre("Paul");
+        u.setApellido("Cardenas");
+        u.setTelefono("12345678"); 
 
-        assertEquals(cliente.validarNombre(u.getNombreCliente()), nn);
+        assertEquals(cliente.validarNombre(u.getNombre()), nn);
 
-        u.setCedulaCliente("123456789");
-        u.setDescripcionDireccionCliente("Conjunto Residencial Mirador II");
-        u.setDireccionCliente("Carrera 52 No 33b");
-        u.setNombreCliente("Paula Andrea Valencia");
-        u.setApellidoCliente("Cardenas");
-        u.setTelefonoCliente("12345678");
+        u.setCedulacliente("123456789");
+        u.setDescripciondireccion("Conjunto Residencial Mirador II");
+        u.setDireccioncliente("Carrera 52 No 33b");
+        u.setNombre("Paula Andrea Valencia");
+        u.setApellido("Cardenas");
+        u.setTelefono("12345678");
 
-        assertEquals(cliente.validarNombre(u.getNombreCliente()), nn);
+        assertEquals(cliente.validarNombre(u.getNombre()), nn);
     }
 
     @Test
     public void LongitudApellido() {
 
         Cliente u = new Cliente();
-        u.setCedulaCliente("123456789");
-        u.setDescripcionDireccionCliente("Conjunto Residencial Mirador II");
-        u.setDireccionCliente("Carrera 52 No 33b");
-        u.setNombreCliente("Paula");
-        u.setApellidoCliente("Caro");
-        u.setTelefonoCliente("12345678"); 
+        u.setCedulacliente("123456789");
+        u.setDescripciondireccion("Conjunto Residencial Mirador II");
+        u.setDireccioncliente("Carrera 52 No 33b");
+        u.setNombre("Paula");
+        u.setApellido("Caro");
+        u.setTelefono("12345678"); 
 
-        assertEquals(cliente.validarApellido(u.getApellidoCliente()), an);
+        assertEquals(cliente.validarApellido(u.getApellido()), an);
 
-        u.setCedulaCliente("123456789");
-        u.setDescripcionDireccionCliente("Conjunto Residencial Mirador II");
-        u.setDireccionCliente("Carrera 52 No 33b");
-        u.setNombreCliente("Paula");
-        u.setApellidoCliente("Cardenas Valencia Roa");
-        u.setTelefonoCliente("12345678");
+        u.setCedulacliente("123456789");
+        u.setDescripciondireccion("Conjunto Residencial Mirador II");
+        u.setDireccioncliente("Carrera 52 No 33b");
+        u.setNombre("Paula");
+        u.setApellido("Cardenas Valencia Roa");
+        u.setTelefono("12345678");
 
-        assertEquals(cliente.validarApellido(u.getApellidoCliente()), an);
+        assertEquals(cliente.validarApellido(u.getApellido()), an);
     }
 
     @Test
     public void LongitudCedula() {
 
         Cliente u = new Cliente();
-        u.setCedulaCliente("123456");
-        u.setDescripcionDireccionCliente("Conjunto Residencial Mirador II");
-        u.setDireccionCliente("Carrera 52 No 33b");
-        u.setNombreCliente("Paula");
-        u.setApellidoCliente("Cardenas");
-        u.setTelefonoCliente("12345678"); 
+        u.setCedulacliente("123456");
+        u.setDescripciondireccion("Conjunto Residencial Mirador II");
+        u.setDireccioncliente("Carrera 52 No 33b");
+        u.setNombre("Paula");
+        u.setApellido("Cardenas");
+        u.setTelefono("12345678"); 
 
-        assertEquals(cliente.validarCedula(u.getCedulaCliente()), cn);
+        assertEquals(cliente.validarCedula(u.getCedulacliente()), cn);
 
-        u.setCedulaCliente("123456789012");
-        u.setDescripcionDireccionCliente("Conjunto Residencial Mirador II");
-        u.setDireccionCliente("Carrera 52 No 33b");
-        u.setNombreCliente("Paula");
-        u.setApellidoCliente("Cardenas");
-        u.setTelefonoCliente("12345678");
+        u.setCedulacliente("123456789012");
+        u.setDescripciondireccion("Conjunto Residencial Mirador II");
+        u.setDireccioncliente("Carrera 52 No 33b");
+        u.setNombre("Paula");
+        u.setApellido("Cardenas");
+        u.setTelefono("12345678");
 
-        assertEquals(cliente.validarCedula(u.getCedulaCliente()), cn);
+        assertEquals(cliente.validarCedula(u.getCedulacliente()), cn);
     }
 
     @Test
     public void LongitudTelefono() {
 
         Cliente u = new Cliente();
-        u.setCedulaCliente("123456789");
-        u.setDescripcionDireccionCliente("Conjunto Residencial Mirador II");
-        u.setDireccionCliente("Carrera 52 No 33b");
-        u.setNombreCliente("Paula");
-        u.setApellidoCliente("Cardenas");
-        u.setTelefonoCliente("123456"); 
+        u.setCedulacliente("123456789");
+        u.setDescripciondireccion("Conjunto Residencial Mirador II");
+        u.setDireccioncliente("Carrera 52 No 33b");
+        u.setNombre("Paula");
+        u.setApellido("Cardenas");
+        u.setTelefono("123456"); 
 
-        assertEquals(cliente.validarTelefono(u.getTelefonoCliente()), tn);
+        assertEquals(cliente.validarTelefono(u.getTelefono()), tn);
 
-        u.setCedulaCliente("123456789");
-        u.setDescripcionDireccionCliente("Conjunto Residencial Mirador II");
-        u.setDireccionCliente("Carrera 52 No 33b");
-        u.setNombreCliente("Paula");
-        u.setApellidoCliente("Cardenas");
-        u.setTelefonoCliente("1234567890123456");
+        u.setCedulacliente("123456789");
+        u.setDescripciondireccion("Conjunto Residencial Mirador II");
+        u.setDireccioncliente("Carrera 52 No 33b");
+        u.setNombre("Paula");
+        u.setApellido("Cardenas");
+        u.setTelefono("1234567890123456");
 
-        assertEquals(cliente.validarTelefono(u.getTelefonoCliente()), tn);
+        assertEquals(cliente.validarTelefono(u.getTelefono()), tn);
         
     }
 
@@ -151,37 +150,37 @@ public class TestRegistrarCliente {
     public void LongitudDireccion() {
 
         Cliente u = new Cliente();
-        u.setCedulaCliente("123456789");
-        u.setDescripcionDireccionCliente("Conjunto Residencial Mirador II");
-        u.setDireccionCliente("Carrera 52");
-        u.setNombreCliente("Paula");
-        u.setApellidoCliente("Cardenas");
-        u.setTelefonoCliente("12345678"); 
+        u.setCedulacliente("123456789");
+        u.setDescripciondireccion("Conjunto Residencial Mirador II");
+        u.setDireccioncliente("Carrera 52");
+        u.setNombre("Paula");
+        u.setApellido("Cardenas");
+        u.setTelefono("12345678"); 
 
-        assertEquals(cliente.validarDireccion(u.getDireccionCliente()), dn);
+        assertEquals(cliente.validarDireccion(u.getDireccioncliente()), dn);
 
-        u.setCedulaCliente("123456789");
-        u.setDescripcionDireccionCliente("Conjunto Residencial Mirador II");
-        u.setDireccionCliente("Carrera 8 No 33b - 83 Torre 5 603");
-        u.setNombreCliente("Paula");
-        u.setApellidoCliente("Cardenas");
-        u.setTelefonoCliente("12345678");
+        u.setCedulacliente("123456789");
+        u.setDescripciondireccion("Conjunto Residencial Mirador II");
+        u.setDireccioncliente("Carrera 8 No 33b - 83 Torre 5 603");
+        u.setNombre("Paula");
+        u.setApellido("Cardenas");
+        u.setTelefono("12345678");
 
-        assertEquals(cliente.validarDireccion(u.getDireccionCliente()), dn);
+        assertEquals(cliente.validarDireccion(u.getDireccioncliente()), dn);
     }
 
     @Test
     public void LongitudDescripcion() {
 
         Cliente u = new Cliente();
-        u.setCedulaCliente("123456789");
-        u.setDescripcionDireccionCliente("Conjunto Residencial Mirador II B");
-        u.setDireccionCliente("Carrera 52 No 33b");
-        u.setNombreCliente("Paula");
-        u.setApellidoCliente("Cardenas");
-        u.setTelefonoCliente("12345678");
+        u.setCedulacliente("123456789");
+        u.setDescripciondireccion("Conjunto Residencial Mirador II B");
+        u.setDireccioncliente("Carrera 52 No 33b");
+        u.setNombre("Paula");
+        u.setApellido("Cardenas");
+        u.setTelefono("12345678");
 
-        assertEquals(cliente.validarDescripcionDir(u.getDescripcionDireccionCliente()), ddn);
+        assertEquals(cliente.validarDescripcionDir(u.getDescripciondireccion()), ddn);
         
     }
 
@@ -190,12 +189,12 @@ public class TestRegistrarCliente {
     public void Reg_Exitoso() {
 
         Cliente u = new Cliente();
-        u.setCedulaCliente("324056782");
-        u.setDescripcionDireccionCliente("Barrio Marina");
-        u.setDireccionCliente("Calle 22  No 56a");
-        u.setNombreCliente("Jessica");
-        u.setApellidoCliente("Sanchez");
-        u.setTelefonoCliente("46816746"); 
+        u.setCedulacliente("324056782");
+        u.setDescripciondireccion("Barrio Marina");
+        u.setDireccioncliente("Calle 22  No 56a");
+        u.setNombre("Jessica");
+        u.setApellido("Sanchez");
+        u.setTelefono("46816746"); 
         assertEquals(cliente.ValidarDatos(u), re);
 
     }
@@ -204,12 +203,12 @@ public class TestRegistrarCliente {
     public void Ya_Registrado() {
 
         Cliente u = new Cliente();
-        u.setCedulaCliente("123456789");
-        u.setDescripcionDireccionCliente("Conjunto Residencial Mirador II");
-        u.setDireccionCliente("Carrera 52 No 33b");
-        u.setNombreCliente("Jessica");
-        u.setApellidoCliente("Cardenas");
-        u.setTelefonoCliente("12345678"); 
+        u.setCedulacliente("123456789");
+        u.setDescripciondireccion("Conjunto Residencial Mirador II");
+        u.setDireccioncliente("Carrera 52 No 33b");
+        u.setNombre("Jessica");
+        u.setApellido("Cardenas");
+        u.setTelefono("12345678"); 
         assertEquals(cliente.ValidarDatos(u), cr);
    
     }

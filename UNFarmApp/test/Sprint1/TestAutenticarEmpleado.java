@@ -1,6 +1,6 @@
 package Sprint1;
 
-import Control.AutenticarEmpleado;
+import Control.Autenticarempleado;
 import Control.RegistrarEmpleado;
 import Entidad.Empleado;
 import org.junit.After;
@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 public class TestAutenticarEmpleado {
 
-    private static final AutenticarEmpleado usuario = new AutenticarEmpleado();
+    private static final Autenticarempleado usuario = new Autenticarempleado();
     private static final RegistrarEmpleado empleado = new RegistrarEmpleado();
 
     private final String cn = "Número cedula no válido";
@@ -28,13 +28,13 @@ public class TestAutenticarEmpleado {
     @BeforeClass
     public static void setUpClass() {
         Empleado u = new Empleado();
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfo@mymail.com");
-        u.setContraseniaEmpleado("Dan123");
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfo@mymail.com");
+        u.setContrasenia("Dan123");
         empleado.validarDatos(u);
     }
 
@@ -55,15 +55,15 @@ public class TestAutenticarEmpleado {
 
         Empleado u = new Empleado();
 
-        u.setCedulaEmpleado("123456");
-        u.setContraseniaEmpleado("Dan123");
+        u.setCedulaempleado("123456");
+        u.setContrasenia("Dan123");
 
-        assertEquals(usuario.validarLongitudCedula(u.getCedulaEmpleado()), cn);
+        assertEquals(usuario.validarLongitudCedula(u.getCedulaempleado()), cn);
 
-        u.setCedulaEmpleado("123456567856");
-        u.setContraseniaEmpleado("Dan123");
+        u.setCedulaempleado("123456567856");
+        u.setContrasenia("Dan123");
 
-        assertEquals(usuario.validarLongitudCedula(u.getCedulaEmpleado()), cn);
+        assertEquals(usuario.validarLongitudCedula(u.getCedulaempleado()), cn);
 
     }
 
@@ -72,22 +72,22 @@ public class TestAutenticarEmpleado {
 
         Empleado u = new Empleado();
 
-        u.setCedulaEmpleado("123456789");
-        u.setContraseniaEmpleado("Dan1");
-        assertEquals(usuario.validarLongitudContrasenia(u.getContraseniaEmpleado()), con);
+        u.setCedulaempleado("123456789");
+        u.setContrasenia("Dan1");
+        assertEquals(usuario.validarLongitudContrasenia(u.getContrasenia()), con);
 
-        u.setCedulaEmpleado("123456789");
-        u.setContraseniaEmpleado("Dani12345678901234567");
-        assertEquals(usuario.validarLongitudContrasenia(u.getContraseniaEmpleado()), con);
+        u.setCedulaempleado("123456789");
+        u.setContrasenia("Dani12345678901234567");
+        assertEquals(usuario.validarLongitudContrasenia(u.getContrasenia()), con);
 
-        u.setCedulaEmpleado("123456789");
-        u.setContraseniaEmpleado("dan123");
-        assertEquals(usuario.validarMayusculaContrasenia(u.getContraseniaEmpleado()), comn);
+        u.setCedulaempleado("123456789");
+        u.setContrasenia("dan123");
+        assertEquals(usuario.validarMayusculaContrasenia(u.getContrasenia()), comn);
 
-        u.setCedulaEmpleado("123456789");
-        u.setContraseniaEmpleado("Daniel");
+        u.setCedulaempleado("123456789");
+        u.setContrasenia("Daniel");
 
-        assertEquals(usuario.validarNumeroContrasenia(u.getContraseniaEmpleado()), conn);
+        assertEquals(usuario.validarNumeroContrasenia(u.getContrasenia()), conn);
     }
 
     @Test
@@ -95,8 +95,8 @@ public class TestAutenticarEmpleado {
 
         Empleado u = new Empleado();
 
-        u.setCedulaEmpleado("1032455541");
-        u.setContraseniaEmpleado("Contra123");
+        u.setCedulaempleado("1032455541");
+        u.setContrasenia("Contra123");
 
         assertEquals(usuario.verificarLogin(u), di);
 
@@ -107,13 +107,13 @@ public class TestAutenticarEmpleado {
 
         Empleado u = new Empleado();
 
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfo@mymail.com");
-        u.setContraseniaEmpleado("Dan123");
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfo@mymail.com");
+        u.setContrasenia("Dan123");
         assertEquals(usuario.verificarLogin(u), bi);
     }
 

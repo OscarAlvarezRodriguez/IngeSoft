@@ -2,7 +2,6 @@ package Sprint2;
 
 import Control.AutenticarCliente;
 import Control.RegistrarCliente;
-import DAO.ClienteDAO;
 import Entidad.Cliente;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -28,12 +27,12 @@ public class TestAutenticarCliente {
     public static void setUpClass() {
         
         Cliente u = new Cliente();
-        u.setCedulaCliente("123456789");
-        u.setDescripcionDireccionCliente("Conjunto Residencial Mirador II");
-        u.setDireccionCliente("Carrera 52 No 33b");
-        u.setNombreCliente("Paula");
-        u.setApellidoCliente("Cardenas");
-        u.setTelefonoCliente("12345678"); 
+        u.setCedulacliente("123456789");
+        u.setDescripciondireccion("Conjunto Residencial Mirador II");
+        u.setDireccioncliente("Carrera 52 No 33b");
+        u.setNombre("Paula");
+        u.setApellido("Cardenas");
+        u.setTelefono("12345678"); 
         cliente.ValidarDatos(u);
        }
     
@@ -55,11 +54,11 @@ public class TestAutenticarCliente {
 
         Cliente u = new Cliente();
 
-        u.setCedulaCliente("123456");
-        assertEquals(usuario.validarCedula(u.getCedulaCliente()), cn);
+        u.setCedulacliente("123456");
+        assertEquals(usuario.validarCedula(u.getCedulacliente()), cn);
 
-        u.setCedulaCliente("123456567856");
-        assertEquals(usuario.validarCedula(u.getCedulaCliente()), cn);
+        u.setCedulacliente("123456567856");
+        assertEquals(usuario.validarCedula(u.getCedulacliente()), cn);
 
     }
     
@@ -67,8 +66,8 @@ public class TestAutenticarCliente {
     public void NoRegistrado() {
 
         Cliente u = new Cliente();
-        u.setCedulaCliente("1032455541");
-        assertEquals(usuario.verificarLogin(u.getCedulaCliente()), cr);
+        u.setCedulacliente("1032455541");
+        assertEquals(usuario.verificarLogin(u.getCedulacliente()), cr);
     }
     
     @Test
@@ -76,8 +75,8 @@ public class TestAutenticarCliente {
 
         Cliente u = new Cliente();
         
-        u.setCedulaCliente("123456789");
-        assertEquals(usuario.verificarLogin(u.getCedulaCliente()), bi);
+        u.setCedulacliente("123456789");
+        assertEquals(usuario.verificarLogin(u.getCedulacliente()), bi);
     }
     
     

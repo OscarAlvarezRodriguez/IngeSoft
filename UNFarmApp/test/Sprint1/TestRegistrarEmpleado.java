@@ -32,13 +32,13 @@ public class TestRegistrarEmpleado {
     @BeforeClass
     public static void setUpClass() {
         Empleado u = new Empleado();
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfo@mymail.com");
-        u.setContraseniaEmpleado("Dan123");
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfo@mymail.com");
+        u.setContrasenia("Dan123");
         empleado.validarDatos(u);
     }
 
@@ -58,49 +58,49 @@ public class TestRegistrarEmpleado {
     public void LongitudNombre() {
 
         Empleado u = new Empleado();
-        u.setNombreEmpleado("Dan");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfo@mymail.com");
-        u.setContraseniaEmpleado("Dan123");
+        u.setNombreempleado("Dan");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfo@mymail.com");
+        u.setContrasenia("Dan123");
 
-        assertEquals(empleado.validarNombre(u.getNombreEmpleado()), nn);
+        assertEquals(empleado.validarNombre(u.getNombreempleado()), nn);
 
-        u.setNombreEmpleado("DanielSantiagoCorredor");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfo@mymail.com");
-        u.setContraseniaEmpleado("Dan123");
+        u.setNombreempleado("DanielSantiagoCorredor");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfo@mymail.com");
+        u.setContrasenia("Dan123");
 
-        assertEquals(empleado.validarNombre(u.getNombreEmpleado()), nn);
+        assertEquals(empleado.validarNombre(u.getNombreempleado()), nn);
     }
 
     @Test
     public void LongitudApellido() {
 
         Empleado u = new Empleado();
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Roa");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfo@mymail.com");
-        u.setContraseniaEmpleado("Dan123");
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Roa");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfo@mymail.com");
+        u.setContrasenia("Dan123");
 
-        assertEquals(empleado.validarApellido(u.getApellidoEmpleado()), an);
+        assertEquals(empleado.validarApellido(u.getApellidoempleado()), an);
 
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("CorredorRuizGaleanoSuarez");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfo@mymail.com");
-        u.setContraseniaEmpleado("Dan123");
-        assertEquals(empleado.validarApellido(u.getApellidoEmpleado()), an);
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("CorredorRuizGaleanoSuarez");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfo@mymail.com");
+        u.setContrasenia("Dan123");
+        assertEquals(empleado.validarApellido(u.getApellidoempleado()), an);
     }
 
     @Test
@@ -108,123 +108,123 @@ public class TestRegistrarEmpleado {
 
         Empleado u = new Empleado();
 
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfo@mymail.com");
-        u.setContraseniaEmpleado("Dan123");
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfo@mymail.com");
+        u.setContrasenia("Dan123");
 
-        assertEquals(empleado.validarCedula(u.getCedulaEmpleado()), cn);
+        assertEquals(empleado.validarCedula(u.getCedulaempleado()), cn);
 
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456567856");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfo@mymail.com");
-        u.setContraseniaEmpleado("Dan123");
-        assertEquals(empleado.validarCedula(u.getCedulaEmpleado()), cn);
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456567856");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfo@mymail.com");
+        u.setContrasenia("Dan123");
+        assertEquals(empleado.validarCedula(u.getCedulaempleado()), cn);
     }
 
     @Test
     public void LongitudTelefono() {
 
         Empleado u = new Empleado();
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("123456");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfo@mymail.com");
-        u.setContraseniaEmpleado("Dan123");
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("123456");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfo@mymail.com");
+        u.setContrasenia("Dan123");
 
-        assertEquals(empleado.validarTelefono(u.getTelefonoEmpleado()), tn);
+        assertEquals(empleado.validarTelefono(u.getTelefono()), tn);
 
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("1234561243254671");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfo@mymail.com");
-        u.setContraseniaEmpleado("Dan123");
-        assertEquals(empleado.validarTelefono(u.getTelefonoEmpleado()), tn);
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("1234561243254671");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfo@mymail.com");
+        u.setContrasenia("Dan123");
+        assertEquals(empleado.validarTelefono(u.getTelefono()), tn);
     }
 
     @Test
     public void LongitudDireccion() {
 
         Empleado u = new Empleado();
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32A");
-        u.setCorreoEmpleado("adolfo@mymail.com");
-        u.setContraseniaEmpleado("Dan123");
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32A");
+        u.setCorreo("adolfo@mymail.com");
+        u.setContrasenia("Dan123");
 
-        assertEquals(empleado.validarDireccion(u.getDireccionEmpleado()), dn);
+        assertEquals(empleado.validarDireccion(u.getDireccionempleado()), dn);
 
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("“Carrera 32A, Número 159, bis 89 b");
-        u.setCorreoEmpleado("adolfo@mymail.com");
-        u.setContraseniaEmpleado("Dan123");
-        assertEquals(empleado.validarDireccion(u.getDireccionEmpleado()), dn);
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("“Carrera 32A, Número 159, bis 89 b");
+        u.setCorreo("adolfo@mymail.com");
+        u.setContrasenia("Dan123");
+        assertEquals(empleado.validarDireccion(u.getDireccionempleado()), dn);
     }
 
     @Test
     public void Correo() {
 
         Empleado u = new Empleado();
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("a@ml.com");
-        u.setContraseniaEmpleado("Dan123");
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("a@ml.com");
+        u.setContrasenia("Dan123");
 
-        assertEquals(empleado.validarCorreo(u.getCorreoEmpleado()), en);
+        assertEquals(empleado.validarCorreo(u.getCorreo()), en);
 
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfoestrella1995eldolfzapateromartinez@mymail.com");
-        u.setContraseniaEmpleado("Dan123");
-        assertEquals(empleado.validarCorreo(u.getCorreoEmpleado()), en);
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfoestrella1995eldolfzapateromartinez@mymail.com");
+        u.setContrasenia("Dan123");
+        assertEquals(empleado.validarCorreo(u.getCorreo()), en);
 
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfo#mymail.com");
-        u.setContraseniaEmpleado("Dan123");
-        assertEquals(empleado.validarCorreo(u.getCorreoEmpleado()), en);
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfo#mymail.com");
+        u.setContrasenia("Dan123");
+        assertEquals(empleado.validarCorreo(u.getCorreo()), en);
 
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfo@mymailcom");
-        u.setContraseniaEmpleado("Dan123");
-        assertEquals(empleado.validarCorreo(u.getCorreoEmpleado()), en);
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfo@mymailcom");
+        u.setContrasenia("Dan123");
+        assertEquals(empleado.validarCorreo(u.getCorreo()), en);
 
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfomymailcom");
-        u.setContraseniaEmpleado("Dan123");
-        assertEquals(empleado.validarCorreo(u.getCorreoEmpleado()), en);
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfomymailcom");
+        u.setContrasenia("Dan123");
+        assertEquals(empleado.validarCorreo(u.getCorreo()), en);
 
     }
 
@@ -232,55 +232,55 @@ public class TestRegistrarEmpleado {
     public void Contrasenia() {
 
         Empleado u = new Empleado();
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfo@mymail.com");
-        u.setContraseniaEmpleado("Dan1");
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfo@mymail.com");
+        u.setContrasenia("Dan1");
 
-        assertEquals(empleado.validarLongitudContrasenia(u.getContraseniaEmpleado()), con);
+        assertEquals(empleado.validarLongitudContrasenia(u.getContrasenia()), con);
 
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfo@mymail.com");
-        u.setContraseniaEmpleado("Dani12345678901234567");
-        assertEquals(empleado.validarLongitudContrasenia(u.getContraseniaEmpleado()), con);
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfo@mymail.com");
+        u.setContrasenia("Dani12345678901234567");
+        assertEquals(empleado.validarLongitudContrasenia(u.getContrasenia()), con);
 
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfo@mymail.com");
-        u.setContraseniaEmpleado("dan123");
-        assertEquals(empleado.validarMayusculaContrasenia(u.getContraseniaEmpleado()), comn);
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfo@mymail.com");
+        u.setContrasenia("dan123");
+        assertEquals(empleado.validarMayusculaContrasenia(u.getContrasenia()), comn);
 
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfo@mymail.com");
-        u.setContraseniaEmpleado("Daniel");
-        assertEquals(empleado.validarNumeroContrasenia(u.getContraseniaEmpleado()), conn);
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfo@mymail.com");
+        u.setContrasenia("Daniel");
+        assertEquals(empleado.validarNumeroContrasenia(u.getContrasenia()), conn);
     }
 
     @Test
     public void Reg_Exitoso() {
 
         Empleado u = new Empleado();
-        u.setNombreEmpleado("Santiago");
-        u.setApellidoEmpleado("Galindo");
-        u.setCedulaEmpleado("198765432");
-        u.setTelefonoEmpleado("31386946978");
-        u.setDireccionEmpleado("Calle 59, No 98 - 32");
-        u.setCorreoEmpleado("santiago@mymail.com");
-        u.setContraseniaEmpleado("San123");
+        u.setNombreempleado("Santiago");
+        u.setApellidoempleado("Galindo");
+        u.setCedulaempleado("198765432");
+        u.setTelefono("31386946978");
+        u.setDireccionempleado("Calle 59, No 98 - 32");
+        u.setCorreo("santiago@mymail.com");
+        u.setContrasenia("San123");
         assertEquals(empleado.validarDatos(u), re);
 
     }
@@ -289,13 +289,13 @@ public class TestRegistrarEmpleado {
     public void Ya_Registrado() {
 
         Empleado u = new Empleado();
-        u.setNombreEmpleado("Daniel");
-        u.setApellidoEmpleado("Corredor");
-        u.setCedulaEmpleado("123456789");
-        u.setTelefonoEmpleado("12345678");
-        u.setDireccionEmpleado("Carrera 32 No 78b");
-        u.setCorreoEmpleado("adolfo@mymail.com");
-        u.setContraseniaEmpleado("Dan123");
+        u.setNombreempleado("Daniel");
+        u.setApellidoempleado("Corredor");
+        u.setCedulaempleado("123456789");
+        u.setTelefono("12345678");
+        u.setDireccionempleado("Carrera 32 No 78b");
+        u.setCorreo("adolfo@mymail.com");
+        u.setContrasenia("Dan123");
         assertEquals(empleado.validarDatos(u), rs);
     }
 
