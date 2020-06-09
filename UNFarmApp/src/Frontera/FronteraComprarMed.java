@@ -7,6 +7,7 @@ import Entidad.CompramedicamentoPK;
 import Entidad.Empleado;
 import Entidad.Medicamento;
 import Entidad.Medicamentoinvima;
+import DAO.MedicamentoDAO;
 import Recursos.Funciones;
 import java.awt.Graphics;
 import java.sql.Date;
@@ -25,6 +26,8 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     Long PrecioTotal = Long.valueOf("0");
     DefaultTableModel modelo, modelo1;
     ComprarMedicamento comprarMedicamento = new ComprarMedicamento();
+    MedicamentoDAO medicamentoDAO = new MedicamentoDAO();
+    
 
     public FronteraComprarMed() {
         initComponents();
@@ -821,7 +824,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         TablaMedComprado.editCellAt(-1, -1);
         boolean hacer = true;
-
+        PrecioTotal= Long.valueOf("0");
         for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
             for (int j = 0; j < TablaMedComprado.getColumnCount(); j++) {
                 if (TablaMedComprado.getValueAt(i, 2) == null
@@ -862,7 +865,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                         cantidad.add((Short) TablaMedComprado.getValueAt(i, j));
                     }
                     if (j == 3) {
-                        Long aux = Long.parseLong(String.valueOf((Integer) TablaMedComprado.getValueAt(i, j)));
+                        Long aux = Long.parseLong(String.valueOf((Integer) TablaMedComprado.getValueAt(i, j)))*Long.parseLong(String.valueOf((Short) TablaMedComprado.getValueAt(i, j-1)));
                         precioUnit.add((Integer) TablaMedComprado.getValueAt(i, j));
                         PrecioTotal = PrecioTotal + aux;
                     }
@@ -892,6 +895,16 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                         JOptionPane.OK_OPTION,
                         f.setImageBackground("/recursos/exito.png", lb)
                 );
+                Medicamento med= null;
+                Medicamento nuevomed = null;
+                
+                for(int i=0;c.getCompramedicamentoList().size()>i; i++){
+                    med = c.getCompramedicamentoList().get(i).getMedicamento();
+                    Short nuevostock = (short)(med.getStock() + c.getCompramedicamentoList().get(i).getCantidad());
+                    nuevomed = med;
+                    nuevomed.setStock(nuevostock);
+                    medicamentoDAO.actualizar(med, nuevomed);
+                }
                 TablaMedComprado.clearSelection();
             } else {
                 JOptionPane.showMessageDialog(null,
@@ -933,7 +946,9 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                         modelo1.removeRow(eliminar[i]);
                     }
                 }
+                
             }
+            PrecioTotal= Long.valueOf("0");
             btnComprar.setText("$ Comprar");
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
