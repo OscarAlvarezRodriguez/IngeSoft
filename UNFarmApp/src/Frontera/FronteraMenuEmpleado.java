@@ -1,10 +1,12 @@
 package Frontera;
 
+import Control.AutenticarCliente;
 import Entidad.Empleado;
 import Recursos.Funciones;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 public class FronteraMenuEmpleado extends javax.swing.JPanel {
 
@@ -289,7 +291,46 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
     }//GEN-LAST:event_btnComprarActionPerformed
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        // TODO add your handling code here:
+        AutenticarCliente ac = new AutenticarCliente();
+        String cedulaCliente;
+        boolean Error = false;
+        boolean Error1 = false;
+        do {
+            if (Error) {
+                JOptionPane.showMessageDialog(null,
+                        "EL Cliente No Se Ha Encontrado"
+                        + " Por Favor Digite La Cedula",
+                        "Cliente No encontrado",
+                        JOptionPane.ERROR_MESSAGE);
+                Error = false;
+            }
+            if (Error1) {
+                JOptionPane.showMessageDialog(null,
+                        "La Cedula Debe Tener Entre 7 y 11 Caracteres",
+                        "Número cédula no válido",
+                        JOptionPane.ERROR_MESSAGE);
+                Error1 = false;
+            }
+
+            cedulaCliente = JOptionPane.showInputDialog(null,
+                    "Por Favor Ingrese La Cedula Del Cliente",
+                    "Validar Cedula",
+                    JOptionPane.INFORMATION_MESSAGE);
+            if (cedulaCliente == null) {
+                break;
+            }
+            if (ac.verificarLogin(cedulaCliente).equals("Cliente no registrado")) {
+                Error = true;
+            }
+            if (ac.validarCedula(cedulaCliente).equals("Número cédula no válido")) {
+                Error1 = true;
+            }
+            if (!Error && !Error1) {
+                break;
+            }
+
+        } while (true);
+
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed

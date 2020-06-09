@@ -1,6 +1,7 @@
 package Control;
 
 import DAO.ClienteDAO;
+import Entidad.Cliente;
 
 public class AutenticarCliente {
 
@@ -24,9 +25,16 @@ public class AutenticarCliente {
     }
 
     public String validarCedula(String cedula) {
-        if (cedula.length() > 7 && cedula.length() < 12 && cedula.matches("\\d*") && !cedula.isEmpty()) {
+        if (cedula.length() > 6 && cedula.length() < 12 && cedula.matches("\\d*") && !cedula.isEmpty()) {
             return (co);
         }
         return (cn);
+    }
+
+    public Cliente getCliente(String s) {
+        Cliente c = new Cliente();
+        ClienteDAO aO = new ClienteDAO();
+        c = aO.leer(s);
+        return c;
     }
 }
