@@ -66,8 +66,7 @@ public class Factura implements Serializable {
         this.idfactura = idfactura;
     }
 
-    public Factura(Integer idfactura, long preciototal, Date fecha) {
-        this.idfactura = idfactura;
+    public Factura(long preciototal, Date fecha) {
         this.preciototal = preciototal;
         this.fecha = fecha;
     }

@@ -330,6 +330,9 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
             }
 
         } while (true);
+        
+        App.getInstance().framePrincipal.venderMed.setNombreUsuario(e, new DAO.ClienteDAO().leer(cedulaCliente));
+        App.getInstance().ChangePanel(FramePrincipal.INTFronteraVenderMed);
 
     }//GEN-LAST:event_btnVenderActionPerformed
 
@@ -337,6 +340,7 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
         int i = JOptionPane.showConfirmDialog(null, "¿Seguro Desea Salir?", "Cerrar Sesion", JOptionPane.YES_NO_OPTION);
         if (i == JOptionPane.YES_OPTION) {
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
+            
         }
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
