@@ -1,14 +1,7 @@
 package Control;
 
-import DAO.CompraDAO;
 import DAO.MedicamentoDAO;
 import DAO.VenderDAO;
-import Entidad.Cliente;
-import Entidad.Compra;
-import Entidad.Compramedicamento;
-import Entidad.CompramedicamentoPK;
-import Entidad.Drogueria;
-import Entidad.Empleado;
 import Entidad.Factura;
 import Entidad.Facturamedicamentos;
 import Entidad.Medicamento;
@@ -19,12 +12,42 @@ public class VenderMed {
 
     private MedicamentoDAO medicamentoDao = new MedicamentoDAO();
     private VenderDAO aO = new VenderDAO();
+    private final String ci = "Cantidad del medicamento no permitida";
+    private final String si = "La compra excede el límite del precio";
+    private final String co = "Correcto";
+    private final String fg = "Factura Generada Exitosamente";
 
-    public boolean validarCliente(String nombre) {
-        if (nombre.length() > 4 && nombre.length() < 33 && !nombre.isEmpty()) {
-            return true;
+    public VenderMed(){
+    }
+    
+    public String validarDatos(Factura venta){
+        for(int i=0; i<venta.getFacturamedicamentosList().size(); i++){
+            if(!validarCantidad(venta.getFacturamedicamentosList().get(i).getCantidadvendida()).equals(co)){
+                return(ci);
+            }
         }
-        return false;
+        if(!validarPrecio(venta.getPreciototal()).equals(co)){
+            return(si);
+        }
+        int id = aO.crear(venta);
+        if(id < 0){
+            return("Error generación de ID");
+        }
+        return(fg);
+    }
+    
+    public String validarCantidad(short cantidad){
+        if (cantidad <= 2000){
+            return (co);
+        }
+        return(ci);
+    }
+    
+    public String validarPrecio(long precio){
+        if (precio < 10000000){
+            return (co);
+        }
+        return(si);
     }
 
     public List<Medicamento> obtenerTodosMedicamentos() {

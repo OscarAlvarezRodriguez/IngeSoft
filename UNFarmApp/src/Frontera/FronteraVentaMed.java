@@ -741,16 +741,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
     }//GEN-LAST:event_txtProvKeyTyped
 
     private void txtProvFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProvFocusLost
-        if (!txtProv.getText().equals("")) {
-            if (!venderMed.validarCliente(txtProv.getText())) {
-                JOptionPane.showMessageDialog(null,
-                        "El Proveedor Debe Tener Entre 5 y 32 Caracteres",
-                        "Longitud Proveedor No Válido",
-                        JOptionPane.ERROR_MESSAGE);
-                txtProv.setBackground(f.fondoTxtError);
 
-            }
-        }
     }//GEN-LAST:event_txtProvFocusLost
 
     private void txtProvFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProvFocusGained
