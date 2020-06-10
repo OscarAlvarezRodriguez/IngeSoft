@@ -597,7 +597,23 @@ public class FronteraGestionMed extends javax.swing.JPanel {
     }//GEN-LAST:event_txtClienteKeyTyped
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-
+        int[] i = tablaMed.getSelectedRows();
+        if (i.length == 0) {
+            JOptionPane.showMessageDialog(null,
+                    "Ningun Elemento Seleccionado\n"
+                    + " Por Favor Selecione Algun Cliente Todos Los Campos",
+                    "Selccion Vacia",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+            int in = JOptionPane.showConfirmDialog(null, "¿Seguro Desea Elimiar " + (String) tablaMed.getValueAt(i[0], 1) + " ?", "Elimiar Medicamento", JOptionPane.YES_NO_OPTION);
+            if (in == JOptionPane.YES_OPTION) {
+                Medicamento viejo = medicamentoDAO.leer((Short) tablaMed.getValueAt(i[0], 0));
+                Medicamento nuevo = viejo;
+                nuevo.setStock(Short.valueOf("-1"));
+                medicamentoDAO.actualizar(viejo, nuevo);
+                search();
+            }
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtMedFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMedFocusGained
@@ -688,14 +704,14 @@ public class FronteraGestionMed extends javax.swing.JPanel {
                     (Short) tablaMed.getValueAt(i[0], 6));
             m.setIdmedicamentoinvima(medicamentoinvima);
             m.setIdmedicamento((Short) tablaMed.getValueAt(i[0], 0));
-            App.getInstance().framePrincipal.editMeidcamento.Init(m);
+            App.getInstance().framePrincipal.editMedicamento.Init(m);
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraEditMedicamento);
             allSetEmpty();
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
+        App.getInstance().ChangePanel(FramePrincipal.INTFronteraAgregarMed);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void jlSalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseReleased

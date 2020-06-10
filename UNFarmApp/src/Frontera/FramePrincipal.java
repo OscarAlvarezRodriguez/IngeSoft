@@ -2,7 +2,6 @@ package Frontera;
 
 import Recursos.Funciones;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class FramePrincipal extends javax.swing.JFrame {
 
@@ -30,6 +29,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     public static final int INTFronteraGestionarCliente = 10;
     public static final int INTFronteraVenderMed = 11;
     public static final int INTFronteraEditMedicamento = 12;
+    public static final int INTFronteraAgregarMed = 13;
 
     FronteraSplash splash;
     FronteraRegEmpleado empleado = new FronteraRegEmpleado();
@@ -42,11 +42,11 @@ public class FramePrincipal extends javax.swing.JFrame {
     FronteraComprarMed ComprarMed = new FronteraComprarMed();
     FronteraGestionarClientes gestionClientes = new FronteraGestionarClientes();
     FronteraVentaMed venderMed = new FronteraVentaMed();
-    FronteraEditMeicamento editMeidcamento = new FronteraEditMeicamento();
+    FronteraEditMeicamento editMedicamento = new FronteraEditMeicamento();
+    FronteraAgregarMed agregarMed =  new FronteraAgregarMed();
     Funciones f = new Funciones();
 
     JLabel logo = new JLabel();
-
     void ChangePanel(int n) {
         //All Frames are Visible(false)
         this.setVisible(true);
@@ -61,7 +61,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         ComprarMed.setVisible(false);
         gestionClientes.setVisible(false);
         venderMed.setVisible(false);
-        editMeidcamento.setVisible(false);
+        editMedicamento.setVisible(false);
+        agregarMed.setVisible(false);
 
         switch (n) {
             case INTFronteraEmpleado:
@@ -110,8 +111,12 @@ public class FramePrincipal extends javax.swing.JFrame {
                 scroll.setViewportView(venderMed);
                 break;
             case INTFronteraEditMedicamento:
-                editMeidcamento.setVisible(true);
-                scroll.setViewportView(editMeidcamento);
+                editMedicamento.setVisible(true);
+                scroll.setViewportView(editMedicamento);
+                break;
+            case INTFronteraAgregarMed:
+                agregarMed.setVisible(true);
+                scroll.setViewportView(agregarMed);
                 break;
             default:
                 break;

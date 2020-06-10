@@ -1,18 +1,13 @@
 package Frontera;
 
-import Control.VenderMed;
-import Entidad.Cliente;
+import Control.AgregarMedicamento;
 import Entidad.Compramedicamento;
 import Entidad.Empleado;
-import Entidad.Factura;
-import Entidad.Facturamedicamentos;
-import Entidad.FacturamedicamentosPK;
 import Entidad.Medicamento;
 import Entidad.Medicamentoinvima;
+import DAO.MedicamentoDAO;
 import Recursos.Funciones;
 import java.awt.Graphics;
-import java.sql.Date;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -20,17 +15,16 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class FronteraVentaMed extends javax.swing.JPanel {
+public class FronteraAgregarMed extends javax.swing.JPanel {
 
     Funciones f = new Funciones();
     ArrayList<Compramedicamento> compras = new ArrayList<>();
     Long PrecioTotal = Long.valueOf("0");
     DefaultTableModel modelo, modelo1;
-    VenderMed venderMed = new VenderMed();
-    Empleado empleado;
-    Cliente globClient;
+    AgregarMedicamento agregarMedicamento = new AgregarMedicamento();
+    MedicamentoDAO medicamentoDAO = new MedicamentoDAO();
 
-    public FronteraVentaMed() {
+    public FronteraAgregarMed() {
         initComponents();
         allSetEmpty();
         CrearModelo();
@@ -44,27 +38,19 @@ public class FronteraVentaMed extends javax.swing.JPanel {
 
     }
 
-    public void setNombreUsuario(Empleado em, Cliente client) {
-        if (em != null && client != null) {
-
+    public void setNombreUsuario(Empleado em) {
+        if (em != null) {
             jlNombre.setText(em.getNombreempleado() + " " + em.getApellidoempleado());
-            txtProv.setText(client.getNombre() + " " + client.getApellido());
-            txtProv.setEditable(false);
-            empleado = em;
-            globClient = client;
         }
     }
 
     public void allSetEmpty() {
-
-        txtProv.setText("");
         txtDescripcion.setText("");
         txtTitular.setText("");
         txtMed.setText("");
         txtPresentacion.setText("");
         txtPrinAct.setText("");
         txtTitular.setText("");
-        f.setStyleJTextField(txtProv);
         f.setStyleJTextField(txtTitular);
         f.setStyleJTextField(txtMed);
         f.setStyleJTextField(txtPresentacion);
@@ -75,10 +61,10 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         f.setStyleJButonBack(jlSalir);
         f.setStyleJButon(btnCerrarSesion);
         f.setStyleJButon(btnBorrar);
-        f.setStyleJButon(btnComprar);
+        f.setStyleJButon(btnRegistrar);
         f.setStyleJButon(btnAgregar);
         f.setStyleJTable(tablaMed, ScrollTablaMed);
-        f.setStyleJTable(TablaMedComprado, ScrollMedComprado);
+        f.setStyleJTable(tablaMedSelec, ScrollMedComprado);
         f.setStyleJLabel(jlMed);
         f.setStyleJLabel(jlMedSel);
 
@@ -129,18 +115,16 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                     null, new String[]{
                         "ID",
                         "Medicamento",
-                        "Cantidad Comprada",
-                        "Precio Unitario + IVA"}) {
+                        "Precio De Venta"
+                    }) {
                 Class[] types = new Class[]{
                     java.lang.Short.class,
                     java.lang.String.class,
-                    java.lang.Short.class,
                     java.lang.Integer.class
                 };
                 boolean[] canEdit = new boolean[]{
                     false,
                     false,
-                    true,
                     true
                 };
 
@@ -157,7 +141,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
             });
 
             tablaMed.setModel(modelo);
-            TablaMedComprado.setModel(modelo1);
+            tablaMedSelec.setModel(modelo1);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString() + "error2");
         }
@@ -171,34 +155,35 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                 txtMed.getText(),
                 txtTitular.getText(),
                 txtDescripcion.getText(),
-                txtPresentacion.getText(), txtPrinAct.getText());
+                txtPresentacion.getText(),
+                txtPrinAct.getText());
         Medicamento m = new Medicamento();
         m.setIdmedicamentoinvima(mi);
-        List<Medicamento> listaClientes = venderMed.filtrarMedicamentos(m);
+        List<Medicamentoinvima> listaClientes = agregarMedicamento.leerTodos(mi);
         Object object[] = null;
         for (int i = 0; i < listaClientes.size(); i++) {
             modelo.addRow(object);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamento(), i, 0);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getNombremedicamento(), i, 1);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getTitular(), i, 2);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getDescripcion(), i, 3);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPrincipioactivo(), i, 4);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPresentacion(), i, 5);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima(), i, 0);
+            modelo.setValueAt(listaClientes.get(i).getNombremedicamento(), i, 1);
+            modelo.setValueAt(listaClientes.get(i).getTitular(), i, 2);
+            modelo.setValueAt(listaClientes.get(i).getDescripcion(), i, 3);
+            modelo.setValueAt(listaClientes.get(i).getPrincipioactivo(), i, 4);
+            modelo.setValueAt(listaClientes.get(i).getPresentacion(), i, 5);
         }
     }
 
     private void cargar() {
 
-        List<Medicamento> listaClientes = venderMed.obtenerTodosMedicamentos();
+        List<Medicamentoinvima> listaClientes = agregarMedicamento.leerTodos();
         Object object[] = null;
         for (int i = 0; i < listaClientes.size(); i++) {
             modelo.addRow(object);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamento(), i, 0);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getNombremedicamento(), i, 1);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getTitular(), i, 2);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getDescripcion(), i, 3);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPrincipioactivo(), i, 4);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPresentacion(), i, 5);
+            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima(), i, 0);
+            modelo.setValueAt(listaClientes.get(i).getNombremedicamento(), i, 1);
+            modelo.setValueAt(listaClientes.get(i).getTitular(), i, 2);
+            modelo.setValueAt(listaClientes.get(i).getDescripcion(), i, 3);
+            modelo.setValueAt(listaClientes.get(i).getPrincipioactivo(), i, 4);
+            modelo.setValueAt(listaClientes.get(i).getPresentacion(), i, 5);
         }
     }
 
@@ -221,8 +206,6 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         txtPresentacion = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtProv = new javax.swing.JTextField();
         btnCerrarSesion = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtMed = new javax.swing.JTextField();
@@ -235,9 +218,9 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         ScrollDes = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
         ScrollMedComprado = new javax.swing.JScrollPane();
-        TablaMedComprado = new javax.swing.JTable();
+        tablaMedSelec = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
-        btnComprar = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jlMedSel = new javax.swing.JLabel();
@@ -245,8 +228,10 @@ public class FronteraVentaMed extends javax.swing.JPanel {
 
         setMinimumSize(new java.awt.Dimension(0, 0));
         setPreferredSize(new java.awt.Dimension(1030, 1000));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jlLogo.setPreferredSize(new java.awt.Dimension(100, 100));
+        add(jlLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 11, -1, -1));
 
         jlSalir.setPreferredSize(new java.awt.Dimension(60, 60));
         jlSalir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -254,14 +239,17 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                 jlSalirMouseReleased(evt);
             }
         });
+        add(jlSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         jlNombre.setFont(new java.awt.Font("Leelawadee", 0, 22)); // NOI18N
         jlNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlNombre.setText("\"Nombre de Usuario Actual\"");
         jlNombre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlNombre.setPreferredSize(new java.awt.Dimension(300, 50));
+        add(jlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 1020, 20));
 
         jlUsuario.setPreferredSize(new java.awt.Dimension(150, 150));
+        add(jlUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 52, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -269,6 +257,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         jLabel2.setText("Tipo de Presentacion");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel2.setPreferredSize(new java.awt.Dimension(170, 30));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, -1, -1));
 
         txtPresentacion.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtPresentacion.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -291,6 +280,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                 txtPresentacionKeyTyped(evt);
             }
         });
+        add(txtPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 320, -1, -1));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -298,29 +288,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         jLabel7.setText("Descripción");
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel7.setPreferredSize(new java.awt.Dimension(170, 30));
-
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("Cliente");
-        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setPreferredSize(new java.awt.Dimension(170, 30));
-
-        txtProv.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
-        txtProv.setPreferredSize(new java.awt.Dimension(300, 30));
-        txtProv.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtProvFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtProvFocusLost(evt);
-            }
-        });
-        txtProv.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtProvKeyTyped(evt);
-            }
-        });
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 370, -1, -1));
 
         btnCerrarSesion.setBackground(new java.awt.Color(0, 158, 15));
         btnCerrarSesion.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -334,6 +302,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                 btnCerrarSesionActionPerformed(evt);
             }
         });
+        add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(441, 251, 160, 29));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -341,6 +310,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         jLabel4.setText("Medicamento");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel4.setPreferredSize(new java.awt.Dimension(170, 30));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 318, -1, -1));
 
         txtMed.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtMed.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -360,6 +330,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                 txtMedKeyTyped(evt);
             }
         });
+        add(txtMed, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 317, -1, -1));
 
         txtPrinAct.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtPrinAct.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -379,6 +350,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                 txtPrinActKeyTyped(evt);
             }
         });
+        add(txtPrinAct, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, -1, -1));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -386,6 +358,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         jLabel5.setText("Principio Activo");
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel5.setPreferredSize(new java.awt.Dimension(170, 30));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -393,6 +366,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         jLabel6.setText("TItular");
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel6.setPreferredSize(new java.awt.Dimension(170, 30));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 366, -1, -1));
 
         txtTitular.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtTitular.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -412,6 +386,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                 txtTitularKeyTyped(evt);
             }
         });
+        add(txtTitular, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 366, -1, -1));
 
         ScrollTablaMed.setPreferredSize(new java.awt.Dimension(880, 150));
 
@@ -429,7 +404,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         tablaMed.setGridColor(new java.awt.Color(0, 0, 0));
         tablaMed.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         tablaMed.setMinimumSize(new java.awt.Dimension(0, 0));
-        tablaMed.setPreferredSize(new java.awt.Dimension(800, 100));
+        tablaMed.setPreferredSize(new java.awt.Dimension(800, 10000));
         tablaMed.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 tablaMedFocusGained(evt);
@@ -445,6 +420,8 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         });
         ScrollTablaMed.setViewportView(tablaMed);
 
+        add(ScrollTablaMed, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 559, -1, -1));
+
         ScrollDes.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         ScrollDes.setPreferredSize(new java.awt.Dimension(250, 114));
 
@@ -458,6 +435,8 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         });
         ScrollDes.setViewportView(txtDescripcion);
 
+        add(ScrollDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 370, -1, -1));
+
         ScrollMedComprado.setPreferredSize(new java.awt.Dimension(780, 150));
         ScrollMedComprado.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -470,7 +449,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
             }
         });
 
-        TablaMedComprado.setModel(new javax.swing.table.DefaultTableModel(
+        tablaMedSelec.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -481,27 +460,29 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        TablaMedComprado.setPreferredSize(new java.awt.Dimension(780, 100));
-        TablaMedComprado.addFocusListener(new java.awt.event.FocusAdapter() {
+        tablaMedSelec.setPreferredSize(new java.awt.Dimension(780, 10000));
+        tablaMedSelec.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                TablaMedCompradoFocusGained(evt);
+                tablaMedSelecFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                TablaMedCompradoFocusLost(evt);
+                tablaMedSelecFocusLost(evt);
             }
         });
-        TablaMedComprado.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaMedSelec.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TablaMedCompradoMouseClicked(evt);
+                tablaMedSelecMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                TablaMedCompradoMouseEntered(evt);
+                tablaMedSelecMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                TablaMedCompradoMouseExited(evt);
+                tablaMedSelecMouseExited(evt);
             }
         });
-        ScrollMedComprado.setViewportView(TablaMedComprado);
+        ScrollMedComprado.setViewportView(tablaMedSelec);
+
+        add(ScrollMedComprado, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 800, -1, -1));
 
         btnAgregar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
@@ -512,16 +493,18 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                 btnAgregarActionPerformed(evt);
             }
         });
+        add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 727, -1, -1));
 
-        btnComprar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
-        btnComprar.setForeground(new java.awt.Color(255, 255, 255));
-        btnComprar.setText("$ Comprar ");
-        btnComprar.setPreferredSize(new java.awt.Dimension(150, 30));
-        btnComprar.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
+        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnComprarActionPerformed(evt);
+                btnRegistrarActionPerformed(evt);
             }
         });
+        add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(735, 961, -1, -1));
 
         btnBorrar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         btnBorrar.setForeground(new java.awt.Color(255, 255, 255));
@@ -532,148 +515,28 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                 btnBorrarActionPerformed(evt);
             }
         });
+        add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 961, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Leelawadee", 0, 28)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Vender Medicamentos");
+        jLabel1.setText("Agregar Medicamentos");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setPreferredSize(new java.awt.Dimension(300, 50));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(362, 11, 330, 30));
 
         jlMedSel.setFont(new java.awt.Font("Leelawadee", 0, 28)); // NOI18N
         jlMedSel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlMedSel.setText("Listado de Medicamentos Seleccionados");
         jlMedSel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlMedSel.setPreferredSize(new java.awt.Dimension(300, 50));
+        add(jlMedSel, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 768, 780, 30));
 
         jlMed.setFont(new java.awt.Font("Leelawadee", 0, 28)); // NOI18N
         jlMed.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlMed.setText("Listado de Medicamentos ");
         jlMed.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlMed.setPreferredSize(new java.awt.Dimension(300, 50));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(292, 292, 292)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(228, 228, 228)
-                .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 1020, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(441, 441, 441)
-                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(txtMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(txtProv, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPrinAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(ScrollDes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(jlMed, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(ScrollTablaMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(429, 429, 429)
-                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addComponent(jlMedSel, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addComponent(ScrollMedComprado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(480, 480, 480)
-                .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtProv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(txtPrinAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19)
-                        .addComponent(txtPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(ScrollDes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addComponent(jlMed, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(ScrollTablaMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jlMedSel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(ScrollMedComprado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
+        add(jlMed, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 523, 880, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyReleased
@@ -736,21 +599,6 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
-    private void txtProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProvKeyTyped
-
-    }//GEN-LAST:event_txtProvKeyTyped
-
-    private void txtProvFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProvFocusLost
-
-    }//GEN-LAST:event_txtProvFocusLost
-
-    private void txtProvFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProvFocusGained
-        if (txtProv.getBackground().equals(f.fondoTxtError)) {
-            txtProv.setBackground(f.fondoTxt);
-            txtProv.setText("");
-        }
-    }//GEN-LAST:event_txtProvFocusGained
-
     private void txtPresentacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPresentacionKeyTyped
         char c = evt.getKeyChar();
         if (!Character.isLetter(c) && c != 32) {
@@ -795,123 +643,82 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         } else {
             for (int i = 0; i < seleccionar.length; i++) {
                 boolean esta = false;
-                for (int j = 0; j < TablaMedComprado.getRowCount(); j++) {
-                    if (tablaMed.getValueAt(seleccionar[i], 0) == TablaMedComprado.getValueAt(j, 0)) {
+                for (int j = 0; j < tablaMedSelec.getRowCount(); j++) {
+                    if (tablaMed.getValueAt(seleccionar[i], 0) == tablaMedSelec.getValueAt(j, 0)) {
                         esta = true;
-                        JOptionPane.showMessageDialog(null, tablaMed.getValueAt(seleccionar[i], 1) + " Ya Esta Agregado",
-                                "Medicamento Ya Agregado",
-                                JOptionPane.ERROR_MESSAGE);
                         break;
                     }
                 }
                 if (!esta) {
-                    int rows = TablaMedComprado.getRowCount();
+                    int rows = tablaMedSelec.getRowCount();
                     modelo1.addRow(object);
                     modelo1.setValueAt(tablaMed.getValueAt(seleccionar[i], 0), rows, 0);
                     modelo1.setValueAt(tablaMed.getValueAt(seleccionar[i], 1), rows, 1);
-                    modelo1.setValueAt(Short.valueOf("0"), rows, 2);
-                    modelo1.setValueAt(0, rows, 3);
+                    modelo1.setValueAt(0, rows, 2);
                 }
             }
         }
         tablaMed.clearSelection();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
-        TablaMedComprado.editCellAt(-1, -1);
-        boolean hacer = true;
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
 
-        for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
-            for (int j = 0; j < TablaMedComprado.getColumnCount(); j++) {
-                if (TablaMedComprado.getValueAt(i, 2) == null
-                        || TablaMedComprado.getValueAt(i, 3) == null) {
-                    JOptionPane.showMessageDialog(null,
-                            "Algun Espacio Esta Vacio, Por Favor Diligrncie Todos Los Campos",
-                            "Campos Vacios",
-                            JOptionPane.ERROR_MESSAGE);
-                    hacer = false;
-                    break;
-                }
-                if ((Short) TablaMedComprado.getValueAt(i, 2) <= 0
-                        || (int) TablaMedComprado.getValueAt(i, 3) <= 0
-                        || txtProv.getText().length() == 0) {
-                    JOptionPane.showMessageDialog(null,
-                            "El Precio Y La Cantidad No Pueden Ser Menores O Iguales A Cero "
-                            + "\n El Provedor Debe Estar Diligenciado",
-                            "Datos Incorrectos",
-                            JOptionPane.ERROR_MESSAGE);
-                    hacer = false;
-                    break;
-                }
-            }
-            if (!hacer) {
-                break;
-            }
-        }
-        if (hacer) {
-            ArrayList<Short> cantidad = new ArrayList<>();
-            ArrayList<Short> ID = new ArrayList<>();
-            ArrayList<Integer> precioUnit = new ArrayList<>();
-            for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
-                for (int j = 0; j < TablaMedComprado.getColumnCount(); j++) {
-                    if (j == 0) {
-                        ID.add((Short) TablaMedComprado.getValueAt(i, j));
-                    }
-                    if (j == 2) {
-                        cantidad.add((Short) TablaMedComprado.getValueAt(i, j));
-                    }
-                    if (j == 3) {
-                        Long aux = Long.parseLong(String.valueOf((Integer) TablaMedComprado.getValueAt(i, j)));
-                        precioUnit.add((Integer) TablaMedComprado.getValueAt(i, j));
-                        PrecioTotal = PrecioTotal + aux;
-                    }
-                    Compramedicamento c = new Compramedicamento(
-                            (Integer) TablaMedComprado.getValueAt(i, 3),
-                            (Short) TablaMedComprado.getValueAt(i, 2));
-                    compras.add(c);
-                }
-
-            }
-            if (venderMed.vender(cantidad, ID)) {
-                Date date = new Date(System.currentTimeMillis());
-                Factura c = new Factura(PrecioTotal, date);
-                c.setCedulacliente(globClient);
-                c.setCedulaempleado(empleado);
-                c.setNitdrogueria(new DAO.DrogueriaDAO().leer());
-                int IDCompra = venderMed.registrarFactura(c);
-                for (int i = 0; i < ID.size(); i++) {
-
-                    FacturamedicamentosPK PK = new FacturamedicamentosPK(ID.get(i), IDCompra);
-                    Facturamedicamentos cm = new Facturamedicamentos(PK);
-
-                    cm.setCantidadvendida(cantidad.get(i));
-
-                    venderMed.RegistrarFacturaMed(cm);
-
-                }
-                JLabel lb = new JLabel();
-                lb.setSize(50, 50);
+        for (int i = 0; i < tablaMedSelec.getRowCount(); i++) {
+            if (agregarMedicamento.validarPrecioventa((Integer) tablaMedSelec.getValueAt(i, 2)).equals("Precio fuera de rango")) {
                 JOptionPane.showMessageDialog(null,
-                        "La Compra Se Ha Registrado Satisfactoriamente",
-                        "Compra Exitosa",
-                        JOptionPane.OK_OPTION,
-                        f.setImageBackground("/recursos/exito.png", lb)
-                );
-                TablaMedComprado.clearSelection();
-            } else {
-                JOptionPane.showMessageDialog(null,
-                        "La Lista Esta Vacia, Por Favor Agregue Algun Medicamento",
-                        "Lista Vacia",
+                        "el precio de" + (String) tablaMedSelec.getValueAt(i, 1) + " debe estar entre 100 y 10.000.000 de pesos",
+                        "recio fuera de rango",
                         JOptionPane.ERROR_MESSAGE);
+            } else {
+                Medicamentoinvima medicamentoinvima = agregarMedicamento.leerMed(String.valueOf((Short) tablaMedSelec.getValueAt(i, 0)));
+                Medicamento medicamento = new Medicamento(Short.valueOf("0"));
+                medicamento.setIdmedicamentoinvima(medicamentoinvima);
+                switch (agregarMedicamento.validarDatos(medicamento)) {
+                    case "Medicamento ya agregado":
+                        JOptionPane.showMessageDialog(null,
+                                (String) tablaMedSelec.getValueAt(i, 1) + " Ya Esta Regitrado",
+                                "Medicamento ya agregado",
+                                JOptionPane.ERROR_MESSAGE);
+                        break;
+                    case "Medicamento restaurado": {
+                        JLabel lb = new JLabel();
+                        lb.setSize(50, 50);
+                        JOptionPane.showMessageDialog(null,
+                                (String) tablaMedSelec.getValueAt(i, 1) + " Ha Sido Restaurado",
+                                "Medicamento restauradoo",
+                                JOptionPane.OK_OPTION,
+                                f.setImageBackground("/recursos/exito.png", lb));
+                        break;
+                    }
+                    case "Error al restaurar medicamento":
+                        JOptionPane.showMessageDialog(null,
+                                (String) tablaMedSelec.getValueAt(i, 1) + " No Se Ha Podido Restaurar",
+                                "Medicamento ya agregado",
+                                JOptionPane.ERROR_MESSAGE);
+                        break;
+                    case "Medicamento agregado exitosamente": {
+                        JLabel lb = new JLabel();
+                        lb.setSize(50, 50);
+                        JOptionPane.showMessageDialog(null,
+                                (String) tablaMedSelec.getValueAt(i, 1) + " Ha Sido Agregado Exitosamente",
+                                "Medicamento restauradoo",
+                                JOptionPane.OK_OPTION,
+                                f.setImageBackground("/recursos/exito.png", lb));
+                        break;
+                    }
+                    default:
+                        break;
+                }
             }
         }
-    }//GEN-LAST:event_btnComprarActionPerformed
+
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        int[] eliminar = TablaMedComprado.getSelectedRows();
+        int[] eliminar = tablaMedSelec.getSelectedRows();
         int cofirmacion;
-        TablaMedComprado.editCellAt(-1, -1);
-        if (TablaMedComprado.getRowCount() == 0) {
+        tablaMedSelec.editCellAt(-1, -1);
+        if (tablaMedSelec.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null,
                     "No Hay Medicamentos En La Tabla\n Por Favor Agregue Un Medicamento",
                     "Ninguna Seleccion",
@@ -938,8 +745,10 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                         modelo1.removeRow(eliminar[i]);
                     }
                 }
+
             }
-            btnComprar.setText("$ Comprar");
+            PrecioTotal = Long.valueOf("0");
+            btnRegistrar.setText("$ Comprar");
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
@@ -948,50 +757,31 @@ public class FronteraVentaMed extends javax.swing.JPanel {
 
     }//GEN-LAST:event_tablaMedFocusLost
 
-    private void TablaMedCompradoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TablaMedCompradoFocusLost
+    private void tablaMedSelecFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tablaMedSelecFocusLost
 
 
-    }//GEN-LAST:event_TablaMedCompradoFocusLost
+    }//GEN-LAST:event_tablaMedSelecFocusLost
 
     private void tablaMedFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tablaMedFocusGained
 
 
     }//GEN-LAST:event_tablaMedFocusGained
 
-    private void TablaMedCompradoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TablaMedCompradoFocusGained
+    private void tablaMedSelecFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tablaMedSelecFocusGained
 
-    }//GEN-LAST:event_TablaMedCompradoFocusGained
+    }//GEN-LAST:event_tablaMedSelecFocusGained
 
-    private void TablaMedCompradoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedCompradoMouseClicked
-        if (evt.getClickCount() == 1) {
-            long valor = 0;
-            for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
-                if (TablaMedComprado.getValueAt(i, 3) != null && TablaMedComprado.getValueAt(i, 2) != null) {
-                    valor = valor + ((Integer) TablaMedComprado.getValueAt(i, 3) * (Short) TablaMedComprado.getValueAt(i, 2));
-                }
-            }
-            btnComprar.setText("$ " + new DecimalFormat("##,###,###").format(valor));
+    private void tablaMedSelecMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMedSelecMouseClicked
 
-        }
+    }//GEN-LAST:event_tablaMedSelecMouseClicked
 
-    }//GEN-LAST:event_TablaMedCompradoMouseClicked
+    private void tablaMedSelecMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMedSelecMouseEntered
 
-    private void TablaMedCompradoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedCompradoMouseEntered
+    }//GEN-LAST:event_tablaMedSelecMouseEntered
 
-    }//GEN-LAST:event_TablaMedCompradoMouseEntered
+    private void tablaMedSelecMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMedSelecMouseExited
 
-    private void TablaMedCompradoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedCompradoMouseExited
-        if (evt.getClickCount() == 1) {
-            long valor = 0;
-            for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
-                if (TablaMedComprado.getValueAt(i, 3) != null && TablaMedComprado.getValueAt(i, 2) != null) {
-                    valor = valor + ((Integer) TablaMedComprado.getValueAt(i, 3) * (Short) TablaMedComprado.getValueAt(i, 2));
-                }
-            }
-            btnComprar.setText("$ " + new DecimalFormat("##,###,###").format(valor));
-
-        }
-    }//GEN-LAST:event_TablaMedCompradoMouseExited
+    }//GEN-LAST:event_tablaMedSelecMouseExited
 
     private void ScrollMedCompradoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ScrollMedCompradoFocusLost
 
@@ -1010,14 +800,12 @@ public class FronteraVentaMed extends javax.swing.JPanel {
     private javax.swing.JScrollPane ScrollDes;
     private javax.swing.JScrollPane ScrollMedComprado;
     private javax.swing.JScrollPane ScrollTablaMed;
-    private javax.swing.JTable TablaMedComprado;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnCerrarSesion;
-    private javax.swing.JButton btnComprar;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1029,11 +817,11 @@ public class FronteraVentaMed extends javax.swing.JPanel {
     private javax.swing.JLabel jlSalir;
     private javax.swing.JLabel jlUsuario;
     private javax.swing.JTable tablaMed;
+    private javax.swing.JTable tablaMedSelec;
     private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextField txtMed;
     private javax.swing.JTextField txtPresentacion;
     private javax.swing.JTextField txtPrinAct;
-    private javax.swing.JTextField txtProv;
     private javax.swing.JTextField txtTitular;
     // End of variables declaration//GEN-END:variables
 }

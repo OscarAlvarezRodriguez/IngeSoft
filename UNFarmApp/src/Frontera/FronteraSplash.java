@@ -93,7 +93,7 @@ public class FronteraSplash extends javax.swing.JPanel implements Runnable {
                 tiempo = null;
                 Thread.sleep(2000);
                 if (ddao.leer() != null) {
-                    App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
+                    App.getInstance().ChangePanel(FramePrincipal.INTFronteraGestionMed);
                     App.getInstance().framePrincipal.autenticarEmpleado.allSetEmpty();
                     break;
                 } else {

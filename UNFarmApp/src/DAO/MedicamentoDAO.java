@@ -7,6 +7,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import Entidad.Medicamento;
 import java.util.List;
+import javax.persistence.NoResultException;
 
 public class MedicamentoDAO {
 
@@ -143,14 +144,14 @@ public class MedicamentoDAO {
     public Medicamento existencia(short idInvima) {
         EntityManager em = emf.createEntityManager();
         Medicamento med = null;
-        Query q = em.createQuery("SELECT m FROM Medicamento m WHERE m.idmedicamentoinvima= :idmedicamentoinvima")
+        Query q = em.createQuery("SELECT m FROM Medicamento m WHERE m.idmedicamentoinvima.idmedicamentoinvima = :idmedicamentoinvima")
                 .setParameter("idmedicamentoinvima", idInvima);
         try {
             med = (Medicamento) q.getSingleResult();
         } catch (NonUniqueResultException e) {
             med = (Medicamento) q.getResultList().get(0);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (NoResultException ae) {
+            med = null;
         } finally {
             em.close();
         }
