@@ -1,4 +1,3 @@
-
 package Sprint2;
 
 import Control.AgregarMedicamento;
@@ -12,95 +11,78 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TestAgregarMedicamento {
+
     private final AgregarMedicamento medicamento = new AgregarMedicamento();
     private final String ma = "Medicamento ya agregado";
     private final String me = "Medicamento agregado exitosamente";
     private final String pi = "Precio fuera de rango";
     private final String mre = "Error al restaurar medicamento";
     private Medicamentoinvima idmediMedicamentoinvima = new Medicamentoinvima();
-    
-    public TestAgregarMedicamento() {       
+
+    public TestAgregarMedicamento() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
-     @Test
-    public void AgregadoExistoso() {
-    
-    Medicamento m = new Medicamento();
-    m.setPrecioventa(20000);
-    m.setStock((short)50);
-    idmediMedicamentoinvima.setDescripcion("MULTIPACK X 10 EN LOS ENVASES PLASTICOS DE 100 ML");
-    idmediMedicamentoinvima.setIdmedicamentoinvima((short)20);
-    idmediMedicamentoinvima.setNombremedicamento("OMNIPAQUE® 300 MG I / ML");
-    idmediMedicamentoinvima.setPresentacion("SOLUCION INYECTABLE");
-    idmediMedicamentoinvima.setPrincipioactivo("IOHEXOL 647.0 MG EQUIVALENTE A 300.00 MG DE YODO");
-    idmediMedicamentoinvima.setTitular("GE HEALTHCARE A.S.");
-    m.setIdmedicamentoinvima(idmediMedicamentoinvima);
-    idmediMedicamentoinvima.setMedicamento(m);
-    assertEquals(medicamento.validarDatos(m), me);
-    }
-    
+
     @Test
-    public void NoAgregado() {
-    
-    Medicamento m = new Medicamento();
-    m.setIdmedicamento((short)400);
-    m.setPrecioventa(20000);
-    m.setStock((short)50);
-    idmediMedicamentoinvima.setDescripcion("DESCRIPCION PRUEBA TEST");
-    idmediMedicamentoinvima.setIdmedicamentoinvima((short)1500);
-    idmediMedicamentoinvima.setNombremedicamento("NOMBRE PRUEBA TEST");
-    idmediMedicamentoinvima.setPresentacion("PRESENTACION PRUEBA TEST");
-    idmediMedicamentoinvima.setPrincipioactivo("PRINCIPIO ACTIVO PRUEBA TEST");
-    idmediMedicamentoinvima.setTitular("TITULAR PRUEBA TEST");
-    m.setIdmedicamentoinvima(idmediMedicamentoinvima);
-    idmediMedicamentoinvima.setMedicamento(m);
-    assertEquals(medicamento.validarDatos(m), mre);
+    public void AgregadoExistoso() {
+
+        Medicamento m = new Medicamento();
+        m.setPrecioventa(20000);
+        m.setStock((short) 50);
+        idmediMedicamentoinvima.setDescripcion("MULTIPACK X 10 EN LOS ENVASES PLASTICOS DE 100 ML");
+        idmediMedicamentoinvima.setIdmedicamentoinvima((short) 20);
+        idmediMedicamentoinvima.setNombremedicamento("OMNIPAQUE® 300 MG I / ML");
+        idmediMedicamentoinvima.setPresentacion("SOLUCION INYECTABLE");
+        idmediMedicamentoinvima.setPrincipioactivo("IOHEXOL 647.0 MG EQUIVALENTE A 300.00 MG DE YODO");
+        idmediMedicamentoinvima.setTitular("GE HEALTHCARE A.S.");
+        m.setIdmedicamentoinvima(idmediMedicamentoinvima);
+        idmediMedicamentoinvima.setMedicamento(m);
+        assertEquals(medicamento.yaAgregado(m), true);
     }
-    
+
     @Test
     public void YaAgregado() {
-    
-    Medicamento m = new Medicamento();
-    m.setIdmedicamento((short)2);
-    m.setPrecioventa(5800);
-    m.setStock((short)85);
 
-    idmediMedicamentoinvima.setDescripcion("CAJA PLEGADIZA POR 5 JERINGAS PRELLENADAS DE 0.8 ML");
-    idmediMedicamentoinvima.setIdmedicamentoinvima((short)750);
-    idmediMedicamentoinvima.setNombremedicamento("ENOXAPARINA SODICA JERINGAS PRELLENADAS 80 MG/0.8 ML");
-    idmediMedicamentoinvima.setPresentacion("SOLUCION INYECTABLE");
-    idmediMedicamentoinvima.setPrincipioactivo("ENOXOPARINA SODICA 80 MG/0.8 ML");
-    idmediMedicamentoinvima.setTitular("PHARMA LAW COLOMBIA S.A.S");
-    idmediMedicamentoinvima.setMedicamento(m);
-    m.setIdmedicamentoinvima(idmediMedicamentoinvima);
-    assertEquals(medicamento.validarDatos(m), ma);
+        Medicamento m = new Medicamento();
+        m.setIdmedicamento((short) 2);
+        m.setPrecioventa(5800);
+        m.setStock((short) 85);
+
+        idmediMedicamentoinvima.setDescripcion("CAJA PLEGADIZA POR 5 JERINGAS PRELLENADAS DE 0.8 ML");
+        idmediMedicamentoinvima.setIdmedicamentoinvima((short) 750);
+        idmediMedicamentoinvima.setNombremedicamento("ENOXAPARINA SODICA JERINGAS PRELLENADAS 80 MG/0.8 ML");
+        idmediMedicamentoinvima.setPresentacion("SOLUCION INYECTABLE");
+        idmediMedicamentoinvima.setPrincipioactivo("ENOXOPARINA SODICA 80 MG/0.8 ML");
+        idmediMedicamentoinvima.setTitular("PHARMA LAW COLOMBIA S.A.S");
+        idmediMedicamentoinvima.setMedicamento(m);
+        m.setIdmedicamentoinvima(idmediMedicamentoinvima);
+        assertEquals(medicamento.yaAgregado(m), true);
     }
-    
-    
-        @Test
+
+    @Test
     public void PrecioRango() {
-    
-    Medicamento m = new Medicamento();
-    m.setPrecioventa(99);
-    assertEquals(medicamento.validarPrecioventa(m.getPrecioventa()), pi);
-    
-    m.setPrecioventa(10000001);
-    assertEquals(medicamento.validarPrecioventa(m.getPrecioventa()), pi);
+
+        Medicamento m = new Medicamento();
+        m.setPrecioventa(99);
+        assertEquals(medicamento.validarPrecioventa(m.getPrecioventa()), pi);
+
+        m.setPrecioventa(10000001);
+        assertEquals(medicamento.validarPrecioventa(m.getPrecioventa()), pi);
     }
-    
+
 }

@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 
 public class TestComprarMedicamento {
     
-    private final ComprarMedicamento comprar = new ComprarMedicamento();
+    private ComprarMedicamento comprar = new ComprarMedicamento();
     
     public TestComprarMedicamento() {
     }

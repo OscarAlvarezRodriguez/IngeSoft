@@ -715,6 +715,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void jlSalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseReleased
+        allSetEmpty();
         App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenu);
     }//GEN-LAST:event_jlSalirMouseReleased
 

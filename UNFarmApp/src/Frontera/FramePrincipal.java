@@ -42,7 +42,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     FronteraComprarMed ComprarMed = new FronteraComprarMed();
     FronteraGestionarClientes gestionClientes = new FronteraGestionarClientes();
     FronteraVentaMed venderMed = new FronteraVentaMed();
-    FronteraEditMeicamento editMedicamento = new FronteraEditMeicamento();
+    FronteraEditMedicamento editMedicamento = new FronteraEditMedicamento();
     FronteraAgregarMed agregarMed =  new FronteraAgregarMed();
     Funciones f = new Funciones();
 

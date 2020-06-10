@@ -48,8 +48,8 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         if (em != null && client != null) {
 
             jlNombre.setText(em.getNombreempleado() + " " + em.getApellidoempleado());
-            txtProv.setText(client.getNombre() + " " + client.getApellido());
-            txtProv.setEditable(false);
+            txtCliente.setText(client.getNombre() + " " + client.getApellido());
+            txtCliente.setEditable(false);
             empleado = em;
             globClient = client;
         }
@@ -57,14 +57,14 @@ public class FronteraVentaMed extends javax.swing.JPanel {
 
     public void allSetEmpty() {
 
-        txtProv.setText("");
+        txtCliente.setText("");
         txtDescripcion.setText("");
         txtTitular.setText("");
         txtMed.setText("");
         txtPresentacion.setText("");
         txtPrinAct.setText("");
         txtTitular.setText("");
-        f.setStyleJTextField(txtProv);
+        f.setStyleJTextField(txtCliente);
         f.setStyleJTextField(txtTitular);
         f.setStyleJTextField(txtMed);
         f.setStyleJTextField(txtPresentacion);
@@ -141,7 +141,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                     false,
                     false,
                     true,
-                    true
+                    false
                 };
 
                 @Override
@@ -222,7 +222,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         txtPresentacion = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtProv = new javax.swing.JTextField();
+        txtCliente = new javax.swing.JTextField();
         btnCerrarSesion = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtMed = new javax.swing.JTextField();
@@ -306,19 +306,19 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel3.setPreferredSize(new java.awt.Dimension(170, 30));
 
-        txtProv.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
-        txtProv.setPreferredSize(new java.awt.Dimension(300, 30));
-        txtProv.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtCliente.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
+        txtCliente.setPreferredSize(new java.awt.Dimension(300, 30));
+        txtCliente.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtProvFocusGained(evt);
+                txtClienteFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtProvFocusLost(evt);
+                txtClienteFocusLost(evt);
             }
         });
-        txtProv.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCliente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtProvKeyTyped(evt);
+                txtClienteKeyTyped(evt);
             }
         });
 
@@ -515,7 +515,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
 
         btnComprar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         btnComprar.setForeground(new java.awt.Color(255, 255, 255));
-        btnComprar.setText("$ Comprar ");
+        btnComprar.setText("$ Vender");
         btnComprar.setPreferredSize(new java.awt.Dimension(150, 30));
         btnComprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -580,7 +580,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(txtProv, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(74, 74, 74)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -635,7 +635,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtProv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -736,20 +736,20 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
-    private void txtProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProvKeyTyped
+    private void txtClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClienteKeyTyped
 
-    }//GEN-LAST:event_txtProvKeyTyped
+    }//GEN-LAST:event_txtClienteKeyTyped
 
-    private void txtProvFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProvFocusLost
+    private void txtClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtClienteFocusLost
 
-    }//GEN-LAST:event_txtProvFocusLost
+    }//GEN-LAST:event_txtClienteFocusLost
 
-    private void txtProvFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProvFocusGained
-        if (txtProv.getBackground().equals(f.fondoTxtError)) {
-            txtProv.setBackground(f.fondoTxt);
-            txtProv.setText("");
+    private void txtClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtClienteFocusGained
+        if (txtCliente.getBackground().equals(f.fondoTxtError)) {
+            txtCliente.setBackground(f.fondoTxt);
+            txtCliente.setText("");
         }
-    }//GEN-LAST:event_txtProvFocusGained
+    }//GEN-LAST:event_txtClienteFocusGained
 
     private void txtPresentacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPresentacionKeyTyped
         char c = evt.getKeyChar();
@@ -810,7 +810,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                     modelo1.setValueAt(tablaMed.getValueAt(seleccionar[i], 0), rows, 0);
                     modelo1.setValueAt(tablaMed.getValueAt(seleccionar[i], 1), rows, 1);
                     modelo1.setValueAt(Short.valueOf("0"), rows, 2);
-                    modelo1.setValueAt(0, rows, 3);
+                    modelo1.setValueAt(venderMed.obtenerMed((Short) tablaMed.getValueAt(seleccionar[i], 0)).getPrecioventa(), rows, 3);
                 }
             }
         }
@@ -823,8 +823,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
 
         for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
             for (int j = 0; j < TablaMedComprado.getColumnCount(); j++) {
-                if (TablaMedComprado.getValueAt(i, 2) == null
-                        || TablaMedComprado.getValueAt(i, 3) == null) {
+                if (TablaMedComprado.getValueAt(i, 2) == null) {
                     JOptionPane.showMessageDialog(null,
                             "Algun Espacio Esta Vacio, Por Favor Diligrncie Todos Los Campos",
                             "Campos Vacios",
@@ -832,11 +831,9 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                     hacer = false;
                     break;
                 }
-                if ((Short) TablaMedComprado.getValueAt(i, 2) <= 0
-                        || (int) TablaMedComprado.getValueAt(i, 3) <= 0
-                        || txtProv.getText().length() == 0) {
+                if ((Short) TablaMedComprado.getValueAt(i, 2) <= 0) {
                     JOptionPane.showMessageDialog(null,
-                            "El Precio Y La Cantidad No Pueden Ser Menores O Iguales A Cero "
+                            "La Cantidad No Pueden Ser Menores O Iguales A Cero "
                             + "\n El Provedor Debe Estar Diligenciado",
                             "Datos Incorrectos",
                             JOptionPane.ERROR_MESSAGE);
@@ -892,8 +889,8 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                 JLabel lb = new JLabel();
                 lb.setSize(50, 50);
                 JOptionPane.showMessageDialog(null,
-                        "La Compra Se Ha Registrado Satisfactoriamente",
-                        "Compra Exitosa",
+                        "La Venta Se Ha Registrado Satisfactoriamente",
+                        "Venta Exitosa",
                         JOptionPane.OK_OPTION,
                         f.setImageBackground("/recursos/exito.png", lb)
                 );
@@ -939,7 +936,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                     }
                 }
             }
-            btnComprar.setText("$ Comprar");
+            btnComprar.setText("$ Vender");
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
@@ -1002,6 +999,8 @@ public class FronteraVentaMed extends javax.swing.JPanel {
     }//GEN-LAST:event_ScrollMedCompradoMouseExited
 
     private void jlSalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseReleased
+
+        allSetEmpty();
         App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenu);
     }//GEN-LAST:event_jlSalirMouseReleased
 
@@ -1029,11 +1028,11 @@ public class FronteraVentaMed extends javax.swing.JPanel {
     private javax.swing.JLabel jlSalir;
     private javax.swing.JLabel jlUsuario;
     private javax.swing.JTable tablaMed;
+    private javax.swing.JTextField txtCliente;
     private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextField txtMed;
     private javax.swing.JTextField txtPresentacion;
     private javax.swing.JTextField txtPrinAct;
-    private javax.swing.JTextField txtProv;
     private javax.swing.JTextField txtTitular;
     // End of variables declaration//GEN-END:variables
 }

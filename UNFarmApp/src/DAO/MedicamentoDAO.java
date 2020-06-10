@@ -20,7 +20,6 @@ public class MedicamentoDAO {
             em.persist(object);
             em.getTransaction().commit();
         } catch (Exception e) {
-            e.printStackTrace();
             em.getTransaction().rollback();
         } finally {
             em.close();

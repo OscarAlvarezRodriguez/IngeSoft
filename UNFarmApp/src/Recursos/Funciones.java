@@ -92,9 +92,9 @@ public class Funciones {
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                jb.setForeground(fondoClaro);
+                jb.setForeground(fondoNormal);
                 jb.setBackground(sinFondo);
-                jb.setBorder(new MatteBorder(4, 4, 4, 4, fondoClaro));
+                jb.setBorder(new MatteBorder(4, 4, 4, 4, fondoNormal));
 
             }
 
@@ -136,7 +136,7 @@ public class Funciones {
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                jl.setIcon(setImageBackground("/Recursos/botonSalir/salirClaro.png", jl));
+                jl.setIcon(setImageBackground("/Recursos/botonSalir/salir.png", jl));
 
             }
 

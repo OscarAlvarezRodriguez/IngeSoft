@@ -20,27 +20,6 @@ public class AgregarMedicamento {
     public AgregarMedicamento() {
     }
 
-    public String validarDatos(Medicamento droga) {
-        if (medicamentoDAO.existencia(droga.getIdmedicamentoinvima().getIdmedicamentoinvima()) != null) {
-            if (droga.getStock() == -1) {
-                short nuevostock = 0;
-                Medicamento nuevadroga = droga;
-                nuevadroga.setStock(nuevostock);
-                if (medicamentoDAO.actualizar(droga, nuevadroga)) {
-                    return (mr);
-                }
-                return (mre);
-            }
-            return (ma);
-        }
-
-        if (!validarPrecioventa(droga.getPrecioventa()).equals(co)) {
-            return (pi);
-        }
-        medicamentoDAO.crear(droga);
-        return (me);
-    }
-
     public String validarPrecioventa(int precioventa) {
         if (precioventa >= 100 && precioventa < 10000000) {
             return (co);
@@ -58,5 +37,27 @@ public class AgregarMedicamento {
 
     public Medicamentoinvima leerMed(String idMed) {
         return medicamentoinvimaDAO.leer(idMed);
+    }
+
+    public boolean yaAgregado(Medicamento m) {
+        if (m == null) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean Stock(Medicamento m) { 
+            if (m.getStock() == -1) {
+                return true;
+            } else {
+                return false;
+            }
+    }
+
+    public Medicamento registrarMed(Medicamentoinvima medicamentoinvima) {
+        Medicamento m = new Medicamento(0, (short) 0);
+        m.setIdmedicamentoinvima(medicamentoinvima);
+        medicamentoDAO.crear(m);
+        return m;
     }
 }

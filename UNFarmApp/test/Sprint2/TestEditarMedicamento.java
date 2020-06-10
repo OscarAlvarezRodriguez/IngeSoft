@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 public class TestEditarMedicamento {
     
-    private final EditarMedicamento editar = new EditarMedicamento();
+    private  EditarMedicamento editar = new EditarMedicamento();
     private final String pi = "Precio de venta fuera de rango";
     private final String se = "Cantidad no válida";
     private final String ae = "Medicamento actualizado exitosamente";

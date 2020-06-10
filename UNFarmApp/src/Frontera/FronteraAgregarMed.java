@@ -662,7 +662,7 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-
+        tablaMedSelec.editCellAt(-1, -1);
         for (int i = 0; i < tablaMedSelec.getRowCount(); i++) {
             if (agregarMedicamento.validarPrecioventa((Integer) tablaMedSelec.getValueAt(i, 2)).equals("Precio fuera de rango")) {
                 JOptionPane.showMessageDialog(null,
@@ -671,43 +671,37 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
                         JOptionPane.ERROR_MESSAGE);
             } else {
                 Medicamentoinvima medicamentoinvima = agregarMedicamento.leerMed(String.valueOf((Short) tablaMedSelec.getValueAt(i, 0)));
-                Medicamento medicamento = new Medicamento(Short.valueOf("0"));
-                medicamento.setIdmedicamentoinvima(medicamentoinvima);
-                switch (agregarMedicamento.validarDatos(medicamento)) {
-                    case "Medicamento ya agregado":
+                Medicamento medicamento = medicamentoinvima.getMedicamento();
+                
+                if (agregarMedicamento.yaAgregado(medicamento)) {
+                    if (agregarMedicamento.Stock(medicamento)) {
                         JOptionPane.showMessageDialog(null,
-                                (String) tablaMedSelec.getValueAt(i, 1) + " Ya Esta Regitrado",
-                                "Medicamento ya agregado",
+                                "el medicamento " + (String) tablaMedSelec.getValueAt(i, 1) + " ha sido restaurado",
+                                "Medicamento restaurado",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        medicamento.setPrecioventa((Integer) tablaMedSelec.getValueAt(i, 2));
+                        medicamento.setStock((short) 0);
+                        agregarMedicamento.medicamentoDAO.actualizar(medicamento, medicamento);
+                    } else {
+                        System.out.println("ya esta agregado");
+                        JOptionPane.showMessageDialog(null,
+                                "el medicamento " + (String) tablaMedSelec.getValueAt(i, 1) + " ya esta en existencia ",
+                                "Medicamento En Existencia",
                                 JOptionPane.ERROR_MESSAGE);
-                        break;
-                    case "Medicamento restaurado": {
-                        JLabel lb = new JLabel();
-                        lb.setSize(50, 50);
-                        JOptionPane.showMessageDialog(null,
-                                (String) tablaMedSelec.getValueAt(i, 1) + " Ha Sido Restaurado",
-                                "Medicamento restauradoo",
-                                JOptionPane.OK_OPTION,
-                                f.setImageBackground("/recursos/exito.png", lb));
-                        break;
                     }
-                    case "Error al restaurar medicamento":
-                        JOptionPane.showMessageDialog(null,
-                                (String) tablaMedSelec.getValueAt(i, 1) + " No Se Ha Podido Restaurar",
-                                "Medicamento ya agregado",
-                                JOptionPane.ERROR_MESSAGE);
-                        break;
-                    case "Medicamento agregado exitosamente": {
-                        JLabel lb = new JLabel();
-                        lb.setSize(50, 50);
-                        JOptionPane.showMessageDialog(null,
-                                (String) tablaMedSelec.getValueAt(i, 1) + " Ha Sido Agregado Exitosamente",
-                                "Medicamento restauradoo",
-                                JOptionPane.OK_OPTION,
-                                f.setImageBackground("/recursos/exito.png", lb));
-                        break;
-                    }
-                    default:
-                        break;
+                } else {
+                    Medicamento mi = agregarMedicamento.registrarMed(medicamentoinvima);
+                    mi.setPrecioventa((Integer) tablaMedSelec.getValueAt(i, 2));
+                    agregarMedicamento.medicamentoDAO.actualizar(mi, mi);
+                    JLabel lb = new JLabel();
+                    lb.setSize(50, 50);
+                    JOptionPane.showMessageDialog(null,
+                            "El medicamento ha sido agregado sastifactoriamente",
+                            "Medicamento Agregado",
+                            JOptionPane.OK_OPTION,
+                            f.setImageBackground("/recursos/exito.png", lb)
+                    );
+
                 }
             }
         }
@@ -747,8 +741,6 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
                 }
 
             }
-            PrecioTotal = Long.valueOf("0");
-            btnRegistrar.setText("$ Comprar");
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
@@ -792,7 +784,8 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
     }//GEN-LAST:event_ScrollMedCompradoMouseExited
 
     private void jlSalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseReleased
-        App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenu);
+
+        App.getInstance().ChangePanel(FramePrincipal.INTFronteraGestionMed);
     }//GEN-LAST:event_jlSalirMouseReleased
 
 

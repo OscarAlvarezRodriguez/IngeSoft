@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 public class TestRegistrarCliente {
     
-    private static final RegistrarCliente cliente = new RegistrarCliente();
+    private static  RegistrarCliente cliente = new RegistrarCliente();
     private final String cn = "Número cédula no válido";
     private final String nn = "Lontigud nombre incorrecta";
     private final String tn = "Número telefónico no válido";

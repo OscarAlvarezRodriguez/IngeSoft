@@ -8,13 +8,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-public class FronteraEditMeicamento extends javax.swing.JPanel {
+public class FronteraEditMedicamento extends javax.swing.JPanel {
 
     Funciones f = new Funciones();
     Medicamento medicamento = new Medicamento();
     EditarMedicamento editarMedicamento = new EditarMedicamento();
 
-    public FronteraEditMeicamento() {
+    public FronteraEditMedicamento() {
         initComponents();
         allSetEmpty();
         jlLogo.setSize(100, 100);
