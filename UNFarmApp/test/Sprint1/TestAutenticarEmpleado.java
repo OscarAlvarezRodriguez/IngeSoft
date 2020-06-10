@@ -1,6 +1,6 @@
 package Sprint1;
 
-import Control.Autenticarempleado;
+import Control.AutenticarEmpleado;
 import Control.RegistrarEmpleado;
 import Entidad.Empleado;
 import org.junit.After;
@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 public class TestAutenticarEmpleado {
 
-    private static final Autenticarempleado usuario = new Autenticarempleado();
+    private static final AutenticarEmpleado usuario = new AutenticarEmpleado();
     private static final RegistrarEmpleado empleado = new RegistrarEmpleado();
 
     private final String cn = "Número cedula no válido";
@@ -35,6 +35,7 @@ public class TestAutenticarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("adolfo@mymail.com");
         u.setContrasenia("Dan123");
+        u.setEstado("ACTIVO");
         empleado.validarDatos(u);
     }
 
@@ -114,6 +115,8 @@ public class TestAutenticarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("adolfo@mymail.com");
         u.setContrasenia("Dan123");
+        u.setEstado("ACTIVO");
+
         assertEquals(usuario.verificarLogin(u), bi);
     }
 

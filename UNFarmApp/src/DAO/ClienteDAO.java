@@ -114,8 +114,10 @@ public class ClienteDAO {
         boolean ret = false;
         Cliente antiguo;
         try {
-            antiguo = leer(ced);
-            antiguo.setCedulacliente(nuevoObjeto.getCedulacliente());
+            antiguo = leer(ced);      
+          if(antiguo == null){
+             return false;
+                }
             antiguo.setNombre(nuevoObjeto.getNombre());
             antiguo.setTelefono(nuevoObjeto.getTelefono());
             antiguo.setDireccioncliente(nuevoObjeto.getDireccioncliente());

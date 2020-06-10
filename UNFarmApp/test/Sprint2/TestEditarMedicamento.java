@@ -18,13 +18,16 @@ public class TestEditarMedicamento {
     private final EditarMedicamento editar = new EditarMedicamento();
     private final String pi = "Precio de venta fuera de rango";
     private final String se = "Cantidad no válida";
-    private final String co = "correcto";
+    private final String ae = "Medicamento actualizado exitosamente";
+    private final String ai = "Actualización medicamento incorrecta";
+    private Medicamentoinvima idmediMedicamentoinvima = new Medicamentoinvima();
+    private final Medicamento medicamento = new Medicamento();
 
     public TestEditarMedicamento() {         
     }
     
     @BeforeClass
-    public static void setUpClass() {
+    public static void setUpClass() {        
     }
     
     @AfterClass
@@ -32,7 +35,7 @@ public class TestEditarMedicamento {
     }
     
     @Before
-    public void setUp() { 
+    public void setUp() {        
     }
     
     @After
@@ -48,8 +51,6 @@ public class TestEditarMedicamento {
     assertEquals(editar.validarPrecioventa(m.getPrecioventa()), pi);
     m.setPrecioventa(10000001);
     assertEquals(editar.validarPrecioventa(m.getPrecioventa()), pi);
-    m.setPrecioventa(10000);
-    assertEquals(editar.validarPrecioventa(m.getPrecioventa()), co);
     }
     
     @Test
@@ -60,8 +61,34 @@ public class TestEditarMedicamento {
     assertEquals(editar.validarStock(m.getStock()), se);
     m.setStock((short)2001);
     assertEquals(editar.validarStock(m.getStock()), se);
-    m.setStock((short)10);
-    assertEquals(editar.validarStock(m.getStock()), co);
     }
     
+    @Test
+    public void MedicamentoActualizado() {
+    idmediMedicamentoinvima.setTitular("SANDOZ GMBH");
+    idmediMedicamentoinvima.setDescripcion("MUESTRA MEDICA: CAJA POR 14 TABLETAS EN BLISTER PVC/PVDC/ALU");
+    idmediMedicamentoinvima.setIdmedicamentoinvima((short)1);
+    idmediMedicamentoinvima.setMedicamento(medicamento);
+    idmediMedicamentoinvima.setNombremedicamento("SEROLUX® 100 MG");
+    idmediMedicamentoinvima.setPresentacion("TABLETA RECUBIERTA");
+    idmediMedicamentoinvima.setPrincipioactivo("SERTRALINA CLORHIDRATO 111.98 MG EQUIVALENTE A SERTRALINA BASE");
+    Medicamento m = new Medicamento();
+    Medicamento mantiguo = new Medicamento();
+    m.setStock((short)10);
+    m.setPrecioventa(10000);
+    mantiguo.setIdmedicamento((short)1);
+    mantiguo.setIdmedicamentoinvima(idmediMedicamentoinvima);
+    mantiguo.setStock((short)23);
+    mantiguo.setPrecioventa(10000);
+    assertEquals(editar.validarDatos(mantiguo, m), ae);
+    }
+    
+    @Test
+    public void ActualizacionIncorrecta() {
+    Medicamento m = new Medicamento();
+    Medicamento mantiguo = new Medicamento();
+    m.setStock((short)10);
+    m.setPrecioventa(10000);
+    assertEquals(editar.validarDatos(mantiguo, m), ai);
+    }
 }

@@ -39,6 +39,7 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("adolfo@mymail.com");
         u.setContrasenia("Dan123");
+        u.setEstado("ACTIVO");
         empleado.validarDatos(u);
     }
 
@@ -65,6 +66,7 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("adolfo@mymail.com");
         u.setContrasenia("Dan123");
+        u.setEstado("ACTIVO");
 
         assertEquals(empleado.validarNombre(u.getNombreempleado()), nn);
 
@@ -75,6 +77,7 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("adolfo@mymail.com");
         u.setContrasenia("Dan123");
+        u.setEstado("ACTIVO");
 
         assertEquals(empleado.validarNombre(u.getNombreempleado()), nn);
     }
@@ -90,6 +93,7 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("adolfo@mymail.com");
         u.setContrasenia("Dan123");
+        u.setEstado("ACTIVO");
 
         assertEquals(empleado.validarApellido(u.getApellidoempleado()), an);
 
@@ -100,6 +104,7 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("adolfo@mymail.com");
         u.setContrasenia("Dan123");
+        u.setEstado("ACTIVO");
         assertEquals(empleado.validarApellido(u.getApellidoempleado()), an);
     }
 
@@ -115,6 +120,7 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("adolfo@mymail.com");
         u.setContrasenia("Dan123");
+        u.setEstado("ACTIVO");
 
         assertEquals(empleado.validarCedula(u.getCedulaempleado()), cn);
 
@@ -125,6 +131,7 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("adolfo@mymail.com");
         u.setContrasenia("Dan123");
+        u.setEstado("ACTIVO");
         assertEquals(empleado.validarCedula(u.getCedulaempleado()), cn);
     }
 
@@ -139,6 +146,7 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("adolfo@mymail.com");
         u.setContrasenia("Dan123");
+        u.setEstado("ACTIVO");
 
         assertEquals(empleado.validarTelefono(u.getTelefono()), tn);
 
@@ -149,6 +157,7 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("adolfo@mymail.com");
         u.setContrasenia("Dan123");
+        u.setEstado("ACTIVO");
         assertEquals(empleado.validarTelefono(u.getTelefono()), tn);
     }
 
@@ -163,6 +172,7 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Carrera 32A");
         u.setCorreo("adolfo@mymail.com");
         u.setContrasenia("Dan123");
+        u.setEstado("ACTIVO");
 
         assertEquals(empleado.validarDireccion(u.getDireccionempleado()), dn);
 
@@ -173,6 +183,7 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("“Carrera 32A, Número 159, bis 89 b");
         u.setCorreo("adolfo@mymail.com");
         u.setContrasenia("Dan123");
+        u.setEstado("ACTIVO");
         assertEquals(empleado.validarDireccion(u.getDireccionempleado()), dn);
     }
 
@@ -187,6 +198,7 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("a@ml.com");
         u.setContrasenia("Dan123");
+        u.setEstado("ACTIVO");
 
         assertEquals(empleado.validarCorreo(u.getCorreo()), en);
 
@@ -197,6 +209,7 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("adolfoestrella1995eldolfzapateromartinez@mymail.com");
         u.setContrasenia("Dan123");
+        u.setEstado("ACTIVO");
         assertEquals(empleado.validarCorreo(u.getCorreo()), en);
 
         u.setNombreempleado("Daniel");
@@ -206,6 +219,7 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("adolfo#mymail.com");
         u.setContrasenia("Dan123");
+        u.setEstado("ACTIVO");
         assertEquals(empleado.validarCorreo(u.getCorreo()), en);
 
         u.setNombreempleado("Daniel");
@@ -215,6 +229,7 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("adolfo@mymailcom");
         u.setContrasenia("Dan123");
+        u.setEstado("ACTIVO");
         assertEquals(empleado.validarCorreo(u.getCorreo()), en);
 
         u.setNombreempleado("Daniel");
@@ -224,6 +239,7 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("adolfomymailcom");
         u.setContrasenia("Dan123");
+        u.setEstado("ACTIVO");
         assertEquals(empleado.validarCorreo(u.getCorreo()), en);
 
     }
@@ -239,6 +255,7 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("adolfo@mymail.com");
         u.setContrasenia("Dan1");
+        u.setEstado("ACTIVO");
 
         assertEquals(empleado.validarLongitudContrasenia(u.getContrasenia()), con);
 
@@ -249,6 +266,7 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("adolfo@mymail.com");
         u.setContrasenia("Dani12345678901234567");
+        u.setEstado("ACTIVO");
         assertEquals(empleado.validarLongitudContrasenia(u.getContrasenia()), con);
 
         u.setNombreempleado("Daniel");
@@ -258,6 +276,8 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("adolfo@mymail.com");
         u.setContrasenia("dan123");
+        u.setEstado("ACTIVO");
+
         assertEquals(empleado.validarMayusculaContrasenia(u.getContrasenia()), comn);
 
         u.setNombreempleado("Daniel");
@@ -267,6 +287,8 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Carrera 32 No 78b");
         u.setCorreo("adolfo@mymail.com");
         u.setContrasenia("Daniel");
+        u.setEstado("ACTIVO");
+
         assertEquals(empleado.validarNumeroContrasenia(u.getContrasenia()), conn);
     }
 
@@ -281,6 +303,7 @@ public class TestRegistrarEmpleado {
         u.setDireccionempleado("Calle 59, No 98 - 32");
         u.setCorreo("santiago@mymail.com");
         u.setContrasenia("San123");
+        u.setEstado("ACTIVO");
         assertEquals(empleado.validarDatos(u), re);
 
     }
