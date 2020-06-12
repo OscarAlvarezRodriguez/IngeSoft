@@ -51,11 +51,11 @@ public class MedicamentoinvimaDAO {
         }
     }
 
-    public Medicamentoinvima leer(String par) {
+    public Medicamentoinvima leer(short par) {
         EntityManager em = emf.createEntityManager();
         Medicamentoinvima consulta = null;
         Query q = em.createQuery("SELECT m FROM Medicamentoinvima m WHERE m.idmedicamentoinvima = :id")
-                .setParameter("id", Short.valueOf(par));
+                .setParameter("id", par);
         try {
             consulta = (Medicamentoinvima) q.getSingleResult();
         } catch (NonUniqueResultException e) {

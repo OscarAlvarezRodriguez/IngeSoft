@@ -1,7 +1,5 @@
 package Frontera;
 
-import sun.applet.Main;
-
 public final class App {
 
     // SIEMPRE debe tener estos 3 atributos

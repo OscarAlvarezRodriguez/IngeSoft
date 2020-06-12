@@ -22,7 +22,6 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
         jlKit.setIcon(f.setImageBackground("/Recursos/medikit.png", jlKit));
         f.setStyleJButon(btnSalir);
         f.setStyleJButon(btnRegistrar);
-        
 
     }
 
@@ -39,7 +38,6 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
         f.setStyleJTextField(txtNombreDrogueria);
         f.setStyleJTextField(txtRepresentante);
         f.setStyleJTextField(txtTelefono);
-       
 
     }
 

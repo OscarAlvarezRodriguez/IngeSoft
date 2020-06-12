@@ -4,7 +4,6 @@ import DAO.CompraDAO;
 import DAO.MedicamentoDAO;
 import Entidad.Compra;
 import Entidad.Compramedicamento;
-import Entidad.CompramedicamentoPK;
 import Entidad.Medicamento;
 import java.util.ArrayList;
 import java.util.List;

@@ -83,30 +83,11 @@ public class MedicamentoDAO {
         }
     }
 
-    public Medicamento leer(Medicamento par) {
-        EntityManager em = emf.createEntityManager();
-        Medicamento consulta = null;
-        Query q = em.createQuery("SELECT m"
-                + " FROM Medicamento m "
-                + "WHERE m.idmedicamento = :idmedicamento"
-        ).setParameter("idmedicamento", par.getIdmedicamento());
-        try {
-            consulta = (Medicamento) q.getSingleResult();
-        } catch (NonUniqueResultException e) {
-            consulta = (Medicamento) q.getResultList().get(0);
-        } catch (Exception e) {
-
-        } finally {
-            em.close();
-            return consulta;
-        }
-    }
-
-    public Medicamento leer(Short idLibro) {
+    public Medicamento leer(Short idMed) {
         EntityManager em = emf.createEntityManager();
         Medicamento consulta = null;
         Query q = em.createQuery("SELECT m FROM Medicamento m WHERE m.idmedicamento = :idMedicamento")
-                .setParameter("idMedicamento", idLibro);
+                .setParameter("idMedicamento", idMed);
         try {
             consulta = (Medicamento) q.getSingleResult();
         } catch (NonUniqueResultException e) {
@@ -125,7 +106,7 @@ public class MedicamentoDAO {
         em.getTransaction().begin();
         boolean ret = false;
         try {
-            med = leer(med);
+            med = leer(med.getIdmedicamento());
             med.setStock(nuevomed.getStock());
             med.setPrecioventa(nuevomed.getPrecioventa());
             em.merge(med);
@@ -156,5 +137,4 @@ public class MedicamentoDAO {
         }
         return med;
     }
-
 }

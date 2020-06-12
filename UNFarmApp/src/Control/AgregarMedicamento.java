@@ -35,7 +35,7 @@ public class AgregarMedicamento {
         return medicamentoinvimaDAO.leertodo();
     }
 
-    public Medicamentoinvima leerMed(String idMed) {
+    public Medicamentoinvima leerMed(short idMed) {
         return medicamentoinvimaDAO.leer(idMed);
     }
 
@@ -46,18 +46,26 @@ public class AgregarMedicamento {
         return true;
     }
 
-    public boolean Stock(Medicamento m) { 
-            if (m.getStock() == -1) {
-                return true;
-            } else {
-                return false;
-            }
+    public boolean Stock(Medicamento m) {
+        if (m.getStock() == -1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public Medicamento registrarMed(Medicamentoinvima medicamentoinvima) {
-        Medicamento m = new Medicamento(0, (short) 0);
-        m.setIdmedicamentoinvima(medicamentoinvima);
+    public void registrarMed(short idMedinvima, int cantidad) {
+        Medicamento m = new Medicamento(cantidad, (short) 0);
+        m.setIdmedicamentoinvima(medicamentoinvimaDAO.leer(idMedinvima));
         medicamentoDAO.crear(m);
+    }
+
+    public Medicamento leerMed(Medicamentoinvima mi) {
+        Medicamento m = medicamentoDAO.existencia(mi.getIdmedicamentoinvima());
         return m;
+    }
+
+    public void actualizarMed(Medicamento viejo, Medicamento nuevo) {
+        medicamentoDAO.actualizar(viejo, nuevo);
     }
 }

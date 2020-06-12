@@ -7,6 +7,7 @@ import Entidad.Medicamento;
 import Entidad.Medicamentoinvima;
 import DAO.MedicamentoDAO;
 import Recursos.Funciones;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 public class FronteraAgregarMed extends javax.swing.JPanel {
 
     Funciones f = new Funciones();
+    boolean presionado;
     ArrayList<Compramedicamento> compras = new ArrayList<>();
     Long PrecioTotal = Long.valueOf("0");
     DefaultTableModel modelo, modelo1;
@@ -67,7 +69,9 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
         f.setStyleJTable(tablaMedSelec, ScrollMedComprado);
         f.setStyleJLabel(jlMed);
         f.setStyleJLabel(jlMedSel);
-
+        f.setStyleJScrollPane(ScrollDes);
+        f.setStyleJScrollPane(ScrollMedComprado);
+        f.setStyleJScrollPane(ScrollTablaMed);
     }
 
     private void CrearModelo() {
@@ -157,11 +161,9 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
                 txtDescripcion.getText(),
                 txtPresentacion.getText(),
                 txtPrinAct.getText());
-        Medicamento m = new Medicamento();
-        m.setIdmedicamentoinvima(mi);
         List<Medicamentoinvima> listaClientes = agregarMedicamento.leerTodos(mi);
-        Object object[] = null;
         for (int i = 0; i < listaClientes.size(); i++) {
+            Object object[] = null;
             modelo.addRow(object);
             modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima(), i, 0);
             modelo.setValueAt(listaClientes.get(i).getNombremedicamento(), i, 1);
@@ -170,6 +172,11 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
             modelo.setValueAt(listaClientes.get(i).getPrincipioactivo(), i, 4);
             modelo.setValueAt(listaClientes.get(i).getPresentacion(), i, 5);
         }
+        tablaMed.setPreferredSize(new Dimension(
+                tablaMed.getPreferredSize().width,
+                tablaMed.getRowCount() * tablaMed.getRowHeight()));
+        tablaMed.repaint();
+        tablaMed.revalidate();
     }
 
     private void cargar() {
@@ -185,6 +192,11 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
             modelo.setValueAt(listaClientes.get(i).getPrincipioactivo(), i, 4);
             modelo.setValueAt(listaClientes.get(i).getPresentacion(), i, 5);
         }
+        tablaMed.setPreferredSize(new Dimension(
+                tablaMed.getPreferredSize().width,
+                tablaMed.getRowCount() * tablaMed.getRowHeight()));
+        tablaMed.repaint();
+        tablaMed.revalidate();
     }
 
     @Override
@@ -404,20 +416,7 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
         tablaMed.setGridColor(new java.awt.Color(0, 0, 0));
         tablaMed.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         tablaMed.setMinimumSize(new java.awt.Dimension(0, 0));
-        tablaMed.setPreferredSize(new java.awt.Dimension(800, 10000));
-        tablaMed.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                tablaMedFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                tablaMedFocusLost(evt);
-            }
-        });
-        tablaMed.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaMedMouseClicked(evt);
-            }
-        });
+        tablaMed.setPreferredSize(new java.awt.Dimension(800, 200));
         ScrollTablaMed.setViewportView(tablaMed);
 
         add(ScrollTablaMed, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 559, -1, -1));
@@ -460,26 +459,7 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tablaMedSelec.setPreferredSize(new java.awt.Dimension(780, 10000));
-        tablaMedSelec.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                tablaMedSelecFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                tablaMedSelecFocusLost(evt);
-            }
-        });
-        tablaMedSelec.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaMedSelecMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                tablaMedSelecMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                tablaMedSelecMouseExited(evt);
-            }
-        });
+        tablaMedSelec.setPreferredSize(new java.awt.Dimension(780, 100));
         ScrollMedComprado.setViewportView(tablaMedSelec);
 
         add(ScrollMedComprado, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 800, -1, -1));
@@ -627,10 +607,6 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
     }//GEN-LAST:event_txtPresentacionFocusGained
 
 
-    private void tablaMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMedMouseClicked
-
-    }//GEN-LAST:event_tablaMedMouseClicked
-
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
 
         int[] seleccionar = tablaMed.getSelectedRows();
@@ -641,6 +617,7 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
                     "Ninguna Seleccion",
                     JOptionPane.ERROR_MESSAGE);
         } else {
+
             for (int i = 0; i < seleccionar.length; i++) {
                 boolean esta = false;
                 for (int j = 0; j < tablaMedSelec.getRowCount(); j++) {
@@ -656,6 +633,11 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
                     modelo1.setValueAt(tablaMed.getValueAt(seleccionar[i], 1), rows, 1);
                     modelo1.setValueAt(0, rows, 2);
                 }
+                tablaMedSelec.setPreferredSize(new Dimension(
+                        tablaMedSelec.getPreferredSize().width,
+                        tablaMedSelec.getRowCount() * tablaMedSelec.getRowHeight()));
+                tablaMed.repaint();
+                tablaMed.revalidate();
             }
         }
         tablaMed.clearSelection();
@@ -663,44 +645,54 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         tablaMedSelec.editCellAt(-1, -1);
-        for (int i = 0; i < tablaMedSelec.getRowCount(); i++) {
+        tablaMedSelec.clearSelection();
+        for (int i = tablaMedSelec.getRowCount() - 1; i >= 0; i--) {
             if (agregarMedicamento.validarPrecioventa((Integer) tablaMedSelec.getValueAt(i, 2)).equals("Precio fuera de rango")) {
                 JOptionPane.showMessageDialog(null,
                         "el precio de" + (String) tablaMedSelec.getValueAt(i, 1) + " debe estar entre 100 y 10.000.000 de pesos",
                         "recio fuera de rango",
                         JOptionPane.ERROR_MESSAGE);
             } else {
-                Medicamentoinvima medicamentoinvima = agregarMedicamento.leerMed(String.valueOf((Short) tablaMedSelec.getValueAt(i, 0)));
-                Medicamento medicamento = medicamentoinvima.getMedicamento();
-                
+                Medicamentoinvima medicamentoinvima = agregarMedicamento
+                        .leerMed((Short) tablaMedSelec.getValueAt(i, 0));
+                Medicamento medicamento = agregarMedicamento.leerMed(medicamentoinvima);
+
                 if (agregarMedicamento.yaAgregado(medicamento)) {
+
                     if (agregarMedicamento.Stock(medicamento)) {
+
                         JOptionPane.showMessageDialog(null,
                                 "el medicamento " + (String) tablaMedSelec.getValueAt(i, 1) + " ha sido restaurado",
                                 "Medicamento restaurado",
                                 JOptionPane.INFORMATION_MESSAGE);
-                        medicamento.setPrecioventa((Integer) tablaMedSelec.getValueAt(i, 2));
-                        medicamento.setStock((short) 0);
-                        agregarMedicamento.medicamentoDAO.actualizar(medicamento, medicamento);
+
+                        Medicamento nuevo = new Medicamento(
+                                (Integer) tablaMedSelec.getValueAt(i, 2),
+                                (short) 0);
+                        agregarMedicamento.actualizarMed(medicamento, nuevo);
+
                     } else {
-                        System.out.println("ya esta agregado");
                         JOptionPane.showMessageDialog(null,
                                 "el medicamento " + (String) tablaMedSelec.getValueAt(i, 1) + " ya esta en existencia ",
                                 "Medicamento En Existencia",
                                 JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    Medicamento mi = agregarMedicamento.registrarMed(medicamentoinvima);
-                    mi.setPrecioventa((Integer) tablaMedSelec.getValueAt(i, 2));
-                    agregarMedicamento.medicamentoDAO.actualizar(mi, mi);
+                    agregarMedicamento.registrarMed(medicamentoinvima.getIdmedicamentoinvima(),
+                            (Integer) tablaMedSelec.getValueAt(i, 2));
+
                     JLabel lb = new JLabel();
                     lb.setSize(50, 50);
+
                     JOptionPane.showMessageDialog(null,
-                            "El medicamento ha sido agregado sastifactoriamente",
+                            "El medicamento "
+                            + (String) tablaMedSelec.getValueAt(i, 1)
+                            + "ha sido agregado sastifactoriamente",
                             "Medicamento Agregado",
                             JOptionPane.OK_OPTION,
                             f.setImageBackground("/recursos/exito.png", lb)
                     );
+                    modelo1.removeRow(i);
 
                 }
             }
@@ -727,6 +719,7 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
                     while (modelo1.getRowCount() > 0) {
                         modelo1.removeRow(0);
                     }
+                    tablaMedSelec.setPreferredSize(new Dimension(tablaMedSelec.getPreferredSize().width, 0));
                 }
             } else {
                 cofirmacion = JOptionPane.showConfirmDialog(null,
@@ -734,46 +727,17 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
                         "Borrar Lista Seleccionada",
                         JOptionPane.YES_NO_OPTION);
                 if (cofirmacion == JOptionPane.YES_OPTION) {
-
                     for (int i = eliminar.length - 1; i >= 0; i--) {
                         modelo1.removeRow(eliminar[i]);
                     }
+                    tablaMedSelec.setPreferredSize(new Dimension(
+                            tablaMedSelec.getPreferredSize().width,
+                            tablaMedSelec.getRowCount() * tablaMedSelec.getRowHeight()));
                 }
 
             }
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
-
-    private void tablaMedFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tablaMedFocusLost
-
-
-    }//GEN-LAST:event_tablaMedFocusLost
-
-    private void tablaMedSelecFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tablaMedSelecFocusLost
-
-
-    }//GEN-LAST:event_tablaMedSelecFocusLost
-
-    private void tablaMedFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tablaMedFocusGained
-
-
-    }//GEN-LAST:event_tablaMedFocusGained
-
-    private void tablaMedSelecFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tablaMedSelecFocusGained
-
-    }//GEN-LAST:event_tablaMedSelecFocusGained
-
-    private void tablaMedSelecMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMedSelecMouseClicked
-
-    }//GEN-LAST:event_tablaMedSelecMouseClicked
-
-    private void tablaMedSelecMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMedSelecMouseEntered
-
-    }//GEN-LAST:event_tablaMedSelecMouseEntered
-
-    private void tablaMedSelecMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMedSelecMouseExited
-
-    }//GEN-LAST:event_tablaMedSelecMouseExited
 
     private void ScrollMedCompradoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ScrollMedCompradoFocusLost
 

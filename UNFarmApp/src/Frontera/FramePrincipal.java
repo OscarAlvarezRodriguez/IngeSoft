@@ -129,6 +129,7 @@ public class FramePrincipal extends javax.swing.JFrame {
             default:
                 break;
         }
+        f.setStyleJScrollPane(scroll);
         revalidate();
         repaint();
     }

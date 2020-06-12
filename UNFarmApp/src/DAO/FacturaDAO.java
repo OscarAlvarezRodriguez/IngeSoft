@@ -8,7 +8,6 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import Entidad.Factura;
 import Entidad.Facturamedicamentos;
-import Entidad.Medicamento;
 
 public class FacturaDAO {
     

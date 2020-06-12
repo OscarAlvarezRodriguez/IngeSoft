@@ -23,7 +23,7 @@ public class VenderDAO {
             Query q = em.createQuery("SELECT MAX(m.idfactura) FROM Factura m");
             ID = (int) q.getSingleResult();
             em.getTransaction().commit();
-        } catch (Exception e) { 
+        } catch (Exception e) {
             e.printStackTrace();
             em.getTransaction().rollback();
         } finally {

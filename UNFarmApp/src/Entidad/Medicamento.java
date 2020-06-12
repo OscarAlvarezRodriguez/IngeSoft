@@ -55,7 +55,7 @@ public class Medicamento implements Serializable {
         this.idmedicamento = idmedicamento;
     }
 
-    public Medicamento( int precioventa, short stock) {
+    public Medicamento(int precioventa, short stock) {
         this.precioventa = precioventa;
         this.stock = stock;
     }

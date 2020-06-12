@@ -14,6 +14,7 @@ public class AutenticarEmpleado {
     private final String di = "Datos incorrectos";
     private final String bi = "Bienvenido";
     private final String el = "empleado Inactivo o Suspendido";
+
     public AutenticarEmpleado() {
     }
 
@@ -32,8 +33,8 @@ public class AutenticarEmpleado {
         }
         if (empleado.leer(emp) != null) {
             Empleado veresempleado = empleado.leer(emp);
-            if(veresempleado.getEstado().equals("SUSPENDIDO") || veresempleado.getEstado().equals("INACTIVO")){
-                return(el);
+            if (veresempleado.getEstado().equals("SUSPENDIDO") || veresempleado.getEstado().equals("INACTIVO")) {
+                return (el);
             }
             return (bi);
         }

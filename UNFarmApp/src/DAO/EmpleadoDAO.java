@@ -26,20 +26,18 @@ public class EmpleadoDAO {
         }
     }
 
-    public boolean editarestado(Empleado empleado, String estado) { 
+    public boolean editarestado(Empleado empleado, String estado) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         boolean ret = false;
         try {
-            if(estado.equals("SUSPENDIDO")){
+            if (estado.equals("SUSPENDIDO")) {
                 empleado.setEstado(estado);
-            }else if(estado.equals("INACTIVO")){
+            } else if (estado.equals("INACTIVO")) {
                 empleado.setEstado(estado);
-            }
-            else if(estado.equals("ACTIVO")){
+            } else if (estado.equals("ACTIVO")) {
                 empleado.setEstado(estado);
-            }
-            else{
+            } else {
                 return ret;
             }
             em.merge(empleado);
@@ -67,7 +65,7 @@ public class EmpleadoDAO {
         } catch (NonUniqueResultException e) {
             usuario = (Empleado) q.getResultList().get(0);
         } catch (Exception e) {
-     
+
         } finally {
             em.close();
             return usuario;
@@ -97,5 +95,5 @@ public class EmpleadoDAO {
             return ret;
         }
     }
-    
+
 }

@@ -60,7 +60,7 @@ public class Cliente implements Serializable {
         this.cedulacliente = cedulacliente;
     }
 
-    public Cliente(String cedulacliente, String nombre, String apellido, String telefono, String direccioncliente,String descripciondireccion, boolean eliminado) {
+    public Cliente(String cedulacliente, String nombre, String apellido, String telefono, String direccioncliente, String descripciondireccion, boolean eliminado) {
         this.cedulacliente = cedulacliente;
         this.nombre = nombre;
         this.apellido = apellido;

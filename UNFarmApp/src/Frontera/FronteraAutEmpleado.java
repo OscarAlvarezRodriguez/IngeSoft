@@ -240,7 +240,7 @@ public class FronteraAutEmpleado extends javax.swing.JPanel {
             JLabel lb = new JLabel();
             lb.setSize(50, 50);
             JOptionPane.showMessageDialog(null,
-                    "Bienvenido " + e.getNombreempleado()+ " "
+                    "Bienvenido " + e.getNombreempleado() + " "
                     + e.getApellidoempleado(),
                     "Bienvenido",
                     JOptionPane.CANCEL_OPTION,
@@ -249,15 +249,13 @@ public class FronteraAutEmpleado extends javax.swing.JPanel {
             allSetEmpty();
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenu);
             App.getInstance().framePrincipal.menuEmpleado.setNombreUsuario(e);
-            
 
-        } else if(empleado.verificarLogin(e).equals("Datos incorrectos")) {
+        } else if (empleado.verificarLogin(e).equals("Datos incorrectos")) {
             JOptionPane.showMessageDialog(null,
                     "Usuario o constraseña incorrectos",
                     "Ingreso fallido",
                     JOptionPane.ERROR_MESSAGE);
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null,
                     "El usuario se encuentra suspendido o inactivo",
                     "Ingreso fallido",

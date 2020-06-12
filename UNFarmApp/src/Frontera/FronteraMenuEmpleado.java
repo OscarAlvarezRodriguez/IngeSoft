@@ -6,7 +6,6 @@ import Recursos.Funciones;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 
 public class FronteraMenuEmpleado extends javax.swing.JPanel {
 
@@ -174,7 +173,7 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
         btnComp_Vent.setBackground(new java.awt.Color(204, 0, 0));
         btnComp_Vent.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         btnComp_Vent.setForeground(new java.awt.Color(255, 255, 255));
-        btnComp_Vent.setText("Rporte C/V");
+        btnComp_Vent.setText("Reporte C/V");
         btnComp_Vent.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnComp_Vent.setPreferredSize(new java.awt.Dimension(250, 40));
         btnComp_Vent.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);

@@ -2,20 +2,32 @@ package Recursos;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Insets;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.ScrollPaneLayout;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
@@ -25,7 +37,7 @@ public class Funciones {
     public final Color fondoTxt = new Color(0, 0, 0, 15);
     public final Color fondoTxtError = new Color(255, 0, 0, 63);
     public final Color colorPrincipal = new Color(12, 183, 242);
-    public static final Color azulApp = new Color(8, 83, 148);
+    public final Color azulApp = new Color(8, 83, 148);
 
     public void setStyleJTextField(JTextField tf) {
         tf.setBackground(fondoTxt);
@@ -176,6 +188,16 @@ public class Funciones {
 
     }
 
+    public void setStyleJScrollPane(JScrollPane jsp) {
+
+        jsp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        jsp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jsp.setComponentZOrder(jsp.getVerticalScrollBar(), 0);
+        jsp.setComponentZOrder(jsp.getViewport(), 1);
+        jsp.getVerticalScrollBar().setOpaque(false);
+        jsp.getVerticalScrollBar().setUI(new MyScrollBarUI());
+    }
+
     public static class HeaderTable implements TableCellRenderer {
 
         public static final DefaultTableCellRenderer DEFAULT_RENDERER = new DefaultTableCellRenderer();
@@ -221,4 +243,67 @@ public class Funciones {
         }
     }
 
+    public static class MyScrollBarUI extends BasicScrollBarUI {
+
+        private final int delta = 30;
+        private final Color defaultColor = new Color(12, 183, 242, 100);
+        private final Color draggingColor = new Color(12, 183 - delta, 242, 100);
+        private final Color rolloverColor = new Color(12, 183 + delta, 242, 100);
+        private final Dimension d = new Dimension();
+
+        @Override
+        protected JButton createDecreaseButton(int orientation) {
+            return new JButton() {
+                @Override
+                public Dimension getPreferredSize() {
+                    return d;
+                }
+            };
+        }
+
+        @Override
+        protected JButton createIncreaseButton(int orientation) {
+            return new JButton() {
+                @Override
+                public Dimension getPreferredSize() {
+                    return d;
+                }
+            };
+        }
+
+        @Override
+        protected void paintTrack(Graphics g, JComponent c, Rectangle r) {
+        }
+
+        @Override
+        protected void paintThumb(Graphics g, JComponent c, Rectangle r) {
+           
+                Color color;
+                JScrollBar sb = (JScrollBar) c;
+                if (!sb.isEnabled() || r.width > r.height) {
+                    return;
+                } else if (isDragging) {
+                    color = draggingColor;
+                } else if (isThumbRollover()) {
+                    color = rolloverColor;
+                } else {
+                    color = defaultColor;
+                }
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                        RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setPaint(color);
+                g2.setPaint(color);
+                g2.fillRoundRect(r.x, r.y, r.width, r.height, 10, 10);
+                g2.setPaint(Color.WHITE);
+                g2.drawRoundRect(r.x, r.y, r.width, r.height, 10, 10);
+                g2.dispose();
+        }
+
+        @Override
+        protected void setThumbBounds(int x, int y, int width, int height) {
+            super.setThumbBounds(x, y, width, height);
+            scrollbar.repaint();
+        }
+    }
 }
