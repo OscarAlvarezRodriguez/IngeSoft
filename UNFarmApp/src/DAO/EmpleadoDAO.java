@@ -1,6 +1,7 @@
 package DAO;
 
 import Entidad.Empleado;
+import java.sql.PreparedStatement;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NonUniqueResultException;
@@ -95,5 +96,26 @@ public class EmpleadoDAO {
             return ret;
         }
     }
+    
+    public Empleado leerAdmin(){
+        EntityManager em = emf.createEntityManager();
+        Empleado emple = null;  
+        String admin = "ADMINISTRADOR";
+        Query q = em.createQuery("SELECT e"
+                + " FROM Empleado e "
+                + "WHERE e.estado = :estado")
+                .setParameter("estado",admin); 
+        try{   
+            emple = (Empleado)q.getSingleResult();
+        }catch(NonUniqueResultException e){
+            System.out.println("Esta imprimiendo mas de una cosa ");
+        }catch (Exception e){
+            System.out.println("Esta dando otro tipo de error");
+        }finally{
+            em.close();
+            return emple;
+        }
+    }
 
+    
 }

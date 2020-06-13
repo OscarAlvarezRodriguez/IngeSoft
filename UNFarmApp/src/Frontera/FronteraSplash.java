@@ -12,6 +12,7 @@ public class FronteraSplash extends javax.swing.JPanel implements Runnable {
 
     Thread tiempo = null;
     DAO.DrogueriaDAO ddao = new DrogueriaDAO();
+    Control.RegistrarAdministrador regAdmin = new Control.RegistrarAdministrador();
 
     public FronteraSplash() {
         initComponents();
@@ -92,7 +93,11 @@ public class FronteraSplash extends javax.swing.JPanel implements Runnable {
             try {
                 tiempo = null;
                 Thread.sleep(3000);
-                if (ddao.leer() != null) {
+                if(regAdmin.registrarAdministrador() != true){
+                    App.getInstance().ChangePanel(FramePrincipal.INTfronteraRegAdministrador);
+                    App.getInstance().framePrincipal.regAdministrador.allSetEmpty();
+                }
+                else if (ddao.leer() != null) {
                     App.getInstance().ChangePanel(FramePrincipal.INTFronteraGestionarDomicilio);
                     App.getInstance().framePrincipal.autenticarEmpleado.allSetEmpty();
                 } else {
