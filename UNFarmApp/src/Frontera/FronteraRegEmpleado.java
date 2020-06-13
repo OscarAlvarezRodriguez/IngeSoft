@@ -541,6 +541,14 @@ public class FronteraRegEmpleado extends javax.swing.JPanel {
                     "Registro Fallido",
                     JOptionPane.ERROR_MESSAGE
             );
+        } else if (empleado.validarDatos(e).equals("Ocurio un error registrando el empleado, intente de nuevo")){
+            JLabel lb = new JLabel();
+            lb.setSize(50, 50);
+            JOptionPane.showMessageDialog(null,
+                    "Ocurrio un error inesperado creando el empleado, intentelo mas tarde",
+                    "Registro Fallido",
+                    JOptionPane.ERROR_MESSAGE
+            );
         } else {
             JOptionPane.showMessageDialog(null,
                     "Algun Campo Esta Mal Diligenciado, Por Favor Verificarlos",

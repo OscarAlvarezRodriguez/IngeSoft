@@ -12,19 +12,22 @@ public class EmpleadoDAO {
 
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UNFarmAppPU");
 
-    public void crear(Empleado object) {
+    public boolean crear(Empleado object) { //para gestionar mejor el control de errores es bueno que esta función sea booleana, retorna true si el registro fue exitoso y si por algún motivo falla, devuelve false
 
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
+        boolean valid = true;
         try {
             em.persist(object);
             em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
             em.getTransaction().rollback();
+            valid = false;
         } finally {
             em.close();
         }
+        return valid;
     }
 
     public boolean editarestado(Empleado empleado, String estado) {
@@ -71,6 +74,26 @@ public class EmpleadoDAO {
             em.close();
             return usuario;
         }
+    }
+    
+    public Boolean verificarExistencia(Empleado par){ 
+        EntityManager em = emf.createEntityManager();
+        Empleado verif = null;
+        Query q = em.createQuery("SELECT e FROM Empleado e WHERE e.cedulaempleado=:cedulaempleado")
+                .setParameter("cedulaempleado", par.getCedulaempleado());
+        try{
+            verif = (Empleado) q.getSingleResult();
+        } catch (NonUniqueResultException e){
+            verif = (Empleado) q.getResultList().get(0);
+        } catch (Exception e){
+            
+        } finally {
+            em.close();
+        }
+        if (verif == null){
+            return false;
+        }
+        return true;
     }
 
     public boolean actualizar(Empleado object, Empleado nuevoObjeto) {

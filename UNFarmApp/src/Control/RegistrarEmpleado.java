@@ -18,12 +18,19 @@ public class RegistrarEmpleado {
     private final String er = "El empleado ya está registrado";
     private final String re = "Registro exitoso";
     private final String co = "Correcto";
+    private final String rf = "Ocurio un error registrando el empleado, intente de nuevo";
 
     public RegistrarEmpleado() {
     }
-
-    public String validarDatos(Empleado empleado) {
-        if (nuevoempleado.leer(empleado) != null) {
+    // las clases de validación se dejan públicas para que se pueda realizar la verificación de un campo en particular
+    // casi todas las funciones son Strings ya que el retorno de texto es útil para la clase frontera apra generar el mensaje específico de error
+    public String validarDatos(Empleado empleado) { //para la función validar empleado se requiere traer una clase Empleado la cual se desea crear
+        //para verificar la existencia se necesita la cedula del empleado, por lo cual es escencial primero verificar si este campo está escrito correctamente
+        if(!validarCedula(empleado.getCedulaempleado()).equals(co)){
+            return(cn);
+        }
+        //la función verificar existencia es booleana, básicamente busca si existe algún empleado con esta cedula. Devuelve True si ya está registrado y false en caso contrario
+        if (nuevoempleado.verificarExistencia(empleado)) { 
             return (er);
         }
         if (!validarNombre(empleado.getNombreempleado()).equals(co)) {
@@ -50,7 +57,9 @@ public class RegistrarEmpleado {
         if (!validarCorreo(empleado.getCorreo()).equals(co)) {
             return (en);
         }
-        nuevoempleado.crear(empleado);
+        if(!nuevoempleado.crear(empleado)){
+            return(rf);
+        }
         return (re);
     }
 

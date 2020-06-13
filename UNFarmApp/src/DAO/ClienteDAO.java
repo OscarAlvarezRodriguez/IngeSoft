@@ -13,20 +13,43 @@ public class ClienteDAO {
 
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("UNFarmAppPU");
 
-    public void crear(Cliente object) {
+    public boolean crear(Cliente object) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
+        boolean valid = true;
         try {
             em.persist(object);
             em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
             em.getTransaction().rollback();
+            valid = false;
         } finally {
             em.close();
         }
+        return valid;
     }
-
+    
+    public boolean verificarExistencia(Cliente object){
+        EntityManager em = emf.createEntityManager();
+        Cliente verif = null;
+        Query q = em.createQuery("SELECT c FROM Cliente c WHERE c.cedulacliente=:cedulacliente")
+                .setParameter("cedulacliente", object.getCedulacliente());
+        try{
+            verif = (Cliente) q.getSingleResult();
+        } catch (NonUniqueResultException e){
+            verif = (Cliente) q.getResultList().get(0);
+        } catch (Exception e){
+            
+        } finally {
+            em.close();
+        }
+        if(verif == null){
+            return false;
+        }
+        return true;
+    }
+            
     public boolean editarestado(Cliente cliente, Boolean estado) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();

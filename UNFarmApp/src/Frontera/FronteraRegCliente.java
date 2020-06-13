@@ -20,7 +20,6 @@ public class FronteraRegCliente extends javax.swing.JPanel {
 
     Funciones f = new Funciones();
     RegistrarCliente Edit = new RegistrarCliente();
-    Cliente cliente;
 
     public FronteraRegCliente() {
         initComponents();
@@ -397,7 +396,22 @@ public class FronteraRegCliente extends javax.swing.JPanel {
             allSetEmpty();
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraGestionarCliente);
             App.getInstance().framePrincipal.gestionClientes.search();
-        } else {
+        } else if (Edit.ValidarDatos(c).equals("Cliente ya registrado")){
+            JLabel lb = new JLabel();
+            lb.setSize(50, 50);
+            JOptionPane.showMessageDialog(null,
+                    "El cliente ya está registrado",
+                    "Registro fallido",
+                    JOptionPane.ERROR_MESSAGE);
+        } else if (Edit.ValidarDatos(c).equals("Error registrando el cliente, intente de nuevo")){
+            JLabel lb = new JLabel();
+            lb.setSize(50, 50);
+            JOptionPane.showMessageDialog(null,
+                    "Error registrando el cliente, intente más tarde",
+                    "Registro fallido",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        else {
             JOptionPane.showMessageDialog(null,
                     "Algun Campo Esta Mal Diligenciado, Por Favor Verificarlos",
                     "Comprobar Campos",

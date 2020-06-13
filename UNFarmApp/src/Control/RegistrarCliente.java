@@ -12,12 +12,11 @@ public class RegistrarCliente {
     private final String dn = "Longitud dirección incorrecta";
     private final String ddn = "Longitud descripción dirección incorrecta";
     private final String an = "Longitud apellido incorrecta";
-    private final String ca = "Cliente Reactivado";
     private final String cr = "Cliente ya registrado";
     private final String re = "Registro exitoso";
+    private final String rf = "Error registrando el cliente, intente de nuevo";
     private final String co = "Correcto";
     private final String ec = "Estado de cliente incorrecto";
-    private final String cnr = "Error, el cliente no pudo ser reactivado";
 
     public RegistrarCliente() {
 
@@ -26,20 +25,12 @@ public class RegistrarCliente {
     public String ValidarDatos(Cliente cliente) {
         //Tenemos dos casos en caso de estar registrado el cliente, el primero es que esté registrado y activo, el segundo que esté registrado e inactivo
         //Creamos la clase cliente existente para verificar si esta registrado y en caso afirmativo, tener los datos del Cliente de manera temporal
-        Cliente clienteexistente = nuevocliente.leer(cliente.getCedulacliente());
-        if (clienteexistente != null) {
-            if (clienteexistente.getEliminado()) { //ya que comprobamos que el cliente existe, procedemos a verificar si se encuentra o no activo
-                boolean verificacion = nuevocliente.editarestado(cliente, false);//en caso afirmativo cambiará el estado del cliente a activo
-                if (verificacion == true) //verifica si la reactivación fue exitosa o no
-                {
-                    return (ca);
-                }
-                return (cnr);
-            }
-            return (cr); //en caso negativo, simplemente muestra que el cliente se encuentra registrado
-        }
+        //Por precaución mandamos primero la validación dde la cedula antes de registro, ya que de lo contrario si mandamos a consultar una cedula con el tipo de dato incorrecto puede generar conflictos en el JPA
         if (!validarCedula(cliente.getCedulacliente()).equals(co)) {
             return (cn);
+        }
+        if (nuevocliente.verificarExistencia(cliente)) {
+            return (cr);
         }
         if (!validarNombre(cliente.getNombre()).equals(co)) {
             return (nn);
@@ -59,7 +50,9 @@ public class RegistrarCliente {
         if (!validarEstado(cliente.getEliminado()).equals(co)) {
             return (ec);
         }
-        nuevocliente.crear(cliente);
+        if(!nuevocliente.crear(cliente)){
+            return(rf);
+        }
         return (re);
     }
 
