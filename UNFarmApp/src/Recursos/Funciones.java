@@ -2,13 +2,11 @@ package Recursos;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
@@ -24,7 +22,6 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.ScrollPaneLayout;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 import javax.swing.plaf.basic.BasicScrollBarUI;
@@ -277,27 +274,27 @@ public class Funciones {
 
         @Override
         protected void paintThumb(Graphics g, JComponent c, Rectangle r) {
-           
-                Color color;
-                JScrollBar sb = (JScrollBar) c;
-                if (!sb.isEnabled() || r.width > r.height) {
-                    return;
-                } else if (isDragging) {
-                    color = draggingColor;
-                } else if (isThumbRollover()) {
-                    color = rolloverColor;
-                } else {
-                    color = defaultColor;
-                }
-                Graphics2D g2 = (Graphics2D) g.create();
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                        RenderingHints.VALUE_ANTIALIAS_ON);
-                g2.setPaint(color);
-                g2.setPaint(color);
-                g2.fillRoundRect(r.x, r.y, r.width, r.height, 10, 10);
-                g2.setPaint(Color.WHITE);
-                g2.drawRoundRect(r.x, r.y, r.width, r.height, 10, 10);
-                g2.dispose();
+
+            Color color;
+            JScrollBar sb = (JScrollBar) c;
+            if (!sb.isEnabled() || r.width > r.height) {
+                return;
+            } else if (isDragging) {
+                color = draggingColor;
+            } else if (isThumbRollover()) {
+                color = rolloverColor;
+            } else {
+                color = defaultColor;
+            }
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.setPaint(color);
+            g2.setPaint(color);
+            g2.fillRoundRect(r.x, r.y, r.width, r.height, 10, 10);
+            g2.setPaint(Color.WHITE);
+            g2.drawRoundRect(r.x, r.y, r.width, r.height, 10, 10);
+            g2.dispose();
         }
 
         @Override

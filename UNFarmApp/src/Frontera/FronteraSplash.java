@@ -1,6 +1,5 @@
 package Frontera;
 
-import DAO.DrogueriaDAO;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -11,7 +10,7 @@ import javax.swing.ImageIcon;
 public class FronteraSplash extends javax.swing.JPanel implements Runnable {
 
     Thread tiempo = null;
-    DAO.DrogueriaDAO ddao = new DrogueriaDAO();
+    Control.RegistrarDrogueria ddao = new Control.RegistrarDrogueria();
     Control.RegistrarAdministrador regAdmin = new Control.RegistrarAdministrador();
 
     public FronteraSplash() {
@@ -48,7 +47,7 @@ public class FronteraSplash extends javax.swing.JPanel implements Runnable {
         jlLogo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(1030, 500));
+        setPreferredSize(new java.awt.Dimension(1030, 550));
 
         jlLogo.setPreferredSize(new java.awt.Dimension(350, 350));
 
@@ -63,21 +62,20 @@ public class FronteraSplash extends javax.swing.JPanel implements Runnable {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(334, 334, 334)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jlLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(346, Short.MAX_VALUE))
+                .addGap(332, 332, 332)
+                .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(348, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
+                .addGap(62, 62, 62)
                 .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -92,13 +90,12 @@ public class FronteraSplash extends javax.swing.JPanel implements Runnable {
         do {
             try {
                 tiempo = null;
-                Thread.sleep(3000);
-                if(regAdmin.registrarAdministrador() != true){
+                Thread.sleep(2000);
+                if (regAdmin.registrarAdministrador()) {
                     App.getInstance().ChangePanel(FramePrincipal.INTfronteraRegAdministrador);
                     App.getInstance().framePrincipal.regAdministrador.allSetEmpty();
-                }
-                else if (ddao.leer() != null) {
-                    App.getInstance().ChangePanel(FramePrincipal.INTFronteraGestionarDomicilio);
+                } else if (ddao.verDrogueria()) {
+                    App.getInstance().ChangePanel(FramePrincipal.INTFronteraAutEmpleado);
                     App.getInstance().framePrincipal.autenticarEmpleado.allSetEmpty();
                 } else {
                     App.getInstance().ChangePanel(FramePrincipal.INTFronteraRegDrogueria);

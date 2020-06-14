@@ -240,10 +240,8 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
 
         setMinimumSize(new java.awt.Dimension(0, 0));
         setPreferredSize(new java.awt.Dimension(1030, 1000));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jlLogo.setPreferredSize(new java.awt.Dimension(100, 100));
-        add(jlLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 11, -1, -1));
 
         jlSalir.setPreferredSize(new java.awt.Dimension(60, 60));
         jlSalir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -251,17 +249,14 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
                 jlSalirMouseReleased(evt);
             }
         });
-        add(jlSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         jlNombre.setFont(new java.awt.Font("Leelawadee", 0, 22)); // NOI18N
         jlNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlNombre.setText("\"Nombre de Usuario Actual\"");
         jlNombre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlNombre.setPreferredSize(new java.awt.Dimension(300, 50));
-        add(jlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 1020, 20));
 
         jlUsuario.setPreferredSize(new java.awt.Dimension(150, 150));
-        add(jlUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 52, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -269,7 +264,6 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
         jLabel2.setText("Tipo de Presentacion");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel2.setPreferredSize(new java.awt.Dimension(170, 30));
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, -1, -1));
 
         txtPresentacion.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtPresentacion.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -292,7 +286,6 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
                 txtPresentacionKeyTyped(evt);
             }
         });
-        add(txtPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 320, -1, -1));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -300,7 +293,6 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
         jLabel7.setText("Descripción");
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel7.setPreferredSize(new java.awt.Dimension(170, 30));
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 370, -1, -1));
 
         btnCerrarSesion.setBackground(new java.awt.Color(0, 158, 15));
         btnCerrarSesion.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -314,7 +306,6 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
                 btnCerrarSesionActionPerformed(evt);
             }
         });
-        add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(441, 251, 160, 29));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -322,7 +313,6 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
         jLabel4.setText("Medicamento");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel4.setPreferredSize(new java.awt.Dimension(170, 30));
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 318, -1, -1));
 
         txtMed.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtMed.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -342,7 +332,6 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
                 txtMedKeyTyped(evt);
             }
         });
-        add(txtMed, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 317, -1, -1));
 
         txtPrinAct.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtPrinAct.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -362,7 +351,6 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
                 txtPrinActKeyTyped(evt);
             }
         });
-        add(txtPrinAct, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, -1, -1));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -370,7 +358,6 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
         jLabel5.setText("Principio Activo");
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel5.setPreferredSize(new java.awt.Dimension(170, 30));
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -378,7 +365,6 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
         jLabel6.setText("TItular");
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel6.setPreferredSize(new java.awt.Dimension(170, 30));
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 366, -1, -1));
 
         txtTitular.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         txtTitular.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -398,7 +384,6 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
                 txtTitularKeyTyped(evt);
             }
         });
-        add(txtTitular, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 366, -1, -1));
 
         ScrollTablaMed.setPreferredSize(new java.awt.Dimension(880, 150));
 
@@ -419,8 +404,6 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
         tablaMed.setPreferredSize(new java.awt.Dimension(800, 200));
         ScrollTablaMed.setViewportView(tablaMed);
 
-        add(ScrollTablaMed, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 559, -1, -1));
-
         ScrollDes.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         ScrollDes.setPreferredSize(new java.awt.Dimension(250, 114));
 
@@ -433,8 +416,6 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
             }
         });
         ScrollDes.setViewportView(txtDescripcion);
-
-        add(ScrollDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 370, -1, -1));
 
         ScrollMedComprado.setPreferredSize(new java.awt.Dimension(780, 150));
         ScrollMedComprado.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -462,8 +443,6 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
         tablaMedSelec.setPreferredSize(new java.awt.Dimension(780, 100));
         ScrollMedComprado.setViewportView(tablaMedSelec);
 
-        add(ScrollMedComprado, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 800, -1, -1));
-
         btnAgregar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregar.setText("Agregar");
@@ -473,7 +452,6 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
                 btnAgregarActionPerformed(evt);
             }
         });
-        add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 727, -1, -1));
 
         btnRegistrar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
@@ -484,7 +462,6 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(735, 961, -1, -1));
 
         btnBorrar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         btnBorrar.setForeground(new java.awt.Color(255, 255, 255));
@@ -495,28 +472,158 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
                 btnBorrarActionPerformed(evt);
             }
         });
-        add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 961, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Leelawadee", 0, 28)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Agregar Medicamentos");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setPreferredSize(new java.awt.Dimension(300, 50));
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(362, 11, 330, 30));
 
         jlMedSel.setFont(new java.awt.Font("Leelawadee", 0, 28)); // NOI18N
         jlMedSel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlMedSel.setText("Listado de Medicamentos Seleccionados");
         jlMedSel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlMedSel.setPreferredSize(new java.awt.Dimension(300, 50));
-        add(jlMedSel, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 768, 780, 30));
 
         jlMed.setFont(new java.awt.Font("Leelawadee", 0, 28)); // NOI18N
         jlMed.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlMed.setText("Listado de Medicamentos ");
         jlMed.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlMed.setPreferredSize(new java.awt.Dimension(300, 50));
-        add(jlMed, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 523, 880, 30));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(375, 375, 375)
+                                .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(231, 231, 231)))
+                        .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 1020, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(441, 441, 441)
+                        .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(txtMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
+                                .addComponent(txtTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(txtPrinAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(ScrollDes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(jlMed, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(ScrollTablaMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(429, 429, 429)
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(jlMedSel, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(ScrollMedComprado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(480, 480, 480)
+                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(txtPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPrinAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ScrollDes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(39, 39, 39)
+                .addComponent(jlMed, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(ScrollTablaMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(jlMedSel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(ScrollMedComprado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyReleased
@@ -695,6 +802,8 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
                     modelo1.removeRow(i);
 
                 }
+                tablaMedSelec.setPreferredSize(new Dimension(tablaMedSelec.getWidth(),
+                        tablaMedSelec.getRowCount() * tablaMedSelec.getRowHeight()));
             }
         }
 

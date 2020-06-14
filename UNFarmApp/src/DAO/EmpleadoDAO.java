@@ -1,7 +1,6 @@
 package DAO;
 
 import Entidad.Empleado;
-import java.sql.PreparedStatement;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NonUniqueResultException;
@@ -75,22 +74,22 @@ public class EmpleadoDAO {
             return usuario;
         }
     }
-    
-    public Boolean verificarExistencia(Empleado par){ 
+
+    public Boolean verificarExistencia(Empleado par) {
         EntityManager em = emf.createEntityManager();
         Empleado verif = null;
         Query q = em.createQuery("SELECT e FROM Empleado e WHERE e.cedulaempleado=:cedulaempleado")
                 .setParameter("cedulaempleado", par.getCedulaempleado());
-        try{
+        try {
             verif = (Empleado) q.getSingleResult();
-        } catch (NonUniqueResultException e){
+        } catch (NonUniqueResultException e) {
             verif = (Empleado) q.getResultList().get(0);
-        } catch (Exception e){
-            
+        } catch (Exception e) {
+
         } finally {
             em.close();
         }
-        if (verif == null){
+        if (verif == null) {
             return false;
         }
         return true;
@@ -119,26 +118,22 @@ public class EmpleadoDAO {
             return ret;
         }
     }
-    
-    public Empleado leerAdmin(){
+
+    public Empleado leerAdmin() {
         EntityManager em = emf.createEntityManager();
-        Empleado emple = null;  
+        Empleado emple = null;
         String admin = "ADMINISTRADOR";
-        Query q = em.createQuery("SELECT e"
-                + " FROM Empleado e "
-                + "WHERE e.estado = :estado")
-                .setParameter("estado",admin); 
-        try{   
-            emple = (Empleado)q.getSingleResult();
-        }catch(NonUniqueResultException e){
-            System.out.println("Esta imprimiendo mas de una cosa ");
-        }catch (Exception e){
-            System.out.println("Esta dando otro tipo de error");
-        }finally{
+        Query q = em.createQuery("SELECT e FROM Empleado e WHERE e.estado = :estado")
+                .setParameter("estado", admin);
+        try {
+            emple = (Empleado) q.getSingleResult();
+        } catch (NonUniqueResultException e) {
+            //Esta imprimiendo mas de una cosa 
+            emple = (Empleado) q.getResultList().get(0);
+        } finally {
             em.close();
             return emple;
         }
     }
 
-    
 }

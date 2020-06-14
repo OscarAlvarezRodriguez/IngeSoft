@@ -4,6 +4,7 @@ import Entidad.Empleado;
 import DAO.EmpleadoDAO;
 
 public class RegistrarAdministrador {
+
     private EmpleadoDAO emple = new EmpleadoDAO();
     private final EmpleadoDAO nuevoempleado = new EmpleadoDAO();
     private final String cn = "Cédula no válida";
@@ -132,13 +133,10 @@ public class RegistrarAdministrador {
         }
         return false;
     }
-    
-    public boolean registrarAdministrador(){
-        boolean r;
+
+    public boolean registrarAdministrador() {
         Empleado result = emple.leerAdmin();
-        r=(result==null)?true:false;
-        return r;
+        return (result == null);
     }
-    
-    
+
 }

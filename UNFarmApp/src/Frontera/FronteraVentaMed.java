@@ -78,7 +78,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         f.setStyleJButon(btnComprar);
         f.setStyleJButon(btnAgregar);
         f.setStyleJTable(tablaMed, ScrollTablaMed);
-        f.setStyleJTable(TablaMedComprado, ScrollMedComprado);
+        f.setStyleJTable(TablaMedVendido, ScrollMedComprado);
         f.setStyleJLabel(jlMed);
         f.setStyleJLabel(jlMedSel);
 
@@ -157,7 +157,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
             });
 
             tablaMed.setModel(modelo);
-            TablaMedComprado.setModel(modelo1);
+            TablaMedVendido.setModel(modelo1);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString() + "error2");
         }
@@ -185,6 +185,10 @@ public class FronteraVentaMed extends javax.swing.JPanel {
             modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPrincipioactivo(), i, 4);
             modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPresentacion(), i, 5);
         }
+        tablaMed.setPreferredSize(new java.awt.Dimension(tablaMed.getWidth(),
+                tablaMed.getRowCount() * tablaMed.getRowHeight()));
+        tablaMed.repaint();
+        tablaMed.revalidate();
     }
 
     private void cargar() {
@@ -200,6 +204,10 @@ public class FronteraVentaMed extends javax.swing.JPanel {
             modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPrincipioactivo(), i, 4);
             modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPresentacion(), i, 5);
         }
+        tablaMed.setPreferredSize(new java.awt.Dimension(tablaMed.getWidth(),
+                tablaMed.getRowCount() * tablaMed.getRowHeight()));
+        tablaMed.repaint();
+        tablaMed.revalidate();
     }
 
     @Override
@@ -235,7 +243,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         ScrollDes = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
         ScrollMedComprado = new javax.swing.JScrollPane();
-        TablaMedComprado = new javax.swing.JTable();
+        TablaMedVendido = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         btnComprar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
@@ -470,7 +478,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
             }
         });
 
-        TablaMedComprado.setModel(new javax.swing.table.DefaultTableModel(
+        TablaMedVendido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -481,27 +489,27 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        TablaMedComprado.setPreferredSize(new java.awt.Dimension(780, 100));
-        TablaMedComprado.addFocusListener(new java.awt.event.FocusAdapter() {
+        TablaMedVendido.setPreferredSize(new java.awt.Dimension(780, 100));
+        TablaMedVendido.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                TablaMedCompradoFocusGained(evt);
+                TablaMedVendidoFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                TablaMedCompradoFocusLost(evt);
+                TablaMedVendidoFocusLost(evt);
             }
         });
-        TablaMedComprado.addMouseListener(new java.awt.event.MouseAdapter() {
+        TablaMedVendido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TablaMedCompradoMouseClicked(evt);
+                TablaMedVendidoMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                TablaMedCompradoMouseEntered(evt);
+                TablaMedVendidoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                TablaMedCompradoMouseExited(evt);
+                TablaMedVendidoMouseExited(evt);
             }
         });
-        ScrollMedComprado.setViewportView(TablaMedComprado);
+        ScrollMedComprado.setViewportView(TablaMedVendido);
 
         btnAgregar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
@@ -556,20 +564,6 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(292, 292, 292)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(228, 228, 228)
-                .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 1020, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(441, 441, 441)
                 .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
@@ -616,17 +610,33 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                 .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(480, 480, 480)
                 .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(292, 292, 292)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(83, 83, 83)
+                                .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 1020, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11)
-                        .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(11, 11, 11)
+                                .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -795,8 +805,8 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         } else {
             for (int i = 0; i < seleccionar.length; i++) {
                 boolean esta = false;
-                for (int j = 0; j < TablaMedComprado.getRowCount(); j++) {
-                    if (tablaMed.getValueAt(seleccionar[i], 0) == TablaMedComprado.getValueAt(j, 0)) {
+                for (int j = 0; j < TablaMedVendido.getRowCount(); j++) {
+                    if (tablaMed.getValueAt(seleccionar[i], 0) == TablaMedVendido.getValueAt(j, 0)) {
                         esta = true;
                         JOptionPane.showMessageDialog(null, tablaMed.getValueAt(seleccionar[i], 1) + " Ya Esta Agregado",
                                 "Medicamento Ya Agregado",
@@ -805,7 +815,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                     }
                 }
                 if (!esta) {
-                    int rows = TablaMedComprado.getRowCount();
+                    int rows = TablaMedVendido.getRowCount();
                     modelo1.addRow(object);
                     modelo1.setValueAt(tablaMed.getValueAt(seleccionar[i], 0), rows, 0);
                     modelo1.setValueAt(tablaMed.getValueAt(seleccionar[i], 1), rows, 1);
@@ -818,12 +828,12 @@ public class FronteraVentaMed extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
-        TablaMedComprado.editCellAt(-1, -1);
+        TablaMedVendido.editCellAt(-1, -1);
         boolean hacer = true;
 
-        for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
-            for (int j = 0; j < TablaMedComprado.getColumnCount(); j++) {
-                if (TablaMedComprado.getValueAt(i, 2) == null) {
+        for (int i = 0; i < TablaMedVendido.getRowCount(); i++) {
+            for (int j = 0; j < TablaMedVendido.getColumnCount(); j++) {
+                if (TablaMedVendido.getValueAt(i, 2) == null) {
                     JOptionPane.showMessageDialog(null,
                             "Algun Espacio Esta Vacio, Por Favor Diligrncie Todos Los Campos",
                             "Campos Vacios",
@@ -831,7 +841,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                     hacer = false;
                     break;
                 }
-                if ((Short) TablaMedComprado.getValueAt(i, 2) <= 0) {
+                if ((Short) TablaMedVendido.getValueAt(i, 2) <= 0) {
                     JOptionPane.showMessageDialog(null,
                             "La Cantidad No Pueden Ser Menores O Iguales A Cero "
                             + "\n El Provedor Debe Estar Diligenciado",
@@ -849,22 +859,22 @@ public class FronteraVentaMed extends javax.swing.JPanel {
             ArrayList<Short> cantidad = new ArrayList<>();
             ArrayList<Short> ID = new ArrayList<>();
             ArrayList<Integer> precioUnit = new ArrayList<>();
-            for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
-                for (int j = 0; j < TablaMedComprado.getColumnCount(); j++) {
+            for (int i = 0; i < TablaMedVendido.getRowCount(); i++) {
+                for (int j = 0; j < TablaMedVendido.getColumnCount(); j++) {
                     if (j == 0) {
-                        ID.add((Short) TablaMedComprado.getValueAt(i, j));
+                        ID.add((Short) TablaMedVendido.getValueAt(i, j));
                     }
                     if (j == 2) {
-                        cantidad.add((Short) TablaMedComprado.getValueAt(i, j));
+                        cantidad.add((Short) TablaMedVendido.getValueAt(i, j));
                     }
                     if (j == 3) {
-                        Long aux = Long.parseLong(String.valueOf((Integer) TablaMedComprado.getValueAt(i, j)));
-                        precioUnit.add((Integer) TablaMedComprado.getValueAt(i, j));
+                        Long aux = Long.parseLong(String.valueOf((Integer) TablaMedVendido.getValueAt(i, j)));
+                        precioUnit.add((Integer) TablaMedVendido.getValueAt(i, j));
                         PrecioTotal = PrecioTotal + aux;
                     }
                     Compramedicamento c = new Compramedicamento(
-                            (Integer) TablaMedComprado.getValueAt(i, 3),
-                            (Short) TablaMedComprado.getValueAt(i, 2));
+                            (Integer) TablaMedVendido.getValueAt(i, 3),
+                            (Short) TablaMedVendido.getValueAt(i, 2));
                     compras.add(c);
                 }
 
@@ -877,15 +887,20 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                 c.setNitdrogueria(new DAO.DrogueriaDAO().leer());
                 int IDCompra = venderMed.registrarFactura(c);
                 for (int i = 0; i < ID.size(); i++) {
-
                     FacturamedicamentosPK PK = new FacturamedicamentosPK(ID.get(i), IDCompra);
                     Facturamedicamentos cm = new Facturamedicamentos(PK);
-
                     cm.setCantidadvendida(cantidad.get(i));
-
                     venderMed.RegistrarFacturaMed(cm);
-
                 }
+                 while (modelo1.getRowCount() > 0) {
+                    modelo1.removeRow(0);
+                }
+                TablaMedVendido.setPreferredSize(new java.awt.Dimension(TablaMedVendido.getWidth(),
+                            TablaMedVendido.getRowCount() * TablaMedVendido.getRowHeight()));
+                    TablaMedVendido.repaint();
+                    TablaMedVendido.revalidate();
+                TablaMedVendido.clearSelection();
+                
                 JLabel lb = new JLabel();
                 lb.setSize(50, 50);
                 JOptionPane.showMessageDialog(null,
@@ -894,7 +909,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                         JOptionPane.OK_OPTION,
                         f.setImageBackground("/recursos/exito.png", lb)
                 );
-                TablaMedComprado.clearSelection();
+                TablaMedVendido.clearSelection();
             } else {
                 JOptionPane.showMessageDialog(null,
                         "La Lista Esta Vacia, Por Favor Agregue Algun Medicamento",
@@ -905,10 +920,10 @@ public class FronteraVentaMed extends javax.swing.JPanel {
     }//GEN-LAST:event_btnComprarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        int[] eliminar = TablaMedComprado.getSelectedRows();
+        int[] eliminar = TablaMedVendido.getSelectedRows();
         int cofirmacion;
-        TablaMedComprado.editCellAt(-1, -1);
-        if (TablaMedComprado.getRowCount() == 0) {
+        TablaMedVendido.editCellAt(-1, -1);
+        if (TablaMedVendido.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null,
                     "No Hay Medicamentos En La Tabla\n Por Favor Agregue Un Medicamento",
                     "Ninguna Seleccion",
@@ -923,6 +938,9 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                     while (modelo1.getRowCount() > 0) {
                         modelo1.removeRow(0);
                     }
+                    TablaMedVendido.setPreferredSize(new java.awt.Dimension(TablaMedVendido.getWidth(), 0));
+                    TablaMedVendido.repaint();
+                    TablaMedVendido.revalidate();
                 }
             } else {
                 cofirmacion = JOptionPane.showConfirmDialog(null,
@@ -934,6 +952,10 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                     for (int i = eliminar.length - 1; i >= 0; i--) {
                         modelo1.removeRow(eliminar[i]);
                     }
+                    TablaMedVendido.setPreferredSize(new java.awt.Dimension(TablaMedVendido.getWidth(),
+                            TablaMedVendido.getRowCount() * TablaMedVendido.getRowHeight()));
+                    TablaMedVendido.repaint();
+                    TablaMedVendido.revalidate();
                 }
             }
             btnComprar.setText("$ Vender");
@@ -945,50 +967,50 @@ public class FronteraVentaMed extends javax.swing.JPanel {
 
     }//GEN-LAST:event_tablaMedFocusLost
 
-    private void TablaMedCompradoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TablaMedCompradoFocusLost
+    private void TablaMedVendidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TablaMedVendidoFocusLost
 
 
-    }//GEN-LAST:event_TablaMedCompradoFocusLost
+    }//GEN-LAST:event_TablaMedVendidoFocusLost
 
     private void tablaMedFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tablaMedFocusGained
 
 
     }//GEN-LAST:event_tablaMedFocusGained
 
-    private void TablaMedCompradoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TablaMedCompradoFocusGained
+    private void TablaMedVendidoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TablaMedVendidoFocusGained
 
-    }//GEN-LAST:event_TablaMedCompradoFocusGained
+    }//GEN-LAST:event_TablaMedVendidoFocusGained
 
-    private void TablaMedCompradoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedCompradoMouseClicked
+    private void TablaMedVendidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedVendidoMouseClicked
         if (evt.getClickCount() == 1) {
             long valor = 0;
-            for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
-                if (TablaMedComprado.getValueAt(i, 3) != null && TablaMedComprado.getValueAt(i, 2) != null) {
-                    valor = valor + ((Integer) TablaMedComprado.getValueAt(i, 3) * (Short) TablaMedComprado.getValueAt(i, 2));
+            for (int i = 0; i < TablaMedVendido.getRowCount(); i++) {
+                if (TablaMedVendido.getValueAt(i, 3) != null && TablaMedVendido.getValueAt(i, 2) != null) {
+                    valor = valor + ((Integer) TablaMedVendido.getValueAt(i, 3) * (Short) TablaMedVendido.getValueAt(i, 2));
                 }
             }
             btnComprar.setText("$ " + new DecimalFormat("##,###,###").format(valor));
 
         }
 
-    }//GEN-LAST:event_TablaMedCompradoMouseClicked
+    }//GEN-LAST:event_TablaMedVendidoMouseClicked
 
-    private void TablaMedCompradoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedCompradoMouseEntered
+    private void TablaMedVendidoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedVendidoMouseEntered
 
-    }//GEN-LAST:event_TablaMedCompradoMouseEntered
+    }//GEN-LAST:event_TablaMedVendidoMouseEntered
 
-    private void TablaMedCompradoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedCompradoMouseExited
+    private void TablaMedVendidoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedVendidoMouseExited
         if (evt.getClickCount() == 1) {
             long valor = 0;
-            for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
-                if (TablaMedComprado.getValueAt(i, 3) != null && TablaMedComprado.getValueAt(i, 2) != null) {
-                    valor = valor + ((Integer) TablaMedComprado.getValueAt(i, 3) * (Short) TablaMedComprado.getValueAt(i, 2));
+            for (int i = 0; i < TablaMedVendido.getRowCount(); i++) {
+                if (TablaMedVendido.getValueAt(i, 3) != null && TablaMedVendido.getValueAt(i, 2) != null) {
+                    valor = valor + ((Integer) TablaMedVendido.getValueAt(i, 3) * (Short) TablaMedVendido.getValueAt(i, 2));
                 }
             }
             btnComprar.setText("$ " + new DecimalFormat("##,###,###").format(valor));
 
         }
-    }//GEN-LAST:event_TablaMedCompradoMouseExited
+    }//GEN-LAST:event_TablaMedVendidoMouseExited
 
     private void ScrollMedCompradoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ScrollMedCompradoFocusLost
 
@@ -1009,7 +1031,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
     private javax.swing.JScrollPane ScrollDes;
     private javax.swing.JScrollPane ScrollMedComprado;
     private javax.swing.JScrollPane ScrollTablaMed;
-    private javax.swing.JTable TablaMedComprado;
+    private javax.swing.JTable TablaMedVendido;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnCerrarSesion;

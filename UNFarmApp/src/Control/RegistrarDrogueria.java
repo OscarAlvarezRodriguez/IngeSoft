@@ -83,4 +83,9 @@ public class RegistrarDrogueria {
         }
         return (rpn);
     }
+
+    public boolean verDrogueria() {
+        Drogueria d = farm.leer();
+        return (d != null);
+    }
 }

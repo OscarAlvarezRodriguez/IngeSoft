@@ -178,6 +178,10 @@ public class FronteraComprarMed extends javax.swing.JPanel {
             modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPrincipioactivo(), i, 4);
             modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPresentacion(), i, 5);
         }
+        tablaMed.setPreferredSize(new java.awt.Dimension(tablaMed.getWidth(),
+                tablaMed.getRowCount() * tablaMed.getRowHeight()));
+        tablaMed.repaint();
+        tablaMed.revalidate();
     }
 
     private void cargar() {
@@ -193,6 +197,10 @@ public class FronteraComprarMed extends javax.swing.JPanel {
             modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPrincipioactivo(), i, 4);
             modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPresentacion(), i, 5);
         }
+        tablaMed.setPreferredSize(new java.awt.Dimension(tablaMed.getWidth(),
+                tablaMed.getRowCount() * tablaMed.getRowHeight()));
+        tablaMed.repaint();
+        tablaMed.revalidate();
     }
 
     @Override
@@ -549,20 +557,6 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(292, 292, 292)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(228, 228, 228)
-                .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 1020, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(441, 441, 441)
                 .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
@@ -609,17 +603,33 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                 .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(480, 480, 480)
                 .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(292, 292, 292)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(83, 83, 83)
+                                .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 1020, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11)
-                        .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(11, 11, 11)
+                                .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -814,6 +824,10 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                     modelo1.setValueAt(Short.valueOf("0"), rows, 2);
                     modelo1.setValueAt(0, rows, 3);
                 }
+                TablaMedComprado.setPreferredSize(new java.awt.Dimension(TablaMedComprado.getWidth(),
+                        TablaMedComprado.getRowCount() * TablaMedComprado.getRowHeight()));
+                TablaMedComprado.repaint();
+                TablaMedComprado.revalidate();
             }
         }
         tablaMed.clearSelection();
@@ -821,6 +835,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         TablaMedComprado.editCellAt(-1, -1);
+        TablaMedComprado.clearSelection();
         boolean hacer = true;
         PrecioTotal = Long.valueOf("0");
         for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
@@ -884,6 +899,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                     cm.setCantidad(cantidad.get(i));
                     cm.setPreciounitario(precioUnit.get(i));
                     comprarMedicamento.registroCompraMed(cm);
+
                 }
                 JLabel lb = new JLabel();
                 lb.setSize(50, 50);
@@ -903,6 +919,13 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                     nuevomed.setStock(nuevostock);
                     medicamentoDAO.actualizar(med, nuevomed);
                 }
+                while (modelo1.getRowCount() > 0) {
+                    modelo1.removeRow(0);
+                }
+                TablaMedComprado.setPreferredSize(new java.awt.Dimension(TablaMedComprado.getWidth(),
+                            TablaMedComprado.getRowCount() * TablaMedComprado.getRowHeight()));
+                    TablaMedComprado.repaint();
+                    TablaMedComprado.revalidate();
                 TablaMedComprado.clearSelection();
             } else {
                 JOptionPane.showMessageDialog(null,
@@ -932,6 +955,9 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                     while (modelo1.getRowCount() > 0) {
                         modelo1.removeRow(0);
                     }
+                    TablaMedComprado.setPreferredSize(new java.awt.Dimension(TablaMedComprado.getWidth(), 0));
+                    TablaMedComprado.repaint();
+                    TablaMedComprado.revalidate();
                 }
             } else {
                 cofirmacion = JOptionPane.showConfirmDialog(null,
@@ -943,6 +969,10 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                     for (int i = eliminar.length - 1; i >= 0; i--) {
                         modelo1.removeRow(eliminar[i]);
                     }
+                    TablaMedComprado.setPreferredSize(new java.awt.Dimension(TablaMedComprado.getWidth(),
+                            TablaMedComprado.getRowCount() * TablaMedComprado.getRowHeight()));
+                    TablaMedComprado.repaint();
+                    TablaMedComprado.revalidate();
                 }
 
             }

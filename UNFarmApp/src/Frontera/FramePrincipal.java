@@ -1,7 +1,6 @@
 package Frontera;
 
 import Recursos.Funciones;
-import javax.swing.JLabel;
 
 public class FramePrincipal extends javax.swing.JFrame {
 
@@ -45,13 +44,14 @@ public class FramePrincipal extends javax.swing.JFrame {
     FronteraGestionarClientes gestionClientes = new FronteraGestionarClientes();
     FronteraVentaMed venderMed = new FronteraVentaMed();
     FronteraEditMedicamento editMedicamento = new FronteraEditMedicamento();
-    FronteraAgregarMed agregarMed =  new FronteraAgregarMed();
+    FronteraAgregarMed agregarMed = new FronteraAgregarMed();
     FronteraGestionarDomicilios gestionDomicilio = new FronteraGestionarDomicilios();
     FronteraRegAdministrador regAdministrador = new FronteraRegAdministrador();
-    
+
     Funciones f = new Funciones();
 
-    JLabel logo = new JLabel();
+    javax.swing.JLabel logo = new javax.swing.JLabel();
+
     void ChangePanel(int n) {
         //All Frames are Visible(false)
         this.setVisible(true);
@@ -136,7 +136,6 @@ public class FramePrincipal extends javax.swing.JFrame {
             default:
                 break;
         }
-        f.setStyleJScrollPane(scroll);
         revalidate();
         repaint();
     }
@@ -156,6 +155,12 @@ public class FramePrincipal extends javax.swing.JFrame {
         splash = new FronteraSplash();
         splash.setVisible(true);
         scroll.setViewportView(splash);
+
+        try {
+            f.setStyleJScrollPane(scroll);
+        } catch (Exception e) {
+            System.out.println("Error:" + e);
+        }
     }
 
     @SuppressWarnings("unchecked")
