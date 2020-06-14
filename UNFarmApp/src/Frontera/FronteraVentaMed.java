@@ -29,6 +29,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
     VenderMed venderMed = new VenderMed();
     Empleado empleado;
     Cliente globClient;
+    
 
     public FronteraVentaMed() {
         initComponents();
@@ -1023,7 +1024,19 @@ public class FronteraVentaMed extends javax.swing.JPanel {
     private void jlSalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseReleased
 
         allSetEmpty();
-        App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenu);
+        if(empleado.getEstado().equals("ADMINISTRADOR")){
+            
+                App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
+                App.getInstance().framePrincipal.menuAdministrador.setNombreUsuario(empleado);
+                
+            }
+            
+            if(empleado.getEstado().equals("ACTIVO")){
+            
+                App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuEmpleado);
+                App.getInstance().framePrincipal.menuEmpleado.setNombreUsuario(empleado);
+                
+            }
     }//GEN-LAST:event_jlSalirMouseReleased
 
 

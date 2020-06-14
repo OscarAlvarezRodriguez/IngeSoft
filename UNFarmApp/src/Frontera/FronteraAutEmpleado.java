@@ -247,8 +247,22 @@ public class FronteraAutEmpleado extends javax.swing.JPanel {
                     f.setImageBackground("/recursos/exito.png", lb)
             );
             allSetEmpty();
-            App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenu);
-            App.getInstance().framePrincipal.menuEmpleado.setNombreUsuario(e);
+            
+                   
+            if(e.getEstado().equals("ADMINISTRADOR")){
+            
+                App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
+                App.getInstance().framePrincipal.menuAdministrador.setNombreUsuario(e);
+                
+            }
+            
+            if(e.getEstado().equals("ACTIVO")){
+            
+                App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuEmpleado);
+                App.getInstance().framePrincipal.menuEmpleado.setNombreUsuario(e);
+                
+            }
+            
 
         } else if (empleado.verificarLogin(e).equals("Datos incorrectos")) {
             JOptionPane.showMessageDialog(null,

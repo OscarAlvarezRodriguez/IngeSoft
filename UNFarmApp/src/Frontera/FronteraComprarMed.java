@@ -27,6 +27,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     DefaultTableModel modelo, modelo1;
     ComprarMedicamento comprarMedicamento = new ComprarMedicamento();
     MedicamentoDAO medicamentoDAO = new MedicamentoDAO();
+    Empleado e= new Empleado();
 
     public FronteraComprarMed() {
         initComponents();
@@ -43,8 +44,12 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     }
 
     public void setNombreUsuario(Empleado em) {
+        
+        e=em;
+        
         if (em != null) {
             jlNombre.setText(em.getNombreempleado() + " " + em.getApellidoempleado());
+            
         }
     }
 
@@ -1040,7 +1045,19 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     private void jlSalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseReleased
 
         allSetEmpty();
-        App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenu);
+        if(e.getEstado().equals("ADMINISTRADOR")){
+            
+                App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
+                App.getInstance().framePrincipal.menuAdministrador.setNombreUsuario(e);
+                
+            }
+            
+            if(e.getEstado().equals("ACTIVO")){
+            
+                App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuEmpleado);
+                App.getInstance().framePrincipal.menuEmpleado.setNombreUsuario(e);
+                
+            }
     }//GEN-LAST:event_jlSalirMouseReleased
 
 

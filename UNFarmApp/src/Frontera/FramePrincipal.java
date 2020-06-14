@@ -22,7 +22,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     public static final int INTFronteraAutEmpleado = 4;
     public static final int INTFronteraRegCliente = 5;
     public static final int INTFronteraEditCliente = 6;
-    public static final int INTFronteraMenu = 7;
+    public static final int INTFronteraAdministrador = 7;
     public static final int INTFronteraGestionMed = 8;
     public static final int INTFronteraComprarMed = 9;
     public static final int INTFronteraGestionarCliente = 10;
@@ -32,6 +32,8 @@ public class FramePrincipal extends javax.swing.JFrame {
     public static final int INTFronteraGestionarDomicilio = 14;
     public static final int INTfronteraRegAdministrador = 15;
     public static final int INTfronteraEditarDrogueria = 16;
+    public static final int INTFronteraMenuEmpleado = 17;
+    
 
     FronteraSplash splash;
     FronteraRegEmpleado empleado = new FronteraRegEmpleado();
@@ -39,7 +41,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     FronteraAutEmpleado autenticarEmpleado = new FronteraAutEmpleado();
     FronteraEditCliente editarCliente = new FronteraEditCliente();
     FronteraRegCliente regCliente = new FronteraRegCliente();
-    FronteraMenuEmpleado menuEmpleado = new FronteraMenuEmpleado();
+    FronteraMenuAdministrador menuAdministrador = new FronteraMenuAdministrador();
     FronteraGestionMed gestionMed = new FronteraGestionMed();
     FronteraComprarMed ComprarMed = new FronteraComprarMed();
     FronteraGestionarClientes gestionClientes = new FronteraGestionarClientes();
@@ -49,6 +51,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     FronteraGestionarDomicilios gestionDomicilio = new FronteraGestionarDomicilios();
     FronteraRegAdministrador regAdministrador = new FronteraRegAdministrador();
     FronteraEditarDrogueria editDrogueria = new FronteraEditarDrogueria();
+    FronteraMenuEmpleado menuEmpleado = new FronteraMenuEmpleado();
 
     Funciones f = new Funciones();
 
@@ -63,7 +66,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         autenticarEmpleado.setVisible(false);
         editarCliente.setVisible(false);
         regCliente.setVisible(false);
-        menuEmpleado.setVisible(false);
+        menuAdministrador.setVisible(false);
         gestionMed.setVisible(false);
         ComprarMed.setVisible(false);
         gestionClientes.setVisible(false);
@@ -73,6 +76,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         gestionDomicilio.setVisible(false);
         regAdministrador.setVisible(false);
         editDrogueria.setVisible(false);
+        menuEmpleado.setVisible(false);
 
         switch (n) {
             case INTFronteraEmpleado:
@@ -99,9 +103,9 @@ public class FramePrincipal extends javax.swing.JFrame {
                 regCliente.setVisible(true);
                 scroll.setViewportView(regCliente);
                 break;
-            case INTFronteraMenu:
-                menuEmpleado.setVisible(true);
-                scroll.setViewportView(menuEmpleado);
+            case INTFronteraAdministrador:
+                menuAdministrador.setVisible(true);
+                scroll.setViewportView(menuAdministrador);
                 break;
             case INTFronteraGestionMed:
                 gestionMed.setVisible(true);
@@ -139,7 +143,11 @@ public class FramePrincipal extends javax.swing.JFrame {
             case INTfronteraEditarDrogueria:
                 editDrogueria.setVisible(true);
                 scroll.setViewportView(editDrogueria);
-                break;    
+                break;
+            case INTFronteraMenuEmpleado:
+                menuEmpleado.setVisible(true);
+                scroll.setViewportView(menuEmpleado);
+                break;
             default:
                 break;
         }

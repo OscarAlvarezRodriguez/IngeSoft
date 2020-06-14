@@ -16,6 +16,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
     Funciones f = new Funciones();
     DefaultTableModel modelo;
     MedicamentoDAO medicamentoDAO = new MedicamentoDAO();
+    Empleado e;
 
     public FronteraGestionMed() {
         initComponents();
@@ -32,6 +33,8 @@ public class FronteraGestionMed extends javax.swing.JPanel {
 
     public void setNombreUsuario(Empleado em) {
         if (em != null) {
+            e=em;
+                    
             jlNombre.setText(em.getNombreempleado() + " " + em.getApellidoempleado());
         }
     }
@@ -722,7 +725,19 @@ public class FronteraGestionMed extends javax.swing.JPanel {
 
     private void jlSalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseReleased
         allSetEmpty();
-        App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenu);
+        if(e.getEstado().equals("ADMINISTRADOR")){
+            
+                App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
+                App.getInstance().framePrincipal.menuAdministrador.setNombreUsuario(e);
+                
+            }
+            
+            if(e.getEstado().equals("ACTIVO")){
+            
+                App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuEmpleado);
+                App.getInstance().framePrincipal.menuEmpleado.setNombreUsuario(e);
+                
+            }
     }//GEN-LAST:event_jlSalirMouseReleased
 
 

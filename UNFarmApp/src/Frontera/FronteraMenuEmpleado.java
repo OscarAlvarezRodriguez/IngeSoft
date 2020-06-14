@@ -44,9 +44,9 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
         f.setStyleJButon(btnDomicilios);
         f.setStyleJButon(btnReportDomicilio);
         f.setStyleJButon(btnClientes);
-        f.setStyleJButon(btnComp_Vent);
+  
         f.setStyleJButon(btnEditarEmpleado);
-        f.setStyleJButon(btnDrogueria);
+        
         f.setStyleJButon(btnCerrarSesion);
     }
 
@@ -64,9 +64,7 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
         btnDomicilios = new javax.swing.JButton();
         btnReportDomicilio = new javax.swing.JButton();
         btnClientes = new javax.swing.JButton();
-        btnComp_Vent = new javax.swing.JButton();
         btnEditarEmpleado = new javax.swing.JButton();
-        btnDrogueria = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
 
         jlLogo.setPreferredSize(new java.awt.Dimension(100, 100));
@@ -159,15 +157,6 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
             }
         });
 
-        btnComp_Vent.setBackground(new java.awt.Color(204, 0, 0));
-        btnComp_Vent.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
-        btnComp_Vent.setForeground(new java.awt.Color(255, 255, 255));
-        btnComp_Vent.setText("Reporte C/V");
-        btnComp_Vent.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnComp_Vent.setPreferredSize(new java.awt.Dimension(250, 40));
-        btnComp_Vent.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnComp_Vent.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
         btnEditarEmpleado.setBackground(new java.awt.Color(204, 0, 0));
         btnEditarEmpleado.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         btnEditarEmpleado.setForeground(new java.awt.Color(255, 255, 255));
@@ -176,20 +165,6 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
         btnEditarEmpleado.setPreferredSize(new java.awt.Dimension(250, 40));
         btnEditarEmpleado.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnEditarEmpleado.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        btnDrogueria.setBackground(new java.awt.Color(204, 0, 0));
-        btnDrogueria.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
-        btnDrogueria.setForeground(new java.awt.Color(255, 255, 255));
-        btnDrogueria.setText("Editar Drogueria");
-        btnDrogueria.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnDrogueria.setPreferredSize(new java.awt.Dimension(250, 40));
-        btnDrogueria.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnDrogueria.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnDrogueria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDrogueriaActionPerformed(evt);
-            }
-        });
 
         btnCerrarSesion.setBackground(new java.awt.Color(204, 0, 0));
         btnCerrarSesion.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -232,19 +207,13 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
                 .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(210, 210, 210)
-                .addComponent(btnMedicamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnReportDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMedicamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(70, 70, 70)
-                .addComponent(btnDomicilios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(btnComp_Vent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(btnReportDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(btnDrogueria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDomicilios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,14 +239,11 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnMedicamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDomicilios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnComp_Vent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReportDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDrogueria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnReportDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -354,23 +320,12 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
         App.getInstance().ChangePanel(FramePrincipal.INTFronteraGestionarCliente);
     }//GEN-LAST:event_btnClientesActionPerformed
 
-    private void btnDrogueriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDrogueriaActionPerformed
-        FronteraEditarDrogueria eDrogueria = new FronteraEditarDrogueria(); 
-        if(eDrogueria.initDrogueria()){
-            App.getInstance().ChangePanel(FramePrincipal.INTfronteraEditarDrogueria);
-            App.getInstance().framePrincipal.editDrogueria.initDrogueria();
-        }else
-            System.out.println("no se encuentra drogueria registrada"); 
-    }//GEN-LAST:event_btnDrogueriaActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnClientes;
-    private javax.swing.JButton btnComp_Vent;
     private javax.swing.JButton btnComprar;
     private javax.swing.JButton btnDomicilios;
-    private javax.swing.JButton btnDrogueria;
     private javax.swing.JButton btnEditarEmpleado;
     private javax.swing.JButton btnMedicamentos;
     private javax.swing.JButton btnReportDomicilio;

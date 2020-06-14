@@ -13,6 +13,7 @@ public class FronteraGestionarDomicilios extends javax.swing.JPanel {
     Funciones f = new Funciones();
     DefaultTableModel modelo;
     GestionarCliente cliente = new GestionarCliente();
+    Empleado e;
 
     public FronteraGestionarDomicilios() {
         initComponents();
@@ -40,6 +41,7 @@ public class FronteraGestionarDomicilios extends javax.swing.JPanel {
 
     public void setNombreUsuario(Empleado em) {
         if (em != null) {
+            e=em;
             jlNombre.setText(em.getNombreempleado() + " " + em.getApellidoempleado());
         }
     }
@@ -421,8 +423,21 @@ public class FronteraGestionarDomicilios extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jlSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMousePressed
-        App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenu);
+
         allSetEmpty();
+        if(e.getEstado().equals("ADMINISTRADOR")){
+            
+                App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
+                App.getInstance().framePrincipal.menuAdministrador.setNombreUsuario(e);
+                
+            }
+            
+            if(e.getEstado().equals("ACTIVO")){
+            
+                App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuEmpleado);
+                App.getInstance().framePrincipal.menuEmpleado.setNombreUsuario(e);
+                
+            }
     }//GEN-LAST:event_jlSalirMousePressed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed

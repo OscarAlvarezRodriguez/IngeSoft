@@ -403,7 +403,7 @@ public class FronteraEditarDrogueria extends javax.swing.JPanel {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         allSetEmpty();
-        App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenu);
+        App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
       //  App.getInstance().framePrincipal.splash.showAgain();
        // App.getInstance().framePrincipal.autenticarEmpleado.allSetEmpty();
 
@@ -470,7 +470,7 @@ public class FronteraEditarDrogueria extends javax.swing.JPanel {
                     f.setImageBackground("/recursos/exito.png", lb)
             );
             allSetEmpty();
-            App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenu);
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
 
         } else {
             JOptionPane.showMessageDialog(null,
