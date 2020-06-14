@@ -1,6 +1,7 @@
 package Frontera;
 
 import Control.AutenticarCliente;
+import Control.EditarDrogueria;
 import Entidad.Empleado;
 import Recursos.Funciones;
 import java.awt.Graphics;
@@ -184,6 +185,11 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
         btnDrogueria.setPreferredSize(new java.awt.Dimension(250, 40));
         btnDrogueria.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnDrogueria.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDrogueria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDrogueriaActionPerformed(evt);
+            }
+        });
 
         btnCerrarSesion.setBackground(new java.awt.Color(204, 0, 0));
         btnCerrarSesion.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -347,6 +353,15 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
         App.getInstance().framePrincipal.gestionClientes.allSetEmpty();;
         App.getInstance().ChangePanel(FramePrincipal.INTFronteraGestionarCliente);
     }//GEN-LAST:event_btnClientesActionPerformed
+
+    private void btnDrogueriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDrogueriaActionPerformed
+        FronteraEditarDrogueria eDrogueria = new FronteraEditarDrogueria(); 
+        if(eDrogueria.initDrogueria()){
+            App.getInstance().ChangePanel(FramePrincipal.INTfronteraEditarDrogueria);
+            App.getInstance().framePrincipal.editDrogueria.initDrogueria();
+        }else
+            System.out.println("no se encuentra drogueria registrada"); 
+    }//GEN-LAST:event_btnDrogueriaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
