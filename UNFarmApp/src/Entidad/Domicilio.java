@@ -92,9 +92,5 @@ public class Domicilio implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Entidad.Domicilio[ iddomicilio=" + iddomicilio + " ]";
-    }
 
 }

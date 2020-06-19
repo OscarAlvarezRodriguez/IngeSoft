@@ -1,20 +1,27 @@
 package Frontera;
 
-import Control.GestionarCliente;
+import Control.GestionarDomicilio;
+import DAO.FacturaDAO;
+import Entidad.Domicilio;
 import Entidad.Empleado;
 import Recursos.Funciones;
 import java.awt.Graphics;
+import java.util.Iterator;
+import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class FronteraGestionarDomicilios extends javax.swing.JPanel {
+public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
 
+    
     Funciones f = new Funciones();
     DefaultTableModel modelo;
-    GestionarCliente cliente = new GestionarCliente();
+    GestionarDomicilio domicilios = new GestionarDomicilio();
     Empleado e;
-
+    List<Domicilio> list;
+    
     public FronteraGestionarDomicilios() {
         initComponents();
         allSetEmpty();
@@ -46,7 +53,7 @@ public class FronteraGestionarDomicilios extends javax.swing.JPanel {
     }
 
     public void allSetEmpty() {
-
+        f.setStyleJButon(btnEstado);
     }
 
     private void CrearModelo() {
@@ -54,14 +61,16 @@ public class FronteraGestionarDomicilios extends javax.swing.JPanel {
         try {
             modelo = (new DefaultTableModel(
                     null, new String[]{
-                        "Cedula",
-                        "Nombre",
-                        "Apellido",
-                        "Telefono",
-                        "Direccion",
-                        "Descipcion"
+                        "Medicamento",
+                        "Laboratorio",
+                        "Descrpicion",
+                        "Tipo Presentacion",
+                        "Concentracion",
+                        "Cantidad",
+                        "Precio unitario + IVA"
                     }) {
                 Class[] types = new Class[]{
+                    java.lang.String.class,
                     java.lang.String.class,
                     java.lang.String.class,
                     java.lang.String.class,
@@ -70,6 +79,7 @@ public class FronteraGestionarDomicilios extends javax.swing.JPanel {
                     java.lang.String.class
                 };
                 boolean[] canEdit = new boolean[]{
+                    false,
                     false,
                     false,
                     false,
@@ -100,6 +110,13 @@ public class FronteraGestionarDomicilios extends javax.swing.JPanel {
     }
 
     private void cargar() {
+        list = domicilios.listaDeDomicilios();
+        for (Iterator<Domicilio> iterator = list.iterator(); iterator.hasNext();) {
+            Domicilio next = iterator.next();
+            domiciliosPendientes.addItem(next.getIddomicilio().toString());
+        }
+        
+        System.out.println(domiciliosPendientes.getSelectedItem().toString() + "WE");
         
     }
 
@@ -173,7 +190,6 @@ public class FronteraGestionarDomicilios extends javax.swing.JPanel {
         jLabel3.setText("Nombre");
         jLabel3.setFocusable(false);
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setOpaque(true);
         jLabel3.setPreferredSize(new java.awt.Dimension(170, 30));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -242,16 +258,13 @@ public class FronteraGestionarDomicilios extends javax.swing.JPanel {
         Jnombre.setBackground(new java.awt.Color(255, 255, 255));
         Jnombre.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
         Jnombre.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Jnombre.setText("\"\"");
         Jnombre.setFocusable(false);
         Jnombre.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        Jnombre.setOpaque(true);
         Jnombre.setPreferredSize(new java.awt.Dimension(170, 30));
 
         JDireccion.setBackground(new java.awt.Color(255, 255, 255));
         JDireccion.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
         JDireccion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        JDireccion.setText("\"\"");
         JDireccion.setFocusable(false);
         JDireccion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         JDireccion.setPreferredSize(new java.awt.Dimension(170, 30));
@@ -259,7 +272,6 @@ public class FronteraGestionarDomicilios extends javax.swing.JPanel {
         JTelefono.setBackground(new java.awt.Color(255, 255, 255));
         JTelefono.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
         JTelefono.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        JTelefono.setText("\"\"");
         JTelefono.setFocusable(false);
         JTelefono.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         JTelefono.setPreferredSize(new java.awt.Dimension(170, 30));
@@ -267,7 +279,6 @@ public class FronteraGestionarDomicilios extends javax.swing.JPanel {
         Jdescripcion.setBackground(new java.awt.Color(255, 255, 255));
         Jdescripcion.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
         Jdescripcion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Jdescripcion.setText("\"\"");
         Jdescripcion.setFocusable(false);
         Jdescripcion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         Jdescripcion.setPreferredSize(new java.awt.Dimension(170, 30));
@@ -279,10 +290,9 @@ public class FronteraGestionarDomicilios extends javax.swing.JPanel {
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel4.setPreferredSize(new java.awt.Dimension(170, 30));
 
-        domiciliosPendientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        domiciliosPendientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                domiciliosPendientesActionPerformed(evt);
+        domiciliosPendientes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                domiciliosPendientesItemStateChanged(evt);
             }
         });
 
@@ -324,56 +334,55 @@ public class FronteraGestionarDomicilios extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                    .addComponent(domiciliosPendientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(89, 89, 89)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jlTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                                    .addComponent(domiciliosPendientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(89, 89, 89)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(26, 26, 26)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(JTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(Jnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(110, 110, 110)
-                                        .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(26, 26, 26)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(Jdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(JDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(60, 60, 60)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(imgNotita, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(imgCamion, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(imgCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnEstado)
-                                        .addGap(102, 102, 102))))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Jnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGap(110, 110, 110)
+                        .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Jdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(imgNotita, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(imgCamion, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(imgCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(21, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEstado)
+                        .addGap(102, 102, 102))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jlTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,9 +437,9 @@ public class FronteraGestionarDomicilios extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Jdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEstado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(jlTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(77, 77, 77))
         );
@@ -470,10 +479,6 @@ public class FronteraGestionarDomicilios extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jScrollPane2MouseReleased
 
-    private void domiciliosPendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_domiciliosPendientesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_domiciliosPendientesActionPerformed
-
     private void btnEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadoActionPerformed
         if(jProgressBar.getValue() == 0){
             jProgressBar.setValue(50);
@@ -483,6 +488,11 @@ public class FronteraGestionarDomicilios extends javax.swing.JPanel {
             
         }
     }//GEN-LAST:event_btnEstadoActionPerformed
+
+    private void domiciliosPendientesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_domiciliosPendientesItemStateChanged
+        Integer idDomicilio = Integer.parseInt(domiciliosPendientes.getSelectedItem().toString());
+        
+    }//GEN-LAST:event_domiciliosPendientesItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
