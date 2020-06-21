@@ -5,7 +5,6 @@ import Entidad.Compramedicamento;
 import Entidad.Empleado;
 import Entidad.Medicamento;
 import Entidad.Medicamentoinvima;
-import DAO.MedicamentoDAO;
 import Recursos.Funciones;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -19,12 +18,10 @@ import javax.swing.table.DefaultTableModel;
 public class FronteraAgregarMed extends javax.swing.JPanel {
 
     Funciones f = new Funciones();
-    boolean presionado;
     ArrayList<Compramedicamento> compras = new ArrayList<>();
     Long PrecioTotal = Long.valueOf("0");
     DefaultTableModel modelo, modelo1;
     AgregarMedicamento agregarMedicamento = new AgregarMedicamento();
-    MedicamentoDAO medicamentoDAO = new MedicamentoDAO();
 
     public FronteraAgregarMed() {
         initComponents();
@@ -753,44 +750,45 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         tablaMedSelec.editCellAt(-1, -1);
         tablaMedSelec.clearSelection();
+
+        final String ma = "Medicamento ya agregado";
+        final String me = "Medicamento agregado exitosamente";
+        final String pi = "Precio fuera de rango";
+        final String mr = "Medicamento restaurado";
+
         for (int i = tablaMedSelec.getRowCount() - 1; i >= 0; i--) {
-            if (agregarMedicamento.validarPrecioventa((Integer) tablaMedSelec.getValueAt(i, 2)).equals("Precio fuera de rango")) {
-                JOptionPane.showMessageDialog(null,
-                        "el precio de" + (String) tablaMedSelec.getValueAt(i, 1) + " debe estar entre 100 y 10.000.000 de pesos",
-                        "recio fuera de rango",
-                        JOptionPane.ERROR_MESSAGE);
-            } else {
-                Medicamentoinvima medicamentoinvima = agregarMedicamento
-                        .leerMed((Short) tablaMedSelec.getValueAt(i, 0));
-                Medicamento medicamento = agregarMedicamento.leerMed(medicamentoinvima);
-
-                if (agregarMedicamento.yaAgregado(medicamento)) {
-
-                    if (agregarMedicamento.Stock(medicamento)) {
-
-                        JOptionPane.showMessageDialog(null,
-                                "el medicamento " + (String) tablaMedSelec.getValueAt(i, 1) + " ha sido restaurado",
-                                "Medicamento restaurado",
-                                JOptionPane.INFORMATION_MESSAGE);
-
-                        Medicamento nuevo = new Medicamento(
-                                (Integer) tablaMedSelec.getValueAt(i, 2),
-                                (short) 0);
-                        agregarMedicamento.actualizarMed(medicamento, nuevo);
-
-                    } else {
-                        JOptionPane.showMessageDialog(null,
-                                "el medicamento " + (String) tablaMedSelec.getValueAt(i, 1) + " ya esta en existencia ",
-                                "Medicamento En Existencia",
-                                JOptionPane.ERROR_MESSAGE);
-                    }
-                } else {
-                    agregarMedicamento.registrarMed(medicamentoinvima.getIdmedicamentoinvima(),
-                            (Integer) tablaMedSelec.getValueAt(i, 2));
-
+            Medicamentoinvima medicamentoinvima = agregarMedicamento
+                    .leerMed((Short) tablaMedSelec.getValueAt(i, 0));
+            Medicamento medicamento = agregarMedicamento.leerMed(medicamentoinvima);
+            String validar = agregarMedicamento.validarDatos(
+                    medicamento,
+                    (Integer) (tablaMedSelec.getValueAt(i, 2)),
+                    (short) (tablaMedSelec.getValueAt(i, 0)));
+            switch (validar) {
+                case pi:
+                    JOptionPane.showMessageDialog(null,
+                            "el precio de"
+                            + (String) tablaMedSelec.getValueAt(i, 1)
+                            + " debe estar entre 100 y 10.000.000 de pesos",
+                            "recio fuera de rango",
+                            JOptionPane.ERROR_MESSAGE);
+                    break;
+                case ma:
+                    JOptionPane.showMessageDialog(null,
+                            "el medicamento " + (String) tablaMedSelec.getValueAt(i, 1) + " ya esta en existencia ",
+                            "Medicamento En Existencia",
+                            JOptionPane.ERROR_MESSAGE);
+                    break;
+                case mr:
+                    JOptionPane.showMessageDialog(null,
+                            "el medicamento " + (String) tablaMedSelec.getValueAt(i, 1) + " ha sido restaurado",
+                            "Medicamento restaurado",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    modelo1.removeRow(i);
+                    break;
+                case me:
                     JLabel lb = new JLabel();
                     lb.setSize(50, 50);
-
                     JOptionPane.showMessageDialog(null,
                             "El medicamento "
                             + (String) tablaMedSelec.getValueAt(i, 1)
@@ -800,13 +798,12 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
                             f.setImageBackground("/recursos/exito.png", lb)
                     );
                     modelo1.removeRow(i);
-
-                }
-                tablaMedSelec.setPreferredSize(new Dimension(tablaMedSelec.getWidth(),
-                        tablaMedSelec.getRowCount() * tablaMedSelec.getRowHeight()));
+                default:
+                    break;
             }
+            tablaMedSelec.setPreferredSize(new Dimension(tablaMedSelec.getWidth(),
+                    tablaMedSelec.getRowCount() * tablaMedSelec.getRowHeight()));
         }
-
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed

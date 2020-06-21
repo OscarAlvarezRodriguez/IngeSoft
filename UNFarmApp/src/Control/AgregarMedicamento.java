@@ -17,14 +17,56 @@ public class AgregarMedicamento {
     private final String mr = "Medicamento restaurado";
     private final String mre = "Error al restaurar medicamento";
 
-    public AgregarMedicamento() {
+    public String validarDatos(Medicamento m, int precio, short IdInvima) {
+        if (!validarPrecioventa(precio).equals(co)) {
+            return pi;
+        }
+        if (validarStock(m, precio).equals(mr)) {
+            return mr;
+        }
+        if (!validarMed(m).equals(co)) {
+            return ma;
+        }
+        if (!registrarMed(IdInvima, precio).equals(me)) {
+            return co;
+        }
+        return me;
     }
 
-    public String validarPrecioventa(int precioventa) {
+    private String validarPrecioventa(int precioventa) {
         if (precioventa >= 100 && precioventa < 10000000) {
             return (co);
         }
         return (pi);
+    }
+
+    private String validarMed(Medicamento m) {
+        if (m == null) {
+            return co;
+        }
+        return ma;
+    }
+
+    private String validarStock(Medicamento m, int precio) {
+        if (m.getStock() == -1) {
+            Medicamento nuevo = new Medicamento(precio, (short) 0);
+            medicamentoDAO.actualizar(m, nuevo);
+            return mr;
+        }
+        return mre;
+
+    }
+
+    private String registrarMed(short idMedinvima, int precio) {
+        Medicamento m = new Medicamento(precio, (short) 0);
+        m.setIdmedicamentoinvima(medicamentoinvimaDAO.leer(idMedinvima));
+        medicamentoDAO.crear(m);
+        return me;
+    }
+
+    public Medicamento leerMed(Medicamentoinvima mi) {
+        Medicamento m = medicamentoDAO.existencia(mi.getIdmedicamentoinvima());
+        return m;
     }
 
     public List<Medicamentoinvima> leerTodos(Medicamentoinvima m) {
@@ -37,35 +79,5 @@ public class AgregarMedicamento {
 
     public Medicamentoinvima leerMed(short idMed) {
         return medicamentoinvimaDAO.leer(idMed);
-    }
-
-    public boolean yaAgregado(Medicamento m) {
-        if (m == null) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean Stock(Medicamento m) {
-        if (m.getStock() == -1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public void registrarMed(short idMedinvima, int cantidad) {
-        Medicamento m = new Medicamento(cantidad, (short) 0);
-        m.setIdmedicamentoinvima(medicamentoinvimaDAO.leer(idMedinvima));
-        medicamentoDAO.crear(m);
-    }
-
-    public Medicamento leerMed(Medicamentoinvima mi) {
-        Medicamento m = medicamentoDAO.existencia(mi.getIdmedicamentoinvima());
-        return m;
-    }
-
-    public void actualizarMed(Medicamento viejo, Medicamento nuevo) {
-        medicamentoDAO.actualizar(viejo, nuevo);
     }
 }
