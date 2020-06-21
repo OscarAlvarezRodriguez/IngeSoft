@@ -41,18 +41,9 @@ public class TestAgregarMedicamento {
     @Test
     public void AgregadoExistoso() {
 
-        Medicamento m = new Medicamento();
-        m.setPrecioventa(20000);
-        m.setStock((short) 50);
-        idmediMedicamentoinvima.setDescripcion("MULTIPACK X 10 EN LOS ENVASES PLASTICOS DE 100 ML");
-        idmediMedicamentoinvima.setIdmedicamentoinvima((short) 20);
-        idmediMedicamentoinvima.setNombremedicamento("OMNIPAQUE® 300 MG I / ML");
-        idmediMedicamentoinvima.setPresentacion("SOLUCION INYECTABLE");
-        idmediMedicamentoinvima.setPrincipioactivo("IOHEXOL 647.0 MG EQUIVALENTE A 300.00 MG DE YODO");
-        idmediMedicamentoinvima.setTitular("GE HEALTHCARE A.S.");
-        m.setIdmedicamentoinvima(idmediMedicamentoinvima);
-        idmediMedicamentoinvima.setMedicamento(m);
-        assertEquals(medicamento.yaAgregado(m), true);
+        Medicamento m = null;
+        
+        assertEquals(medicamento.validarDatos(m, 20000, (short)20), me);
     }
 
     @Test
@@ -71,7 +62,7 @@ public class TestAgregarMedicamento {
         idmediMedicamentoinvima.setTitular("PHARMA LAW COLOMBIA S.A.S");
         idmediMedicamentoinvima.setMedicamento(m);
         m.setIdmedicamentoinvima(idmediMedicamentoinvima);
-        assertEquals(medicamento.yaAgregado(m), true);
+        assertEquals(medicamento.validarDatos(m, m.getPrecioventa(), m.getIdmedicamentoinvima().getIdmedicamentoinvima()), ma);
     }
 
     @Test
@@ -79,10 +70,10 @@ public class TestAgregarMedicamento {
 
         Medicamento m = new Medicamento();
         m.setPrecioventa(99);
-        assertEquals(medicamento.validarPrecioventa(m.getPrecioventa()), pi);
+        assertEquals(medicamento.validarDatos(m, m.getPrecioventa(), (short) 10), pi);
 
         m.setPrecioventa(10000001);
-        assertEquals(medicamento.validarPrecioventa(m.getPrecioventa()), pi);
+        assertEquals(medicamento.validarDatos(m, m.getPrecioventa(), (short) 10), pi);
     }
 
 }
