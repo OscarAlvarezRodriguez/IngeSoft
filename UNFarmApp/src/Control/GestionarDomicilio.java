@@ -24,8 +24,9 @@ public class GestionarDomicilio {
         return Domicilios;
     }
 
-    public short actualizarEstado(Domicilio d, short estado) {
-        
+    public short actualizarEstado(Domicilio d) {
+        short estado;
+        estado = d.getEstado();
         if(estado<2 && estado >= 0){
             DomicilioDAO.editarestado(d, (short)(d.getEstado()+1)); 
             return (short)(d.getEstado()+1);
@@ -37,7 +38,6 @@ public class GestionarDomicilio {
     public Cliente Cliente_Domicilio(Domicilio d){
         Factura factura = new Factura();
         factura = d.getIdfactura();
-        
         
         return factura.getCedulacliente();
     }
