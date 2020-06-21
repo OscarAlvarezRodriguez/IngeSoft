@@ -170,7 +170,7 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
 
         jlTitulo1.setFont(new java.awt.Font("Leelawadee", 0, 28)); // NOI18N
         jlTitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlTitulo1.setText("Lista del Domicilio");
+        jlTitulo1.setText("Lista del Pedido");
         jlTitulo1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlTitulo1.setPreferredSize(new java.awt.Dimension(300, 50));
 
@@ -295,6 +295,11 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
                 domiciliosPendientesItemStateChanged(evt);
             }
         });
+        domiciliosPendientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                domiciliosPendientesActionPerformed(evt);
+            }
+        });
 
         imgCheck.setText("\"");
         imgCheck.setMaximumSize(new java.awt.Dimension(75, 75));
@@ -366,11 +371,9 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(imgCamion, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(imgCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(21, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(imgCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnEstado)
@@ -493,6 +496,10 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
         Integer idDomicilio = Integer.parseInt(domiciliosPendientes.getSelectedItem().toString());
         
     }//GEN-LAST:event_domiciliosPendientesItemStateChanged
+
+    private void domiciliosPendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_domiciliosPendientesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_domiciliosPendientesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

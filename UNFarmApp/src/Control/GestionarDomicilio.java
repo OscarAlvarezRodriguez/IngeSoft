@@ -23,21 +23,13 @@ public class GestionarDomicilio {
     }
 
     public short actualizarEstado(Domicilio d, short estado) {
-        short estadoActualizado = 0;
-        switch (estado) {
-            case 1:
-                estadoActualizado = 2;
-                DomicilioDAO.editarestado(d, estadoActualizado);
-                break;
-            case 2:
-                estadoActualizado = 3;
-                DomicilioDAO.editarestado(d, estadoActualizado);
-                break;
-            case 3:
-                //Estado ya finalizado.
-                break;
+        
+        if(estado<2 && estado >= 0){
+            DomicilioDAO.editarestado(d, (short)(d.getEstado()+1)); 
+            return (short)(d.getEstado()+1);
         }
-        return estadoActualizado;
+        
+        return estado;
     }
 
     public List<Domicilio> listaDeDomiciliosActivos(Domicilio d) {
