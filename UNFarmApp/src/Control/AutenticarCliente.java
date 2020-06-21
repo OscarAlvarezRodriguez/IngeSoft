@@ -7,7 +7,9 @@ public class AutenticarCliente {
 
     private final ClienteDAO cliente = new ClienteDAO();
     private final String cn = "Número cédula no válido";
-    private final String cr = "Cliente no registrado";
+    private final String cnr = "Cliente no registrado";
+    private final String cr = "Cliente ya registrado";
+    private final String ci = "Cliente inactivo";
     private final String bi = "Bienvenido";
     private final String co = "Correcto";
 
@@ -18,10 +20,16 @@ public class AutenticarCliente {
         if (!validarCedula(cli).equals(co)) {
             return (cn);
         }
+        if (!validarClienteReg(cli).equals(co)) {
+            return (cr);
+        }
+        if (!validarClienteActivo(cli).equals(co)) {
+            return (ci);
+        }
         if (cliente.leer(cli) != null) {
             return (bi);
         }
-        return (cr);
+        return (cnr);
     }
 
     public String validarCedula(String cedula) {
@@ -29,6 +37,26 @@ public class AutenticarCliente {
             return (co);
         }
         return (cn);
+    }
+
+    public String validarClienteReg(String cedula) {
+        if (getCliente(cedula) == null) {
+            return (co);
+        }
+        return (cr);
+    }
+
+    public String validarClienteActivo(String cedula) {
+        Cliente c = getCliente(cedula);
+        if (c != null) {
+            if (!c.getEliminado()) {
+                return co;
+            } else {
+                return ci;
+            }
+        } else {
+            return cr;
+        }
     }
 
     public Cliente getCliente(String s) {

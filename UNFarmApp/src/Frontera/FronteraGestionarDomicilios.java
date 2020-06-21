@@ -116,7 +116,7 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
             domiciliosPendientes.addItem(next.getIddomicilio().toString());
         }
         
-        System.out.println(domiciliosPendientes.getSelectedItem().toString() + "WE");
+                System.out.println(domiciliosPendientes.getSelectedItem().toString() + "WE");
         
     }
 
