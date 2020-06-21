@@ -32,7 +32,7 @@ public class Domicilio implements Serializable {
     @Basic(optional = false)
     @Column(name = "ESTADO")
     private short estado;
-    @JoinColumn(name = "IDFACTURA", referencedColumnName = "IDFACTURA")
+    @JoinColumn(name = "IDFACTURA")
     @OneToOne(optional = false)
     private Factura idfactura;
 

@@ -28,11 +28,8 @@ public class GestionarDomicilio {
         return estado;
     }
     
-    public Cliente Cliente_Domicilio(Domicilio d){
-        Factura factura = new Factura();
-        factura = d.getIdfactura();
-        
-        return factura.getCedulacliente();
+    public Cliente getCliente_Domicilio(Domicilio d){
+        return d.getIdfactura().getCedulacliente();
     }
     
     public Factura Factura_Domicilio(Domicilio d){
