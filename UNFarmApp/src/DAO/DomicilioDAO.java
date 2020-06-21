@@ -70,7 +70,7 @@ public class DomicilioDAO {
     public List<Domicilio> leer(Domicilio Domicilio) {
         EntityManager em = emf.createEntityManager();
         List<Domicilio> Domicilios = null;
-        Query q = em.createQuery("SELECT d FROM Domicilio c WHERE"
+        Query q = em.createQuery("SELECT d FROM Domicilio d WHERE"
                 + " d.iddomicilio LIKE CONCAT('%',:iddomicilio,'%') AND"
                 + " d.idfactura LIKE CONCAT('%',:idfactura,'%') AND"
                 + " d.apellido LIKE CONCAT('%',:apellido,'%')")

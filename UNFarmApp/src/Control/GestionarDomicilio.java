@@ -47,5 +47,12 @@ public class GestionarDomicilio {
         Domicilios = DomicilioDAO.leer(d);
         return Domicilios;
     }
+    
+    public Domicilio getDomicilio(String id) {
+        return DomicilioDAO.leer(id);
+    }
 
+    public List <Domicilio> getDomicilio(Domicilio d) {
+        return DomicilioDAO.leer(d);
+    }
 }

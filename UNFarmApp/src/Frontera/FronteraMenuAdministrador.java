@@ -139,6 +139,11 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
         btnDomicilios.setPreferredSize(new java.awt.Dimension(250, 40));
         btnDomicilios.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnDomicilios.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDomicilios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDomiciliosActionPerformed(evt);
+            }
+        });
 
         btnReportDomicilio.setBackground(new java.awt.Color(204, 0, 0));
         btnReportDomicilio.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -376,6 +381,12 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
         }else
             System.out.println("no se encuentra drogueria registrada"); 
     }//GEN-LAST:event_btnDrogueriaActionPerformed
+
+    private void btnDomiciliosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDomiciliosActionPerformed
+        App.getInstance().framePrincipal.gestionDomicilio.setNombreUsuario(e);
+        App.getInstance().framePrincipal.gestionDomicilio.cargar();
+        App.getInstance().ChangePanel(FramePrincipal.INTFronteraGestionarDomicilio);
+    }//GEN-LAST:event_btnDomiciliosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

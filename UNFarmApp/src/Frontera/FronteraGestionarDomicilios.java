@@ -2,6 +2,7 @@ package Frontera;
 
 import Control.GestionarDomicilio;
 import DAO.FacturaDAO;
+import Entidad.Cliente;
 import Entidad.Domicilio;
 import Entidad.Empleado;
 import Recursos.Funciones;
@@ -109,15 +110,13 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
         
     }
 
-    private void cargar() {
+    public void cargar() {
         list = domicilios.listaDeDomicilios();
+        domiciliosPendientes.removeAllItems();
         for (Iterator<Domicilio> iterator = list.iterator(); iterator.hasNext();) {
             Domicilio next = iterator.next();
             domiciliosPendientes.addItem(next.getIddomicilio().toString());
         }
-        
-                System.out.println(domiciliosPendientes.getSelectedItem().toString() + "WE");
-        
     }
 
     @Override
@@ -493,8 +492,13 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEstadoActionPerformed
 
     private void domiciliosPendientesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_domiciliosPendientesItemStateChanged
-        Integer idDomicilio = Integer.parseInt(domiciliosPendientes.getSelectedItem().toString());
-        
+        if(domiciliosPendientes.getSelectedItem() != null){
+            //Domicilio d = new Domicilio();
+            //d.setIddomicilio( (Integer)1);
+            //List <Domicilio> d2 = domicilios.getDomicilio(d);
+            //System.out.println(d.getIddomicilio());
+            //Cliente c = ;
+        } 
     }//GEN-LAST:event_domiciliosPendientesItemStateChanged
 
     private void domiciliosPendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_domiciliosPendientesActionPerformed
