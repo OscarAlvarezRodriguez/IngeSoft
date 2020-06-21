@@ -7,6 +7,8 @@
 /*	Hazael		*/
 
 /*	Juan		*/
-La clase control GestionarCliente en realidad está realizando funciones que deberían colocarse en la clase DAO cliente, además se tiene entendido el término gestionar cómo (Registrar, editar y eliminar) los cuales van separados en sus respectivas clases control
-En la clase control de autenticar cliente (Linea código 34) desconozco que función cumple getCliente puesto que no es aplicado en la validación de datos
+La parte de compra medicamento no hace control del nombre de proveederor, a pesar de botar el mensaje de error se registra en la base de datos
+No hay control sobre la cantidad y el precio total
+La tabla de gestionar medicamentos no se actualiza al agregarlos
+La tabla de venta medicamentos no muestra los medicamentos agregados cuando se registra una segunda venta
 /*	Oscar		*/
