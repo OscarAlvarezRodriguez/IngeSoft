@@ -92,20 +92,20 @@ public class DomicilioDAO {
         }
     }
 
-    public Domicilio leer(String idDomicilio) {
+    public Domicilio leer(String iddomicilio) {
         EntityManager em = emf.createEntityManager();
-        Domicilio Domicilio = null;
+        Domicilio domicilio = null;
         Query q = em.createQuery("SELECT d FROM Domicilio d "
-                + "WHERE d.iddomicilio = :parameter")
-                .setParameter("parameter", idDomicilio);
+                + "WHERE d.iddomicilio = :iddomicilio")
+                .setParameter("iddomicilio", Integer.parseInt(iddomicilio));
         try {
-            Domicilio = (Domicilio) q.getSingleResult();
+            domicilio = (Domicilio) q.getSingleResult();
         } catch (NonUniqueResultException e) {
-            Domicilio = (Domicilio) q.getResultList().get(0);
+            domicilio = (Domicilio) q.getResultList().get(0);
         } catch (Exception e) {
         } finally {
             em.close();
-            return Domicilio;
+            return domicilio;
         }
     }
 

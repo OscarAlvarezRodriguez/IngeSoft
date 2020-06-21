@@ -9,14 +9,7 @@ import java.util.List;
 public class GestionarDomicilio {
 
     DomicilioDAO DomicilioDAO = new DomicilioDAO();
-    
-    
-    
-    public List<Domicilio> listaDeDomicilios() {
-        List<Domicilio> Domicilios = null;
-        Domicilios = DomicilioDAO.todos();
-        return Domicilios;
-    }
+   
 
     public List<Domicilio> listaDeDomiciliosSegunEstado(short estado) {
         List<Domicilio> Domicilios = null;
@@ -41,6 +34,13 @@ public class GestionarDomicilio {
         
         return factura.getCedulacliente();
     }
+    
+    public Factura Factura_Domicilio(Domicilio d){
+        Factura factura = new Factura();
+        factura = d.getIdfactura();
+        
+        return factura;
+    }
 
     public List<Domicilio> listaDeDomiciliosActivos(Domicilio d) {
         List<Domicilio> Domicilios = null;
@@ -49,10 +49,20 @@ public class GestionarDomicilio {
     }
     
     public Domicilio getDomicilio(String id) {
-        return DomicilioDAO.leer(id);
+        Domicilio d = null;
+        d = DomicilioDAO.leer(id);
+        return d;
+    }
+    
+        public List<Domicilio> listaDeDomicilios() {
+        List<Domicilio> domicilios = null;
+        domicilios = DomicilioDAO.todos();
+        return domicilios;
     }
 
-    public List <Domicilio> getDomicilio(Domicilio d) {
-        return DomicilioDAO.leer(d);
+    public List<Domicilio> listaDeDomicilosActivos(Domicilio d) {
+        List<Domicilio> domicilios = null;
+        domicilios = DomicilioDAO.leer(d);
+        return domicilios;
     }
 }

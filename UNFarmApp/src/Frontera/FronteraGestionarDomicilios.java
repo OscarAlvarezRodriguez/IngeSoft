@@ -493,10 +493,11 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
 
     private void domiciliosPendientesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_domiciliosPendientesItemStateChanged
         if(domiciliosPendientes.getSelectedItem() != null){
-            //Domicilio d = new Domicilio();
-            //d.setIddomicilio( (Integer)1);
-            //List <Domicilio> d2 = domicilios.getDomicilio(d);
-            //System.out.println(d.getIddomicilio());
+            Domicilio d = new Domicilio();
+            d.setIddomicilio( (Integer)1);
+            Domicilio d2 = domicilios.getDomicilio((String.valueOf(d.getIddomicilio())));
+            System.out.println(d2.getIddomicilio() + "Este es");
+            
             //Cliente c = ;
         } 
     }//GEN-LAST:event_domiciliosPendientesItemStateChanged
