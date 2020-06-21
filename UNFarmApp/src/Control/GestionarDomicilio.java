@@ -18,8 +18,8 @@ public class GestionarDomicilio {
     }
 
     public short actualizarEstado(Domicilio d) {
-        short estado;
-        estado = d.getEstado();
+        short estado = d.getEstado();
+
         if(estado<2 && estado >= 0){
             DomicilioDAO.editarestado(d, (short)(d.getEstado()+1)); 
             return (short)(d.getEstado()+1);

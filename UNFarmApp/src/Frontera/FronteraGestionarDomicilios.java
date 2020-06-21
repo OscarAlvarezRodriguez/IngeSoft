@@ -19,13 +19,12 @@ import javax.swing.table.DefaultTableModel;
 
 public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
 
-    
     Funciones f = new Funciones();
     DefaultTableModel modelo;
     GestionarDomicilio domicilios = new GestionarDomicilio();
     Empleado e;
     List<Domicilio> list;
-    
+
     public FronteraGestionarDomicilios() {
         initComponents();
         allSetEmpty();
@@ -39,19 +38,18 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
 
         imgNotita.setSize(75, 75);
         imgNotita.setIcon(f.setImageBackground("/Recursos/notita.png", imgNotita));
-        
+
         imgCamion.setSize(75, 75);
         imgCamion.setIcon(f.setImageBackground("/Recursos/camion.png", imgCamion));
-        
+
         imgCheck.setSize(75, 75);
         imgCheck.setIcon(f.setImageBackground("/Recursos/check.png", imgCheck));
 
-        
     }
 
     public void setNombreUsuario(Empleado em) {
         if (em != null) {
-            e=em;
+            e = em;
             jlNombre.setText(em.getNombreempleado() + " " + em.getApellidoempleado());
         }
     }
@@ -110,7 +108,7 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
     }
 
     public void search() {
-        
+
     }
 
     public void cargar() {
@@ -299,11 +297,6 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
                 domiciliosPendientesItemStateChanged(evt);
             }
         });
-        domiciliosPendientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                domiciliosPendientesActionPerformed(evt);
-            }
-        });
 
         imgCheck.setText("\"");
         imgCheck.setMaximumSize(new java.awt.Dimension(75, 75));
@@ -480,19 +473,19 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
     private void jlSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMousePressed
 
         allSetEmpty();
-        if(e.getEstado().equals("ADMINISTRADOR")){
-            
-                App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
-                App.getInstance().framePrincipal.menuAdministrador.setNombreUsuario(e);
-                
-            }
-            
-            if(e.getEstado().equals("ACTIVO")){
-            
-                App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuEmpleado);
-                App.getInstance().framePrincipal.menuEmpleado.setNombreUsuario(e);
-                
-            }
+        if (e.getEstado().equals("ADMINISTRADOR")) {
+
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
+            App.getInstance().framePrincipal.menuAdministrador.setNombreUsuario(e);
+
+        }
+
+        if (e.getEstado().equals("ACTIVO")) {
+
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuEmpleado);
+            App.getInstance().framePrincipal.menuEmpleado.setNombreUsuario(e);
+
+        }
     }//GEN-LAST:event_jlSalirMousePressed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
@@ -512,47 +505,60 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
     }//GEN-LAST:event_jScrollPane2MouseReleased
 
     private void btnEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadoActionPerformed
-        if(jProgressBar.getValue() == 0){
-            jProgressBar.setValue(50);
-        }else if(jProgressBar.getValue() == 50){
-            jProgressBar.setValue(100);
-        }else{
+        Domicilio d = new Domicilio();
+        d.setIddomicilio(Integer.valueOf(domiciliosPendientes.getSelectedItem().toString()));
+        d = domicilios.getDomicilio((String.valueOf(d.getIddomicilio())));
+        
+        domicilios.actualizarEstado(d);
             
-        }
+        ActualizarInfoEstado(d);
     }//GEN-LAST:event_btnEstadoActionPerformed
 
     private void domiciliosPendientesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_domiciliosPendientesItemStateChanged
-        if(domiciliosPendientes.getSelectedItem() != null){
+        if (domiciliosPendientes.getSelectedItem() != null) {
             Domicilio d = new Domicilio();
-            d.setIddomicilio( (Integer)1);
-            Domicilio d2 = domicilios.getDomicilio((String.valueOf(d.getIddomicilio())));
+            d.setIddomicilio(Integer.valueOf(domiciliosPendientes.getSelectedItem().toString()));
+            d = domicilios.getDomicilio((String.valueOf(d.getIddomicilio())));
 
-            ActualizarInfo(d2);
-            
-        } 
+            ActualizarInfo(d);
+
+        }
     }//GEN-LAST:event_domiciliosPendientesItemStateChanged
 
     private void ActualizarInfo(Domicilio d) {
-        Cliente c = domicilios.getCliente_Domicilio(d);
-            Jnombre.setText(c.getNombre() + c.getApellido());
-            JCedula.setText(c.getCedulacliente());
-            JTelefono.setText(c.getTelefono());
-            JDireccion.setText(c.getDireccioncliente());
-            Jdescripcion.setText(c.getDescripciondireccion());
-        Factura f = d.getIdfactura();
+        ActualizarInfoCliente(domicilios.getCliente_Domicilio(d));
+        ActualizarInfoTabla(d.getIdfactura());
+        ActualizarInfoEstado(d);
+    }
+
+    private void ActualizarInfoCliente(Cliente c) {
+        Jnombre.setText(c.getNombre() + " " + c.getApellido());
+        JCedula.setText(c.getCedulacliente());
+        JTelefono.setText(c.getTelefono());
+        JDireccion.setText(c.getDireccioncliente());
+        Jdescripcion.setText(c.getDescripciondireccion());
+    }
+
+    private void ActualizarInfoTabla(Factura f) {
         List<Facturamedicamentos> list = f.getFacturamedicamentosList();
-        
-        System.out.println("Frontera.FronteraGestionarDomicilios.ActualizarInfo()" + "  " + list.size());
         
         for (Iterator<Facturamedicamentos> iterator = list.iterator(); iterator.hasNext();) {
             Facturamedicamentos next = iterator.next();
-            System.out.println("Frontera.FronteraGestionarDomicilios.ActualizarInfo()"+ "  " + next);
+            next.getMedicamento();
         }
     }
-    
-    private void domiciliosPendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_domiciliosPendientesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_domiciliosPendientesActionPerformed
+
+    private void ActualizarInfoEstado(Domicilio d) {
+        short newEstate = d.getEstado();
+
+        if (newEstate == 0) {
+            jProgressBar.setValue(0);
+        } else if (newEstate == 1) {
+            jProgressBar.setValue(50);
+        } else if (newEstate == 2) {
+            jProgressBar.setValue(100);
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -583,5 +589,4 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
     private javax.swing.JTable tablaClientes;
     // End of variables declaration//GEN-END:variables
 
-    
 }
