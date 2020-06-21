@@ -854,8 +854,8 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
     }//GEN-LAST:event_ScrollMedCompradoMouseExited
 
     private void jlSalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseReleased
-
         App.getInstance().ChangePanel(FramePrincipal.INTFronteraGestionMed);
+        App.getInstance().framePrincipal.gestionMed.search();
     }//GEN-LAST:event_jlSalirMouseReleased
 
 

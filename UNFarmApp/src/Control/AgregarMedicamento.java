@@ -21,10 +21,10 @@ public class AgregarMedicamento {
         if (!validarPrecioventa(precio).equals(co)) {
             return pi;
         }
-        if (validarStock(m, precio).equals(mr)) {
-            return mr;
-        }
-        if (!validarMed(m).equals(co)) {
+        if (validarMed(m).equals(ma)) {
+            if (validarStock(m, precio).equals(mr)) {
+                return mr;
+            }
             return ma;
         }
         if (!registrarMed(IdInvima, precio).equals(me)) {
