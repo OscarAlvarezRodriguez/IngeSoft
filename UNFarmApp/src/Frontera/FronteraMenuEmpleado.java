@@ -11,10 +11,14 @@ import javax.swing.JOptionPane;
 public class FronteraMenuEmpleado extends javax.swing.JPanel {
 
     Funciones f = new Funciones();
-    Empleado e;
+    Empleado e= new Empleado();
 
     public FronteraMenuEmpleado() {
-        initComponents();
+        initComponents(); 
+        e.setCedulaempleado("123456790");
+        e.setNombreempleado("Pepito pro");
+        e.setEstado("ACTIVO");
+        e.setApellidoempleado("Gomez");
         setStyleButtons();
         jlLogo.setSize(100, 100);
         jlLogo.setIcon(f.setImageBackground("/Recursos/logo.png", jlLogo));
@@ -257,7 +261,7 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
         AutenticarCliente ac = new AutenticarCliente();
         String cedulaCliente;
         boolean Error = false;
-        boolean Error1 = false;
+        boolean Error1 = false, Error2=false;
         do {
             if (Error) {
                 JOptionPane.showMessageDialog(null,
@@ -274,6 +278,14 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
                         JOptionPane.ERROR_MESSAGE);
                 Error1 = false;
             }
+            
+             if (Error2) {
+                JOptionPane.showMessageDialog(null,
+                        "Cliente inactivo en la base de datos. Por favor reactivelo",
+                        "Cliente Inctivo",
+                        JOptionPane.ERROR_MESSAGE);
+                Error2 = false;
+            }
 
             cedulaCliente = JOptionPane.showInputDialog(null,
                     "Por Favor Ingrese La Cedula Del Cliente",
@@ -288,7 +300,10 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
             if (ac.validarCedula(cedulaCliente).equals("Número cédula no válido")) {
                 Error1 = true;
             }
-            if (!(Error || Error1)) {
+            if (ac.validarClienteActivo(cedulaCliente).equals("Cliente inactivo")) {
+                Error2 = true;
+            }
+            if (!(Error || Error1 || Error2)) {
                 break;
             }
 

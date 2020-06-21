@@ -29,7 +29,6 @@ public class FronteraVentaMed extends javax.swing.JPanel {
     VenderMed venderMed = new VenderMed();
     Empleado empleado;
     Cliente globClient;
-    
 
     public FronteraVentaMed() {
         initComponents();
@@ -893,15 +892,15 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                     cm.setCantidadvendida(cantidad.get(i));
                     venderMed.RegistrarFacturaMed(cm);
                 }
-                 while (modelo1.getRowCount() > 0) {
+                while (modelo1.getRowCount() > 0) {
                     modelo1.removeRow(0);
                 }
                 TablaMedVendido.setPreferredSize(new java.awt.Dimension(TablaMedVendido.getWidth(),
-                            TablaMedVendido.getRowCount() * TablaMedVendido.getRowHeight()));
-                    TablaMedVendido.repaint();
-                    TablaMedVendido.revalidate();
+                        TablaMedVendido.getRowCount() * TablaMedVendido.getRowHeight()));
+                TablaMedVendido.repaint();
+                TablaMedVendido.revalidate();
                 TablaMedVendido.clearSelection();
-                
+
                 JLabel lb = new JLabel();
                 lb.setSize(50, 50);
                 JOptionPane.showMessageDialog(null,
@@ -1024,19 +1023,14 @@ public class FronteraVentaMed extends javax.swing.JPanel {
     private void jlSalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseReleased
 
         allSetEmpty();
-        if(empleado.getEstado().equals("ADMINISTRADOR")){
-            
-                App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
-                App.getInstance().framePrincipal.menuAdministrador.setNombreUsuario(empleado);
-                
-            }
-            
-            if(empleado.getEstado().equals("ACTIVO")){
-            
-                App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuEmpleado);
-                App.getInstance().framePrincipal.menuEmpleado.setNombreUsuario(empleado);
-                
-            }
+        if (empleado.getEstado().equals("ADMINISTRADOR")) {
+
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
+        } else{
+
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuEmpleado);
+
+        }
     }//GEN-LAST:event_jlSalirMouseReleased
 
 

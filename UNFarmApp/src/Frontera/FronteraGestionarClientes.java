@@ -32,7 +32,7 @@ public class FronteraGestionarClientes extends javax.swing.JPanel {
 
     public void setNombreUsuario(Empleado em) {
         if (em != null) {
-            e=em;
+            e = em;
             jlNombre.setText(em.getNombreempleado() + " " + em.getApellidoempleado());
         }
     }
@@ -697,19 +697,15 @@ public class FronteraGestionarClientes extends javax.swing.JPanel {
 
     private void jlSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMousePressed
         allSetEmpty();
-        if(e.getEstado().equals("ADMINISTRADOR")){
-            
-                App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
-                App.getInstance().framePrincipal.menuAdministrador.setNombreUsuario(e);
-                
-            }
-            
-            if(e.getEstado().equals("ACTIVO")){
-            
-                App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuEmpleado);
-                App.getInstance().framePrincipal.menuEmpleado.setNombreUsuario(e);
-                
-            }
+        if (e.getEstado().equals("ADMINISTRADOR")) {
+
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
+
+        } else {
+
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuEmpleado);
+
+        }
     }//GEN-LAST:event_jlSalirMousePressed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
