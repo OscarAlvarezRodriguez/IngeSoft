@@ -67,7 +67,6 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
                         "Laboratorio",
                         "Descrpicion",
                         "Tipo Presentacion",
-                        "Concentracion",
                         "Cantidad",
                         "Precio unitario + IVA"
                     }) {
@@ -77,11 +76,9 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
                     java.lang.String.class,
                     java.lang.String.class,
                     java.lang.String.class,
-                    java.lang.String.class,
                     java.lang.String.class
                 };
                 boolean[] canEdit = new boolean[]{
-                    false,
                     false,
                     false,
                     false,
@@ -101,7 +98,7 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
                 }
 
             });
-            tablaClientes.setModel(modelo);
+            tablaPedido.setModel(modelo);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString() + "error2");
         }
@@ -140,7 +137,7 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tablaClientes = new javax.swing.JTable();
+        tablaPedido = new javax.swing.JTable();
         jlNombre = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -209,7 +206,7 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
             }
         });
 
-        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
+        tablaPedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -220,17 +217,17 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tablaClientes.setGridColor(new java.awt.Color(0, 0, 0));
-        tablaClientes.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
-        tablaClientes.setMinimumSize(new java.awt.Dimension(0, 0));
-        tablaClientes.setPreferredSize(new java.awt.Dimension(880, 120));
-        tablaClientes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaPedido.setGridColor(new java.awt.Color(0, 0, 0));
+        tablaPedido.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        tablaPedido.setMinimumSize(new java.awt.Dimension(0, 0));
+        tablaPedido.setPreferredSize(new java.awt.Dimension(880, 120));
+        tablaPedido.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tablaPedido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                tablaClientesMouseReleased(evt);
+                tablaPedidoMouseReleased(evt);
             }
         });
-        jScrollPane2.setViewportView(tablaClientes);
+        jScrollPane2.setViewportView(tablaPedido);
 
         jlNombre.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
         jlNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -496,9 +493,9 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
-    private void tablaClientesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseReleased
+    private void tablaPedidoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPedidoMouseReleased
 
-    }//GEN-LAST:event_tablaClientesMouseReleased
+    }//GEN-LAST:event_tablaPedidoMouseReleased
 
     private void jScrollPane2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane2MouseReleased
 
@@ -544,10 +541,33 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
         
         for (Iterator<Facturamedicamentos> iterator = list.iterator(); iterator.hasNext();) {
             Facturamedicamentos next = iterator.next();
-            next.getMedicamento();
+            ActualizarFila(next);
         }
+        tablaPedido.setPreferredSize(new java.awt.Dimension(tablaPedido.getWidth(),
+                tablaPedido.getRowCount() * tablaPedido.getRowHeight()));
+        tablaPedido.repaint();
+        tablaPedido.revalidate();
+        
     }
 
+    private void ActualizarFila(Facturamedicamentos next) {
+        Object object[] = null;
+        for (int i = 0; i < list.size(); i++) {
+            modelo.addRow(object);
+            modelo.setValueAt(next.getMedicamento().getIdmedicamentoinvima().getNombremedicamento(), i, 0);
+            modelo.setValueAt(next.getMedicamento().getIdmedicamentoinvima().getTitular(), i, 1);
+            modelo.setValueAt(next.getMedicamento().getIdmedicamentoinvima().getDescripcion(), i, 2);
+            modelo.setValueAt(next.getMedicamento().getIdmedicamentoinvima().getPresentacion(),i, 3);
+            modelo.setValueAt(next.getCantidadvendida(), i, 4);
+            modelo.setValueAt(next.getMedicamento().getPrecioventa(),i, 5);
+        }
+        tablaPedido.setPreferredSize(new java.awt.Dimension(tablaPedido.getWidth(),
+                tablaPedido.getRowCount() * tablaPedido.getRowHeight()));
+        tablaPedido.repaint();
+        tablaPedido.revalidate();
+        
+    }
+    
     private void ActualizarInfoEstado(Domicilio d) {
         short newEstate = d.getEstado();
 
@@ -586,7 +606,9 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
     private javax.swing.JLabel jlSalir;
     private javax.swing.JLabel jlTitulo1;
     private javax.swing.JLabel jlUsuario;
-    private javax.swing.JTable tablaClientes;
+    private javax.swing.JTable tablaPedido;
     // End of variables declaration//GEN-END:variables
+
+    
 
 }
