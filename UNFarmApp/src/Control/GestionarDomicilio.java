@@ -1,7 +1,9 @@
 package Control;
 
 import DAO.DomicilioDAO;
+import Entidad.Cliente;
 import Entidad.Domicilio;
+import Entidad.Factura;
 import java.util.List;
 
 public class GestionarDomicilio {
@@ -30,6 +32,14 @@ public class GestionarDomicilio {
         }
         
         return estado;
+    }
+    
+    public Cliente Cliente_Domicilio(Domicilio d){
+        Factura factura = new Factura();
+        factura = d.getIdfactura();
+        
+        
+        return factura.getCedulacliente();
     }
 
     public List<Domicilio> listaDeDomiciliosActivos(Domicilio d) {
