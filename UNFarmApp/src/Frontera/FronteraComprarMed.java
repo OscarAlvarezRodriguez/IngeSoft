@@ -911,6 +911,10 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                         break;
 
                 }
+
+                if (!hacer) {
+                    break;
+                }
             }
         }
         if (hacer) {

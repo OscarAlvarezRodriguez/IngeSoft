@@ -888,6 +888,10 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                     default:
                         break;
                 }
+                
+                if (!hacer) {
+                    break;
+                }
             }
         }
         if (hacer) {

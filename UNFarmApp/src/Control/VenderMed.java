@@ -48,7 +48,7 @@ public class VenderMed {
         // después verifica si la cantidad solicitada está disponible en el inventario de la droguería
         Medicamento medicamento = medicamentoDao.leer(idMed);
         venta.setMedicamento(medicamento);
-        if (venta.getMedicamento().getStock() - venta.getCantidadvendida() < 0) { //en teoría según el JPA de puede tener la información del medicamento y sacar el stock sin necesidad de hacer la consulta en la DB, toca verificar si realmente funciona
+        if (medicamento.getStock()- venta.getCantidadvendida() < 0) { //en teoría según el JPA de puede tener la información del medicamento y sacar el stock sin necesidad de hacer la consulta en la DB, toca verificar si realmente funciona
             return (ca);
         }
         return (co);
