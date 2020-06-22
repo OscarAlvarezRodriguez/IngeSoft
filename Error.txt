@@ -12,7 +12,7 @@ La parte de compra medicamento no hace control del nombre de proveederor, a pesa
 
 No hay control sobre la cantidad y el precio total:
 
-Funciones de las clases control vender y comprar medicamento se estan haciendo en sus respectivas clases frontera. Corregir: 
+Funciones de las clases control vender y comprar medicamento se estan haciendo en sus respectivas clases frontera. Corregir:
 
 
 La tabla de venta medicamentos no muestra los medicamentos agregados cuando se registra una segunda venta: 

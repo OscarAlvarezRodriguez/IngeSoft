@@ -50,6 +50,7 @@ public class Compramedicamento implements Serializable {
         this.preciounitario = preciounitario;
         this.cantidad = cantidad;
     }
+    
 
     public Compramedicamento(short idmedicamento, int idcompra) {
         this.compramedicamentoPK = new CompramedicamentoPK(idmedicamento, idcompra);
