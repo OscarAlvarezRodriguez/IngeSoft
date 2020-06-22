@@ -869,6 +869,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
             } else {
 
                 Compramedicamento medicamentoComprado = new Compramedicamento((Integer) TablaMedComprado.getValueAt(i, 3), (short) TablaMedComprado.getValueAt(i, 2));
+                medicamentoComprado.setCompramedicamentoPK(compramedicamentoPK);
                 listaComprada.add(medicamentoComprado);
 
             }

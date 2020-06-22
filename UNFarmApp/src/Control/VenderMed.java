@@ -18,8 +18,6 @@ public class VenderMed {
     private final String fg = "Factura Generada Exitosamente";
     private final String ca = "La cantidad solicitada es superior al inventario disponible";
 
-    public VenderMed() {
-    }
     // la clase control funciona mandando la clase venta que se desea agregar, la función validar datos se encargara de comprobar el stock y la cantidad
     // todas las funciones son string y retornan el texto que especifica el error o el exito de la operación
     // si se desea validar individualmente cada campo las otras funciones están públicas
@@ -48,16 +46,14 @@ public class VenderMed {
 
     public String validarCantidad(Facturamedicamentos venta) {
         // para eficiencia, primero valida si la cantidad vendida no excede las 2000 unidades
-        if(venta.getCantidadvendida() > 2000 || venta.getCantidadvendida() <= 0){
+        if (venta.getCantidadvendida() > 2000 || venta.getCantidadvendida() <= 0) {
             return (ci);
-        }
-        // después verifica si la cantidad solicitada está disponible en el inventario de la droguería
-        else if (venta.getMedicamento().getStock() < venta.getCantidadvendida()){ //en teoría según el JPA de puede tener la información del medicamento y sacar el stock sin necesidad de hacer la consulta en la DB, toca verificar si realmente funciona
+        } // después verifica si la cantidad solicitada está disponible en el inventario de la droguería
+        else if (venta.getMedicamento().getStock() < venta.getCantidadvendida()) { //en teoría según el JPA de puede tener la información del medicamento y sacar el stock sin necesidad de hacer la consulta en la DB, toca verificar si realmente funciona
             return (ca);
         }
-        return(co);
+        return (co);
     }
-    
 
     public String validarPrecio(long precio) {
         if (precio < 10000000) {
