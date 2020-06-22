@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 public class FronteraMenuAdministrador extends javax.swing.JPanel {
 
     Funciones f = new Funciones();
-    Empleado e=new Empleado();
+    Empleado e = new Empleado();
     private final String cn = "Número cédula no válido";
     private final String cnr = "Cliente no registrado";
     private final String cr = "Cliente ya registrado";
@@ -21,10 +21,10 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
 
     public FronteraMenuAdministrador() {
         initComponents();
-        e.setCedulaempleado("123456790");
-        e.setNombreempleado("Pepito pro");
+        e.setCedulaempleado("10101010");
+        e.setNombreempleado("Armando");
         e.setEstado("ACTIVO");
-        e.setApellidoempleado("Gomez");
+        e.setApellidoempleado("Mendoza");
         setStyleButtons();
         jlLogo.setSize(100, 100);
         jlLogo.setIcon(f.setImageBackground("/Recursos/logo.png", jlLogo));
@@ -299,6 +299,7 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         App.getInstance().framePrincipal.ComprarMed.setNombreUsuario(e);
         App.getInstance().framePrincipal.ComprarMed.allSetEmpty();
+        App.getInstance().framePrincipal.ComprarMed.search();
         App.getInstance().ChangePanel(FramePrincipal.INTFronteraComprarMed);
     }//GEN-LAST:event_btnComprarActionPerformed
 
@@ -325,18 +326,13 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
                             "Número cédula no válido",
                             JOptionPane.ERROR_MESSAGE);
 
-                } 
-                
-                else if (algunError == ci  ) {
+                } else if (algunError == ci) {
 
                     JOptionPane.showMessageDialog(null,
                             "Cliente inactivo en la base de datos. Por favor reactivelo",
                             "Cliente Inctivo",
                             JOptionPane.ERROR_MESSAGE);
-                }
-                
-                
-                else if (algunError == cnr) {
+                } else if (algunError == cnr) {
                     break;
                 }
 
@@ -349,13 +345,13 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
         if (algunError == cr) {
             App.getInstance().framePrincipal.venderMed.setNombreUsuario(e, new DAO.ClienteDAO().leer(cedulaCliente));
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraVenderMed);
+            App.getInstance().framePrincipal.venderMed.search();
         }
         if (algunError == cnr) {
 
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraRegCliente);
         }
 
-    
 
     }//GEN-LAST:event_btnVenderActionPerformed
 
@@ -369,23 +365,26 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
 
     private void btnMedicamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedicamentosActionPerformed
         App.getInstance().framePrincipal.gestionMed.setNombreUsuario(e);
-        App.getInstance().framePrincipal.gestionMed.allSetEmpty();;
+        App.getInstance().framePrincipal.gestionMed.allSetEmpty();
+        App.getInstance().framePrincipal.gestionMed.search();
         App.getInstance().ChangePanel(FramePrincipal.INTFronteraGestionMed);
     }//GEN-LAST:event_btnMedicamentosActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
         App.getInstance().framePrincipal.gestionClientes.setNombreUsuario(e);
-        App.getInstance().framePrincipal.gestionClientes.allSetEmpty();;
+        App.getInstance().framePrincipal.gestionClientes.allSetEmpty();
+        App.getInstance().framePrincipal.gestionClientes.search();
         App.getInstance().ChangePanel(FramePrincipal.INTFronteraGestionarCliente);
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnDrogueriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDrogueriaActionPerformed
-        FronteraEditarDrogueria eDrogueria = new FronteraEditarDrogueria(); 
-        if(eDrogueria.initDrogueria()){
+        FronteraEditarDrogueria eDrogueria = new FronteraEditarDrogueria();
+        if (eDrogueria.initDrogueria()) {
             App.getInstance().ChangePanel(FramePrincipal.INTfronteraEditarDrogueria);
             App.getInstance().framePrincipal.editDrogueria.initDrogueria();
-        }else
-            System.out.println("no se encuentra drogueria registrada"); 
+        } else {
+            System.out.println("no se encuentra drogueria registrada");
+        }
     }//GEN-LAST:event_btnDrogueriaActionPerformed
 
     private void btnDomiciliosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDomiciliosActionPerformed

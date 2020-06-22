@@ -23,33 +23,32 @@ public class VenderMed {
     // si se desea validar individualmente cada campo las otras funciones están públicas
     // para hacer toda la validación solo es necesario llamar a validarDatos, y en caso de que sea exitosa la validación la misma clase control se comunica con la clase DAO y la agrega a la DB
     //en la linea 55 de código de experimenta una función que evita crear una consulta en la clase dao, en caso de no funcionar, eliminar esta función
-    public String validarDatos(Factura venta) {
-        //como toca verificar la cantidad individual de cada medicamento sea la correcta, se llama la lista de medicamentos solicitados y se extraen lso datos a verificar
-        // por ello se llama a getFacturamedicamentosList, la función recorre la lista y valida la contidad
-        for (int i = 0; i < venta.getFacturamedicamentosList().size(); i++) {
-            String val = validarCantidad(venta.getFacturamedicamentosList().get(i));
-            if (!val.equals(co)) {
-                return (val);
-            }
+    public String validarDatos(Factura factura, Facturamedicamentos facturamedicamentos, short idMed) {
+        if (!validarLongitudCantidad(facturamedicamentos).equals(co)) {
+            return ci;
         }
-        //valida que el precio total no exceda los 10M
-        if (!validarPrecio(venta.getPreciototal()).equals(co)) {
-            return (si);
+        if (!validarCantidad(facturamedicamentos, idMed).equals(co)) {
+            return ca;
         }
-        //finalmente si todo es correcto se hace la generación del id y la agregación de la misma
-        int id = aO.crear(venta);
-        if (id < 0) {
-            return ("Error generación de ID");
+        if (!validarPrecio(factura.getPreciototal()).equals(co)) {
+            return si;
         }
-        return (fg);
+        return fg;
     }
 
-    public String validarCantidad(Facturamedicamentos venta) {
+    public String validarLongitudCantidad(Facturamedicamentos venta) {
         // para eficiencia, primero valida si la cantidad vendida no excede las 2000 unidades
         if (venta.getCantidadvendida() > 2000 || venta.getCantidadvendida() <= 0) {
             return (ci);
-        } // después verifica si la cantidad solicitada está disponible en el inventario de la droguería
-        else if (venta.getMedicamento().getStock() < venta.getCantidadvendida()) { //en teoría según el JPA de puede tener la información del medicamento y sacar el stock sin necesidad de hacer la consulta en la DB, toca verificar si realmente funciona
+        }
+        return (co);
+    }
+
+    public String validarCantidad(Facturamedicamentos venta, short idMed) {
+        // después verifica si la cantidad solicitada está disponible en el inventario de la droguería
+        Medicamento medicamento = medicamentoDao.leer(idMed);
+        venta.setMedicamento(medicamento);
+        if (venta.getMedicamento().getStock() - venta.getCantidadvendida() < 0) { //en teoría según el JPA de puede tener la información del medicamento y sacar el stock sin necesidad de hacer la consulta en la DB, toca verificar si realmente funciona
             return (ca);
         }
         return (co);
@@ -93,7 +92,6 @@ public class VenderMed {
     }
 
     public void RegistrarFacturaMed(Facturamedicamentos c) {
-
         aO.crearFactura(c);
     }
 

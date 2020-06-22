@@ -15,10 +15,10 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
 
     public FronteraMenuEmpleado() {
         initComponents(); 
-        e.setCedulaempleado("123456790");
-        e.setNombreempleado("Pepito pro");
+        e.setCedulaempleado("1234567");
+        e.setNombreempleado("usuario");
         e.setEstado("ACTIVO");
-        e.setApellidoempleado("Gomez");
+        e.setApellidoempleado("prueba");
         setStyleButtons();
         jlLogo.setSize(100, 100);
         jlLogo.setIcon(f.setImageBackground("/Recursos/logo.png", jlLogo));
@@ -259,6 +259,7 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         App.getInstance().framePrincipal.ComprarMed.setNombreUsuario(e);
         App.getInstance().framePrincipal.ComprarMed.allSetEmpty();
+        App.getInstance().framePrincipal.ComprarMed.search();
         App.getInstance().ChangePanel(FramePrincipal.INTFronteraComprarMed);
     }//GEN-LAST:event_btnComprarActionPerformed
 
@@ -330,13 +331,15 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
 
     private void btnMedicamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedicamentosActionPerformed
         App.getInstance().framePrincipal.gestionMed.setNombreUsuario(e);
-        App.getInstance().framePrincipal.gestionMed.allSetEmpty();;
+        App.getInstance().framePrincipal.gestionMed.allSetEmpty();
+        App.getInstance().framePrincipal.gestionMed.search();
         App.getInstance().ChangePanel(FramePrincipal.INTFronteraGestionMed);
     }//GEN-LAST:event_btnMedicamentosActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
         App.getInstance().framePrincipal.gestionClientes.setNombreUsuario(e);
-        App.getInstance().framePrincipal.gestionClientes.allSetEmpty();;
+        App.getInstance().framePrincipal.gestionClientes.allSetEmpty();
+        App.getInstance().framePrincipal.gestionClientes.search();
         App.getInstance().ChangePanel(FramePrincipal.INTFronteraGestionarCliente);
     }//GEN-LAST:event_btnClientesActionPerformed
 

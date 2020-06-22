@@ -45,9 +45,9 @@ public class FronteraVentaMed extends javax.swing.JPanel {
     }
 
     public void setNombreUsuario(Empleado em, Cliente client) {
-        
+
         if (em != null && client != null) {
-            empleado=em;
+            empleado = em;
 
             jlNombre.setText(em.getNombreempleado() + " " + em.getApellidoempleado());
             txtCliente.setText(client.getNombre() + " " + client.getApellido());
@@ -165,7 +165,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         }
     }
 
-    private void search() {
+    public void search() {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
@@ -825,44 +825,69 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                     modelo1.setValueAt(venderMed.obtenerMed((Short) tablaMed.getValueAt(seleccionar[i], 0)).getPrecioventa(), rows, 3);
                 }
             }
+            TablaMedVendido.setPreferredSize(new java.awt.Dimension(TablaMedVendido.getWidth(),
+                TablaMedVendido.getRowCount() * TablaMedVendido.getRowHeight()));
+        TablaMedVendido.repaint();
+        TablaMedVendido.revalidate();
         }
         tablaMed.clearSelection();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         TablaMedVendido.editCellAt(-1, -1);
+        TablaMedVendido.clearSelection();
+        final String ci = "Cantidad del medicamento no permitida";
+        final String si = "La compra excede el límite del precio";
+        final String co = "Correcto";
+        final String fg = "Factura Generada Exitosamente";
+        final String ca = "La cantidad solicitada es superior al inventario disponible";
+        long precio = 0;
         boolean hacer = true;
 
-        for (int i = 0; i < TablaMedVendido.getRowCount(); i++) {
-            for (int j = 0; j < TablaMedVendido.getColumnCount(); j++) {
-                if (TablaMedVendido.getValueAt(i, 2) == null) {
-                    JOptionPane.showMessageDialog(null,
-                            "Algun Espacio Esta Vacio, Por Favor Diligrncie Todos Los Campos",
-                            "Campos Vacios",
-                            JOptionPane.ERROR_MESSAGE);
-                    hacer = false;
-                    break;
-                }
-                if ((Short) TablaMedVendido.getValueAt(i, 2) <= 0) {
-                    JOptionPane.showMessageDialog(null,
-                            "La Cantidad No Pueden Ser Menores O Iguales A Cero "
-                            + "\n El Provedor Debe Estar Diligenciado",
-                            "Datos Incorrectos",
-                            JOptionPane.ERROR_MESSAGE);
-                    hacer = false;
-                    break;
-                }
-                if ((Short) TablaMedVendido.getValueAt(i, 2) > 2000) {
-                    JOptionPane.showMessageDialog(null,
-                            "La cantidad maxima que se puede vender es de 2000 unidades",
-                             "Cantidad vendida excedida",
-                            JOptionPane.ERROR_MESSAGE);
-                    hacer = false;
-                    break;
-                }
-            }
-            if (!hacer) {
+        for (int i = 0;
+                i < TablaMedVendido.getRowCount();
+                i++) {
+            if (TablaMedVendido.getValueAt(i, 2) == null) {
+                JOptionPane.showMessageDialog(null,
+                        "Algun Espacio Esta Vacio, Por Favor Diligrncie Todos Los Campos",
+                        "Campos Vacios",
+                        JOptionPane.ERROR_MESSAGE);
+                hacer = false;
                 break;
+            } else {
+                precio = precio + (Integer) TablaMedVendido.getValueAt(i, 3);
+                Factura factura = new Factura();
+                factura.setPreciototal(precio);
+                Facturamedicamentos facturamedicamentos = new Facturamedicamentos();
+                facturamedicamentos.setCantidadvendida((short) TablaMedVendido.getValueAt(i, 2));
+                String validar = venderMed.validarDatos(factura,
+                        facturamedicamentos,
+                        (short) TablaMedVendido.getValueAt(i, 0));
+                switch (validar) {
+                    case ci:
+                        JOptionPane.showMessageDialog(null,
+                                "La cantidad del medicamento debe estar entre 1 y 2000 unidades",
+                                "Cantidad del medicamento no permitida",
+                                JOptionPane.ERROR_MESSAGE);
+                        hacer = false;
+                        break;
+                    case ca:
+                        JOptionPane.showMessageDialog(null,
+                                "La cantidad solicitada es superior al inventario disponible",
+                                "Stock sobrepasado",
+                                JOptionPane.ERROR_MESSAGE);
+                        hacer = false;
+                        break;
+                    case si:
+                        JOptionPane.showMessageDialog(null,
+                                "El valor de la compra debe ser menor a 10.000.000 pesos",
+                                "La compra excede el límite del precio",
+                                JOptionPane.ERROR_MESSAGE);
+                        hacer = false;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         if (hacer) {
@@ -1035,9 +1060,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         allSetEmpty();
         if (empleado.getEstado().equals("ADMINISTRADOR")) {
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
-        } 
-        
-        else {
+        } else {
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuEmpleado);
         }
     }//GEN-LAST:event_jlSalirMouseReleased

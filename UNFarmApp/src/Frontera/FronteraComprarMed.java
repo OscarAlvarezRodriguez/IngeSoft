@@ -13,7 +13,6 @@ import java.awt.Graphics;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -162,7 +161,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         }
     }
 
-    private void search() {
+    public void search() {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
@@ -830,8 +829,9 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                     modelo1.setValueAt(Short.valueOf("0"), rows, 2);
                     modelo1.setValueAt(0, rows, 3);
                 }
-                TablaMedComprado.setPreferredSize(new java.awt.Dimension(TablaMedComprado.getWidth(),
-                        TablaMedComprado.getRowCount() * TablaMedComprado.getRowHeight()));
+                TablaMedComprado.setPreferredSize(
+                        new java.awt.Dimension(TablaMedComprado.getWidth(),
+                                TablaMedComprado.getRowCount() * TablaMedComprado.getRowHeight()));
                 TablaMedComprado.repaint();
                 TablaMedComprado.revalidate();
             }
@@ -868,54 +868,51 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                 break;
             } else {
 
-                Compramedicamento medicamentoComprado = new Compramedicamento((Integer) TablaMedComprado.getValueAt(i, 3), (short) TablaMedComprado.getValueAt(i, 2));
-                medicamentoComprado.setCompramedicamentoPK(compramedicamentoPK);
-                listaComprada.add(medicamentoComprado);
+                compra.setNombreproveedor(txtProv.getText());
+                Compramedicamento compramedicamento = new Compramedicamento(
+                        (int) TablaMedComprado.getValueAt(i, 3),
+                        (short) TablaMedComprado.getValueAt(i, 2)
+                );
+                validar = comprarMedicamento.validarDatos(compra,
+                        compramedicamento,
+                        (short) TablaMedComprado.getValueAt(i, 0));
+                switch (validar) {
 
+                    case vp:
+                        JOptionPane.showMessageDialog(null,
+                                "Longtud nombre proveedor debe estar entre 5 y 32 caracteres",
+                                "Longitud incorrecta proveedor",
+                                JOptionPane.ERROR_MESSAGE);
+                        hacer = false;
+                        break;
+
+                    case ci:
+                        JOptionPane.showMessageDialog(null,
+                                "La cantidad del producto comprado debe estar entre 1 y 2000",
+                                "Cantidad fuera de rango",
+                                JOptionPane.ERROR_MESSAGE);
+                        hacer = false;
+                        break;
+
+                    case ce:
+                        JOptionPane.showMessageDialog(null,
+                                "La cantidad excede la capacidad del inventario actual",
+                                "Stock sobrepasado",
+                                JOptionPane.ERROR_MESSAGE);
+                        hacer = false;
+                        break;
+
+                    case pn:
+                        JOptionPane.showMessageDialog(null,
+                                "El precio no puede ser menor a 100 ni mayor a 10000000",
+                                "Precio no valido",
+                                JOptionPane.ERROR_MESSAGE);
+                        hacer = false;
+                        break;
+
+                }
             }
-
         }
-
-        compra.setNombreproveedor(txtProv.getText());
-        compra.setCompramedicamentoList(listaComprada);
-        validar = comprarMedicamento.validarDatos(compra);
-
-        switch (validar) {
-
-            case vp:
-                JOptionPane.showMessageDialog(null,
-                        "Longtud nombre proveedor debe estar entre 5 y 32 caracteres",
-                         "Longitud incorrecta proveedor",
-                        JOptionPane.ERROR_MESSAGE);
-                hacer=false;
-                break;
-
-            case ci:
-                JOptionPane.showMessageDialog(null,
-                        "La cantidad del producto comprado debe estar entre 1 y 2000",
-                         "Cantidad fuera de rango",
-                        JOptionPane.ERROR_MESSAGE);
-                hacer=false;
-                break;
-
-            case ce:
-                JOptionPane.showMessageDialog(null,
-                        "La cantidad excede la capacidad del inventario actual",
-                         "Stock sobrepasado",
-                        JOptionPane.ERROR_MESSAGE);
-                hacer=false;
-                break;
-
-            case pn:
-                JOptionPane.showMessageDialog(null,
-                        "El precio no puede ser menor a 100 ni mayor a 10000000",
-                         "Precio no valido",
-                        JOptionPane.ERROR_MESSAGE);
-                hacer=false;
-                break;
-
-        }
-
         if (hacer) {
             ArrayList<Short> cantidad = new ArrayList<>();
             ArrayList<Short> ID = new ArrayList<>();
