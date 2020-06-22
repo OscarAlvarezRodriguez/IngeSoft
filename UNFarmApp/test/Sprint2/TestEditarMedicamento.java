@@ -48,8 +48,10 @@ public class TestEditarMedicamento {
         
     Medicamento m = new Medicamento();
     m.setPrecioventa(99);
+    m.setStock((short) 10);
     assertEquals(editar.validarPrecioventa(m.getPrecioventa()), pi);
     m.setPrecioventa(10000001);
+    m.setStock((short) 10);
     assertEquals(editar.validarPrecioventa(m.getPrecioventa()), pi);
     }
     
@@ -58,8 +60,10 @@ public class TestEditarMedicamento {
     
     Medicamento m = new Medicamento();
     m.setStock((short)-1);
+    m.setPrecioventa(10000);
     assertEquals(editar.validarStock(m.getStock()), se);
     m.setStock((short)2001);
+    m.setPrecioventa(10000);
     assertEquals(editar.validarStock(m.getStock()), se);
     }
     
