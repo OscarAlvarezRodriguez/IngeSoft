@@ -1,6 +1,6 @@
 package Frontera;
 
-import DAO.MedicamentoDAO;
+import Control.GestionarMed;
 import Entidad.Empleado;
 import Entidad.Medicamento;
 import Entidad.Medicamentoinvima;
@@ -15,7 +15,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
 
     Funciones f = new Funciones();
     DefaultTableModel modelo;
-    MedicamentoDAO medicamentoDAO = new MedicamentoDAO();
+    GestionarMed gestionarMed = new GestionarMed();
     Empleado e;
 
     public FronteraGestionMed() {
@@ -33,8 +33,8 @@ public class FronteraGestionMed extends javax.swing.JPanel {
 
     public void setNombreUsuario(Empleado em) {
         if (em != null) {
-            e=em;
-                    
+            e = em;
+
             jlNombre.setText(em.getNombreempleado() + " " + em.getApellidoempleado());
         }
     }
@@ -129,7 +129,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
                 txtPresentacion.getText(), txtPrinAct.getText());
         Medicamento m = new Medicamento();
         m.setIdmedicamentoinvima(mi);
-        List<Medicamento> listaClientes = medicamentoDAO.leertodo(m);
+        List<Medicamento> listaClientes = gestionarMed.listaDeMedicamentos(m);
         Object object[] = null;
         for (int i = 0; i < listaClientes.size(); i++) {
             modelo.addRow(object);
@@ -150,7 +150,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
 
     private void cargar() {
 
-        List<Medicamento> listaClientes = medicamentoDAO.leertodo();
+        List<Medicamento> listaClientes = gestionarMed.listaDeMedicamentos();
         Object object[] = null;
         for (int i = 0; i < listaClientes.size(); i++) {
             modelo.addRow(object);
@@ -616,10 +616,10 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         } else {
             int in = JOptionPane.showConfirmDialog(null, "¿Seguro Desea Elimiar " + (String) tablaMed.getValueAt(i[0], 1) + " ?", "Elimiar Medicamento", JOptionPane.YES_NO_OPTION);
             if (in == JOptionPane.YES_OPTION) {
-                Medicamento viejo = medicamentoDAO.leer((Short) tablaMed.getValueAt(i[0], 0));
+                Medicamento viejo = gestionarMed.leerMedicamento((Short) tablaMed.getValueAt(i[0], 0));
                 Medicamento nuevo = viejo;
                 nuevo.setStock(Short.valueOf("-1"));
-                medicamentoDAO.actualizar(viejo, nuevo);
+                gestionarMed.actualizarMedicamento(viejo, nuevo);
                 search();
             }
         }
@@ -725,19 +725,19 @@ public class FronteraGestionMed extends javax.swing.JPanel {
 
     private void jlSalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseReleased
         allSetEmpty();
-        if(e.getEstado().equals("ADMINISTRADOR")){
-            
-                App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
-                App.getInstance().framePrincipal.menuAdministrador.setNombreUsuario(e);
-                
-            }
-            
-            if(e.getEstado().equals("ACTIVO")){
-            
-                App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuEmpleado);
-                App.getInstance().framePrincipal.menuEmpleado.setNombreUsuario(e);
-                
-            }
+        if (e.getEstado().equals("ADMINISTRADOR")) {
+
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
+            App.getInstance().framePrincipal.menuAdministrador.setNombreUsuario(e);
+
+        }
+
+        if (e.getEstado().equals("ACTIVO")) {
+
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuEmpleado);
+            App.getInstance().framePrincipal.menuEmpleado.setNombreUsuario(e);
+
+        }
     }//GEN-LAST:event_jlSalirMouseReleased
 
 
