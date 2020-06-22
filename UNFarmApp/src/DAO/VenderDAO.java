@@ -113,4 +113,18 @@ public class VenderDAO {
             return ret;
         }
     }
+    
+    public List<Factura> leerfacturas(){
+        EntityManager em  = emf.createEntityManager();
+        Query q = em.createQuery("SELECT v FROM Factura v");
+        List<Factura> facturas= null;
+        try{
+            facturas = (List<Factura>) q.getResultList();
+        } catch (Exception e){
+            
+        } finally{
+            em.close();
+        }
+        return facturas;
+    }
 }
