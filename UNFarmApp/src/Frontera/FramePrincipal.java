@@ -89,6 +89,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 break;
             case INTFronteraSplash:
                 splash.setVisible(true);
+                splash.run();
                 scroll.setViewportView(splash);
                 break;
             case INTFronteraAutEmpleado:
