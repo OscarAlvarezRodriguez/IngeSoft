@@ -61,7 +61,7 @@ public class TestComprarMedicamento {
      public void crearCompraMedicamento() {
          Compramedicamento cMedicamento = new Compramedicamento();
          Compra c = new Compra();
-         c.setNombreproveedor("Drogas Bayer");
+         c.setNombreproveedor("Drogas Calidad Maxima");
          cMedicamento.setCantidad((short)15);
          cMedicamento.setCompra(c);
          Date date = new Date(System.currentTimeMillis());

@@ -14,7 +14,7 @@ public class EditarDrogueria {
     private final String co = "Correcto";
     private final String nitn = "Nit no válido";
     private final String dr = "No hay ninguna drogueria registrada";
-    private final String re = "Registro exitoso";
+    private final String ae = "Actualización existosa";
 
     public EditarDrogueria() {
     }
@@ -40,7 +40,7 @@ public class EditarDrogueria {
             return (rpn);
         }
         farm.actualizar(antigua, drogapp);
-        return re;
+        return ae;
     }
 
     public String validarNit(String nit) {

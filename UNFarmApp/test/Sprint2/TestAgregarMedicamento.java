@@ -42,8 +42,7 @@ public class TestAgregarMedicamento {
     public void AgregadoExistoso() {
 
         Medicamento m = null;
-        
-        assertEquals(medicamento.validarDatos(m, 20000, (short)20), me);
+        assertEquals(medicamento.validarDatos(m, 10000, (short)20), me);
     }
 
     @Test
@@ -70,9 +69,11 @@ public class TestAgregarMedicamento {
 
         Medicamento m = new Medicamento();
         m.setPrecioventa(99);
+        m.setStock((short) 10);
         assertEquals(medicamento.validarDatos(m, m.getPrecioventa(), (short) 10), pi);
 
         m.setPrecioventa(10000001);
+        m.setStock((short) 10);
         assertEquals(medicamento.validarDatos(m, m.getPrecioventa(), (short) 10), pi);
     }
 
