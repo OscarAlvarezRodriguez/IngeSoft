@@ -33,6 +33,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     public static final int INTfronteraRegAdministrador = 15;
     public static final int INTfronteraEditarDrogueria = 16;
     public static final int INTFronteraMenuEmpleado = 17;
+    public static final int INTFronteraReportesCV= 18;
 
     FronteraSplash splash;
     FronteraRegEmpleado empleado = new FronteraRegEmpleado();
@@ -51,7 +52,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     FronteraRegAdministrador regAdministrador = new FronteraRegAdministrador();
     FronteraEditarDrogueria editDrogueria = new FronteraEditarDrogueria();
     FronteraMenuEmpleado menuEmpleado = new FronteraMenuEmpleado();
-
+    FronteraReportesCV reportesCV = new FronteraReportesCV();
     Funciones f = new Funciones();
 
     javax.swing.JLabel logo = new javax.swing.JLabel();
@@ -76,6 +77,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         regAdministrador.setVisible(false);
         editDrogueria.setVisible(false);
         menuEmpleado.setVisible(false);
+        reportesCV.setVisible(false);
 
         switch (n) {
             case INTFronteraEmpleado:
@@ -147,6 +149,10 @@ public class FramePrincipal extends javax.swing.JFrame {
             case INTFronteraMenuEmpleado:
                 menuEmpleado.setVisible(true);
                 scroll.setViewportView(menuEmpleado);
+                break;
+            case INTFronteraReportesCV:
+                reportesCV.setVisible(true);
+                scroll.setViewportView(reportesCV);
                 break;
             default:
                 break;

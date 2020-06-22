@@ -7,31 +7,25 @@ import Entidad.Compramedicamento;
 import Entidad.Facturamedicamentos;
 import java.util.List;
 
-
 public class ReporteVenta {
+
     private final VenderDAO FacturasDAO = new VenderDAO();
     private final CompraDAO comprasDAO = new CompraDAO();
     private final String va = "No hay facturas registradas";
     private final String nc = "No hay facturas registradas";
-    private List<Facturamedicamentos> facturas = null;
-    private List<Compramedicamento> compras = null;
-    
-    public ReporteVenta(){
+
+    public ReporteVenta() {
     }
-    
-    public List<Facturamedicamentos> obtenerfacturas(){
+
+    public List<Facturamedicamentos> obtenerfacturas() {
+        List<Facturamedicamentos> facturas = null;
         facturas = FacturasDAO.leerfacturas();
-        if (facturas == null){
-            System.out.println(va);
-        }
         return facturas;
     }
-    
-    public List<Compramedicamento> obtenerInfoCompras(){
+
+    public List<Compramedicamento> obtenerInfoCompras() {
+        List<Compramedicamento> compras = null;
         compras = comprasDAO.leercompras();
-        if (compras == null){
-            System.out.println(nc);
-        }
         return compras;
     }
 }
