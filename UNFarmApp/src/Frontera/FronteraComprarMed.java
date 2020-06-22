@@ -13,6 +13,7 @@ import java.awt.Graphics;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -27,7 +28,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     DefaultTableModel modelo, modelo1;
     ComprarMedicamento comprarMedicamento = new ComprarMedicamento();
     MedicamentoDAO medicamentoDAO = new MedicamentoDAO();
-    Empleado e= new Empleado();
+    Empleado e = new Empleado();
 
     public FronteraComprarMed() {
         initComponents();
@@ -44,12 +45,12 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     }
 
     public void setNombreUsuario(Empleado em) {
-        
-        e=em;
-        
+
+        e = em;
+
         if (em != null) {
             jlNombre.setText(em.getNombreempleado() + " " + em.getApellidoempleado());
-            
+
         }
     }
 
@@ -750,7 +751,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
 
     private void txtProvFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProvFocusLost
         if (!txtProv.getText().equals("")) {
-            if (!comprarMedicamento.validarProveedor(txtProv.getText())) {
+            if (!comprarMedicamento.validarProveedor(txtProv.getText()).equals("Correcto")) {
                 JOptionPane.showMessageDialog(null,
                         "El Proveedor Debe Tener Entre 5 y 32 Caracteres",
                         "Longitud Proveedor No Válido",
@@ -841,35 +842,79 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         TablaMedComprado.editCellAt(-1, -1);
         TablaMedComprado.clearSelection();
+        final String vp = "Longitud nombre proveedor incorrecta";
+        final String ci = "Cantidad no permitida";
+        final String pn = "Precio no válido";
+        final String ce = "La cantidad excede la capacidad del inventario actual";
+        final String cr = "Compra registrada exitosamente";
+        final String co = "Correcto";
         boolean hacer = true;
+        List<Compramedicamento> listaComprada = new ArrayList<>();
+        Compra compra = new Compra();
+        String validar;
+
         PrecioTotal = Long.valueOf("0");
+
+        //Llenar listaComprada con medicamentos a comprar
         for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
-            for (int j = 0; j < TablaMedComprado.getColumnCount(); j++) {
-                if (TablaMedComprado.getValueAt(i, 2) == null
-                        || TablaMedComprado.getValueAt(i, 3) == null) {
-                    JOptionPane.showMessageDialog(null,
-                            "Algun Espacio Esta Vacio, Por Favor Diligrncie Todos Los Campos",
-                            "Campos Vacios",
-                            JOptionPane.ERROR_MESSAGE);
-                    hacer = false;
-                    break;
-                }
-                if ((Short) TablaMedComprado.getValueAt(i, 2) <= 0
-                        || (int) TablaMedComprado.getValueAt(i, 3) <= 0
-                        || txtProv.getText().length() == 0) {
-                    JOptionPane.showMessageDialog(null,
-                            "El Precio Y La Cantidad No Pueden Ser Menores O Iguales A Cero "
-                            + "\n El Provedor Debe Estar Diligenciado",
-                            "Datos Incorrectos",
-                            JOptionPane.ERROR_MESSAGE);
-                    hacer = false;
-                    break;
-                }
-            }
-            if (!hacer) {
+
+            // Este condicional verifica que el precio y la cantidad no sean nulos.
+            if (TablaMedComprado.getValueAt(i, 2) == null || TablaMedComprado.getValueAt(i, 3) == null) {
+                JOptionPane.showMessageDialog(null,
+                        "Algun Espacio Esta Vacio, Por Favor Diligrncie Todos Los Campos",
+                        "Campos Vacios",
+                        JOptionPane.ERROR_MESSAGE);
+                hacer = false;
                 break;
+            } else {
+
+                Compramedicamento medicamentoComprado = new Compramedicamento((Integer) TablaMedComprado.getValueAt(i, 3), (short) TablaMedComprado.getValueAt(i, 2));
+                listaComprada.add(medicamentoComprado);
+
             }
+
         }
+
+        compra.setNombreproveedor(txtProv.getText());
+        compra.setCompramedicamentoList(listaComprada);
+        validar = comprarMedicamento.validarDatos(compra);
+
+        switch (validar) {
+
+            case vp:
+                JOptionPane.showMessageDialog(null,
+                        "Longtud nombre proveedor debe estar entre 5 y 32 caracteres",
+                         "Longitud incorrecta proveedor",
+                        JOptionPane.ERROR_MESSAGE);
+                hacer=false;
+                break;
+
+            case ci:
+                JOptionPane.showMessageDialog(null,
+                        "La cantidad del producto comprado debe estar entre 1 y 2000",
+                         "Cantidad fuera de rango",
+                        JOptionPane.ERROR_MESSAGE);
+                hacer=false;
+                break;
+
+            case ce:
+                JOptionPane.showMessageDialog(null,
+                        "La cantidad excede la capacidad del inventario actual",
+                         "Stock sobrepasado",
+                        JOptionPane.ERROR_MESSAGE);
+                hacer=false;
+                break;
+
+            case pn:
+                JOptionPane.showMessageDialog(null,
+                        "El precio no puede ser menor a 100 ni mayor a 10000000",
+                         "Precio no valido",
+                        JOptionPane.ERROR_MESSAGE);
+                hacer=false;
+                break;
+
+        }
+
         if (hacer) {
             ArrayList<Short> cantidad = new ArrayList<>();
             ArrayList<Short> ID = new ArrayList<>();
@@ -928,9 +973,9 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                     modelo1.removeRow(0);
                 }
                 TablaMedComprado.setPreferredSize(new java.awt.Dimension(TablaMedComprado.getWidth(),
-                            TablaMedComprado.getRowCount() * TablaMedComprado.getRowHeight()));
-                    TablaMedComprado.repaint();
-                    TablaMedComprado.revalidate();
+                        TablaMedComprado.getRowCount() * TablaMedComprado.getRowHeight()));
+                TablaMedComprado.repaint();
+                TablaMedComprado.revalidate();
                 TablaMedComprado.clearSelection();
             } else {
                 JOptionPane.showMessageDialog(null,
@@ -1045,19 +1090,19 @@ public class FronteraComprarMed extends javax.swing.JPanel {
     private void jlSalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseReleased
 
         allSetEmpty();
-        if(e.getEstado().equals("ADMINISTRADOR")){
-            
-                App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
-                App.getInstance().framePrincipal.menuAdministrador.setNombreUsuario(e);
-                
-            }
-            
-            if(e.getEstado().equals("ACTIVO")){
-            
-                App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuEmpleado);
-                App.getInstance().framePrincipal.menuEmpleado.setNombreUsuario(e);
-                
-            }
+        if (e.getEstado().equals("ADMINISTRADOR")) {
+
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
+            App.getInstance().framePrincipal.menuAdministrador.setNombreUsuario(e);
+
+        }
+
+        if (e.getEstado().equals("ACTIVO")) {
+
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuEmpleado);
+            App.getInstance().framePrincipal.menuEmpleado.setNombreUsuario(e);
+
+        }
     }//GEN-LAST:event_jlSalirMouseReleased
 
 

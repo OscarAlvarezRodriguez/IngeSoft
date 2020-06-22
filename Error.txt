@@ -7,8 +7,13 @@
 /*	Hazael		*/
 
 /*	Juan		*/
-La parte de compra medicamento no hace control del nombre de proveederor, a pesar de botar el mensaje de error se registra en la base de datos
-No hay control sobre la cantidad y el precio total
-La tabla de gestionar medicamentos no se actualiza al agregarlos
-La tabla de venta medicamentos no muestra los medicamentos agregados cuando se registra una segunda venta
+
+La parte de compra medicamento no hace control del nombre de proveederor, a pesar de botar el mensaje de error se registra en la base de datos: Alejandro
+
+No hay control sobre la cantidad y el precio total:
+
+Funciones de las clases control vender y comprar medicamento se estan haciendo en sus respectivas clases frontera. Corregir: 
+
+
+La tabla de venta medicamentos no muestra los medicamentos agregados cuando se registra una segunda venta: 
 /*	Oscar		*/
