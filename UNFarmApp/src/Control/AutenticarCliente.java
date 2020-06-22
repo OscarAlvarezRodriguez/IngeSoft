@@ -17,19 +17,21 @@ public class AutenticarCliente {
     }
 
     public String verificarLogin(String cli) {
+        
+        //Valida la longitud de la cedula
         if (!validarCedula(cli).equals(co)) {
             return (cn);
         }
-        if (!validarClienteReg(cli).equals(co)) {
-            return (cr);
-        }
-        if (!validarClienteActivo(cli).equals(co)) {
+        //Devuelve "ci" si el cliente esta inactivo o "cr" si el cliente no esta registrado
+        if (!validarClienteActivo(cli).equals(co) && !validarClienteActivo(cli).equals(cr)) {
             return (ci);
         }
-        if (cliente.leer(cli) != null) {
-            return (bi);
+        //Devuelve "cnr" si el cliente no esta registrado
+        if (!validarClienteReg(cli).equals(co)) {
+            return (cnr);
         }
-        return (cnr);
+        
+        return (cr);
     }
 
     public String validarCedula(String cedula) {
@@ -41,9 +43,9 @@ public class AutenticarCliente {
 
     public String validarClienteReg(String cedula) {
         if (getCliente(cedula) == null) {
-            return (co);
+            return (cnr);
         }
-        return (cr);
+        return (co);
     }
 
     public String validarClienteActivo(String cedula) {
@@ -58,7 +60,8 @@ public class AutenticarCliente {
             return cr;
         }
     }
-
+    
+    // Obtiene el cliente que corresponde a la cedula digitada
     public Cliente getCliente(String s) {
         Cliente c = new Cliente();
         ClienteDAO aO = new ClienteDAO();

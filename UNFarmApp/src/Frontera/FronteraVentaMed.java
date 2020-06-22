@@ -45,7 +45,9 @@ public class FronteraVentaMed extends javax.swing.JPanel {
     }
 
     public void setNombreUsuario(Empleado em, Cliente client) {
+        
         if (em != null && client != null) {
+            empleado=em;
 
             jlNombre.setText(em.getNombreempleado() + " " + em.getApellidoempleado());
             txtCliente.setText(client.getNombre() + " " + client.getApellido());
@@ -850,6 +852,14 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                     hacer = false;
                     break;
                 }
+                if ((Short) TablaMedVendido.getValueAt(i, 2) > 2000) {
+                    JOptionPane.showMessageDialog(null,
+                            "La cantidad maxima que se puede vender es de 2000 unidades",
+                             "Cantidad vendida excedida",
+                            JOptionPane.ERROR_MESSAGE);
+                    hacer = false;
+                    break;
+                }
             }
             if (!hacer) {
                 break;
@@ -1024,12 +1034,11 @@ public class FronteraVentaMed extends javax.swing.JPanel {
 
         allSetEmpty();
         if (empleado.getEstado().equals("ADMINISTRADOR")) {
-
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
-        } else{
-
+        } 
+        
+        else {
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuEmpleado);
-
         }
     }//GEN-LAST:event_jlSalirMouseReleased
 
