@@ -13,7 +13,6 @@ import java.awt.Graphics;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -678,7 +677,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                 .addComponent(jlMedSel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(ScrollMedComprado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -846,10 +845,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         final String ci = "Cantidad no permitida";
         final String pn = "Precio no válido";
         final String ce = "La cantidad excede la capacidad del inventario actual";
-        final String cr = "Compra registrada exitosamente";
-        final String co = "Correcto";
         boolean hacer = true;
-        List<Compramedicamento> listaComprada = new ArrayList<>();
         Compra compra = new Compra();
         String validar;
 
@@ -857,7 +853,6 @@ public class FronteraComprarMed extends javax.swing.JPanel {
 
         //Llenar listaComprada con medicamentos a comprar
         for (int i = 0; i < TablaMedComprado.getRowCount(); i++) {
-
             // Este condicional verifica que el precio y la cantidad no sean nulos.
             if (TablaMedComprado.getValueAt(i, 2) == null || TablaMedComprado.getValueAt(i, 3) == null) {
                 JOptionPane.showMessageDialog(null,
@@ -867,51 +862,51 @@ public class FronteraComprarMed extends javax.swing.JPanel {
                 hacer = false;
                 break;
             } else {
+                compra.setNombreproveedor(txtProv.getText());
+                Compramedicamento compramedicamento = new Compramedicamento(
+                        (int) TablaMedComprado.getValueAt(i, 3),
+                        (short) TablaMedComprado.getValueAt(i, 2)
+                );
+                validar = comprarMedicamento.validarDatos(compra,
+                        compramedicamento,
+                        (short) TablaMedComprado.getValueAt(i, 0));
+                switch (validar) {
 
-                Compramedicamento medicamentoComprado = new Compramedicamento((Integer) TablaMedComprado.getValueAt(i, 3), (short) TablaMedComprado.getValueAt(i, 2));
-                listaComprada.add(medicamentoComprado);
+                    case vp:
+                        JOptionPane.showMessageDialog(null,
+                                "Longtud nombre proveedor debe estar entre 5 y 32 caracteres",
+                                "Longitud incorrecta proveedor",
+                                JOptionPane.ERROR_MESSAGE);
+                        hacer = false;
+                        break;
+
+                    case ci:
+                        JOptionPane.showMessageDialog(null,
+                                "La cantidad del producto comprado debe estar entre 1 y 2000",
+                                "Cantidad fuera de rango",
+                                JOptionPane.ERROR_MESSAGE);
+                        hacer = false;
+                        break;
+
+                    case ce:
+                        JOptionPane.showMessageDialog(null,
+                                "La cantidad excede la capacidad del inventario actual",
+                                "Stock sobrepasado",
+                                JOptionPane.ERROR_MESSAGE);
+                        hacer = false;
+                        break;
+
+                    case pn:
+                        JOptionPane.showMessageDialog(null,
+                                "El precio no puede ser menor a 100 ni mayor a 10000000",
+                                "Precio no valido",
+                                JOptionPane.ERROR_MESSAGE);
+                        hacer = false;
+                        break;
+
+                }
 
             }
-
-        }
-
-        compra.setNombreproveedor(txtProv.getText());
-        compra.setCompramedicamentoList(listaComprada);
-        validar = comprarMedicamento.validarDatos(compra);
-
-        switch (validar) {
-
-            case vp:
-                JOptionPane.showMessageDialog(null,
-                        "Longtud nombre proveedor debe estar entre 5 y 32 caracteres",
-                         "Longitud incorrecta proveedor",
-                        JOptionPane.ERROR_MESSAGE);
-                hacer=false;
-                break;
-
-            case ci:
-                JOptionPane.showMessageDialog(null,
-                        "La cantidad del producto comprado debe estar entre 1 y 2000",
-                         "Cantidad fuera de rango",
-                        JOptionPane.ERROR_MESSAGE);
-                hacer=false;
-                break;
-
-            case ce:
-                JOptionPane.showMessageDialog(null,
-                        "La cantidad excede la capacidad del inventario actual",
-                         "Stock sobrepasado",
-                        JOptionPane.ERROR_MESSAGE);
-                hacer=false;
-                break;
-
-            case pn:
-                JOptionPane.showMessageDialog(null,
-                        "El precio no puede ser menor a 100 ni mayor a 10000000",
-                         "Precio no valido",
-                        JOptionPane.ERROR_MESSAGE);
-                hacer=false;
-                break;
 
         }
 
