@@ -22,7 +22,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     public static final int INTFronteraAutEmpleado = 4;
     public static final int INTFronteraRegCliente = 5;
     public static final int INTFronteraEditCliente = 6;
-    public static final int INTFronteraAdministrador = 7;
+    public static final int INTFronteraMenuAdministrador = 7;
     public static final int INTFronteraGestionMed = 8;
     public static final int INTFronteraComprarMed = 9;
     public static final int INTFronteraGestionarCliente = 10;
@@ -105,7 +105,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 regCliente.setVisible(true);
                 scroll.setViewportView(regCliente);
                 break;
-            case INTFronteraAdministrador:
+            case INTFronteraMenuAdministrador:
                 menuAdministrador.setVisible(true);
                 scroll.setViewportView(menuAdministrador);
                 break;

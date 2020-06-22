@@ -699,7 +699,7 @@ public class FronteraGestionarClientes extends javax.swing.JPanel {
         allSetEmpty();
         if (e.getEstado().equals("ADMINISTRADOR")) {
 
-            App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuAdministrador);
 
         } else {
 

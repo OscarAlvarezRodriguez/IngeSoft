@@ -1094,7 +1094,7 @@ public class FronteraComprarMed extends javax.swing.JPanel {
         allSetEmpty();
         if (e.getEstado().equals("ADMINISTRADOR")) {
 
-            App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuAdministrador);
             App.getInstance().framePrincipal.menuAdministrador.setNombreUsuario(e);
 
         }

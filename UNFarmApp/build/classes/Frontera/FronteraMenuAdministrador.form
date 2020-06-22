@@ -50,7 +50,7 @@
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace min="210" pref="210" max="-2" attributes="0"/>
-              <Component id="btnComp_Vent" min="-2" max="-2" attributes="0"/>
+              <Component id="btnReporteCV" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="70" pref="70" max="-2" attributes="0"/>
               <Component id="btnReportDomicilio" min="-2" max="-2" attributes="0"/>
           </Group>
@@ -93,7 +93,7 @@
               </Group>
               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnComp_Vent" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnReporteCV" min="-2" max="-2" attributes="0"/>
                   <Component id="btnReportDomicilio" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
@@ -281,7 +281,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClientesActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnComp_Vent">
+    <Component class="javax.swing.JButton" name="btnReporteCV">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="cc" type="rgb"/>
@@ -300,6 +300,9 @@
         <Property name="verticalAlignment" type="int" value="3"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReporteCVActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnEditarEmpleado">
       <Properties>

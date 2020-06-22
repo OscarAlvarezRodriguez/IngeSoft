@@ -1063,7 +1063,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
 
         allSetEmpty();
         if (empleado.getEstado().equals("ADMINISTRADOR")) {
-            App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
+            App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuAdministrador);
         } else {
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuEmpleado);
         }

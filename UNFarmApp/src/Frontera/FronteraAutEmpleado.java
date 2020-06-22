@@ -251,7 +251,7 @@ public class FronteraAutEmpleado extends javax.swing.JPanel {
                    
             if(e.getEstado().equals("ADMINISTRADOR")){
             
-                App.getInstance().ChangePanel(FramePrincipal.INTFronteraAdministrador);
+                App.getInstance().ChangePanel(FramePrincipal.INTFronteraMenuAdministrador);
                 App.getInstance().framePrincipal.menuAdministrador.setNombreUsuario(e);
                 
             }

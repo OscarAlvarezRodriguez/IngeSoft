@@ -1,7 +1,6 @@
 package Frontera;
 
 import Control.AutenticarCliente;
-import Control.EditarDrogueria;
 import Entidad.Empleado;
 import Recursos.Funciones;
 import java.awt.Graphics;

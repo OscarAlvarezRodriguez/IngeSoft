@@ -1,7 +1,6 @@
 package Frontera;
 
 import Control.AutenticarCliente;
-import Control.EditarDrogueria;
 import Entidad.Empleado;
 import Recursos.Funciones;
 import java.awt.Graphics;
@@ -16,14 +15,12 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
     private final String cnr = "Cliente no registrado";
     private final String cr = "Cliente ya registrado";
     private final String ci = "Cliente inactivo";
-    private final String bi = "Bienvenido";
-    private final String co = "Correcto";
 
     public FronteraMenuAdministrador() {
         initComponents();
         e.setCedulaempleado("10101010");
         e.setNombreempleado("Armando");
-        e.setEstado("ACTIVO");
+        e.setEstado("ADMINISTRADOR");
         e.setApellidoempleado("Mendoza");
         setStyleButtons();
         jlLogo.setSize(100, 100);
@@ -54,7 +51,7 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
         f.setStyleJButon(btnDomicilios);
         f.setStyleJButon(btnReportDomicilio);
         f.setStyleJButon(btnClientes);
-        f.setStyleJButon(btnComp_Vent);
+        f.setStyleJButon(btnReporteCV);
         f.setStyleJButon(btnEditarEmpleado);
         f.setStyleJButon(btnDrogueria);
         f.setStyleJButon(btnCerrarSesion);
@@ -74,7 +71,7 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
         btnDomicilios = new javax.swing.JButton();
         btnReportDomicilio = new javax.swing.JButton();
         btnClientes = new javax.swing.JButton();
-        btnComp_Vent = new javax.swing.JButton();
+        btnReporteCV = new javax.swing.JButton();
         btnEditarEmpleado = new javax.swing.JButton();
         btnDrogueria = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
@@ -174,14 +171,19 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
             }
         });
 
-        btnComp_Vent.setBackground(new java.awt.Color(204, 0, 0));
-        btnComp_Vent.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
-        btnComp_Vent.setForeground(new java.awt.Color(255, 255, 255));
-        btnComp_Vent.setText("Reporte C/V");
-        btnComp_Vent.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnComp_Vent.setPreferredSize(new java.awt.Dimension(250, 40));
-        btnComp_Vent.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnComp_Vent.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnReporteCV.setBackground(new java.awt.Color(204, 0, 0));
+        btnReporteCV.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
+        btnReporteCV.setForeground(new java.awt.Color(255, 255, 255));
+        btnReporteCV.setText("Reporte C/V");
+        btnReporteCV.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnReporteCV.setPreferredSize(new java.awt.Dimension(250, 40));
+        btnReporteCV.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnReporteCV.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnReporteCV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteCVActionPerformed(evt);
+            }
+        });
 
         btnEditarEmpleado.setBackground(new java.awt.Color(204, 0, 0));
         btnEditarEmpleado.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -252,7 +254,7 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
                 .addComponent(btnDomicilios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(210, 210, 210)
-                .addComponent(btnComp_Vent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnReporteCV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70)
                 .addComponent(btnReportDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
@@ -287,7 +289,7 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
                     .addComponent(btnDomicilios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnComp_Vent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReporteCV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnReportDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -393,17 +395,22 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
         App.getInstance().ChangePanel(FramePrincipal.INTFronteraGestionarDomicilio);
     }//GEN-LAST:event_btnDomiciliosActionPerformed
 
+    private void btnReporteCVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteCVActionPerformed
+         App.getInstance().framePrincipal.reportesCV.setNombreUsuario(e);
+        App.getInstance().ChangePanel(FramePrincipal.INTFronteraReportesCV);
+    }//GEN-LAST:event_btnReporteCVActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnClientes;
-    private javax.swing.JButton btnComp_Vent;
     private javax.swing.JButton btnComprar;
     private javax.swing.JButton btnDomicilios;
     private javax.swing.JButton btnDrogueria;
     private javax.swing.JButton btnEditarEmpleado;
     private javax.swing.JButton btnMedicamentos;
     private javax.swing.JButton btnReportDomicilio;
+    private javax.swing.JButton btnReporteCV;
     private javax.swing.JButton btnVender;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jlLogo;
