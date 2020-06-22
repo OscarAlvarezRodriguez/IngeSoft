@@ -114,12 +114,15 @@ public class VenderDAO {
         }
     }
     
-    public List<Factura> leerfacturas(){
+    public List<Facturamedicamentos> leerfacturas(){
         EntityManager em  = emf.createEntityManager();
-        Query q = em.createQuery("SELECT v FROM Factura v");
-        List<Factura> facturas= null;
+        Query q = em.createQuery("SELECT * FROM facturamedicamentos, factura, medicamento"+
+                "where facturamedicamentos.idmedicamento=medicamento.idmedicamento AND "
+                + "facturamedicamentos.idfactura=factura.idmedicamento");
+        List<Facturamedicamentos> facturas= null;
+        
         try{
-            facturas = (List<Factura>) q.getResultList();
+            facturas = (List<Facturamedicamentos>) q.getResultList();
         } catch (Exception e){
             
         } finally{

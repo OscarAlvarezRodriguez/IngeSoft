@@ -113,4 +113,22 @@ public class CompraDAO {
             return ret;
         }
     }
+
+    public List<Compramedicamento> leercompras() {
+        EntityManager em = emf.createEntityManager();
+        Query q = em.createQuery("SELECT * FROM compra,compramedicamento,medicamento"
+            +"where compramedicamento.idmedicamento=medicamento.idmedicamento AND"
+            + "compramedicamento.idcompra=compra.idcompra");
+        
+        List<Compramedicamento> compras = null;
+
+        try {
+            compras = (List<Compramedicamento>) q.getResultList();
+        } catch (Exception e) {
+
+        } finally {
+            em.close();
+        }
+        return compras;
+    }
 }
