@@ -33,7 +33,6 @@ public class FramePrincipal extends javax.swing.JFrame {
     public static final int INTfronteraRegAdministrador = 15;
     public static final int INTfronteraEditarDrogueria = 16;
     public static final int INTFronteraMenuEmpleado = 17;
-    
 
     FronteraSplash splash;
     FronteraRegEmpleado empleado = new FronteraRegEmpleado();
@@ -89,7 +88,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 break;
             case INTFronteraSplash:
                 splash.setVisible(true);
-                splash.run();
+                splash.showAgain();
                 scroll.setViewportView(splash);
                 break;
             case INTFronteraAutEmpleado:

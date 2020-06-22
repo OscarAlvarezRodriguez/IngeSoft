@@ -388,7 +388,6 @@ public class FronteraRegDrogueria extends javax.swing.JPanel {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         allSetEmpty();
         App.getInstance().ChangePanel(FramePrincipal.INTFronteraSplash);
-        App.getInstance().framePrincipal.splash.showAgain();
         App.getInstance().framePrincipal.autenticarEmpleado.allSetEmpty();
 
     }//GEN-LAST:event_btnSalirActionPerformed

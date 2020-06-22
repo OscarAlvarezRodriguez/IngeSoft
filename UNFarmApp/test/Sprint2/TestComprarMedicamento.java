@@ -16,6 +16,11 @@ import static org.junit.Assert.*;
 
 public class TestComprarMedicamento {
     
+    private final String vp = "Longitud nombre proveedor incorrecta";
+    private final String ci = "Cantidad no permitida";
+    private final String pn = "Precio no válido";
+    private final String ce = "La cantidad excede la capacidad del inventario actual";
+    private final String cr = "Compra registrada exitosamente";
     private ComprarMedicamento comprar = new ComprarMedicamento();
     
     public TestComprarMedicamento() {
@@ -41,11 +46,11 @@ public class TestComprarMedicamento {
      public void validarProveedor() {
          Compra c = new Compra();
          c.setNombreproveedor("Drog");
-         assertEquals(comprar.validarProveedor(c.getNombreproveedor()), false);
+         assertEquals(comprar.validarProveedor(c.getNombreproveedor()), vp);
          c.setNombreproveedor("Drogas Calidad Maxima Garantizado");         
-         assertEquals(comprar.validarProveedor(c.getNombreproveedor()), false);
+         assertEquals(comprar.validarProveedor(c.getNombreproveedor()), vp);
          c.setNombreproveedor("Drogas Calidad Maxima");
-         assertEquals(comprar.validarProveedor(c.getNombreproveedor()), true);
+         assertEquals(comprar.validarProveedor(c.getNombreproveedor()), vp);
      }
      
           @Test
