@@ -116,9 +116,7 @@ public class VenderDAO {
     
     public List<Facturamedicamentos> leerfacturas(){
         EntityManager em  = emf.createEntityManager();
-        Query q = em.createQuery("SELECT * FROM facturamedicamentos, factura, medicamento"+
-                "where facturamedicamentos.idmedicamento=medicamento.idmedicamento AND "
-                + "facturamedicamentos.idfactura=factura.idmedicamento");
+        Query q = em.createQuery( "SELECT f FROM Facturamedicamentos f");
         List<Facturamedicamentos> facturas= null;
         
         try{

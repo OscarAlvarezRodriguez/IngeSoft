@@ -131,7 +131,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                     null, new String[]{
                         "ID",
                         "Medicamento",
-                        "Cantidad Comprada",
+                        "Cantidad Vendida",
                         "Precio Unitario + IVA"}) {
                 Class[] types = new Class[]{
                     java.lang.Short.class,

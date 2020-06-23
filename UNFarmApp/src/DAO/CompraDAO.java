@@ -116,10 +116,8 @@ public class CompraDAO {
 
     public List<Compramedicamento> leercompras() {
         EntityManager em = emf.createEntityManager();
-        Query q = em.createQuery("SELECT * FROM compra,compramedicamento,medicamento"
-            +"where compramedicamento.idmedicamento=medicamento.idmedicamento AND"
-            + "compramedicamento.idcompra=compra.idcompra");
-        
+        Query q = em.createQuery("SELECT c FROM Compramedicamento c");
+
         List<Compramedicamento> compras = null;
 
         try {
