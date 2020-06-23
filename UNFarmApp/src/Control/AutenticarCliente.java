@@ -31,7 +31,7 @@ public class AutenticarCliente {
             return (cnr);
         }
         
-        return (cr);
+        return (bi);
     }
 
     public String validarCedula(String cedula) {

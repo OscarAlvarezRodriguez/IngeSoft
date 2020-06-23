@@ -921,6 +921,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
             if (venderMed.vender(cantidad, ID)) {
                 Date date = new Date(System.currentTimeMillis());
                 Factura c = new Factura(PrecioTotal, date);
+                PrecioTotal=Long.valueOf("0");
                 c.setCedulacliente(globClient);
                 c.setCedulaempleado(empleado);
                 c.setNitdrogueria(new DAO.DrogueriaDAO().leer());
