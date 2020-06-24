@@ -13,7 +13,6 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
     Empleado e = new Empleado();
     private final String cn = "Número cédula no válido";
     private final String cnr = "Cliente no registrado";
-    private final String cr = "Cliente ya registrado";
     private final String ci = "Cliente inactivo";
 
     public FronteraMenuAdministrador() {
@@ -310,51 +309,57 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
         String cedulaCliente, algunError;
         boolean Error = false, Error1 = false, Error2 = false;
         do {
-
-            //La variable "cedulaCliente" toma la cedula digitada en el open dialog.
+            if (Error) {
+                JOptionPane.showMessageDialog(null,
+                        "EL Cliente No Se Ha Encontrado"
+                        + " Por Favor Digite La Cedula",
+                        "Cliente No encontrado",
+                        JOptionPane.ERROR_MESSAGE);
+                Error = false;
+            }
+            if (Error1) {
+                JOptionPane.showMessageDialog(null,
+                        "La Cedula Debe Tener Entre 7 y 11 Caracteres",
+                        "Número cédula no válido",
+                        JOptionPane.ERROR_MESSAGE);
+                Error1 = false;
+            }
+            
+             if (Error2) {
+                JOptionPane.showMessageDialog(null,
+                        "Cliente inactivo en la base de datos. Por favor reactivelo",
+                        "Cliente Inctivo",
+                        JOptionPane.ERROR_MESSAGE);
+                Error2 = false;
+            }
             cedulaCliente = JOptionPane.showInputDialog(null,
                     "Por Favor Ingrese La Cedula Del Cliente",
                     "Validar Cedula",
                     JOptionPane.INFORMATION_MESSAGE);
 
             algunError = ac.verificarLogin(cedulaCliente);
-
-            if (algunError != cr) {
-
-                if (algunError == cn) {
-
-                    JOptionPane.showMessageDialog(null,
-                            "La Cedula Debe Tener Entre 7 y 11 Caracteres",
-                            "Número cédula no válido",
-                            JOptionPane.ERROR_MESSAGE);
-
-                } else if (algunError == ci) {
-
-                    JOptionPane.showMessageDialog(null,
-                            "Cliente inactivo en la base de datos. Por favor reactivelo",
-                            "Cliente Inctivo",
-                            JOptionPane.ERROR_MESSAGE);
-                } else if (algunError == cnr) {
-                    break;
-                }
-
-            } else {
+            if(cedulaCliente == null){
+                break;
+            }
+            if(algunError.equals(cnr)){
+                Error = true;
+            }
+            if(algunError.equals(cn)){
+                Error1=true;
+            }
+            if(algunError.equals(ci)){
+                Error2=true;
+            }
+            if (!(Error || Error1 || Error2)) {
                 break;
             }
 
         } while (true);
 
-        if (algunError == cr) {
+        if (cedulaCliente != null) {
             App.getInstance().framePrincipal.venderMed.setNombreUsuario(e, new DAO.ClienteDAO().leer(cedulaCliente));
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraVenderMed);
-            App.getInstance().framePrincipal.venderMed.search();
         }
-        if (algunError == cnr) {
-
-            App.getInstance().ChangePanel(FramePrincipal.INTFronteraRegCliente);
-        }
-
-
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed

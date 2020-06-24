@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-06-2020 a las 23:05:01
+-- Tiempo de generación: 24-06-2020 a las 05:25:49
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.30
 
@@ -44,7 +44,8 @@ CREATE TABLE `cliente` (
 INSERT INTO `cliente` (`CEDULACLIENTE`, `NOMBRE`, `APELLIDO`, `TELEFONO`, `DIRECCIONCLIENTE`, `DESCRIPCIONDIRECCION`, `ELIMINADO`) VALUES
 ('15698741', 'Esteban', 'Armero', '321058963', 'Av cra 45 43B 69', 'Casa 3 ', 0),
 ('19432162', 'María', 'Lugarda', '4122289', 'Calle 6 Sur 79 A 21', 'Torre 5 apartamento 3', 1),
-('20412111', 'Andrea', 'Molina', '325698415', 'Carrera 2 Este 43 B 93', NULL, 0),
+('20202020', 'Daniela', 'Gaviria', '3105904960', 'Diagonal 32 93 B 63', '', 0),
+('20412111', 'Andrea', 'Molina', '325698415', 'Carrera 2 Este 43 B 93', '', 0),
 ('9876543', 'Daniel', 'Valencia', '4121189', 'Av Boyaca - 58 25', 'Conjunto Normandia apartamento 2', 0);
 
 -- --------------------------------------------------------
@@ -111,9 +112,9 @@ CREATE TABLE `domicilio` (
 --
 
 INSERT INTO `domicilio` (`IDDOMICILIO`, `IDFACTURA`, `ESTADO`) VALUES
-(1, 1500, 1),
-(2, 1501, 1),
-(3, 1502, 1);
+(1, 1500, 2),
+(2, 1501, 2),
+(3, 1502, 2);
 
 -- --------------------------------------------------------
 
@@ -159,6 +160,7 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`CEDULAEMPLEADO`, `NOMBREEMPLEADO`, `TELEFONO`, `DIRECCIONEMPLEADO`, `APELLIDOEMPLEADO`, `CONTRASENIA`, `CORREO`, `ESTADO`) VALUES
+('08081998', 'Sebastian', '4122189', 'calle 1 D 79 F 84', 'Montoya', 'Profarm2', 'jsmontoyac@profarm.com', 'ACTIVO'),
 ('10101010', 'Armando', '5986952', 'Calle 12 B 12 Sur', 'Mendoza', 'Profarm0', 'amendoza@profarm.com', 'ADMINISTRADOR'),
 ('1234567', 'usuario', '7550822', 'Calle siempre viva 123', 'prueba', 'Profarm1', 'usuariprueba@profarm.com', 'ACTIVO'),
 ('12345678', 'usuario', '9110203', 'Cra 23 88 C 13 sur', 'inactivo', 'Profarm1', 'usuarinactivo@profarm.com', 'INACTIVO'),
@@ -186,7 +188,8 @@ CREATE TABLE `factura` (
 INSERT INTO `factura` (`IDFACTURA`, `NITDROGUERIA`, `CEDULACLIENTE`, `CEDULAEMPLEADO`, `PRECIOTOTAL`, `FECHA`) VALUES
 (1500, '48949818949', '9876543', '1234567', 60500, '2020-06-04'),
 (1501, '48949818949', '20412111', '10101010', 2250, '2020-06-21'),
-(1502, '48949818949', '15698741', '10101010', 36800, '2020-06-21');
+(1502, '48949818949', '15698741', '10101010', 36800, '2020-06-21'),
+(1503, '48949818949', '9876543', '1234567', 37750, '2020-06-23');
 
 -- --------------------------------------------------------
 
@@ -209,7 +212,10 @@ INSERT INTO `facturamedicamentos` (`IDMEDICAMENTO`, `IDFACTURA`, `CANTIDADVENDID
 (2, 1502, 1),
 (3, 1500, 1),
 (3, 1502, 2),
+(3, 1503, 1),
 (6, 1502, 2),
+(7, 1503, 1),
+(8, 1503, 1),
 (9, 1501, 10),
 (10, 1501, 1);
 
@@ -233,11 +239,11 @@ CREATE TABLE `medicamento` (
 INSERT INTO `medicamento` (`IDMEDICAMENTO`, `IDMEDICAMENTOINVIMA`, `PRECIOVENTA`, `STOCK`) VALUES
 (1, 1, 12500, 53),
 (2, 750, 5800, 684),
-(3, 123, 23000, 23),
+(3, 123, 23000, 22),
 (4, 5, 6850, -1),
 (6, 777, 8000, -2),
-(7, 799, 8450, 0),
-(8, 664, 6300, 0),
+(7, 799, 8450, 4),
+(8, 664, 6300, 2),
 (9, 396, 1250, 90),
 (10, 345, 1000, 199);
 
@@ -1503,7 +1509,7 @@ ALTER TABLE `domicilio`
 -- AUTO_INCREMENT de la tabla `factura`
 --
 ALTER TABLE `factura`
-  MODIFY `IDFACTURA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1503;
+  MODIFY `IDFACTURA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1504;
 
 --
 -- AUTO_INCREMENT de la tabla `medicamento`

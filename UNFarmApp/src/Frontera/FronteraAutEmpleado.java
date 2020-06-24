@@ -269,9 +269,15 @@ public class FronteraAutEmpleado extends javax.swing.JPanel {
                     "Usuario o constraseña incorrectos",
                     "Ingreso fallido",
                     JOptionPane.ERROR_MESSAGE);
-        } else {
+        } else if (empleado.verificarLogin(e).equals("empleado Inactivo o Suspendido")){
             JOptionPane.showMessageDialog(null,
                     "El usuario se encuentra suspendido o inactivo",
+                    "Ingreso fallido",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            JOptionPane.showMessageDialog(null,
+                    "Usuario o constraseña incorrectos",
                     "Ingreso fallido",
                     JOptionPane.ERROR_MESSAGE);
         }
