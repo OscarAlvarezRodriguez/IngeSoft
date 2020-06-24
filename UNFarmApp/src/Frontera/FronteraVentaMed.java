@@ -909,7 +909,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                     if (j == 3) {
                         Long aux = Long.parseLong(String.valueOf((Integer) TablaMedVendido.getValueAt(i, j)));
                         precioUnit.add((Integer) TablaMedVendido.getValueAt(i, j));
-                        PrecioTotal = PrecioTotal + aux;
+                        PrecioTotal = PrecioTotal + aux*(Short)TablaMedVendido.getValueAt(i, j-1);
                     }
                     Compramedicamento c = new Compramedicamento(
                             (Integer) TablaMedVendido.getValueAt(i, 3),
@@ -950,6 +950,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                         f.setImageBackground("/recursos/exito.png", lb)
                 );
                 TablaMedVendido.clearSelection();
+                venderMed.crearDomicilio(c);
             } else {
                 JOptionPane.showMessageDialog(null,
                         "La Lista Esta Vacia, Por Favor Agregue Algun Medicamento",

@@ -1,7 +1,9 @@
 package Control;
 
+import DAO.DomicilioDAO;
 import DAO.MedicamentoDAO;
 import DAO.VenderDAO;
+import Entidad.Domicilio;
 import Entidad.Factura;
 import Entidad.Facturamedicamentos;
 import Entidad.Medicamento;
@@ -97,5 +99,13 @@ public class VenderMed {
 
     public Medicamento obtenerMed(short Id) {
         return medicamentoDao.leer(Id);
+    }
+    
+    public void crearDomicilio(Factura idFactura){
+        DomicilioDAO newDomicilio= new DomicilioDAO();
+        Domicilio d= new Domicilio();
+        d.setEstado((short)0);
+        d.setIdfactura(idFactura);
+        newDomicilio.crear(d);
     }
 }
