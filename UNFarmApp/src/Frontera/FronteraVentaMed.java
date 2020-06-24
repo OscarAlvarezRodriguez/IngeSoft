@@ -83,6 +83,18 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         f.setStyleJTable(TablaMedVendido, ScrollMedComprado);
         f.setStyleJLabelBig(jlMed);
         f.setStyleJLabelBig(jlMedSel);
+        try {
+            if (TablaMedVendido.getRowCount() > 0) {
+                while (TablaMedVendido.getRowCount() > 0) {
+                    modelo1.removeRow(0);
+                }
+                TablaMedVendido.setPreferredSize(new java.awt.Dimension(TablaMedVendido.getWidth(),
+                        TablaMedVendido.getRowCount() * TablaMedVendido.getRowHeight()));
+                TablaMedVendido.repaint();
+                TablaMedVendido.revalidate();
+            }
+        } catch (Exception e) {
+        }
 
     }
 
@@ -1056,7 +1068,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
     }//GEN-LAST:event_TablaMedVendidoMouseEntered
 
     private void TablaMedVendidoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedVendidoMouseExited
-      
+
         long valor = 0;
         for (int i = 0; i < TablaMedVendido.getRowCount(); i++) {
             if (TablaMedVendido.getValueAt(i, 3) != null && TablaMedVendido.getValueAt(i, 2) != null) {
@@ -1073,7 +1085,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
     }//GEN-LAST:event_ScrollMedCompradoFocusLost
 
     private void ScrollMedCompradoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ScrollMedCompradoMouseExited
-      
+
     }//GEN-LAST:event_ScrollMedCompradoMouseExited
 
     private void jlSalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseReleased

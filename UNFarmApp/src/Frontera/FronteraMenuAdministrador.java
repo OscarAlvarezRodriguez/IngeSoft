@@ -48,10 +48,8 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
         f.setStyleJButon(btnVender);
         f.setStyleJButon(btnMedicamentos);
         f.setStyleJButon(btnDomicilios);
-        f.setStyleJButon(btnReportDomicilio);
         f.setStyleJButon(btnClientes);
         f.setStyleJButon(btnReporteCV);
-        f.setStyleJButon(btnEditarEmpleado);
         f.setStyleJButon(btnDrogueria);
         f.setStyleJButon(btnCerrarSesion);
     }
@@ -68,28 +66,32 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
         btnVender = new javax.swing.JButton();
         btnMedicamentos = new javax.swing.JButton();
         btnDomicilios = new javax.swing.JButton();
-        btnReportDomicilio = new javax.swing.JButton();
         btnClientes = new javax.swing.JButton();
         btnReporteCV = new javax.swing.JButton();
-        btnEditarEmpleado = new javax.swing.JButton();
         btnDrogueria = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jlLogo.setPreferredSize(new java.awt.Dimension(100, 100));
+        add(jlLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 0, -1, -1));
 
         jlUsuario.setPreferredSize(new java.awt.Dimension(150, 150));
+        add(jlUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, -1, -1));
 
         jlNombre.setFont(new java.awt.Font("Leelawadee", 0, 22)); // NOI18N
         jlNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlNombre.setText("\"Nombre de Usuario Actual\"");
         jlNombre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlNombre.setPreferredSize(new java.awt.Dimension(300, 50));
+        add(jlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 572, 20));
 
         jLabel2.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("¿Qué desea realizar el dia de hoy?");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel2.setPreferredSize(new java.awt.Dimension(300, 50));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 572, 23));
 
         btnComprar.setBackground(new java.awt.Color(204, 0, 0));
         btnComprar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -104,6 +106,7 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
                 btnComprarActionPerformed(evt);
             }
         });
+        add(btnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, -1, -1));
 
         btnVender.setBackground(new java.awt.Color(204, 0, 0));
         btnVender.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -118,6 +121,7 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
                 btnVenderActionPerformed(evt);
             }
         });
+        add(btnVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, -1, -1));
 
         btnMedicamentos.setBackground(new java.awt.Color(204, 0, 0));
         btnMedicamentos.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -132,6 +136,7 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
                 btnMedicamentosActionPerformed(evt);
             }
         });
+        add(btnMedicamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 250, -1));
 
         btnDomicilios.setBackground(new java.awt.Color(204, 0, 0));
         btnDomicilios.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -146,15 +151,7 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
                 btnDomiciliosActionPerformed(evt);
             }
         });
-
-        btnReportDomicilio.setBackground(new java.awt.Color(204, 0, 0));
-        btnReportDomicilio.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
-        btnReportDomicilio.setForeground(new java.awt.Color(255, 255, 255));
-        btnReportDomicilio.setText("Reporte Domicilios");
-        btnReportDomicilio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnReportDomicilio.setPreferredSize(new java.awt.Dimension(250, 40));
-        btnReportDomicilio.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnReportDomicilio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        add(btnDomicilios, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 370, -1, -1));
 
         btnClientes.setBackground(new java.awt.Color(204, 0, 0));
         btnClientes.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -169,6 +166,7 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
                 btnClientesActionPerformed(evt);
             }
         });
+        add(btnClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, -1, -1));
 
         btnReporteCV.setBackground(new java.awt.Color(204, 0, 0));
         btnReporteCV.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -183,15 +181,7 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
                 btnReporteCVActionPerformed(evt);
             }
         });
-
-        btnEditarEmpleado.setBackground(new java.awt.Color(204, 0, 0));
-        btnEditarEmpleado.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
-        btnEditarEmpleado.setForeground(new java.awt.Color(255, 255, 255));
-        btnEditarEmpleado.setText("Editar Perfil");
-        btnEditarEmpleado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnEditarEmpleado.setPreferredSize(new java.awt.Dimension(250, 40));
-        btnEditarEmpleado.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnEditarEmpleado.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        add(btnReporteCV, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, -1, -1));
 
         btnDrogueria.setBackground(new java.awt.Color(204, 0, 0));
         btnDrogueria.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -206,6 +196,7 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
                 btnDrogueriaActionPerformed(evt);
             }
         });
+        add(btnDrogueria, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 420, -1, -1));
 
         btnCerrarSesion.setBackground(new java.awt.Color(204, 0, 0));
         btnCerrarSesion.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -220,81 +211,7 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
                 btnCerrarSesionActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(410, 410, 410)
-                .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(370, 370, 370)
-                .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(btnVender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(btnEditarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(btnMedicamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(btnDomicilios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(btnReporteCV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(btnReportDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(btnDrogueria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEditarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnMedicamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDomicilios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnReporteCV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReportDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDrogueria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
+        add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 420, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
@@ -412,9 +329,7 @@ public class FronteraMenuAdministrador extends javax.swing.JPanel {
     private javax.swing.JButton btnComprar;
     private javax.swing.JButton btnDomicilios;
     private javax.swing.JButton btnDrogueria;
-    private javax.swing.JButton btnEditarEmpleado;
     private javax.swing.JButton btnMedicamentos;
-    private javax.swing.JButton btnReportDomicilio;
     private javax.swing.JButton btnReporteCV;
     private javax.swing.JButton btnVender;
     private javax.swing.JLabel jLabel2;

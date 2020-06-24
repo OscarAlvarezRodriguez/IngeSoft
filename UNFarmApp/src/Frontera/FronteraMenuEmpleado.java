@@ -10,10 +10,13 @@ import javax.swing.JOptionPane;
 public class FronteraMenuEmpleado extends javax.swing.JPanel {
 
     Funciones f = new Funciones();
-    Empleado e= new Empleado();
+    Empleado e = new Empleado();
+    private final String cn = "Número cédula no válido";
+    private final String cnr = "Cliente no registrado";
+    private final String ci = "Cliente inactivo";
 
     public FronteraMenuEmpleado() {
-        initComponents(); 
+        initComponents();
         e.setCedulaempleado("1234567");
         e.setNombreempleado("usuario");
         e.setEstado("ACTIVO");
@@ -47,9 +50,6 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
         f.setStyleJButon(btnDomicilios);
         f.setStyleJButon(btnReportDomicilio);
         f.setStyleJButon(btnClientes);
-  
-        f.setStyleJButon(btnEditarEmpleado);
-        
         f.setStyleJButon(btnCerrarSesion);
     }
 
@@ -67,24 +67,29 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
         btnDomicilios = new javax.swing.JButton();
         btnReportDomicilio = new javax.swing.JButton();
         btnClientes = new javax.swing.JButton();
-        btnEditarEmpleado = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jlLogo.setPreferredSize(new java.awt.Dimension(100, 100));
+        add(jlLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 0, -1, -1));
 
         jlUsuario.setPreferredSize(new java.awt.Dimension(150, 150));
+        add(jlUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, -1, -1));
 
         jlNombre.setFont(new java.awt.Font("Leelawadee", 0, 22)); // NOI18N
         jlNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlNombre.setText("\"Nombre de Usuario Actual\"");
         jlNombre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlNombre.setPreferredSize(new java.awt.Dimension(300, 50));
+        add(jlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 572, 20));
 
         jLabel2.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("¿Qué desea realizar el dia de hoy?");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel2.setPreferredSize(new java.awt.Dimension(300, 50));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 572, 23));
 
         btnComprar.setBackground(new java.awt.Color(204, 0, 0));
         btnComprar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -99,6 +104,7 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
                 btnComprarActionPerformed(evt);
             }
         });
+        add(btnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, -1, -1));
 
         btnVender.setBackground(new java.awt.Color(204, 0, 0));
         btnVender.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -113,6 +119,7 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
                 btnVenderActionPerformed(evt);
             }
         });
+        add(btnVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, -1, -1));
 
         btnMedicamentos.setBackground(new java.awt.Color(204, 0, 0));
         btnMedicamentos.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -127,6 +134,7 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
                 btnMedicamentosActionPerformed(evt);
             }
         });
+        add(btnMedicamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 250, -1));
 
         btnDomicilios.setBackground(new java.awt.Color(204, 0, 0));
         btnDomicilios.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -141,6 +149,7 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
                 btnDomiciliosActionPerformed(evt);
             }
         });
+        add(btnDomicilios, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 370, -1, -1));
 
         btnReportDomicilio.setBackground(new java.awt.Color(204, 0, 0));
         btnReportDomicilio.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -150,6 +159,7 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
         btnReportDomicilio.setPreferredSize(new java.awt.Dimension(250, 40));
         btnReportDomicilio.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnReportDomicilio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        add(btnReportDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, -1, -1));
 
         btnClientes.setBackground(new java.awt.Color(204, 0, 0));
         btnClientes.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -164,15 +174,7 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
                 btnClientesActionPerformed(evt);
             }
         });
-
-        btnEditarEmpleado.setBackground(new java.awt.Color(204, 0, 0));
-        btnEditarEmpleado.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
-        btnEditarEmpleado.setForeground(new java.awt.Color(255, 255, 255));
-        btnEditarEmpleado.setText("Editar Perfil");
-        btnEditarEmpleado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnEditarEmpleado.setPreferredSize(new java.awt.Dimension(250, 40));
-        btnEditarEmpleado.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnEditarEmpleado.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        add(btnClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, -1, -1));
 
         btnCerrarSesion.setBackground(new java.awt.Color(204, 0, 0));
         btnCerrarSesion.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
@@ -187,72 +189,7 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
                 btnCerrarSesionActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(410, 410, 410)
-                .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(370, 370, 370)
-                .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(btnVender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(btnEditarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnReportDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMedicamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDomicilios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEditarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnMedicamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDomicilios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnReportDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47))
-        );
+        add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 421, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
@@ -264,9 +201,8 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
         AutenticarCliente ac = new AutenticarCliente();
-        String cedulaCliente;
-        boolean Error = false;
-        boolean Error1 = false, Error2=false;
+        String cedulaCliente, algunError;
+        boolean Error = false, Error1 = false, Error2 = false;
         do {
             if (Error) {
                 JOptionPane.showMessageDialog(null,
@@ -283,29 +219,30 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
                         JOptionPane.ERROR_MESSAGE);
                 Error1 = false;
             }
-            
-             if (Error2) {
+
+            if (Error2) {
                 JOptionPane.showMessageDialog(null,
                         "Cliente inactivo en la base de datos. Por favor reactivelo",
                         "Cliente Inctivo",
                         JOptionPane.ERROR_MESSAGE);
                 Error2 = false;
             }
-
             cedulaCliente = JOptionPane.showInputDialog(null,
                     "Por Favor Ingrese La Cedula Del Cliente",
                     "Validar Cedula",
                     JOptionPane.INFORMATION_MESSAGE);
+
+            algunError = ac.verificarLogin(cedulaCliente);
             if (cedulaCliente == null) {
                 break;
             }
-            if (ac.verificarLogin(cedulaCliente).equals("Cliente no registrado")) {
+            if (algunError.equals(cnr)) {
                 Error = true;
             }
-            if (ac.validarCedula(cedulaCliente).equals("Número cédula no válido")) {
+            if (algunError.equals(cn)) {
                 Error1 = true;
             }
-            if (ac.validarClienteActivo(cedulaCliente).equals("Cliente inactivo")) {
+            if (algunError.equals(ci)) {
                 Error2 = true;
             }
             if (!(Error || Error1 || Error2)) {
@@ -313,6 +250,7 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
             }
 
         } while (true);
+
         if (cedulaCliente != null) {
             App.getInstance().framePrincipal.venderMed.setNombreUsuario(e, new DAO.ClienteDAO().leer(cedulaCliente));
             App.getInstance().ChangePanel(FramePrincipal.INTFronteraVenderMed);
@@ -354,7 +292,6 @@ public class FronteraMenuEmpleado extends javax.swing.JPanel {
     private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnComprar;
     private javax.swing.JButton btnDomicilios;
-    private javax.swing.JButton btnEditarEmpleado;
     private javax.swing.JButton btnMedicamentos;
     private javax.swing.JButton btnReportDomicilio;
     private javax.swing.JButton btnVender;

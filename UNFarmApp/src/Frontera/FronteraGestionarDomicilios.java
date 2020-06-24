@@ -35,7 +35,7 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
 
         jlUsuario.setSize(150, 150);
         JLabel jl = new JLabel();
-        jl.setSize(40,40);
+        jl.setSize(40, 40);
         jlUsuario.setIcon(f.setImageBackground("/Recursos/usuario.png", jlUsuario));
         imgNotita.setIcon(f.setImageBackground("/Recursos/notita.png", jl));
         imgCamion.setIcon(f.setImageBackground("/Recursos/camion.png", jl));
@@ -52,9 +52,9 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
     }
 
     public void allSetEmpty() {
-        
+
         jlSalir.setSize(60, 60);
-        
+
         f.setStyleJButon(btnEstado);
         f.setStyleJButonBack(jlSalir);
         f.setStyleJComboBox(domiciliosPendientes);
@@ -117,7 +117,6 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, e.toString() + "error2");
         }
     }
-
 
     public void cargar() {
         list = domicilios.listaDeDomicilios();
@@ -441,25 +440,22 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
         Domicilio d = new Domicilio();
         d.setIddomicilio(Integer.valueOf(domiciliosPendientes.getSelectedItem().toString()));
         d = domicilios.getDomicilio((String.valueOf(d.getIddomicilio())));
-        
-        if(d.getEstado()<2){
-            if(d.getEstado()==0)
-            {
+
+        if (d.getEstado() < 2) {
+            if (d.getEstado() == 0) {
                 JOptionPane.showMessageDialog(null,
-                    "Estado actualizado a 'En camino'",
-                    "Estado Actualizado Exitosamente",
-                    JOptionPane.CANCEL_OPTION);
-            }
-            else{
+                        "Estado actualizado a 'En camino'",
+                        "Estado Actualizado Exitosamente",
+                        JOptionPane.CANCEL_OPTION);
+            } else {
                 JOptionPane.showMessageDialog(null,
-                    "Estado actualizado a 'Entregado', pedido finalizado",
-                    "Estado Finalizado Exitosamente",
-                    JOptionPane.CANCEL_OPTION);
+                        "Estado actualizado a 'Entregado', pedido finalizado",
+                        "Estado Finalizado Exitosamente",
+                        JOptionPane.CANCEL_OPTION);
             }
             domicilios.actualizarEstado(d);
             ActualizarInfoEstado(d);
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null,
                     "El pedido ya está finalizado",
                     "Error al actualizar el estado",
@@ -497,31 +493,35 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
     }
 
     private void ActualizarInfoTabla(Factura f) {
+
         List<Facturamedicamentos> list = f.getFacturamedicamentosList();
+        if (list == null || list.size() == 0) {
+            list = new DAO.FacturaDAO().leerList(f);
+        }
         JPrecioFinal.setText(String.valueOf(new DecimalFormat("##,###,###").format(f.getPreciototal())));
         Object object[] = null;
-        
-        while (modelo.getRowCount() > 0 ) {
+
+        while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-        
+
         for (int i = 0; i < list.size(); i++) {
             modelo.addRow(object);
             modelo.setValueAt(list.get(i).getMedicamento().getIdmedicamentoinvima().getNombremedicamento(), i, 0);
             modelo.setValueAt(list.get(i).getMedicamento().getIdmedicamentoinvima().getTitular(), i, 1);
             modelo.setValueAt(list.get(i).getMedicamento().getIdmedicamentoinvima().getDescripcion(), i, 2);
-            modelo.setValueAt(list.get(i).getMedicamento().getIdmedicamentoinvima().getPresentacion(),i, 3);
+            modelo.setValueAt(list.get(i).getMedicamento().getIdmedicamentoinvima().getPresentacion(), i, 3);
             modelo.setValueAt(list.get(i).getCantidadvendida(), i, 4);
-            modelo.setValueAt(list.get(i).getMedicamento().getPrecioventa(),i, 5);
+            modelo.setValueAt(list.get(i).getMedicamento().getPrecioventa(), i, 5);
         }
-        
+
         tablaPedido.setPreferredSize(new java.awt.Dimension(tablaPedido.getWidth(),
                 tablaPedido.getRowCount() * tablaPedido.getRowHeight()));
         tablaPedido.repaint();
         tablaPedido.revalidate();
-        
+
     }
-    
+
     private void ActualizarInfoEstado(Domicilio d) {
         short newEstate = d.getEstado();
 
@@ -566,7 +566,5 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
     private javax.swing.JLabel jlUsuario;
     private javax.swing.JTable tablaPedido;
     // End of variables declaration//GEN-END:variables
-
-    
 
 }

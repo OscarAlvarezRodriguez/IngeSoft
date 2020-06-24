@@ -92,4 +92,19 @@ public class FacturaDAO {
             return consulta;
         }
     }
+    public List<Facturamedicamentos> leerList(Factura fac){
+        EntityManager em = emf.createEntityManager();
+        List<Facturamedicamentos> consulta = null;
+        Query q = em.createQuery("SELECT f FROM Facturamedicamentos WHERE f.idfactura")
+                .setParameter("idfactura", fac);
+        try{
+            consulta = (List<Facturamedicamentos>) q.getSingleResult();
+        } catch(NonUniqueResultException e){
+            consulta = (List<Facturamedicamentos>) q.getResultList().get(0);
+        } catch (Exception e){
+        } finally{
+            em.close();
+            return consulta;
+        }
+    }
 }
