@@ -9,12 +9,21 @@ import Recursos.Funciones;
 import java.awt.Graphics;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class FronteraReportesCV extends javax.swing.JPanel {
 
@@ -126,7 +135,7 @@ public class FronteraReportesCV extends javax.swing.JPanel {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         for (int i = 0; i < listaCompras.size(); i++) {
             int rows = tablaMed.getRowCount();
-            long precioTotal = listaCompras.get(i).getCantidad() * listaCompras.get(i).getMedicamento().getPrecioventa();
+            long precioTotal = listaCompras.get(i).getCantidad() * listaCompras.get(i).getPreciounitario();
             modelo.addRow(object);
             modelo.setValueAt(listaCompras.get(i).getMedicamento().getIdmedicamentoinvima().getNombremedicamento(), rows, 0);
             modelo.setValueAt(listaCompras.get(i).getCompramedicamentoPK().getIdcompra(), rows, 1);
@@ -135,7 +144,7 @@ public class FronteraReportesCV extends javax.swing.JPanel {
             modelo.setValueAt(listaCompras.get(i).getMedicamento().getPrecioventa(), rows, 4);
             modelo.setValueAt(precioTotal, rows, 5);
             modelo.setValueAt(dateFormat.format(listaCompras.get(i).getCompra().getFecha()), rows, 6);
-            total += precioTotal;
+            total = total + precioTotal;
         }
         return total;
     }
@@ -156,7 +165,7 @@ public class FronteraReportesCV extends javax.swing.JPanel {
             modelo.setValueAt(listaVentas.get(i).getMedicamento().getPrecioventa(), rows, 4);
             modelo.setValueAt(precioTotal, rows, 5);
             modelo.setValueAt(dateFormat.format(listaVentas.get(i).getFactura().getFecha()), rows, 6);
-            total += precioTotal;
+            total = total + precioTotal;
 
         }
         return total;
@@ -410,13 +419,23 @@ public class FronteraReportesCV extends javax.swing.JPanel {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
-        String url = "jjdbc:mysql://localhost:3306/unfarmapp";
-        String password = "";
-        String user = "root";
         try {
+            String url = "jdbc:mysql://localhost:3306/unfarmapp";
+            String password = "";
+            String user = "root";
+            String path = "src\\Recursos\\Reportes\\ReportesCV.jasper";
             Connection conn = null;
             conn = DriverManager.getConnection(url, user, password);
-        } catch (Exception e) {
+            Map parameter = new HashMap();
+            parameter.put("fecha", dcFecha.getDate());
+            JasperReport reporte = null;
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+            JasperPrint print = JasperFillManager.fillReport(reporte, parameter, conn);
+            JasperViewer viewer = new JasperViewer(print, false);
+            viewer.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+            viewer.setVisible(true);
+        } catch (SQLException | JRException e) {
+            e.printStackTrace();
         }
 
 

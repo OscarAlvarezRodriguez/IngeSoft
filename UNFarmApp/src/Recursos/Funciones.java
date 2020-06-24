@@ -183,6 +183,16 @@ public class Funciones {
         jl.setHorizontalTextPosition(JLabel.CENTER);
         jl.setFont(new Font("Leelawadee", 1, 14));
     }
+    public void setStyleJLabelTable(JLabel jl) {
+        jl.setOpaque(true);
+        jl.setBackground(azulApp);
+        jl.setForeground(Color.WHITE);
+        jl.setVerticalAlignment(JLabel.CENTER);
+        jl.setHorizontalAlignment(JLabel.CENTER);
+        jl.setVerticalTextPosition(JLabel.CENTER);
+        jl.setHorizontalTextPosition(JLabel.CENTER);
+        jl.setFont(new Font("Leelawadee", 0, 14));
+    }
 
     public void setStyleJTable(JTable jt, JScrollPane jsp) {
         jsp.getViewport().setOpaque(false);
