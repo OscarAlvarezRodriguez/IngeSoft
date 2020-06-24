@@ -801,7 +801,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         Object object[] = null;
         if (seleccionar.length == 0) {
             JOptionPane.showMessageDialog(null,
-                    "No Hay nungun Medicamento Seleccionado\n Por Favor Seleccione Un Medicamento",
+                    "No Hay ningún Medicamento Seleccionado\n Por Favor Seleccione Un Medicamento",
                     "Ninguna Seleccion",
                     JOptionPane.ERROR_MESSAGE);
         } else {
@@ -826,9 +826,9 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                 }
             }
             TablaMedVendido.setPreferredSize(new java.awt.Dimension(TablaMedVendido.getWidth(),
-                TablaMedVendido.getRowCount() * TablaMedVendido.getRowHeight()));
-        TablaMedVendido.repaint();
-        TablaMedVendido.revalidate();
+                    TablaMedVendido.getRowCount() * TablaMedVendido.getRowHeight()));
+            TablaMedVendido.repaint();
+            TablaMedVendido.revalidate();
         }
         tablaMed.clearSelection();
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -888,7 +888,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                     default:
                         break;
                 }
-                
+
                 if (!hacer) {
                     break;
                 }
@@ -909,7 +909,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                     if (j == 3) {
                         Long aux = Long.parseLong(String.valueOf((Integer) TablaMedVendido.getValueAt(i, j)));
                         precioUnit.add((Integer) TablaMedVendido.getValueAt(i, j));
-                        PrecioTotal = PrecioTotal + aux*(Short)TablaMedVendido.getValueAt(i, j-1);
+                        PrecioTotal = PrecioTotal + aux * (Short) TablaMedVendido.getValueAt(i, j - 1);
                     }
                     Compramedicamento c = new Compramedicamento(
                             (Integer) TablaMedVendido.getValueAt(i, 3),
@@ -921,7 +921,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
             if (venderMed.vender(cantidad, ID)) {
                 Date date = new Date(System.currentTimeMillis());
                 Factura c = new Factura(PrecioTotal, date);
-                PrecioTotal=Long.valueOf("0");
+                PrecioTotal = Long.valueOf("0");
                 c.setCedulacliente(globClient);
                 c.setCedulaempleado(empleado);
                 c.setNitdrogueria(new DAO.DrogueriaDAO().leer());
@@ -1010,6 +1010,14 @@ public class FronteraVentaMed extends javax.swing.JPanel {
 
     private void TablaMedVendidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TablaMedVendidoFocusLost
 
+        long valor = 0;
+        for (int i = 0; i < TablaMedVendido.getRowCount(); i++) {
+            if (TablaMedVendido.getValueAt(i, 3) != null && TablaMedVendido.getValueAt(i, 2) != null) {
+                valor = valor + ((Integer) TablaMedVendido.getValueAt(i, 3) * (Short) TablaMedVendido.getValueAt(i, 2));
+            }
+        }
+        btnComprar.setText("$ " + new DecimalFormat("##,###,###").format(valor));
+
 
     }//GEN-LAST:event_TablaMedVendidoFocusLost
 
@@ -1020,6 +1028,13 @@ public class FronteraVentaMed extends javax.swing.JPanel {
 
     private void TablaMedVendidoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TablaMedVendidoFocusGained
 
+        long valor = 0;
+        for (int i = 0; i < TablaMedVendido.getRowCount(); i++) {
+            if (TablaMedVendido.getValueAt(i, 3) != null && TablaMedVendido.getValueAt(i, 2) != null) {
+                valor = valor + ((Integer) TablaMedVendido.getValueAt(i, 3) * (Short) TablaMedVendido.getValueAt(i, 2));
+            }
+        }
+        btnComprar.setText("$ " + new DecimalFormat("##,###,###").format(valor));
     }//GEN-LAST:event_TablaMedVendidoFocusGained
 
     private void TablaMedVendidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedVendidoMouseClicked
@@ -1041,16 +1056,16 @@ public class FronteraVentaMed extends javax.swing.JPanel {
     }//GEN-LAST:event_TablaMedVendidoMouseEntered
 
     private void TablaMedVendidoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMedVendidoMouseExited
-        if (evt.getClickCount() == 1) {
-            long valor = 0;
-            for (int i = 0; i < TablaMedVendido.getRowCount(); i++) {
-                if (TablaMedVendido.getValueAt(i, 3) != null && TablaMedVendido.getValueAt(i, 2) != null) {
-                    valor = valor + ((Integer) TablaMedVendido.getValueAt(i, 3) * (Short) TablaMedVendido.getValueAt(i, 2));
-                }
+      
+        long valor = 0;
+        for (int i = 0; i < TablaMedVendido.getRowCount(); i++) {
+            if (TablaMedVendido.getValueAt(i, 3) != null && TablaMedVendido.getValueAt(i, 2) != null) {
+                valor = valor + ((Integer) TablaMedVendido.getValueAt(i, 3) * (Short) TablaMedVendido.getValueAt(i, 2));
             }
-            btnComprar.setText("$ " + new DecimalFormat("##,###,###").format(valor));
-
         }
+        btnComprar.setText("$ " + new DecimalFormat("##,###,###").format(valor));
+
+
     }//GEN-LAST:event_TablaMedVendidoMouseExited
 
     private void ScrollMedCompradoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ScrollMedCompradoFocusLost
@@ -1058,7 +1073,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
     }//GEN-LAST:event_ScrollMedCompradoFocusLost
 
     private void ScrollMedCompradoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ScrollMedCompradoMouseExited
-
+      
     }//GEN-LAST:event_ScrollMedCompradoMouseExited
 
     private void jlSalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseReleased
