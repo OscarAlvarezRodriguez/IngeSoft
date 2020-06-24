@@ -494,6 +494,11 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
 
     private void ActualizarInfoTabla(Factura f) {
 
+
+            
+        
+        JPrecioFinal.setText(String.valueOf(f.getPreciototal()));
+
         List<Facturamedicamentos> list = f.getFacturamedicamentosList();
         if (list == null || list.size() == 0) {
             list = new DAO.FacturaDAO().leerList(f);
@@ -516,7 +521,7 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
         }
 
         tablaPedido.setPreferredSize(new java.awt.Dimension(tablaPedido.getWidth(),
-                tablaPedido.getRowCount() * tablaPedido.getRowHeight()));
+        tablaPedido.getRowCount() * tablaPedido.getRowHeight()));
         tablaPedido.repaint();
         tablaPedido.revalidate();
 
