@@ -55,7 +55,7 @@ public class FronteraGestionarClientes extends javax.swing.JPanel {
         f.setStyleJTextField(txtApellido);
         f.setStyleJTextArea(txtDescripcion, jScrollPane1);
         f.setStyleJTable(tablaClientes, jScrollPane2);
-        f.setStyleJLabel(jlTitulo1);
+        f.setStyleJLabelBig(jlTitulo1);
         f.setStyleJButon(btnRegistrar);
         f.setStyleJButon(btnEditar);
         f.setStyleJButon(btnCerrarSesion);

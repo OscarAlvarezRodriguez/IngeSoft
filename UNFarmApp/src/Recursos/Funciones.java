@@ -162,7 +162,7 @@ public class Funciones {
 
     }
 
-    public void setStyleJLabel(JLabel jl) {
+    public void setStyleJLabelBig(JLabel jl) {
         jl.setOpaque(true);
         jl.setBackground(azulApp);
         jl.setForeground(Color.WHITE);
@@ -172,6 +172,16 @@ public class Funciones {
         jl.setHorizontalTextPosition(JLabel.CENTER);
         jl.setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
         jl.setFont(new Font("Leelawadee", 1, 20));
+    }
+    public void setStyleJLabelSmall(JLabel jl) {
+        jl.setOpaque(true);
+        jl.setBackground(azulApp);
+        jl.setForeground(Color.WHITE);
+        jl.setVerticalAlignment(JLabel.CENTER);
+        jl.setHorizontalAlignment(JLabel.CENTER);
+        jl.setVerticalTextPosition(JLabel.CENTER);
+        jl.setHorizontalTextPosition(JLabel.CENTER);
+        jl.setFont(new Font("Leelawadee", 1, 14));
     }
 
     public void setStyleJTable(JTable jt, JScrollPane jsp) {
