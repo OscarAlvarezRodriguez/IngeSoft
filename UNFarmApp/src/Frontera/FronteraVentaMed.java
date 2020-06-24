@@ -920,6 +920,7 @@ public class FronteraVentaMed extends javax.swing.JPanel {
             }
             if (venderMed.vender(cantidad, ID)) {
                 Date date = new Date(System.currentTimeMillis());
+                
                 Factura c = new Factura(PrecioTotal, date);
                 PrecioTotal=Long.valueOf("0");
                 c.setCedulacliente(globClient);
@@ -932,6 +933,8 @@ public class FronteraVentaMed extends javax.swing.JPanel {
                     cm.setCantidadvendida(cantidad.get(i));
                     venderMed.RegistrarFacturaMed(cm);
                 }
+                
+               
                 while (modelo1.getRowCount() > 0) {
                     modelo1.removeRow(0);
                 }

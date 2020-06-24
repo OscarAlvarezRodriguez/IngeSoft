@@ -80,8 +80,11 @@ public class FacturaDAO {
     public Factura leer(Factura fac){
         EntityManager em = emf.createEntityManager();
         Factura consulta = null;
+            em.flush();
+                em.clear();
         Query q = em.createQuery("SELECT f FROM Factura f WHERE f.idfactura = :idfactura")
                 .setParameter("idfactura", fac.getIdfactura());
+        
         try{
             consulta = (Factura) q.getSingleResult();
         } catch(NonUniqueResultException e){
