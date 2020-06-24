@@ -525,9 +525,29 @@ public final class FronteraGestionarDomicilios extends javax.swing.JPanel {
         d.setIddomicilio(Integer.valueOf(domiciliosPendientes.getSelectedItem().toString()));
         d = domicilios.getDomicilio((String.valueOf(d.getIddomicilio())));
         
-        domicilios.actualizarEstado(d);
-            
-        ActualizarInfoEstado(d);
+        if(d.getEstado()<2){
+            if(d.getEstado()==0)
+            {
+                JOptionPane.showMessageDialog(null,
+                    "Estado actualizado a 'En camino'",
+                    "Estado Actualizado Exitosamente",
+                    JOptionPane.CANCEL_OPTION);
+            }
+            else{
+                JOptionPane.showMessageDialog(null,
+                    "Estado actualizado a 'Entregado', pedido finalizado",
+                    "Estado Finalizado Exitosamente",
+                    JOptionPane.CANCEL_OPTION);
+            }
+            domicilios.actualizarEstado(d);
+            ActualizarInfoEstado(d);
+        }
+        else{
+            JOptionPane.showMessageDialog(null,
+                    "El pedido ya está finalizado",
+                    "Error al actualizar el estado",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEstadoActionPerformed
 
     private void domiciliosPendientesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_domiciliosPendientesItemStateChanged
