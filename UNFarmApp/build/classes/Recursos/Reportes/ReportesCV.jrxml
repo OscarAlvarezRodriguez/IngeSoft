@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9c48557d-69ed-4234-b326-5ebf7bc93b45">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9c48557d-69ed-4234-b326-5ebf7bc93b45">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -195,7 +195,122 @@
 			<style backcolor="#EFF7FF"/>
 		</conditionalStyle>
 	</style>
+	<style name="table 9">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 9_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 9_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 9_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 10">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 10_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 10_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 10_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 11">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 11_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 11_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 11_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 12">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 12_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 12_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 12_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 13">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 13_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 13_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 13_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
 	<subDataset name="Compra" uuid="cd34e425-28de-4c76-b411-1b0ff0cb6c92">
+		<parameter name="fechaCompra" class="java.util.Date">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
 		<queryString>
 			<![CDATA[SELECT
      compra.`IDCOMPRA` AS compra_IDCOMPRA,
@@ -208,7 +323,8 @@ FROM
      `compra` compra INNER JOIN `compramedicamento` compramedicamento ON compra.`IDCOMPRA` = compramedicamento.`IDCOMPRA`
      INNER JOIN `medicamento` medicamento ON compramedicamento.`IDMEDICAMENTO` = medicamento.`IDMEDICAMENTO`
      INNER JOIN `medicamentoinvima` medicamentoinvima ON medicamento.`IDMEDICAMENTOINVIMA` = medicamentoinvima.`IDMEDICAMENTOINVIMA`
-     ORDER BY compra.`IDCOMPRA`]]>
+WHERE  compra.`FECHA` = $P{fechaCompra}
+ORDER BY compra.`IDCOMPRA`]]>
 		</queryString>
 		<field name="compra_IDCOMPRA" class="java.lang.Integer"/>
 		<field name="medicamentoinvima_NOMBREMEDICAMENTO" class="java.lang.String"/>
@@ -218,7 +334,10 @@ FROM
 		<field name="compra_FECHA" class="java.sql.Date"/>
 	</subDataset>
 	<subDataset name="Venta" uuid="d828c601-a66a-4506-b2f2-5ec2ef345b25">
-		<queryString language="SQL">
+		<parameter name="fechaVenta" class="java.util.Date">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
 			<![CDATA[SELECT
      factura.`IDFACTURA` AS factura_IDFACTURA,
      medicamentoinvima.`NOMBREMEDICAMENTO` AS medicamentoinvima_NOMBREMEDICAMENTO,
@@ -230,248 +349,448 @@ FROM
      `factura` factura INNER JOIN `facturamedicamentos` facturamedicamentos ON factura.`IDFACTURA` = facturamedicamentos.`IDFACTURA`
      INNER JOIN `medicamento` medicamento ON facturamedicamentos.`IDMEDICAMENTO` = medicamento.`IDMEDICAMENTO`
      INNER JOIN `medicamentoinvima` medicamentoinvima ON medicamento.`IDMEDICAMENTOINVIMA` = medicamentoinvima.`IDMEDICAMENTOINVIMA`
-     ORDER BY factura.`IDFACTURA`]]>
+WHERE factura.`FECHA` =$P{fechaVenta}
+ ORDER BY factura.`IDFACTURA`]]>
 		</queryString>
-		<field name="PRECIO_TOTAL" class="java.lang.Long"/>
 		<field name="factura_IDFACTURA" class="java.lang.Integer"/>
 		<field name="medicamentoinvima_NOMBREMEDICAMENTO" class="java.lang.String"/>
 		<field name="facturamedicamentos_CANTIDADVENDIDA" class="java.lang.Integer"/>
 		<field name="medicamento_PRECIOVENTA" class="java.lang.Integer"/>
+		<field name="PRECIO_TOTAL" class="java.lang.Long"/>
 		<field name="factura_FECHA" class="java.sql.Date"/>
 	</subDataset>
-	<queryString>
-		<![CDATA[SELECT
-    *
+	<subDataset name="Balance" uuid="913a841f-c39d-4db0-82b8-2dbcd2a13498">
+		<parameter name="fechaBalance" class="java.util.Date">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+     SUM(medicamento.`PRECIOVENTA`* facturamedicamentos.`CANTIDADVENDIDA`) AS TOTAL_VENTA,
+   SUM(compramedicamento.`CANTIDAD`* compramedicamento.`PRECIOUNITARIO`) AS TOTAL_COMPRA,
+     (SUM(medicamento.`PRECIOVENTA`* facturamedicamentos.`CANTIDADVENDIDA`))-(SUM(compramedicamento.`CANTIDAD`* compramedicamento.`PRECIOUNITARIO`)) AS TOTAL
 FROM
-     `cliente` cliente]]>
+     `compra` compra INNER JOIN `compramedicamento` compramedicamento ON compra.`IDCOMPRA` = compramedicamento.`IDCOMPRA`
+     INNER JOIN `medicamento` medicamento ON compramedicamento.`IDMEDICAMENTO` = medicamento.`IDMEDICAMENTO`
+     INNER JOIN `facturamedicamentos` facturamedicamentos ON medicamento.`IDMEDICAMENTO` = facturamedicamentos.`IDMEDICAMENTO`
+     INNER JOIN `factura` factura ON facturamedicamentos.`IDFACTURA` = factura.`IDFACTURA`
+WHERE
+      compra.`FECHA` = $P{fechaBalance} AND factura.`FECHA`= $P{fechaBalance}]]>
+		</queryString>
+		<field name="TOTAL_VENTA" class="java.math.BigDecimal"/>
+		<field name="TOTAL_COMPRA" class="java.math.BigDecimal"/>
+		<field name="TOTAL" class="java.math.BigDecimal"/>
+	</subDataset>
+	<parameter name="fecha" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 1]]>
 	</queryString>
-	<field name="CEDULACLIENTE" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="NOMBRE" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="APELLIDO" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="TELEFONO" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="DIRECCIONCLIENTE" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="DESCRIPCIONDIRECCION" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="ELIMINADO" class="java.lang.Boolean">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<field name="1" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="80" splitType="Stretch">
+			<staticText>
+				<reportElement x="121" y="0" width="322" height="45" uuid="3ba2b6bd-d364-4fef-ba55-0034559da0f1"/>
+				<textElement>
+					<font fontName="Leelawadee" size="24"/>
+				</textElement>
+				<text><![CDATA[Reportes De Compra Y Venta]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="71" height="79" uuid="debdaf23-cae1-4ab6-84ea-4669c1c5fd3a"/>
+				<imageExpression><![CDATA["C:\\Git\\IngeSoft\\UNFarmApp\\src\\Recursos\\logo.png"]]></imageExpression>
+			</image>
+		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="35" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="455" y="-99" width="100" height="20" uuid="55938b48-cf67-4377-beec-7605b8a721a1"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="106" splitType="Stretch">
 			<componentElement>
-				<reportElement key="table 8" style="table 8" x="0" y="0" width="555" height="38" uuid="b9748a7c-3694-4ba2-94b8-479bd48dcff1"/>
+				<reportElement key="table 11" style="table 11" x="34" y="56" width="452" height="50" uuid="942486ca-d42d-40dc-a72e-06c8d45211de"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="Compra" uuid="497bf5ff-e384-4b86-b934-8ae0d0b564bf">
+					<datasetRun subDataset="Compra" uuid="dcd08387-e72b-4d07-9e9c-c0de89f9ffe5">
+						<datasetParameter name="fechaCompra">
+							<datasetParameterExpression><![CDATA[$P{fecha}]]></datasetParameterExpression>
+						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="90" uuid="d8cb86dd-9923-4b13-bfc1-96eab613c102">
-						<jr:columnHeader style="table 8_CH" height="30">
+					<jr:column width="62" uuid="014d640f-bf50-4b49-8c21-636c6f8d0fca">
+						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="0f703faa-b82e-4b45-93ca-5ae7fdbcd15e"/>
-								<text><![CDATA[compra_IDCOMPRA]]></text>
+								<reportElement x="0" y="0" width="62" height="30" uuid="6bfd7878-6b15-4ad0-8dc3-f83da0a460cb"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12" isBold="false"/>
+								</textElement>
+								<text><![CDATA[ID]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 8_TD" height="20">
+						<jr:detailCell style="table 11_TD" height="23" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="a44319e1-2801-4309-8dc2-1a7d3afe0d79"/>
+								<reportElement x="0" y="0" width="62" height="20" uuid="4540ecde-3de9-4093-85a9-1f4bc131b709"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{compra_IDCOMPRA}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="f9b1d92d-c013-4820-bdd0-fb4023405a3e">
-						<jr:columnHeader style="table 8_CH" height="30">
+					<jr:column width="93" uuid="bb860a96-0fe6-4701-ac29-8a051801c5d8">
+						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="cb195db7-b8b7-464f-b82a-408d4a60cef4"/>
-								<text><![CDATA[medicamentoinvima_NOMBREMEDICAMENTO]]></text>
+								<reportElement x="0" y="0" width="93" height="30" uuid="16b79ef3-4c59-4559-8bf9-9738455ffbb7"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12" isBold="false"/>
+								</textElement>
+								<text><![CDATA[Nombre]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 8_TD" height="20">
+						<jr:detailCell style="table 11_TD" height="23" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="47943698-8054-4b06-a4a7-13e37152ca58"/>
+								<reportElement x="0" y="0" width="93" height="20" uuid="ce75964e-2c06-49d7-ab10-9638045ba6cf"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{medicamentoinvima_NOMBREMEDICAMENTO}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="ad5d0ba0-45c2-46d1-bd04-864ede09fc34">
-						<jr:columnHeader style="table 8_CH" height="30">
+					<jr:column width="60" uuid="e3591153-1318-493e-934d-257294bfe2d3">
+						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="ddde9306-aae6-427f-b3d4-d404e6cc1b1d"/>
-								<text><![CDATA[compramedicamento_CANTIDAD]]></text>
+								<reportElement x="0" y="0" width="57" height="30" uuid="607a5612-b5f2-4618-9551-682cdf52cae6"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12" isBold="false"/>
+								</textElement>
+								<text><![CDATA[Cantidad]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 8_TD" height="20">
+						<jr:detailCell style="table 11_TD" height="23" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="d3f30910-9a64-40e8-abd3-ece9ee9bd5b5"/>
+								<reportElement x="0" y="0" width="57" height="20" uuid="eddfc29f-07ee-42e9-a4ca-33be4547da33"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{compramedicamento_CANTIDAD}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="d8650c5f-89fe-48a4-a7a8-59763efe3252">
-						<jr:columnHeader style="table 8_CH" height="30">
+					<jr:column width="62" uuid="c873543d-e794-4be4-8212-00c44771c491">
+						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="70128bd0-6a5a-4207-ac4b-e3c2f61b9500"/>
-								<text><![CDATA[compramedicamento_PRECIOUNITARIO]]></text>
+								<reportElement x="3" y="0" width="58" height="30" uuid="6a322692-c4dd-4e04-9af9-2528eaf3c507"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12" isBold="false"/>
+								</textElement>
+								<text><![CDATA[Precio Unitario]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 8_TD" height="20">
+						<jr:detailCell style="table 11_TD" height="23" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="3f11ea0a-b8ee-49d7-ab6c-3153bbb66a17"/>
+								<reportElement x="3" y="0" width="58" height="20" uuid="36416b10-112a-4826-9d23-5e3e9d9316e7"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{compramedicamento_PRECIOUNITARIO}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="9fb5f599-248c-48a1-9dae-4a8f58f7a2d7">
-						<jr:columnHeader style="table 8_CH" height="30">
+					<jr:column width="74" uuid="a5e748c7-8f15-4387-9aea-77fec1bc767d">
+						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="7105f8fc-1301-4489-973e-06249d826466"/>
-								<text><![CDATA[PRECIO_TOTAL]]></text>
+								<reportElement x="0" y="0" width="74" height="30" uuid="666f7077-e761-4f1b-9d75-e661167c8d94"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12" isBold="false"/>
+								</textElement>
+								<text><![CDATA[Precio Total]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 8_TD" height="20">
+						<jr:detailCell style="table 11_TD" height="23" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="871d039e-4f39-4355-b572-652649101416"/>
+								<reportElement x="0" y="3" width="74" height="20" uuid="1af28ac7-b253-48f0-923b-a2d8ba2b99fa"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{PRECIO_TOTAL}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="ef119c41-7905-42cb-9947-b8e14c746f8b">
-						<jr:columnHeader style="table 8_CH" height="30">
+					<jr:column width="137" uuid="ef916322-a0bf-41a0-9fd6-ef64b5d6fa9f">
+						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="2895f489-3dde-4baa-9882-6343211047bd"/>
-								<text><![CDATA[compra_FECHA]]></text>
+								<reportElement x="0" y="0" width="137" height="30" uuid="718bbd63-defd-475b-b1cf-8a0ad1c1e276"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12" isBold="false"/>
+								</textElement>
+								<text><![CDATA[Fecha]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 8_TD" height="20">
+						<jr:detailCell style="table 11_TD" height="23" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="880a292e-71a6-40fb-bcb0-a78d3d3dcf85"/>
+								<reportElement x="0" y="3" width="137" height="20" uuid="01088327-a5d1-49a0-8373-be661a62cf1e"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{compra_FECHA}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
 				</jr:table>
 			</componentElement>
+			<staticText>
+				<reportElement x="34" y="21" width="452" height="35" uuid="a9a8fc36-6894-4eaf-a9ac-8ca5bed871da"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Reporte De Compras]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="125" splitType="Stretch">
 			<componentElement>
-				<reportElement key="table 6" style="table 6" x="0" y="0" width="555" height="42" uuid="be01bd79-e090-4557-8c20-cb48ca1cf603"/>
+				<reportElement key="table 12" style="table 12" x="34" y="75" width="452" height="50" uuid="7157ab50-3231-4610-879a-bc65010b3c29"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="Venta" uuid="8223e0f2-4b14-45fa-aa4b-2bde2edf922e">
+					<datasetRun subDataset="Venta" uuid="9fda2870-1a4f-4ec2-baa9-33c3174cf839">
+						<datasetParameter name="fechaVenta">
+							<datasetParameterExpression><![CDATA[$P{fecha}]]></datasetParameterExpression>
+						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="90" uuid="639a84a7-6e20-475b-84a0-d073c91a46c6">
-						<jr:columnHeader style="table 6_CH" height="30">
+					<jr:column width="64" uuid="953bdb43-e064-4e7f-ad45-b5ddb5a66ae4">
+						<jr:columnHeader style="table 12_CH" height="31" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="13becb07-25cc-4372-8678-7af52e9413ad"/>
-								<text><![CDATA[factura_IDFACTURA]]></text>
+								<reportElement x="0" y="0" width="64" height="30" uuid="1a909c5f-e902-4031-af75-241e95ca1e25"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12"/>
+								</textElement>
+								<text><![CDATA[ID]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 6_TD" height="20">
+						<jr:detailCell style="table 12_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="93e9c474-f4bd-479f-a9bf-dcaf656e4898"/>
+								<reportElement x="0" y="0" width="64" height="20" uuid="7064aa16-5fc1-4009-97b5-47d63c5bf9ba"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{factura_IDFACTURA}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="cda9c98a-1645-47f0-be7a-b8d6fc0e5586">
-						<jr:columnHeader style="table 6_CH" height="30">
+					<jr:column width="90" uuid="ca839eb9-676f-4557-9f00-c86a98ee6b85">
+						<jr:columnHeader style="table 12_CH" height="31" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="79df3692-bb2e-4c3d-b01f-dad78f1eec98"/>
-								<text><![CDATA[medicamentoinvima_NOMBREMEDICAMENTO]]></text>
+								<reportElement x="0" y="0" width="90" height="30" uuid="5f582494-6261-4704-9870-7ed6f6b76e2d"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12"/>
+								</textElement>
+								<text><![CDATA[Nombre]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 6_TD" height="20">
+						<jr:detailCell style="table 12_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="bcde01e2-9a29-44b9-b25d-9b2eb35a232e"/>
+								<reportElement x="0" y="0" width="90" height="20" uuid="f7cfeff2-2f4e-4719-9f70-9f555406afa4"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{medicamentoinvima_NOMBREMEDICAMENTO}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="69962f8d-3648-4ab8-92b0-8da98d043381">
-						<jr:columnHeader style="table 6_CH" height="30">
+					<jr:column width="66" uuid="16a96b3c-c880-4a0e-89c6-2cea8e09b456">
+						<jr:columnHeader style="table 12_CH" height="31" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="780c4ab2-2a1e-45fc-9e46-82a60428f993"/>
-								<text><![CDATA[facturamedicamentos_CANTIDADVENDIDA]]></text>
+								<reportElement x="0" y="0" width="66" height="30" uuid="096082c7-d574-4ea8-a8c4-6b4209821eaf"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12"/>
+								</textElement>
+								<text><![CDATA[Cantidad]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 6_TD" height="20">
+						<jr:detailCell style="table 12_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="015051a6-8377-4e3a-8694-747a6c22e0b6"/>
+								<reportElement x="0" y="0" width="66" height="20" uuid="40b1dfe0-2bee-4ba2-9df6-a2f91f507c85"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{facturamedicamentos_CANTIDADVENDIDA}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="5aa22982-6131-48f8-8ed1-6069528b9ff4">
-						<jr:columnHeader style="table 6_CH" height="30">
+					<jr:column width="57" uuid="0fc89c71-4cac-4e1a-9e23-1b9b97b868b8">
+						<jr:columnHeader style="table 12_CH" height="31" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="7ff0bc3c-a0ac-4cdc-ae15-6955683321fc"/>
-								<text><![CDATA[medicamento_PRECIOVENTA]]></text>
+								<reportElement x="0" y="0" width="57" height="30" uuid="01be9ce3-25e6-4c9f-8992-5a44e670851f"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12"/>
+								</textElement>
+								<text><![CDATA[Precio Unitario]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 6_TD" height="20">
+						<jr:detailCell style="table 12_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="9d040705-b30f-43a0-8b21-9f3d8cbcf5e7"/>
+								<reportElement x="0" y="0" width="57" height="20" uuid="bc00540d-48a0-481e-9833-289b86bc4635"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{medicamento_PRECIOVENTA}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="d63dffa9-3737-4f98-b70f-893d2a692681">
-						<jr:columnHeader style="table 6_CH" height="30">
+					<jr:column width="73" uuid="bde3a021-a828-4ca1-bbcc-8f8fe3ff9802">
+						<jr:columnHeader style="table 12_CH" height="31" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="8218939e-ae02-4995-ba01-8d7153539144"/>
-								<text><![CDATA[PRECIO_TOTAL]]></text>
+								<reportElement x="0" y="0" width="73" height="30" uuid="b424bea8-84bd-4d7e-8ad9-3c7f9eaf0142"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12"/>
+								</textElement>
+								<text><![CDATA[Precio Total]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 6_TD" height="20">
+						<jr:detailCell style="table 12_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="a5ebfa20-7b33-44bd-a080-f823cfdf605b"/>
+								<reportElement x="0" y="0" width="73" height="20" uuid="a839d7db-7d41-4d15-af95-9188ac940cd4"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{PRECIO_TOTAL}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="faf63536-8a0f-426f-ae62-ecca02e94b4e">
-						<jr:columnHeader style="table 6_CH" height="30">
+					<jr:column width="134" uuid="3d867ff0-aeca-4691-9588-766126a49233">
+						<jr:columnHeader style="table 12_CH" height="31" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="c05ccd4b-4276-421c-9d23-7e65782809fa"/>
-								<text><![CDATA[factura_FECHA]]></text>
+								<reportElement x="0" y="0" width="134" height="30" uuid="cbfe993a-5fb8-4055-8690-d63a94e0085b"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12"/>
+								</textElement>
+								<text><![CDATA[Fecha]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 6_TD" height="20">
+						<jr:detailCell style="table 12_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="d68322cd-4656-4d12-ba22-4b7e8a029649"/>
+								<reportElement x="0" y="0" width="134" height="20" uuid="a746013c-a59a-4211-85d6-b539e957c781"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee" size="12"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{factura_FECHA}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
 				</jr:table>
 			</componentElement>
+			<staticText>
+				<reportElement x="34" y="40" width="452" height="35" uuid="eaeef301-2783-4f6e-8264-0424e277c62f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Reporte De Ventas]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="102" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 13" style="table 13" x="34" y="52" width="452" height="50" uuid="4f8cf3c4-c863-426b-8461-210ae0ab6a67"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Balance" uuid="8426d53b-85ea-4b59-ba66-eaa572d313ab">
+						<datasetParameter name="fechaBalance">
+							<datasetParameterExpression><![CDATA[$P{fecha}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="163" uuid="555ea269-4285-4646-803c-5c5eafa5b0d5">
+						<jr:columnHeader style="table 13_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="163" height="30" uuid="0881bb7d-7f80-486d-b536-0999b6f18635"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee"/>
+								</textElement>
+								<text><![CDATA[TOTAL_VENTA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 13_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="163" height="20" uuid="0d6d64b9-ba85-4b9d-a80b-caeefcc4647a"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TOTAL_VENTA}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="145" uuid="f2f96077-7305-4a12-9d00-38b8ae55a9a2">
+						<jr:columnHeader style="table 13_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="145" height="30" uuid="f51be48d-3355-4f1d-bbbc-24802bc5d733"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee"/>
+								</textElement>
+								<text><![CDATA[TOTAL_COMPRA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 13_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="145" height="20" uuid="80b64fb7-328b-4c4d-bd57-82b87068e39f"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TOTAL_COMPRA}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="147" uuid="03baacb1-c368-4498-b5d4-5b72ef5cd6de">
+						<jr:columnHeader style="table 13_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="147" height="30" uuid="83d88e3a-9934-402a-b27f-f9752197e75e"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee"/>
+								</textElement>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 13_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="147" height="20" uuid="cd46f1bd-0808-467f-9128-6bd44afba0cc"/>
+								<textElement textAlignment="Center">
+									<font fontName="Leelawadee"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TOTAL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement x="34" y="17" width="452" height="35" uuid="6ec7f3f3-44fd-4615-bb58-96cdec429419"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Balance General]]></text>
+			</staticText>
+		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="422" y="22" width="80" height="20" uuid="eb795524-540e-441c-861f-3c5397b16a7b"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="502" y="22" width="40" height="20" uuid="92db25e7-bbcd-4698-aeb4-0b3544bfeaea"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>
