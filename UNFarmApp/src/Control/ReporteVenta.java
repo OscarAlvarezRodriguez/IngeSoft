@@ -17,15 +17,15 @@ public class ReporteVenta {
     public ReporteVenta() {
     }
 
-    public List<Facturamedicamentos> obtenerfacturas() {
+    public List<Facturamedicamentos> obtenerfacturas(String fecha) {
         List<Facturamedicamentos> facturas = null;
-        facturas = FacturasDAO.leerfacturas();
+        facturas = FacturasDAO.leerfacturas(fecha);
         return facturas;
     }
 
-    public List<Compramedicamento> obtenerInfoCompras() {
+    public List<Compramedicamento> obtenerInfoCompras(String fecha) {
         List<Compramedicamento> compras = null;
-        compras = comprasDAO.leercompras();
+        compras = comprasDAO.leercompras(fecha);
         return compras;
     }
 }

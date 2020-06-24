@@ -5,10 +5,11 @@ import Control.ReporteVenta;
 import Entidad.Compramedicamento;
 import Entidad.Empleado;
 import Entidad.Facturamedicamentos;
-import Entidad.Medicamento;
-import Entidad.Medicamentoinvima;
 import Recursos.Funciones;
 import java.awt.Graphics;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -45,10 +46,15 @@ public class FronteraReportesCV extends javax.swing.JPanel {
     }
 
     public void allSetEmpty() {
-        f.setStyleJComboBox(cbEstado);
+        f.setStyleJComboBox(cbAccion);
         f.setStyleJTable(tablaMed, jScrollPane2);
-        f.setStyleJLabel(jlTitulo1);
-        f.setStyleJButon(btnEliminar);
+        f.setStyleJLabelBig(jlFondo);
+        f.setStyleJLabelBig(jlTitulo);
+        f.setStyleJLabelSmall(jlCompra);
+        f.setStyleJLabelSmall(jlVenta);
+        f.setStyleJLabelSmall(jlBalance);
+        f.setStyleJButon(btnActualizar);
+        f.setStyleJButon(btnGuardar);
         f.setStyleJButon(btnCerrarSesion);
         jlSalir.setSize(60, 60);
         f.setStyleJButonBack(jlSalir);
@@ -104,68 +110,56 @@ public class FronteraReportesCV extends javax.swing.JPanel {
         }
     }
 
-    public void search() {
-        while (modelo.getRowCount() > 0) {
-            modelo.removeRow(0);
-        }
-        Medicamentoinvima mi = new Medicamentoinvima();
-        Medicamento m = new Medicamento();
-        m.setIdmedicamentoinvima(mi);
-        List<Medicamento> listaClientes = gestionarMed.listaDeMedicamentos(m);
-        Object object[] = null;
-        for (int i = 0; i < listaClientes.size(); i++) {
-            modelo.addRow(object);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamento(), i, 0);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getNombremedicamento(), i, 1);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getTitular(), i, 2);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getDescripcion(), i, 3);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPrincipioactivo(), i, 4);
-            modelo.setValueAt(listaClientes.get(i).getIdmedicamentoinvima().getPresentacion(), i, 5);
-            modelo.setValueAt(listaClientes.get(i).getStock(), i, 6);
-            modelo.setValueAt(listaClientes.get(i).getPrecioventa(), i, 7);
-        }
+    private void cargar() {
+        cargarCompras(new String());
+        cargarVentas(new String());
         tablaMed.setPreferredSize(new java.awt.Dimension(tablaMed.getWidth(),
                 tablaMed.getRowCount() * tablaMed.getRowHeight()));
         tablaMed.repaint();
         tablaMed.revalidate();
     }
 
-    private void cargar() {
-
-        List<Facturamedicamentos> listaVentas = reporteVenta.obtenerfacturas();
+    private long cargarCompras(String fecha) {
+        long total = 0;
+        List<Compramedicamento> listaCompras = reporteVenta.obtenerInfoCompras(fecha);
         Object object[] = null;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        for (int i = 0; i < listaVentas.size(); i++) {
-            modelo.addRow(object);
-            modelo.setValueAt(listaVentas.get(i).getMedicamento().getIdmedicamentoinvima().getNombremedicamento(), i, 0);
-            modelo.setValueAt(listaVentas.get(i).getFacturamedicamentosPK().getIdfactura(), i, 1);
-            modelo.setValueAt(listaVentas.get(i).getCantidadvendida(), i, 2);
-            modelo.setValueAt("Vender", i, 3);
-            modelo.setValueAt(listaVentas.get(i).getMedicamento().getPrecioventa(), i, 4);
-            modelo.setValueAt(listaVentas.get(i).getFactura().getPreciototal(), i, 5);
-            modelo.setValueAt(dateFormat.format(listaVentas.get(i).getFactura().getFecha()), i, 6);
-        }
-        tablaMed.setPreferredSize(new java.awt.Dimension(tablaMed.getWidth(),
-                tablaMed.getRowCount() * tablaMed.getRowHeight()));
-        tablaMed.repaint();
-        tablaMed.revalidate();
-        List<Compramedicamento> listaCompras = reporteVenta.obtenerInfoCompras();
-        
-        for (int i = 0; i <  listaCompras.size(); i++) {
+        for (int i = 0; i < listaCompras.size(); i++) {
             int rows = tablaMed.getRowCount();
+            long precioTotal = listaCompras.get(i).getCantidad() * listaCompras.get(i).getMedicamento().getPrecioventa();
             modelo.addRow(object);
             modelo.setValueAt(listaCompras.get(i).getMedicamento().getIdmedicamentoinvima().getNombremedicamento(), rows, 0);
             modelo.setValueAt(listaCompras.get(i).getCompramedicamentoPK().getIdcompra(), rows, 1);
             modelo.setValueAt(listaCompras.get(i).getCantidad(), rows, 2);
             modelo.setValueAt("Comprar", rows, 3);
             modelo.setValueAt(listaCompras.get(i).getMedicamento().getPrecioventa(), rows, 4);
-            modelo.setValueAt(listaCompras.get(i).getCompra().getPreciototal(), rows, 5);
+            modelo.setValueAt(precioTotal, rows, 5);
             modelo.setValueAt(dateFormat.format(listaCompras.get(i).getCompra().getFecha()), rows, 6);
+            total += precioTotal;
         }
-        tablaMed.setPreferredSize(new java.awt.Dimension(tablaMed.getWidth(),
-                tablaMed.getRowCount() * tablaMed.getRowHeight()));
-        tablaMed.repaint();
-        tablaMed.revalidate();
+        return total;
+    }
+
+    private long cargarVentas(String fecha) {
+        long total = 0;
+        List<Facturamedicamentos> listaVentas = reporteVenta.obtenerfacturas(fecha);
+        Object object[] = null;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        for (int i = 0; i < listaVentas.size(); i++) {
+            int rows = tablaMed.getRowCount();
+            long precioTotal = listaVentas.get(i).getCantidadvendida() * listaVentas.get(i).getMedicamento().getPrecioventa();
+            modelo.addRow(object);
+            modelo.setValueAt(listaVentas.get(i).getMedicamento().getIdmedicamentoinvima().getNombremedicamento(), rows, 0);
+            modelo.setValueAt(listaVentas.get(i).getFacturamedicamentosPK().getIdfactura(), rows, 1);
+            modelo.setValueAt(listaVentas.get(i).getCantidadvendida(), rows, 2);
+            modelo.setValueAt("Vender", rows, 3);
+            modelo.setValueAt(listaVentas.get(i).getMedicamento().getPrecioventa(), rows, 4);
+            modelo.setValueAt(precioTotal, rows, 5);
+            modelo.setValueAt(dateFormat.format(listaVentas.get(i).getFactura().getFecha()), rows, 6);
+            total += precioTotal;
+
+        }
+        return total;
     }
 
     @Override
@@ -182,21 +176,26 @@ public class FronteraReportesCV extends javax.swing.JPanel {
 
         jlLogo = new javax.swing.JLabel();
         jlSalir = new javax.swing.JLabel();
-        jlTitulo1 = new javax.swing.JLabel();
         jlUsuario = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btnEliminar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaMed = new javax.swing.JTable();
         jlNombre = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        cbEstado = new javax.swing.JComboBox<>();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        cbAccion = new javax.swing.JComboBox<>();
+        dcFecha = new com.toedter.calendar.JDateChooser();
+        btnGuardar = new javax.swing.JButton();
+        jlTitulo = new javax.swing.JLabel();
+        jlBalance = new javax.swing.JLabel();
+        jlVenta = new javax.swing.JLabel();
+        jlCompra = new javax.swing.JLabel();
+        jlFondo = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(0, 0));
-        setPreferredSize(new java.awt.Dimension(1030, 650));
+        setPreferredSize(new java.awt.Dimension(1030, 700));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jlLogo.setPreferredSize(new java.awt.Dimension(100, 100));
@@ -210,13 +209,6 @@ public class FronteraReportesCV extends javax.swing.JPanel {
         });
         add(jlSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jlTitulo1.setFont(new java.awt.Font("Leelawadee", 0, 28)); // NOI18N
-        jlTitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlTitulo1.setText("Listado de Medicamentos Registrados");
-        jlTitulo1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jlTitulo1.setPreferredSize(new java.awt.Dimension(300, 50));
-        add(jlTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 381, 880, 30));
-
         jlUsuario.setPreferredSize(new java.awt.Dimension(150, 150));
         add(jlUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 65, -1, -1));
 
@@ -228,19 +220,19 @@ public class FronteraReportesCV extends javax.swing.JPanel {
         jLabel3.setPreferredSize(new java.awt.Dimension(170, 30));
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 130, -1));
 
-        btnEliminar.setBackground(new java.awt.Color(0, 158, 15));
-        btnEliminar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
-        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminar.setText("Eliminar");
-        btnEliminar.setPreferredSize(new java.awt.Dimension(150, 30));
-        btnEliminar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setBackground(new java.awt.Color(0, 158, 15));
+        btnActualizar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnActualizar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnActualizar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
-        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 570, 160, 29));
+        add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 390, 160, 29));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
@@ -270,7 +262,7 @@ public class FronteraReportesCV extends javax.swing.JPanel {
         tablaMed.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(tablaMed);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 411, -1, 150));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, -1, 150));
 
         jlNombre.setFont(new java.awt.Font("Leelawadee", 0, 22)); // NOI18N
         jlNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -300,41 +292,96 @@ public class FronteraReportesCV extends javax.swing.JPanel {
         jLabel1.setPreferredSize(new java.awt.Dimension(300, 50));
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 17, 330, 30));
 
-        cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-        cbEstado.setPreferredSize(new java.awt.Dimension(300, 30));
-        cbEstado.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbEstadoItemStateChanged(evt);
-            }
-        });
-        cbEstado.addActionListener(new java.awt.event.ActionListener() {
+        cbAccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General", "Vender", "Comprar" }));
+        cbAccion.setPreferredSize(new java.awt.Dimension(300, 30));
+        add(cbAccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 330, 245, -1));
+        add(dcFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 240, 30));
+
+        btnGuardar.setBackground(new java.awt.Color(0, 158, 15));
+        btnGuardar.setFont(new java.awt.Font("Leelawadee", 0, 20)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuardar.setText("Guardar");
+        btnGuardar.setPreferredSize(new java.awt.Dimension(110, 30));
+        btnGuardar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbEstadoActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
-        add(cbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 330, 245, -1));
-        add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 240, 30));
+        add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 640, -1, -1));
+
+        jlTitulo.setFont(new java.awt.Font("Leelawadee", 0, 28)); // NOI18N
+        jlTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlTitulo.setText("Listado de Medicamentos Registrados");
+        jlTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jlTitulo.setPreferredSize(new java.awt.Dimension(300, 50));
+        add(jlTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 450, 880, 30));
+
+        jlBalance.setBackground(new java.awt.Color(51, 51, 255));
+        jlBalance.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
+        jlBalance.setForeground(new java.awt.Color(255, 255, 255));
+        jlBalance.setText("=BalanceGeneral");
+        jlBalance.setOpaque(true);
+        jlBalance.setPreferredSize(new java.awt.Dimension(245, 30));
+        add(jlBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 640, -1, -1));
+
+        jlVenta.setBackground(new java.awt.Color(51, 51, 255));
+        jlVenta.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
+        jlVenta.setForeground(new java.awt.Color(255, 255, 255));
+        jlVenta.setText("+PrecioVenta");
+        jlVenta.setOpaque(true);
+        jlVenta.setPreferredSize(new java.awt.Dimension(245, 30));
+        add(jlVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 640, -1, -1));
+
+        jlCompra.setBackground(new java.awt.Color(51, 51, 255));
+        jlCompra.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
+        jlCompra.setForeground(new java.awt.Color(255, 255, 255));
+        jlCompra.setText("-PrecioCompra");
+        jlCompra.setOpaque(true);
+        jlCompra.setPreferredSize(new java.awt.Dimension(245, 30));
+        add(jlCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 640, -1, -1));
+
+        jlFondo.setFont(new java.awt.Font("Leelawadee", 0, 28)); // NOI18N
+        jlFondo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlFondo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jlFondo.setPreferredSize(new java.awt.Dimension(880, 50));
+        add(jlFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 630, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        int[] i = tablaMed.getSelectedRows();
-        if (i.length == 0) {
-            JOptionPane.showMessageDialog(null,
-                    "Ningun Elemento Seleccionado\n"
-                    + " Por Favor Selecione Algun Cliente Todos Los Campos",
-                    "Selccion Vacia",
-                    JOptionPane.ERROR_MESSAGE);
-        } else {
-            int in = JOptionPane.showConfirmDialog(null, "¿Seguro Desea Elimiar " + (String) tablaMed.getValueAt(i[0], 1) + " ?", "Elimiar Medicamento", JOptionPane.YES_NO_OPTION);
-            if (in == JOptionPane.YES_OPTION) {
-                Medicamento viejo = gestionarMed.leerMedicamento((Short) tablaMed.getValueAt(i[0], 0));
-                Medicamento nuevo = viejo;
-                nuevo.setStock(Short.valueOf("-1"));
-                gestionarMed.actualizarMedicamento(viejo, nuevo);
-                search();
-            }
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
         }
-    }//GEN-LAST:event_btnEliminarActionPerformed
+        int seleccion = cbAccion.getSelectedIndex();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String fecha = dateFormat.format(dcFecha.getDate());
+        DecimalFormat df = new DecimalFormat("##,###,###");
+
+        switch (seleccion) {
+            case 0:
+                jlVenta.setText("+ " + df.format(cargarVentas(fecha)));
+                jlCompra.setText("- " + df.format(cargarCompras(fecha)));
+                break;
+            case 1:
+                jlVenta.setText("+ " + df.format(cargarVentas(fecha)));
+                jlCompra.setText("- " + "0");
+                break;
+            case 2:
+                jlCompra.setText("- " + df.format((cargarCompras(fecha))));
+                jlVenta.setText("+ " + "0");
+                break;
+            default:
+                break;
+        }
+        String compra = jlCompra.getText().substring(2).replaceAll("\\.", "");
+        String venta = jlVenta.getText().substring(2).replaceAll("\\.", "");
+        jlBalance.setText("= " + df.format(Long.valueOf(venta) - Long.valueOf(compra)));
+        tablaMed.setPreferredSize(new java.awt.Dimension(tablaMed.getWidth(),
+                tablaMed.getRowCount() * tablaMed.getRowHeight()));
+        tablaMed.repaint();
+        tablaMed.revalidate();
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         int i = JOptionPane.showConfirmDialog(null, "¿Seguro Desea Salir?", "Cerrar Sesion", JOptionPane.YES_NO_OPTION);
@@ -361,29 +408,40 @@ public class FronteraReportesCV extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jlSalirMouseReleased
 
-    private void cbEstadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEstadoItemStateChanged
-        search();
-    }//GEN-LAST:event_cbEstadoItemStateChanged
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
-    private void cbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbEstadoActionPerformed
+        String url = "jjdbc:mysql://localhost:3306/unfarmapp";
+        String password = "";
+        String user = "root";
+        try {
+            Connection conn = null;
+            conn = DriverManager.getConnection(url, user, password);
+        } catch (Exception e) {
+        }
+
+
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnCerrarSesion;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JComboBox<String> cbEstado;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JComboBox<String> cbAccion;
+    private com.toedter.calendar.JDateChooser dcFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel jlBalance;
+    private javax.swing.JLabel jlCompra;
+    private javax.swing.JLabel jlFondo;
     private javax.swing.JLabel jlLogo;
     private javax.swing.JLabel jlNombre;
     private javax.swing.JLabel jlSalir;
-    private javax.swing.JLabel jlTitulo1;
+    private javax.swing.JLabel jlTitulo;
     private javax.swing.JLabel jlUsuario;
+    private javax.swing.JLabel jlVenta;
     private javax.swing.JTable tablaMed;
     // End of variables declaration//GEN-END:variables
 }

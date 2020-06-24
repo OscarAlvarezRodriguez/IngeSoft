@@ -3,6 +3,9 @@ package DAO;
 import Entidad.Compra;
 import Entidad.Compramedicamento;
 import Entidad.Medicamento;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -114,15 +117,22 @@ public class CompraDAO {
         }
     }
 
-    public List<Compramedicamento> leercompras() {
+    public List<Compramedicamento> leercompras(String fecha) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         EntityManager em = emf.createEntityManager();
-        Query q = em.createQuery("SELECT c FROM Compramedicamento c");
-
+        Date date;
         List<Compramedicamento> compras = null;
 
         try {
+            if (fecha == null || fecha.length() == 0) {
+                date = new Date(System.currentTimeMillis());
+            } else {
+                date = dateFormat.parse(fecha);
+            }
+            Query q = em.createQuery("SELECT c FROM Compramedicamento c WHERE C.compra.fecha = :fecha")
+                    .setParameter("fecha", date);
             compras = (List<Compramedicamento>) q.getResultList();
-        } catch (Exception e) {
+        } catch (ParseException e) {
 
         } finally {
             em.close();

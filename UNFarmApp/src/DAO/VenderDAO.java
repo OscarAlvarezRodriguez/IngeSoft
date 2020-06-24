@@ -3,6 +3,9 @@ package DAO;
 import Entidad.Factura;
 import Entidad.Facturamedicamentos;
 import Entidad.Medicamento;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -113,17 +116,25 @@ public class VenderDAO {
             return ret;
         }
     }
-    
-    public List<Facturamedicamentos> leerfacturas(){
-        EntityManager em  = emf.createEntityManager();
-        Query q = em.createQuery( "SELECT f FROM Facturamedicamentos f");
-        List<Facturamedicamentos> facturas= null;
-        
-        try{
-            facturas = (List<Facturamedicamentos>) q.getResultList();
-        } catch (Exception e){
+
+    public List<Facturamedicamentos> leerfacturas(String fecha) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        EntityManager em = emf.createEntityManager();
+        List<Facturamedicamentos> facturas = null;
+        Date date;
+        try {
+            if (fecha == null || fecha.length() == 0) {
+                date = new Date(System.currentTimeMillis());
+            }else{
+             date = dateFormat.parse(fecha);
+            }
             
-        } finally{
+            Query q = em.createQuery("SELECT f FROM Facturamedicamentos f WHERE f.factura.fecha = :fecha")
+                    .setParameter("fecha", date);
+            facturas = (List<Facturamedicamentos>) q.getResultList();
+        } catch (ParseException e) {
+
+        } finally {
             em.close();
         }
         return facturas;

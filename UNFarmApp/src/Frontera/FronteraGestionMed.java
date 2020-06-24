@@ -56,7 +56,7 @@ public class FronteraGestionMed extends javax.swing.JPanel {
         f.setStyleJTextField(txtTitular);
         f.setStyleJTextArea(txtDescripcion, jScrollPane1);
         f.setStyleJTable(tablaMed, jScrollPane2);
-        f.setStyleJLabel(jlTitulo1);
+        f.setStyleJLabelBig(jlTitulo1);
         f.setStyleJButon(btnEliminar);
         f.setStyleJButon(btnAgregar);
         f.setStyleJButon(btnEditar);

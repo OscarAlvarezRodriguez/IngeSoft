@@ -64,8 +64,8 @@ public class FronteraAgregarMed extends javax.swing.JPanel {
         f.setStyleJButon(btnAgregar);
         f.setStyleJTable(tablaMed, ScrollTablaMed);
         f.setStyleJTable(tablaMedSelec, ScrollMedComprado);
-        f.setStyleJLabel(jlMed);
-        f.setStyleJLabel(jlMedSel);
+        f.setStyleJLabelBig(jlMed);
+        f.setStyleJLabelBig(jlMedSel);
         f.setStyleJScrollPane(ScrollDes);
         f.setStyleJScrollPane(ScrollMedComprado);
         f.setStyleJScrollPane(ScrollTablaMed);

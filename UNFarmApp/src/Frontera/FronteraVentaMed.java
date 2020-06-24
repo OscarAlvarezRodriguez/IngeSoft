@@ -81,8 +81,8 @@ public class FronteraVentaMed extends javax.swing.JPanel {
         f.setStyleJButon(btnAgregar);
         f.setStyleJTable(tablaMed, ScrollTablaMed);
         f.setStyleJTable(TablaMedVendido, ScrollMedComprado);
-        f.setStyleJLabel(jlMed);
-        f.setStyleJLabel(jlMedSel);
+        f.setStyleJLabelBig(jlMed);
+        f.setStyleJLabelBig(jlMedSel);
 
     }
 
