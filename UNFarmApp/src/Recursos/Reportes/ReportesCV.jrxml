@@ -365,19 +365,18 @@ WHERE factura.`FECHA` =$P{fechaVenta}
 		</parameter>
 		<queryString>
 			<![CDATA[SELECT
-     SUM(medicamento.`PRECIOVENTA`* facturamedicamentos.`CANTIDADVENDIDA`) AS TOTAL_VENTA,
-   SUM(compramedicamento.`CANTIDAD`* compramedicamento.`PRECIOUNITARIO`) AS TOTAL_COMPRA,
-     (SUM(medicamento.`PRECIOVENTA`* facturamedicamentos.`CANTIDADVENDIDA`))-(SUM(compramedicamento.`CANTIDAD`* compramedicamento.`PRECIOUNITARIO`)) AS TOTAL
+     SUM(compra.`PRECIOTOTAL`) AS TOTAL_COMPRA,
+     SUM(factura.`PRECIOTOTAL`) AS TOTAL_VENTA,
+     SUM(factura.`PRECIOTOTAL` - compra.`PRECIOTOTAL`) AS TOTAL
 FROM
-     `compra` compra INNER JOIN `compramedicamento` compramedicamento ON compra.`IDCOMPRA` = compramedicamento.`IDCOMPRA`
-     INNER JOIN `medicamento` medicamento ON compramedicamento.`IDMEDICAMENTO` = medicamento.`IDMEDICAMENTO`
-     INNER JOIN `facturamedicamentos` facturamedicamentos ON medicamento.`IDMEDICAMENTO` = facturamedicamentos.`IDMEDICAMENTO`
-     INNER JOIN `factura` factura ON facturamedicamentos.`IDFACTURA` = factura.`IDFACTURA`
+     `compra` compra,
+     `factura` factura
 WHERE
-      compra.`FECHA` = $P{fechaBalance} AND factura.`FECHA`= $P{fechaBalance}]]>
+ compra.`FECHA` = $P{fechaBalance} AND
+ factura.`FECHA` = $P{fechaBalance}]]>
 		</queryString>
-		<field name="TOTAL_VENTA" class="java.math.BigDecimal"/>
 		<field name="TOTAL_COMPRA" class="java.math.BigDecimal"/>
+		<field name="TOTAL_VENTA" class="java.math.BigDecimal"/>
 		<field name="TOTAL" class="java.math.BigDecimal"/>
 	</subDataset>
 	<parameter name="fecha" class="java.util.Date">
@@ -393,8 +392,8 @@ WHERE
 	<title>
 		<band height="80" splitType="Stretch">
 			<staticText>
-				<reportElement x="121" y="0" width="322" height="45" uuid="3ba2b6bd-d364-4fef-ba55-0034559da0f1"/>
-				<textElement>
+				<reportElement x="116" y="0" width="322" height="79" uuid="3ba2b6bd-d364-4fef-ba55-0034559da0f1"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Leelawadee" size="24"/>
 				</textElement>
 				<text><![CDATA[Reportes De Compra Y Venta]]></text>
@@ -403,20 +402,19 @@ WHERE
 				<reportElement x="0" y="0" width="71" height="79" uuid="debdaf23-cae1-4ab6-84ea-4669c1c5fd3a"/>
 				<imageExpression><![CDATA["C:\\Git\\IngeSoft\\UNFarmApp\\src\\Recursos\\logo.png"]]></imageExpression>
 			</image>
-		</band>
-	</title>
-	<pageHeader>
-		<band height="35" splitType="Stretch">
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="455" y="-99" width="100" height="20" uuid="55938b48-cf67-4377-beec-7605b8a721a1"/>
+				<reportElement x="455" y="0" width="100" height="20" uuid="55938b48-cf67-4377-beec-7605b8a721a1"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
 		<band height="106" splitType="Stretch">
 			<componentElement>
-				<reportElement key="table 11" style="table 11" x="34" y="56" width="452" height="50" uuid="942486ca-d42d-40dc-a72e-06c8d45211de"/>
+				<reportElement key="table 11" style="table 11" x="34" y="35" width="452" height="50" uuid="942486ca-d42d-40dc-a72e-06c8d45211de"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="Compra" uuid="dcd08387-e72b-4d07-9e9c-c0de89f9ffe5">
 						<datasetParameter name="fechaCompra">
@@ -547,7 +545,7 @@ WHERE
 				</jr:table>
 			</componentElement>
 			<staticText>
-				<reportElement x="34" y="21" width="452" height="35" uuid="a9a8fc36-6894-4eaf-a9ac-8ca5bed871da"/>
+				<reportElement x="34" y="0" width="452" height="35" uuid="a9a8fc36-6894-4eaf-a9ac-8ca5bed871da"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Leelawadee" size="22" isBold="false"/>
 				</textElement>
@@ -558,7 +556,7 @@ WHERE
 	<detail>
 		<band height="125" splitType="Stretch">
 			<componentElement>
-				<reportElement key="table 12" style="table 12" x="34" y="75" width="452" height="50" uuid="7157ab50-3231-4610-879a-bc65010b3c29"/>
+				<reportElement key="table 12" style="table 12" x="34" y="35" width="452" height="50" uuid="7157ab50-3231-4610-879a-bc65010b3c29"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="Venta" uuid="9fda2870-1a4f-4ec2-baa9-33c3174cf839">
 						<datasetParameter name="fechaVenta">
@@ -689,7 +687,7 @@ WHERE
 				</jr:table>
 			</componentElement>
 			<staticText>
-				<reportElement x="34" y="40" width="452" height="35" uuid="eaeef301-2783-4f6e-8264-0424e277c62f"/>
+				<reportElement x="34" y="0" width="452" height="35" uuid="eaeef301-2783-4f6e-8264-0424e277c62f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Leelawadee" size="22" isBold="false"/>
 				</textElement>
@@ -700,9 +698,9 @@ WHERE
 	<columnFooter>
 		<band height="102" splitType="Stretch">
 			<componentElement>
-				<reportElement key="table 13" style="table 13" x="34" y="52" width="452" height="50" uuid="4f8cf3c4-c863-426b-8461-210ae0ab6a67"/>
+				<reportElement key="table 13" style="table 13" x="34" y="35" width="452" height="50" uuid="4f8cf3c4-c863-426b-8461-210ae0ab6a67"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="Balance" uuid="8426d53b-85ea-4b59-ba66-eaa572d313ab">
+					<datasetRun subDataset="Balance" uuid="614cdd5c-b336-401b-ba67-b5829437d14e">
 						<datasetParameter name="fechaBalance">
 							<datasetParameterExpression><![CDATA[$P{fecha}]]></datasetParameterExpression>
 						</datasetParameter>
@@ -771,7 +769,7 @@ WHERE
 				</jr:table>
 			</componentElement>
 			<staticText>
-				<reportElement x="34" y="17" width="452" height="35" uuid="6ec7f3f3-44fd-4615-bb58-96cdec429419"/>
+				<reportElement x="34" y="0" width="452" height="35" uuid="6ec7f3f3-44fd-4615-bb58-96cdec429419"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Leelawadee" size="22" isBold="false"/>
 				</textElement>
