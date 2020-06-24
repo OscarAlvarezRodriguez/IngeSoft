@@ -1,6 +1,7 @@
 package Sprint2;
 
 import Control.AgregarMedicamento;
+import DAO.MedicamentoDAO;
 import Entidad.Medicamento;
 import Entidad.Medicamentoinvima;
 import org.junit.After;
@@ -43,6 +44,9 @@ public class TestAgregarMedicamento {
 
         Medicamento m = null;
         assertEquals(medicamento.validarDatos(m, 10000, (short)20), me);
+        m=medicamento.medicamentoDAO.existencia((short)20);
+        medicamento.medicamentoDAO.eliminar(m);
+        
     }
 
     @Test

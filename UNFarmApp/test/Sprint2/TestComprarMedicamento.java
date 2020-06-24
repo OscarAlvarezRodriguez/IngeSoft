@@ -21,6 +21,7 @@ public class TestComprarMedicamento {
     private final String pn = "Precio no válido";
     private final String ce = "La cantidad excede la capacidad del inventario actual";
     private final String cr = "Compra registrada exitosamente";
+    private final String co = "Correcto";
     private ComprarMedicamento comprar = new ComprarMedicamento();
     
     public TestComprarMedicamento() {
@@ -50,7 +51,7 @@ public class TestComprarMedicamento {
          c.setNombreproveedor("Drogas Calidad Maxima Garantizado");         
          assertEquals(comprar.validarProveedor(c.getNombreproveedor()), vp);
          c.setNombreproveedor("Drogas Calidad Maxima");
-         assertEquals(comprar.validarProveedor(c.getNombreproveedor()), vp);
+         assertEquals(comprar.validarProveedor(c.getNombreproveedor()), co);
      }
      
           @Test

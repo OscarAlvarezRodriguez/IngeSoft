@@ -1,6 +1,7 @@
 package Sprint1;
 
 import Control.RegistrarEmpleado;
+import DAO.EmpleadoDAO;
 import Entidad.Empleado;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -305,6 +306,7 @@ public class TestRegistrarEmpleado {
         u.setContrasenia("San123");
         u.setEstado("ACTIVO");
         assertEquals(empleado.validarDatos(u), re);
+        new EmpleadoDAO().eliminar(u);
 
     }
 

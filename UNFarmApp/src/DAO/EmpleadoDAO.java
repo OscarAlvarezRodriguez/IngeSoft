@@ -135,5 +135,25 @@ public class EmpleadoDAO {
             return emple;
         }
     }
+    
+    
+    public boolean eliminar(Empleado med) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        boolean ret = false;
+        try {
+            if (!em.contains(med)) {
+                med = em.merge(med);
+            }
+            em.remove(med);
+            em.getTransaction().commit();
+            ret = true;
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+            return ret;
+        }
+    }
 
 }

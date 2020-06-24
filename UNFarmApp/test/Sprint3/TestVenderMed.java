@@ -81,7 +81,7 @@ public class TestVenderMed {
         Medicamento m = new Medicamento();
         m.setIdmedicamento((short) 6);
         m.setPrecioventa(8000);
-        m.setStock((short) -1);
+        m.setStock((short) 10);
         Medicamentoinvima idmediMedicamentoinvima = new Medicamentoinvima();
         idmediMedicamentoinvima.setDescripcion("CAJA POR 100 TABLETAS EN BLISTER DE PVDC/PE/PVC INCOLORO/ALUMINIO.");
         idmediMedicamentoinvima.setIdmedicamentoinvima((short) 777);
